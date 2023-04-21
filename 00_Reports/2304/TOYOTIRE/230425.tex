@@ -55,6 +55,24 @@ numbersep=1zw,
 lineskip=-0.5ex
 }
 
+% キャプション後ろのダブルコロンを消す
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}%
+    \else\sbox\@tempboxa{#1 #2}%
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1 #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+
+
 \makeatletter
 \def\@maketitle
 {
@@ -89,6 +107,44 @@ lineskip=-0.5ex
 \section*{進捗状況}
 
 \section{数値シミュレーション}
+
+\subsection{シミュレーション条件}
+\begin{table}[hbtp]
+    \label{table:data_type}
+    \caption{シミュレーション条件}
+    \centering
+    \begin{tabular}{ c c | r l}
+        \hline
+        粒子数密度              & $n$          & 170                    & [個/枚]            \\ \hline
+        壁の回転速度            & $\omega$     & 10                     & [deg/s]            \\ \hline
+        動粘性係数              & $\nu$        & $1.004 \times 10^{-6}$ & [$\mathrm{m}^2$/s] \\ \hline
+        $\mathrm{LLS}_1$ の位置 & $x_0$        & 7.000                  & [mm]               \\ \hline
+        $\mathrm{LLS}_1$ の厚み & $T_1$        & $3.086\times 10^{-3}$  & [mm]               \\ \hline
+        $\mathrm{LLS}_2$ の厚み & $T_2$        & $9.259\times 10^{-3}$  & [mm/s]             \\ \hline
+        LLS 間の距離            & $\Delta x$   & $9.645\times 10^{-3}$  & [mm/s]             \\ \hline
+        撮影範囲                & $y \times z$ & $40 \times 40$         & [mm]               \\ \hline
+        画像サイズ              & $w \times h$ & $800 \times 800$       & [px]               \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[hbtp]
+    \label{table:data_type}
+    \caption{実験条件(参考)}
+    \centering
+    \begin{tabular}{ c c | r l}
+        \hline
+        % 主流速度       & $u$          & 250              & [mm/s] \\ \hline
+        粒子数密度              & $n$            & 70                     & [個/枚]            \\ \hline
+        壁の回転速度            & $\omega'$      & -                      & [deg/s]            \\ \hline
+        動粘性係数              & $\nu'$         & $1.004 \times 10^{-6}$ & [$\mathrm{m}^2$/s] \\ \hline
+        $\mathrm{LLS}_1$ の位置 & $x'_0$         & -                      & [mm]               \\ \hline
+        $\mathrm{LLS}_1$ の厚み & $T'_1$         & 1.000                  & [mm]               \\ \hline
+        $\mathrm{LLS}_2$ の厚み & $T'_2$         & 3.000                  & [mm/s]             \\ \hline
+        LLS 間の距離            & $\Delta x'$    & 3.125                  & [mm/s]             \\ \hline
+        撮影範囲                & $y' \times z'$ & $100 \times 50$        & [mm]               \\ \hline
+        画像サイズ              & $w' \times h'$ & $800 \times 400$       & [px]               \\ \hline
+    \end{tabular}
+\end{table}
 
 
 \section{真値の作成}

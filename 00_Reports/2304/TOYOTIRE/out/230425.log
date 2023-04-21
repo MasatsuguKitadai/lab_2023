@@ -1,0 +1,2023 @@
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2023.4.3)  21 APR 2023 15:09
+ restricted system commands enabled.
+**/home/kitadai/workspace/lab_2023/00_Reports/2304/TOYOTIRE/230425.tex
+(/home/kitadai/workspace/lab_2023/00_Reports/2304/TOYOTIRE/230425.tex
+LaTeX2e <2021-11-15> patch level 1
+Lua module: luaotfload 2021-05-21 3.18 Lua based OpenType font support
+Lua module: lualibs 2021-05-20 2.74 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2021-05-20 2.74 ConTeXt Lua libraries -- extended collection.
+luaotfload | conf : Root cache directory is "/home/kitadai/.texlive2021/texmf-var/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2021-05-20.lua" from kpse-resolved path "/usr/share/texlive/texmf-dist/tex/luatex/luaotfload/fontloader-2021-05-20.lua".
+Lua-only attribute luaotfload@noligature = 1
+Lua-only attribute luaotfload@syllabe = 2
+luaotfload | init : Context OpenType loader version 3.116
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' at position 1 in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 3
+luaotfload | conf : Root cache directory is "/home/kitadai/.texlive2021/texmf-var/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_truetype_file'.
+Inserting `luaotfload.harf.finalize_vlist' at position 1 in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' at position 2 in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' at position 1 in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' at position 1 in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' at position 1 in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 4
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' at position 2 in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 3 in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 4 in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' at position 5 in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' at position 6 in `luaotfload.patch_font'. L3 programming layer <2022-01-21>
+Inserting `tracingstacklevels' at position 1 in `input_level_string'. (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+
+! LaTeX Error: This file needs format `pLaTeX2e'
+               but this is `LaTeX2e'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \NeedsTeXFormat{pLaTeX2e}
+                            
+The current input file will not be processed further,
+because it was written for some other flavor of TeX.
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count183
+\Gm@cntv=\count184
+\c@Gm@tempcnt=\count185
+\Gm@bindingoffset=\dimen137
+\Gm@wd@mp=\dimen138
+\Gm@odd@mp=\dimen139
+\Gm@even@mp=\dimen140
+\Gm@layoutwidth=\dimen141
+\Gm@layoutheight=\dimen142
+\Gm@layouthoffset=\dimen143
+\Gm@layoutvoffset=\dimen144
+\Gm@dimlist=\toks17
+
+! Package geometry Error: \paperwidth (0.0pt) too short.
+
+See the geometry package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1006 \Gm@process
+                
+Set a paper type (e.g., `a4paper').
+
+
+! Package geometry Error: \paperheight (0.0pt) too short.
+
+See the geometry package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1006 \Gm@process
+                
+Set a paper type (e.g., `a4paper').
+
+
+Package geometry Warning: `width' results in NEGATIVE (-113.811pt).
+    `lmargin' or `rmargin' should be shortened in length.
+
+
+Package geometry Warning: `height' results in NEGATIVE (-99.58463pt).
+    `tmargin' or `bmargin' should be shortened in length.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+
+! Package inputenc Error: inputenc is not designed for xetex or luatex.
+(inputenc)                only UTF-8 supported.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 \endinput
+             
+For xelatex or lualatex save the document in UTF-8 encoding
+and do not use inputenc, or use the [utf8] option.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2021/10/15 v2.17l AMS math features
+\@mathmargin=\skip47
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks20
+\ex@=\dimen145
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen146
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2021/08/26 v2.02 operator names
+)
+\inf@bad=\count186
+LaTeX Info: Redefining \frac on input line 236.
+\uproot@=\count187
+\leftroot@=\count188
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count189
+\DOTSCASE@=\count190
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box50
+\strutbox@=\box51
+\big@size=\dimen147
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count191
+\c@MaxMatrixCols=\count192
+\dotsspace@=\muskip16
+\c@parentequation=\count193
+\dspbrk@lvl=\count194
+\tag@help=\toks21
+\row@=\count195
+\column@=\count196
+\maxfields@=\count197
+\andhelp@=\toks22
+\eqnshift@=\dimen148
+\alignsep@=\dimen149
+\tagshift@=\dimen150
+\tagwidth@=\dimen151
+\totwidth@=\dimen152
+\lineht@=\dimen153
+\@envbody=\toks23
+\multlinegap=\skip48
+\multlinetaggap=\skip49
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2938.
+LaTeX Info: Redefining \] on input line 2939.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 107.
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+File: dvipdfmx.def 2021/03/18 v5.0j Graphics/color driver for dvipdfmx
+))
+\Gin@req@height=\dimen154
+\Gin@req@width=\dimen155
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen156
+\captionmargin@=\dimen157
+\captionwidth=\dimen158
+\caption@tempdima=\dimen159
+\caption@indent=\dimen160
+\caption@parindent=\dimen161
+\caption@hangindent=\dimen162
+\abovecaptionskip=\skip50
+\belowcaptionskip=\skip51
+Package caption Info: Document class w/o caption stuff detected.
+)
+\c@caption@flags=\count198
+\c@continuedfloat=\count199
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvipdfmx.def on input line 149.
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count266
+\lst@gtempboxa=\box52
+\lst@token=\toks25
+\lst@length=\count267
+\lst@currlwidth=\dimen163
+\lst@column=\count268
+\lst@pos=\count269
+\lst@lostspace=\dimen164
+\lst@width=\dimen165
+\lst@newlines=\count270
+\lst@lineno=\count271
+\lst@maxwidth=\dimen166
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count272
+\lst@skipnumbers=\count273
+\lst@framebox=\box53
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+(/usr/share/texlive/texmf-dist/tex/latex/jvlisting/jvlisting.sty
+Package: jvlisting 2011/11/17 v0.7 Formatted Program Listings
+\jvl@idt=\count274
+\jvl@tmphyphenchar=\count275
+\jvl@fileinput=\read2
+\listingskipamount=\skip52
+\listingindent=\dimen167
+\prelistingpenalty=\count276
+\listingpenalty=\count277
+\postlistingpenalty=\count278
+) (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip53
+\fb@frw=\dimen168
+\fb@frh=\dimen169
+\FrameRule=\dimen170
+\FrameSep=\dimen171
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks26
+) (/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen172
+\Hy@linkcounter=\count279
+\Hy@pagecounter=\count280
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel languages
+) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count281
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+)
+
+! Package hyperref Error: Wrong DVI mode driver option `dvipdfmx',
+(hyperref)                because pdfTeX or LuaTeX is running in PDF mode.
+
+See the hyperref package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4073 \ProcessKeyvalOptions{Hyp}
+                               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count282
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen173
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count283
+\Field@Width=\dimen174
+\Fld@charsize=\dimen175
+Package hyperref Info: Hyper figures OFF on input line 6076.
+Package hyperref Info: Link nesting OFF on input line 6081.
+Package hyperref Info: Hyper index ON on input line 6084.
+Package hyperref Info: backreferencing OFF on input line 6091.
+Package hyperref Info: Link coloring OFF on input line 6096.
+Package hyperref Info: Link coloring with OCG OFF on input line 6101.
+Package hyperref Info: PDF/A mode OFF on input line 6106.
+LaTeX Info: Redefining \ref on input line 6146.
+LaTeX Info: Redefining \pageref on input line 6150.
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+
+Package hyperref Warning: Option `pdfpagelabels' is turned off
+(hyperref)                because \thepage is undefined.
+
+\c@Item=\count284
+\c@Hfootnote=\count285
+)
+Package hyperref Info: Driver (autodetected): hluatex.
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2021-06-07 v7.00m Hyperref driver for luaTeX
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+\Fld@listcount=\count286
+\c@bookmark@seq@number=\count287
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+) (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
+)
+\Hy@SectionHShift=\skip54
+) (/usr/share/texlive/texmf-dist/tex/latex/ascmac/ascmac.sty
+Package: ascmac 2020/01/15 v2.1 ascmac wrapper (community edition) 
+(/usr/share/texlive/texmf-dist/tex/latex/ascmac/tascmac.sty
+Package: tascmac 2020/01/15 v2.1 ascmac package (community edition) 
+Package tascmac Info: Assuming pdfLaTeX, XeLaTeX or LuaLaTeX on input line 44.
+\scb@x=\box54
+\scscb@x=\box55
+\@bw=\dimen176
+\@nbox=\box56
+\@nbody=\box57
+\@scw=\dimen177
+\ascmac@hoboxa=\box58
+\ascmac@hoboxb=\box59
+\@itemh=\dimen178
+\@iboxpos=\toks27
+\@iboxstr=\box60
+\@bwsp=\box61
+\@@bwsp=\box62
+\@bcal=\count288
+\shaderule=\dimen179
+)) (/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks28
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
+\col@sep=\dimen180
+\ar@mcellbox=\box63
+\extrarowheight=\dimen181
+\NC@list=\toks29
+\extratabsurround=\skip55
+\backup@length=\skip56
+\ar@cellbox=\box64
+)
+\TX@col@width=\dimen182
+\TX@old@table=\dimen183
+\TX@old@col=\dimen184
+\TX@target=\dimen185
+\TX@delta=\dimen186
+\TX@cols=\count289
+\TX@ftn=\toks30
+) (/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty
+Package: cancel 2013/04/12 v2.2 Cancel math terms
+) (/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty) (/usr/share/texlive/texmf-dist/tex/latex/cite/overcite.sty
+Package: overcite 2003/05/27  v 4.0
+) (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+LaTeX Info: Redefining \cite on input line 441.
+) (/usr/share/texlive/texmf-dist/tex/platex/japanese-otf-uptex/otf.sty
+
+! LaTeX Error: This file needs format `pLaTeX2e'
+               but this is `LaTeX2e'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \NeedsTeXFormat{pLaTeX2e}
+                           
+The current input file will not be processed further,
+because it was written for some other flavor of TeX.
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
+
+! LaTeX Error: Command \figurename undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \renewcommand{\figurename}
+                             {Fig.}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Command \tablename undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.34 \renewcommand{\tablename}
+                            {Table }
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+luaotfload | db : Font names database loaded from /home/kitadai/.texlive2021/texmf-var/luatex-cache/generic/names/luaotfload-names.luc (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2022-01-12 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count290
+\l__pdf_internal_box=\box65
+) (./out/230425.aux)
+\openout1 = 230425.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 77.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 \begin{document}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, -113.811pt, 56.9055pt)
+* v-part:(T,H,B)=(42.67912pt, -99.58463pt, 56.9055pt)
+* \paperwidth=0.0pt
+* \paperheight=0.0pt
+* \textwidth=-113.811pt
+* \textheight=-99.58463pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-29.59087pt
+* \headheight=0.0pt
+* \headsep=0.0pt
+* \topskip=10.0pt
+* \footskip=0.0pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=0.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 4.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumntrue
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count291
+
+Package hyperref Warning: Height of page (\paperheight) is invalid (0.0pt),
+(hyperref)                using 11in.
+
+Package hyperref Info: Link coloring OFF on input line 77.
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count292
+)
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
+(./230425.out) (./230425.out)
+\@outlinefile=\write3
+
+\openout3 = 230425.out
+! Undefined control sequence.
+\reserved@c ->\HyOrg@maketitle 
+                               \Hy@maketitle@end 
+l.80 
+   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.81 \section
+           *{報告内容}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (93.10551pt too wide) in paragraph at lines 81--82
+[]\TU/lmr/m/n/10 *報󰀀告󰀀内󰀀容󰀀 
+ []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.83     \item 数
+                値シミュレーション
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.83     \item 数
+                値シミュレーション
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+Missing character: There is no 報 (U+5831) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 告 (U+544A) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 内 (U+5185) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 容 (U+5BB9) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 83--84
+[]
+ []
+
+
+Overfull \hbox (84.90553pt too wide) in paragraph at lines 83--84
+\TU/lmr/m/n/10 数󰀀値󰀀シ󰀀ミ󰀀ュ󰀀レ󰀀ー󰀀シ󰀀ョ󰀀ン󰀀 
+ []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84     \item 真
+                値の作成
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.84     \item 真
+                値の作成
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[2
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 84--85
+[]
+ []
+
+
+Overfull \hbox (70.90552pt too wide) in paragraph at lines 84--85
+\TU/lmr/m/n/10 真󰀀値󰀀の󰀀作󰀀成󰀀 
+ []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85     \item 計
+                測精度の誤差評価
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.85     \item 計
+                測精度の誤差評価
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[3
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 数 (U+6570) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no シ (U+30B7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ミ (U+30DF) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ュ (U+30E5) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no レ (U+30EC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ー (U+30FC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no シ (U+30B7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ョ (U+30E7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ン (U+30F3) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85     \item 計
+                測精度の誤差評価
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.85     \item 計
+                測精度の誤差評価
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[4
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 真 (U+771F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 作 (U+4F5C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 成 (U+6210) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 85--86
+[]
+ []
+
+
+Overfull \hbox (82.10553pt too wide) in paragraph at lines 85--86
+\TU/lmr/m/n/10 計󰀀測󰀀精󰀀度󰀀の󰀀誤󰀀差󰀀評󰀀価󰀀 
+ []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.86     \item 研
+                究発表について
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.86     \item 研
+                究発表について
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[5
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 86--87
+[]
+ []
+
+
+Overfull \hbox (79.30553pt too wide) in paragraph at lines 86--87
+\TU/lmr/m/n/10 研󰀀究󰀀発󰀀表󰀀に󰀀つ󰀀い󰀀て󰀀 
+ []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.87     \item 5
+              月の予定
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.87     \item 5
+              月の予定
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[6
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 計 (U+8A08) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 測 (U+6E2C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 精 (U+7CBE) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 度 (U+5EA6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 誤 (U+8AA4) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 差 (U+5DEE) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 評 (U+8A55) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 価 (U+4FA1) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.87     \item 5
+              月の予定
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.87     \item 5
+              月の予定
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[7
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 研 (U+7814) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 究 (U+7A76) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 発 (U+767A) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 表 (U+8868) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no つ (U+3064) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no い (U+3044) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no て (U+3066) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 87--88
+[]
+ []
+
+
+Overfull \hbox (73.10551pt too wide) in paragraph at lines 87--88
+\TU/lmr/m/n/10 5月󰀀の󰀀予󰀀定󰀀 
+ []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.88 \end{enumerate}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.88 \end{enumerate}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[8
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+! Undefined control sequence.
+l.89 \section
+           *{進捗状況}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (73.10551pt too wide) in paragraph at lines 89--90
+\TU/lmr/m/n/10 *進󰀀捗󰀀状󰀀況󰀀 
+ []
+
+! Undefined control sequence.
+l.91 \section
+           {数値シミュレーション}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 \section{数
+               値シミュレーション}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.91 \section{数
+               値シミュレーション}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[9
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 月 (U+6708) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 予 (U+4E88) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 進 (U+9032) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 捗 (U+6357) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 状 (U+72B6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 況 (U+6CC1) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (104.90553pt too wide) in paragraph at lines 91--92
+[]\TU/lmr/m/n/10 数󰀀値󰀀シ󰀀ミ󰀀ュ󰀀レ󰀀ー󰀀シ󰀀ョ󰀀ン󰀀 
+ []
+
+! Undefined control sequence.
+l.94 \section
+           {真値の作成}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (90.90552pt too wide) in paragraph at lines 94--95
+[]\TU/lmr/m/n/10 真󰀀値󰀀の󰀀作󰀀成󰀀 
+ []
+
+! Undefined control sequence.
+l.97 \section
+           {計測精度の誤差評価}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97 \section{計
+               測精度の誤差評価}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.97 \section{計
+               測精度の誤差評価}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[10
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 数 (U+6570) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no シ (U+30B7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ミ (U+30DF) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ュ (U+30E5) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no レ (U+30EC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ー (U+30FC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no シ (U+30B7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ョ (U+30E7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ン (U+30F3) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 真 (U+771F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 値 (U+5024) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 作 (U+4F5C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 成 (U+6210) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (102.10553pt too wide) in paragraph at lines 97--98
+[]\TU/lmr/m/n/10 計󰀀測󰀀精󰀀度󰀀の󰀀誤󰀀差󰀀評󰀀価󰀀 
+ []
+
+! Undefined control sequence.
+l.100 \section
+            {研究発表について}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (99.30553pt too wide) in paragraph at lines 100--101
+[]\TU/lmr/m/n/10 研󰀀究󰀀発󰀀表󰀀に󰀀つ󰀀い󰀀て󰀀 
+ []
+
+! Undefined control sequence.
+l.102 \subsection
+               {第51回 可視化情報シンポジウム}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.102 \subsection{第
+                   51回 可視化情報シンポジウム}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.102 \subsection{第
+                   51回 可視化情報シンポジウム}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[11
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 計 (U+8A08) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 測 (U+6E2C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 精 (U+7CBE) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 度 (U+5EA6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 誤 (U+8AA4) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 差 (U+5DEE) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 評 (U+8A55) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 価 (U+4FA1) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 研 (U+7814) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 究 (U+7A76) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 発 (U+767A) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 表 (U+8868) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no に (U+306B) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no つ (U+3064) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no い (U+3044) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no て (U+3066) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+! Undefined control sequence.
+l.103 \subsection
+               {ISTP-33}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.104 \subsection
+               {日本実験力学会 2023年度年次講演会}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (92.50551pt too wide) in paragraph at lines 102--105
+[]\TU/lmr/m/n/10 第󰀀51回󰀀
+ []
+
+
+Overfull \hbox (87.70554pt too wide) in paragraph at lines 102--105
+\TU/lmr/m/n/10 可󰀀視󰀀化󰀀情󰀀報󰀀シ󰀀ン󰀀ポ󰀀ジ󰀀ウ󰀀ム󰀀
+ []
+
+
+Overfull \hbox (83.4355pt too wide) in paragraph at lines 102--105
+\TU/lmr/m/n/10 ISTP-
+ []
+
+
+Overfull \hbox (66.9055pt too wide) in paragraph at lines 102--105
+\TU/lmr/m/n/10 33
+ []
+
+
+Overfull \hbox (76.50552pt too wide) in paragraph at lines 102--105
+\TU/lmr/m/n/10 日󰀀本󰀀実󰀀験󰀀力󰀀学󰀀会󰀀
+ []
+
+
+Overfull \hbox (96.50552pt too wide) in paragraph at lines 102--105
+\TU/lmr/m/n/10 2023年󰀀度󰀀年󰀀次󰀀講󰀀演󰀀会󰀀 
+ []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.105 
+    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.105 
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[12
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 第 (U+7B2C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 回 (U+56DE) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 可 (U+53EF) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 視 (U+8996) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 化 (U+5316) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 情 (U+60C5) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 報 (U+5831) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no シ (U+30B7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ン (U+30F3) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ポ (U+30DD) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ジ (U+30B8) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ウ (U+30A6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ム (U+30E0) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.105 
+    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.105 
+    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[13
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+! Undefined control sequence.
+l.107 \section
+            {5月の予定}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.107 \section{5
+              月の予定}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.107 \section{5
+              月の予定}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[14
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 日 (U+65E5) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 本 (U+672C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 実 (U+5B9F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 験 (U+9A13) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 力 (U+529B) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 学 (U+5B66) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 会 (U+4F1A) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 年 (U+5E74) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 度 (U+5EA6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 年 (U+5E74) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 次 (U+6B21) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 講 (U+8B1B) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 演 (U+6F14) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 会 (U+4F1A) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (93.10551pt too wide) in paragraph at lines 107--108
+[]\TU/lmr/m/n/10 5月󰀀の󰀀予󰀀定󰀀 
+ []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 110--110
+[]
+ []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 110--110
+
+ []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.110     \item 車
+                 両モデル周りの流れ場計測
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.110     \item 車
+                 両モデル周りの流れ場計測
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[15
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 月 (U+6708) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 予 (U+4E88) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 定 (U+5B9A) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 110--111
+[]
+ []
+
+
+Overfull \hbox (93.30554pt too wide) in paragraph at lines 110--111
+\TU/lmr/m/n/10 車󰀀両󰀀モ󰀀デ󰀀ル󰀀周󰀀り󰀀の󰀀流󰀀れ󰀀場󰀀計󰀀測󰀀 
+ []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.111     \item I
+               STP 論文提出 (5/30)
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.111     \item I
+               STP 論文提出 (5/30)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[16
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 111--112
+[]
+ []
+
+
+Overfull \hbox (80.1055pt too wide) in paragraph at lines 111--112
+\TU/lmr/m/n/10 ISTP
+ []
+
+
+Overfull \hbox (68.10551pt too wide) in paragraph at lines 111--112
+\TU/lmr/m/n/10 論󰀀文󰀀提󰀀出󰀀
+ []
+
+
+Overfull \hbox (84.6855pt too wide) in paragraph at lines 111--112
+\TU/lmr/m/n/10 (5/30) 
+ []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.112     \item 可
+                 視化情報シンポジウム 原稿提出 (5/30)
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.112     \item 可
+                 視化情報シンポジウム 原稿提出 (5/30)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[17
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 車 (U+8ECA) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 両 (U+4E21) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no モ (U+30E2) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no デ (U+30C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ル (U+30EB) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 周 (U+5468) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no り (U+308A) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no の (U+306E) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 流 (U+6D41) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no れ (U+308C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 場 (U+5834) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 計 (U+8A08) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 測 (U+6E2C) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.112     \item 可
+                 視化情報シンポジウム 原稿提出 (5/30)
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.112     \item 可
+                 視化情報シンポジウム 原稿提出 (5/30)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[18
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 論 (U+8AD6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 文 (U+6587) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 提 (U+63D0) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 出 (U+51FA) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 112--113
+[]
+ []
+
+
+Overfull \hbox (87.70554pt too wide) in paragraph at lines 112--113
+\TU/lmr/m/n/10 可󰀀視󰀀化󰀀情󰀀報󰀀シ󰀀ン󰀀ポ󰀀ジ󰀀ウ󰀀ム󰀀
+ []
+
+
+Overfull \hbox (68.10551pt too wide) in paragraph at lines 112--113
+\TU/lmr/m/n/10 原󰀀稿󰀀提󰀀出󰀀
+ []
+
+
+Overfull \hbox (84.6855pt too wide) in paragraph at lines 112--113
+\TU/lmr/m/n/10 (5/30) 
+ []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113 \end{itemize}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.113 \end{itemize}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[19
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113 \end{itemize}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.113 \end{itemize}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[20
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 可 (U+53EF) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 視 (U+8996) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 化 (U+5316) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 情 (U+60C5) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 報 (U+5831) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no シ (U+30B7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ン (U+30F3) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ポ (U+30DD) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ジ (U+30B8) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ウ (U+30A6) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ム (U+30E0) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Missing character: There is no 原 (U+539F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 稿 (U+7A3F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 提 (U+63D0) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no 出 (U+51FA) in font [lmroman10-regular]:+tlig;!
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (99.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.116 \end{document}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.116 \end{document}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[21
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+
+Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \vbox (10.0pt too high) has occurred while \output is active []
+
+(./out/230425.aux)
+
+Package rerunfilecheck Warning: File `230425.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `230425.out':
+(rerunfilecheck)             Before: 0BB66D374C057B9F73CD073F9BEF486E;527
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (109.58463pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (0.28453pt too wide) has occurred while \output is active
+[] []|[] []
+ []
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.116 \end{document}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<argument> \thepage 
+         
+l.116 \end{document}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[22
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!])
+
+Here is how much of LuaTeX's memory you used:
+ 13184 strings out of 477805
+ 100000,552014 words of node,token memory allocated
+ 426 words of node memory still in use:
+   5 hlist, 1 vlist, 2 rule, 4 kern, 1 glyph, 4 attribute, 49 glue_spec, 4 attribute_list nodes
+   avail lists: 2:62,3:25,4:1,5:39,6:5,7:140,8:6,9:59,11:2
+ 33342 multiletter control sequences out of 65536+600000
+ 16 fonts using 768071 bytes
+ 60i,6n,61p,317b,406s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+warning  (pdf backend): unreferenced destination with name 'section.5'
+
+warning  (pdf backend): unreferenced destination with name 'subsection.4.3'
+
+warning  (pdf backend): unreferenced destination with name 'subsection.4.2'
+
+warning  (pdf backend): unreferenced destination with name 'subsection.4.1'
+
+warning  (pdf backend): unreferenced destination with name 'section.4'
+
+warning  (pdf backend): unreferenced destination with name 'section.3'
+
+warning  (pdf backend): unreferenced destination with name 'section.2'
+
+warning  (pdf backend): unreferenced destination with name 'section.1'
+</usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf>
+Output written on 230425.pdf (22 pages, 8872 bytes).
+
+PDF statistics: 124 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 131072)
+ 65 words of extra memory for PDF output out of 10000 (max. 100000000)
+
