@@ -16,7 +16,7 @@ AUTHER  : Masatsugu Kitadai
 const float pi = 4 * atan(1.0); // 円周率
 
 /* 保存ディレクトリの設定 */
-const std::string dir_path_sub = "/mnt/d/workspace_SSD/01_numerical_simulation/"; // SSD
+const std::string dir_path_sub = "/mnt/d/workspace_SSD/03_numerical_simulation/"; // SSD
 
 /* 回流水槽の条件 */
 const float flow_speed = 8.5; // 流速 [mm/s]
@@ -75,8 +75,5 @@ const int num_calibration = point_x * point_y * point_z;
 
 FILE *fp, *fp_r, *fp_w, *gp;
 mode_t dir_mode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
-
 const std::string header_path = "header/800x800_8bit.bmp";        // 使用するヘッダーファイル
 const std::string header_path_color = "header/800x800_24bit.bmp"; // 使用するヘッダーファイル
-// const std::string dir_path_sub = "/mnt/d/workspace_HDD/simulation/"; // 自宅PC
-// const std::string dir_path_sub = "../../simulation/"; // 研究室PC

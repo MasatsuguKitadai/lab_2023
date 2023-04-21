@@ -299,11 +299,11 @@ void Simulate_Rotation_near_the_ground(float seconds)
     vector<float> phi(x.position_tank.size()); // 回転角 [-]
 
     /* 関数の読み込み */
-    const char read_file[] = "data.csv"; // ファイル名
-    vector<float> Zeta;                  // 参考文献からの値 [-]
-    vector<float> F;                     // 参考文献からの値 [-]
-    vector<float> G;                     // 参考文献からの値 [-]
-    vector<float> H;                     // 参考文献からの値 [-]
+    const char read_file[] = "csv/data.csv"; // ファイル名
+    vector<float> Zeta;                      // 参考文献からの値 [-]
+    vector<float> F;                         // 参考文献からの値 [-]
+    vector<float> G;                         // 参考文献からの値 [-]
+    vector<float> H;                         // 参考文献からの値 [-]
     double zeta, f, g, h;
 
     fp = fopen(read_file, "r");
