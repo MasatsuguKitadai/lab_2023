@@ -291,10 +291,6 @@ void Simulate_Rotation_near_the_ground(float seconds)
     const float y_center = 50; // y方向の渦中心 [mm]
     const float z_center = 50; // y方向の渦中心 [mm]
 
-    float omega = pi / 180 * 10; // 角速度
-    float nu = 1.004;            // 動粘性係数
-    // float nu = 1.004 / 1000; // 動粘性係数 | 水 20度
-
     vector<float> r(x.position_tank.size());   // 回転半径 [mm]
     vector<float> phi(x.position_tank.size()); // 回転角 [-]
 
