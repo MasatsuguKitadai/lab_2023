@@ -16,7 +16,7 @@ AUTHER  : Masatsugu Kitadai
 const float pi = 4 * atan(1.0); // 円周率
 
 /* 保存ディレクトリの設定 */
-const std::string dir_path_sub = "/mnt/d/workspace_SSD/03_numerical_simulation/"; // SSD
+const std::string dir_path_sub = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 
 /* 流れの条件 */
 const float flow_speed = 8.5; // 流速 [mm/s]
