@@ -1,9 +1,9 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2022.4.18)  24 APR 2023 12:47
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2022.4.18)  24 APR 2023 11:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/wsl_desktop/workspace_wsl/lab_2023/00_Reports/2304/TOYOTIRE/230425
-(/home/wsl_desktop/workspace_wsl/lab_2023/00_Reports/2304/TOYOTIRE/230425.tex
+**/home/wsl_desktop/workspace_wsl/lab_2023/00_Reports/2305/table/table
+(/home/wsl_desktop/workspace_wsl/lab_2023/00_Reports/2305/table/table.tex
 pLaTeX2e <2020-02-02>+2 (based on LaTeX2e <2020-02-02> patch level 2)
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2020/02/02 jsclasses (okumura, texjporg)
@@ -396,52 +396,127 @@ Package: ajmacros 2019/04/01 21:00 iNOUE Koich! <inoue@ma.ns.musashi-tech.ac.jp>
 \@tempcntd=\count288
 \@tempcnte=\count289
 \@tempcntf=\count290
-)) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
-File: l3backend-dvips.def 2020-02-03 L3 backend support: dvips
-\l__pdf_internal_box=\box78
-\g__pdf_backend_object_int=\count291
-\l__pdf_backend_content_box=\box79
-\l__pdf_backend_model_box=\box80
-\g__pdf_backend_annotation_int=\count292
-\g__pdf_backend_link_int=\count293
-\g__pdf_backend_link_sf_int=\count294
-) (./230425.aux
-
-LaTeX Warning: Label `table:data_type' multiply defined.
-
-
-LaTeX Warning: Label `table:data_type' multiply defined.
-
-
-LaTeX Warning: Label `table:data_type' multiply defined.
-
+)) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count291
+\mult@box=\box78
+\multicol@leftmargin=\dimen264
+\c@unbalance=\count292
+\c@collectmore=\count293
+\doublecol@number=\count294
+\multicoltolerance=\count295
+\multicolpretolerance=\count296
+\full@width=\dimen265
+\page@free=\dimen266
+\premulticols=\dimen267
+\postmulticols=\dimen268
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
+\partial@page=\box79
+\last@line=\box80
+\maxbalancingoverflow=\dimen269
+\mult@rightbox=\box81
+\mult@grightbox=\box82
+\mult@gfirstbox=\box83
+\mult@firstbox=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\c@minrows=\count297
+\c@columnbadness=\count298
+\c@finalcolumnbadness=\count299
+\last@try=\dimen270
+\multicolovershoot=\dimen271
+\multicolundershoot=\dimen272
+\mult@nat@firstbox=\box122
+\colbreak@box=\box123
+\mc@col@check@num=\count300
+) (/usr/share/texlive/texmf-dist/tex/latex/ifsym/ifsym.sty
+Package: ifsym 2000/04/18 I.Kloeckl
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count301
+\calc@Bcount=\count302
+\calc@Adimen=\dimen273
+\calc@Bdimen=\dimen274
+\calc@Askip=\skip60
+\calc@Bskip=\skip61
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count303
+\calc@Cskip=\skip62
 )
-\openout1 = `230425.aux'.
+\c@ifsymcnt=\count304
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+File: l3backend-dvips.def 2020-02-03 L3 backend support: dvips
+\l__pdf_internal_box=\box124
+\g__pdf_backend_object_int=\count305
+\l__pdf_backend_content_box=\box125
+\l__pdf_backend_model_box=\box126
+\g__pdf_backend_annotation_int=\count306
+\g__pdf_backend_link_int=\count307
+\g__pdf_backend_link_sf_int=\count308
+) (./table.aux)
+\openout1 = `table.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 95.
+(Font)              scaled to size 9.24683pt on input line 90.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 95.
+(Font)              scaled to size 9.24683pt on input line 90.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -464,14 +539,14 @@ LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
 * \headsep=15.69719pt
 * \topskip=12.76073pt
 * \footskip=28.45792pt
-* \marginparwidth=27.74062pt
+* \marginparwidth=18.49374pt
 * \marginparsep=18.49374pt
 * \columnsep=18.49374pt
 * \skip\footins=16.0pt plus 5.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
-* \@twocolumntrue
+* \@twocolumnfalse
 * \@twosidefalse
 * \@mparswitchfalse
 * \@reversemarginfalse
@@ -481,9 +556,9 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count295
-\AtBeginShipoutBox=\box81
-Package hyperref Info: Link coloring OFF on input line 95.
+\c@lstlisting=\count309
+\AtBeginShipoutBox=\box127
+Package hyperref Info: Link coloring OFF on input line 90.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -491,122 +566,73 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count296
+\c@section@level=\count310
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
- (./230425.out) (./230425.out)
+LaTeX Info: Redefining \ref on input line 90.
+LaTeX Info: Redefining \pageref on input line 90.
+LaTeX Info: Redefining \nameref on input line 90.
+ (./table.out) (./table.out)
 \@outlinefile=\write3
-\openout3 = `230425.out'.
+\openout3 = `table.out'.
 
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 15.9785pt on input line 98.
+(Font)              scaled to size 15.9785pt on input line 92.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 15.9785pt on input line 98.
+(Font)              scaled to size 15.9785pt on input line 92.
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 98.
+(Font)              scaled to size 11.09619pt on input line 92.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 98.
+(Font)              scaled to size 11.09619pt on input line 92.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 13.31541pt on input line 93.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 13.31541pt on input line 93.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 99.
+(Font)              scaled to size 13.31541pt on input line 93.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 99.
-LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 109.
-LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 109.
-File: ../images/schedule_2023.png Graphic file (type bmp)
-<../images/schedule_2023.png>
-
-Overfull \hbox (9.24686pt too wide) in paragraph at lines 111--112
- [] 
- []
-
+(Font)              scaled to size 13.31541pt on input line 93.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 124.
+(Font)              scaled to size 11.09619pt on input line 105.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 124.
-File: ../images/Boundary-Layer_Theory_Fig.11.1.jpg Graphic file (type bmp)
-<../images/Boundary-Layer_Theory_Fig.11.1.jpg>
+(Font)              scaled to size 11.09619pt on input line 105.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 136.
+(Font)              scaled to size 6.47278pt on input line 111.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 136.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 136.
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+(Font)              scaled to size 4.62341pt on input line 111.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 111.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 136.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 111.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-File: ../images/function_graph.png Graphic file (type bmp)
-<../images/function_graph.png>
-File: ../images/Numerical_simulation_of_flow.png Graphic file (type bmp)
-<../images/Numerical_simulation_of_flow.png>
-
-Overfull \hbox (9.24686pt too wide) in paragraph at lines 158--159
- [][] 
- []
-
-[1
-
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 112.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 112.
+ (I search kanjifont definition file: . . ) (I search font definition file: . . . . . . . . )
+LaTeX Font Info:    Trying to load font information for U+ifgeo on input line 113.
+ (/usr/share/texlive/texmf-dist/tex/latex/ifsym/uifgeo.fd)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 131.
+ [1
 
 ]
-File: ../images/simulation_result.png Graphic file (type bmp)
-<../images/simulation_result.png>
-
-Underfull \hbox (badness 10000) in alignment at lines 223--231
-[][] 
- []
-
-
-Overfull \hbox (37.69962pt too wide) in paragraph at lines 223--232
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in alignment at lines 237--245
-[][] 
- []
-
-
-Overfull \hbox (37.69962pt too wide) in paragraph at lines 237--246
-[][] 
- []
-
-
-Overfull \hbox (2.531pt too wide) in alignment at lines 251--259
-[][] 
- []
-
-
-Overfull \hbox (37.69962pt too wide) in paragraph at lines 251--260
-[][] 
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
-[2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
- (./230425.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 272.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
-Package rerunfilecheck Info: File `230425.out' has not changed.
-(rerunfilecheck)             Checksum: B37C313107A75C685560DE88819396BD;742.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 131.
+ (./table.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 131.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 131.
+Package rerunfilecheck Info: File `table.out' has not changed.
+(rerunfilecheck)             Checksum: 10630D1B1DB9B6745487791B87BDC2F7;276.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 131.
  ) 
 Here is how much of TeX's memory you used:
- 11337 strings out of 481768
- 164500 string characters out of 5933620
- 451624 words of memory out of 5000000
- 26565 multiletter control sequences out of 15000+600000
- 541823 words of font info for 74 fonts, out of 8000000 for 9000
+ 11717 strings out of 481768
+ 169165 string characters out of 5933620
+ 450996 words of memory out of 5000000
+ 26933 multiletter control sequences out of 15000+600000
+ 542466 words of font info for 78 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 41i,14n,42p,366b,985s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,42p,383b,985s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 230425.dvi (2 pages, 14324 bytes).
+Output written on table.dvi (1 page, 4636 bytes).

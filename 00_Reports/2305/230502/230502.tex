@@ -1,0 +1,132 @@
+\documentclass[twocolumn,a4j]{jsarticle}
+\setlength{\topmargin}{-20.4cm}
+\setlength{\oddsidemargin}{-10.4mm}
+\setlength{\evensidemargin}{-10.4mm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{26cm}
+
+\usepackage[top=15truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage[dvipdfmx]{color}
+\usepackage{listings}
+\usepackage{listings,jvlisting}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{ascmac}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{scalefnt}
+\usepackage{overcite}
+\usepackage{otf}
+\usepackage{multicol}
+\usepackage[geometry]{ifsym}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table }
+
+\lstset{
+basicstyle={\ttfamily},
+identifierstyle={\small},
+commentstyle={\smallitshape},
+keywordstyle={\small\bfseries},
+ndkeywordstyle={\small},
+stringstyle={\small\ttfamily},
+frame={tb},
+breaklines=true,
+columns=[l]{fullflexible},
+xrightmargin=0zw,
+xleftmargin=3zw,
+numberstyle={\scriptsize},
+stepnumber=1,
+numbersep=1zw,
+lineskip=-0.5ex
+}
+
+% キャプション後ろのダブルコロンを消す
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}%
+    \else\sbox\@tempboxa{#1 #2}%
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1 #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+
+% タイトル
+\makeatletter
+\def\@maketitle
+{
+\begin{center}
+{\LARGE \@title \par}
+\end{center}
+\begin{flushright}
+{\large \@date 報告書 No.24}\\
+{\large M2 \@author}
+\end{flushright}
+\par\vskip 1.5em
+}
+\makeatother
+
+\author{来代 勝胤}
+\title{令和4年度 4月 第1週 報告書}
+\date{2022/4/4}
+
+\begin{document}
+\columnseprule=0.1mm
+\maketitle
+
+\section*{報告内容}
+\begin{enumerate}[1.]
+  \item 計測アルゴリズムの精度評価
+  \item 今後の予定
+\end{enumerate}
+
+\section*{進捗状況}
+ケーシングなし・回転ありのタイヤモデルの後流について撮影を行った．
+その結果，対象物の後流では流れが減速するため，
+対応したPTVアルゴリズムが必要であるとわかった．
+
+\section{計測アルゴリズムの精度評価}
+\subsection{データセット作成}
+\subsection{シミュレーション条件}
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \caption{シミュレーション条件}
+  \centering
+  \begin{tabular}{ c | c | c | c }
+           & \textgt{粒子数密度} [$-/\mathrm{mm}^3$] & \textgt{角速度} [deg/s] & \textgt{精度の予測} \\ \hline
+    Case 1 &                                         & 5.0                     & \Circle             \\ \hline
+    Case 2 &                                         & 5.0                     & \TriangleUp         \\ \hline
+    Case 3 &                                         & 5.0                     & \Cross              \\ \hline
+    Case 4 &                                         & 10.0                    &                     \\ \hline
+    Case 5 &                                         & 10.0                    &                     \\ \hline
+    Case 6 &                                         & 10.0                    &                     \\ \hline
+    Case 7 &                                         & 15.0                    &                     \\ \hline
+    Case 8 &                                         & 15.0                    &                     \\ \hline
+    Case 9 &                                         & 15.0                    &                     \\ \hline
+  \end{tabular}
+\end{table}
+
+
+\section{今後の予定}
+\begin{itemize}
+  \item 粒子に対応したPTVプログラムの作成
+\end{itemize}
+
+\end{document}
