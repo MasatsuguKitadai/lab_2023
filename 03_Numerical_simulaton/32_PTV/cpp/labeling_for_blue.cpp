@@ -59,7 +59,7 @@ int main()
     int num = 0; // ラベリングの番号
     int label = 0;
 
-    for (m = 1; m <= number; m++)
+    for (int m = 1; m <= number; m++)
     {
         // 粒子画像の読み込み
         sprintf(filename[1], "result/02/stretch/blue/%d.bmp", m);
@@ -68,25 +68,25 @@ int main()
         /** ラベリング **/
 
         // 配列の可視化
-        for (i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < px_8_stretch; i++)
         {
             ary_label[i] = 0;
         }
 
-        for (i = 0; i < 100; i++)
+        for (int i = 0; i < 100; i++)
         {
             buf[i] = 0;
         }
 
-        for (i = 0; i < 1000; i++)
+        for (int i = 0; i < 1000; i++)
         {
             area[i] = 0;
         }
 
         // ラベル番号の初期化
-        n = 0;
+        int n = 0;
 
-        for (i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < px_8_stretch; i++)
         {
             // 変数の初期化
             label = 0;
@@ -96,9 +96,9 @@ int main()
             // if (ary[i] != 0)
             {
                 // エリア内のラベルの確認
-                for (j = -1; j <= 0; j++)
+                for (int j = -1; j <= 0; j++)
                 {
-                    for (k = -1; k <= 1; k++)
+                    for (int k = -1; k <= 1; k++)
                     {
                         // 調べる座標の計算
                         position = i + width * j + k;
@@ -139,9 +139,9 @@ int main()
                     ary_label[i] = label;
 
                     // ラベルの張替え
-                    for (j = -1; j <= 0; j++)
+                    for (int j = -1; j <= 0; j++)
                     {
-                        for (k = -1; k <= 1; k++)
+                        for (int k = -1; k <= 1; k++)
                         {
                             // 調べる座標の計算
                             position = i + width * j + k;
@@ -174,7 +174,7 @@ int main()
         }
 
         // 面積の計算
-        for (i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < px_8_stretch; i++)
         {
             label = ary_label[i];
 
@@ -188,82 +188,76 @@ int main()
         }
 
         // カウント用メモリの初期化
-        j = 1;
-        k = 0;
+        int count_1 = 1;
+        int count_2 = 0;
 
         // 不必要なラベル番号
         int trash[100];
 
         // 配列初期化
-        for (i = 0; i < 100; i++)
+        for (int i = 0; i < 100; i++)
         {
             trash[i] = 0;
         }
 
         // 閾値より高い面積のラベルを取得
-        for (i = 1; i <= n; i++)
+        for (int i = 1; i <= n; i++)
         {
             if (area[i] > 5)
             {
-                buf[j] = i;
-                j = j + 1;
+                buf[count_1] = i;
+                count_1 += 1;
             }
             else
             {
-                trash[k] = i;
-                k = k + 1;
+                trash[count_2] = i;
+                count_2 += 1;
             }
         }
 
         // 移し替え
-        count = j;
+        count = count_1;
 
         // 必要ないラベル番号を排除
-        for (i = 0; i < k; i++)
-        {
-            for (j = 0; j < px_8_stretch; j++)
+        for (int i = 0; i < count_2; i++)
+            for (int j = 0; j < px_8_stretch; j++)
             {
                 if (trash[i] == ary_label[j])
                 {
                     ary_label[j] = 0;
                 }
             }
-        }
 
         // ラベルの再張替え
-        for (i = 1; i < count; i++)
-        {
-            for (j = 0; j < px_8_stretch; j++)
+        for (int i = 1; i < count; i++)
+            for (int j = 0; j < px_8_stretch; j++)
             {
                 if (ary_label[j] == buf[i])
                 {
                     ary_label[j] = i;
                 }
             }
-        }
 
         // 配列の初期化
-        for (i = 0; i < 1000; i++)
+        for (int i = 0; i < 1000; i++)
         {
             area[i] = 0;
         }
 
         // 面積の再計算
-        for (i = 0; i < px_8_stretch; i++)
-        {
-            for (j = 0; j < n; j++)
+        for (int i = 0; i < px_8_stretch; i++)
+            for (int j = 0; j < n; j++)
             {
                 if (ary_label[i] == j)
                 {
                     area[j] = area[j] + 1;
                 }
             }
-        }
 
         // n の再カウント
         tmp = 0;
 
-        for (i = 1; i <= n; i++)
+        for (int i = 1; i <= n; i++)
         {
             if (area[i] > 5)
             {
@@ -277,7 +271,7 @@ int main()
         n = tmp;
 
         // 配列の初期化
-        for (i = 0; i < 1000; i++)
+        for (int i = 0; i < 1000; i++)
         {
             x[i] = 0;
             y[i] = 0;
@@ -286,13 +280,13 @@ int main()
         float x_tmp, y_tmp;
 
         /** 配列への格納 **/
-        for (i = 1; i <= n; i++)
+        for (int i = 1; i <= n; i++)
         {
             float x_sum = 0;
             float y_sum = 0;
             int count_label = 0;
 
-            for (j = 0; j < px_8_stretch; j++)
+            for (int j = 0; j < px_8_stretch; j++)
             {
                 if (i == ary_label[j])
                 {
@@ -317,7 +311,7 @@ int main()
         sprintf(filename[2], "result/03/labeling/blue_dat/%d.dat", m);
         fp = fopen(filename[2], "w");
 
-        for (i = 1; i <= n; i++)
+        for (int i = 1; i <= n; i++)
         {
             position = x[i] + width * y[i];
             fprintf(fp, "%d\t%d\t%d\n", x[i], y[i], position);
