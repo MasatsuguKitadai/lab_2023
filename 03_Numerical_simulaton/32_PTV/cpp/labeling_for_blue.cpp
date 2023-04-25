@@ -9,16 +9,35 @@ DATE    : 2022/12/1
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
+#include <time.h>
+#include <vector>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+using namespace std;
 
 // 自作設定ファイル
 #include "../hpp/settings.hpp"
-#include "../../parameters.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
+#include "../hpp/functions.hpp"
+#include "../hpp/parameters.hpp"
 
 /******************************************************************************/
 
 int main()
 {
+    /* 保存ディレクトリの設定 */
+    string name_str;
+    cout << "Case Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
+
+    /* ディレクトリの作成 */
+    char dirname[2][100];
+    sprintf(dirname[0], "%s/%s/LLS_1/labeling_position_dat", dir_path, name);
+    // sprintf(dirname[1], "%s/%s/LLS_1/labeling_image_png", dir_path, name);
+    mkdir(dirname[0], dirmode);
+    // mkdir(dirname[1], dirmode);
+
     // 8bit.bmp
     unsigned char ary[px_8_stretch];
     int ary_label[px_8_stretch];
@@ -62,8 +81,9 @@ int main()
     for (int m = 1; m <= number; m++)
     {
         // 粒子画像の読み込み
-        sprintf(filename[1], "result/02/stretch/blue/%d.bmp", m);
-        loadBmp_full_8bit(filename[1], header_8bit, ary);
+        char readfile[100];
+        sprintf(readfile, "%s/%s/LLS_1/particle_image_bmp/%d.bmp", dir_path, name, m);
+        Load_Bmp_8bit(readfile, header_8bit, ary);
 
         /** ラベリング **/
 
@@ -178,7 +198,7 @@ int main()
         {
             label = ary_label[i];
 
-            for (j = 0; j < n; j++)
+            for (int j = 0; j < n; j++)
             {
                 if (label == j)
                 {
@@ -308,8 +328,9 @@ int main()
         /** ファイルの書き出しと描画 **/
 
         // 各座標ごとに書き出し
-        sprintf(filename[2], "result/03/labeling/blue_dat/%d.dat", m);
-        fp = fopen(filename[2], "w");
+        char writefile[100];
+        sprintf(writefile, "%s/%s/LLS_1/labeling_position_dat/%d.dat", dir_path, name, m);
+        fp = fopen(writefile, "w");
 
         for (int i = 1; i <= n; i++)
         {
@@ -319,60 +340,59 @@ int main()
 
         fclose(fp);
 
-        if (m <= 1000)
-        {
-            // Gnuplot 呼び出し
-            if ((gp = popen("gnuplot", "w")) == NULL)
-            {
-                printf("gnuplot is not here!\n");
-                exit(0); // gnuplotが無い場合、異常ある場合は終了
-            }
+        // if (m <= 1000)
+        // {
+        //     // Gnuplot 呼び出し
+        //     if ((gp = popen("gnuplot", "w")) == NULL)
+        //     {
+        //         printf("gnuplot is not here!\n");
+        //         exit(0); // gnuplotが無い場合、異常ある場合は終了
+        //     }
 
-            /** Gnuplot **/
+        //     /** Gnuplot **/
+        //     char graphname[100], graphtitle[100], backimage[100];
+        //     sprintf(graphname, "%s/%s/LLS_1/labeling_image_png/%d.png", dir_path, name, m);
+        //     sprintf(backimage, "%s/%s/LLS_1/particle_image_png/%d.png", dir_path, name, m);
+        //     sprintf(graphtitle, "labeling plane [%03d]", m);
 
-            sprintf(graphname[0], "result/03/labeling/blue_svg/%d.png", m);
-            sprintf(graphtitle[0], "labeling plane [%03d]", m);
-            sprintf(filename[3], "result/03/stretch/blue_png/%d.png", m);
+        //     fprintf(gp, "set terminal png enhanced size 800, 800 font 'Times New Roman, 20'\n");
+        //     fprintf(gp, "set size ratio -1\n");
 
-            // fprintf(gp, "set terminal svg enhanced size 800, 600 font 'Times New Roman, 20'\n");
-            fprintf(gp, "set terminal png enhanced size 1000, 600 font 'Times New Roman, 20'\n");
-            fprintf(gp, "set size ratio -1\n");
+        //     // 出力ファイル
+        //     fprintf(gp, "set output '%s'\n", graphname);
 
-            // 出力ファイル
-            fprintf(gp, "set output '%s'\n", graphname[0]);
+        //     // 非表示
+        //     fprintf(gp, "unset key\n");
 
-            // 非表示
-            fprintf(gp, "unset key\n");
+        //     // 軸の範囲
+        //     fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
+        //     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
-            // 軸の範囲
-            fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
-            fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
+        //     // グラフタイトル
+        //     fprintf(gp, "set title '%s'\n", graphtitle);
 
-            // グラフタイトル
-            fprintf(gp, "set title '%s'\n", graphtitle[0]);
+        //     // 軸ラベル
+        //     fprintf(gp, "set xlabel '%s'\n", xxlabel);
+        //     fprintf(gp, "set ylabel '%s'\n", yylabel);
 
-            // 軸ラベル
-            fprintf(gp, "set xlabel '%s'\n", xxlabel);
-            fprintf(gp, "set ylabel '%s'\n", yylabel);
+        //     // 軸のラベル位置
+        //     fprintf(gp, "set xlabel offset 0.0, 0.0\n");
+        //     fprintf(gp, "set ylabel offset -1.0, 0.0\n");
 
-            // 軸のラベル位置
-            fprintf(gp, "set xlabel offset 0.0, 0.0\n");
-            fprintf(gp, "set ylabel offset -1.0, 0.0\n");
+        //     // 軸の数値位置
+        //     fprintf(gp, "set xtics offset 0.0, 0.0\n");
+        //     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
-            // 軸の数値位置
-            fprintf(gp, "set xtics offset 0.0, 0.0\n");
-            fprintf(gp, "set ytics offset 0.0, 0.0\n");
+        //     // グラフの出力
+        //     // fprintf(gp, "plot '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", readfile[2]);
+        //     fprintf(gp, "plot '%s' binary filetype=png with rgbimage, '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", backimage, writefile);
 
-            // グラフの出力
-            // fprintf(gp, "plot '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", filename[2]);
-            fprintf(gp, "plot '%s' binary filetype=png with rgbimage, '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", filename[3], filename[2]);
+        //     fflush(gp); // Clean up Data
 
-            fflush(gp); // Clean up Data
+        //     fprintf(gp, "exit\n"); // Quit gnuplot
 
-            fprintf(gp, "exit\n"); // Quit gnuplot
-
-            pclose(gp);
-        }
+        //     pclose(gp);
+        // }
 
         printf("Labeling blue\t%4d\n", m);
     }

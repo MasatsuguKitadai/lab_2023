@@ -1,6 +1,7 @@
 #!/bin/bash
 
-g++ cpp/labeling_for_blue.cpp -o "out/labeling_for_blue.out"
+g++ cpp/PTV.cpp -o "out/PTV.out"
+g++ cpp/velocity.cpp -o "out/velocity.out"
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
@@ -11,15 +12,15 @@ do
     expect -c " 
     set timeout -1
 
-    # spawn python3 py/bmp_to_png.py
+    # spawn out/PTV.out
     # expect \"Case Name:\"
     # send \"$name\n\"
     # expect \"$\n\"
 
-    spawn out/labeling_for_blue.out
-    expect \"Case Name:\"
-    send \"$name\n\"
-    expect \"$\n\"
+    # spawn out/velocity.out
+    # expect \"Case Name:\"
+    # send \"$name\n\"
+    # expect \"$\n\"
 
     exit 0
     "
@@ -31,12 +32,12 @@ do
     expect -c " 
     set timeout -1
 
-    # spawn python3 py/bmp_to_png.py
-    # expect \"Case Name:\"
-    # send \"$name\n\"
-    # expect \"$\n\"
+    spawn out/PTV.out
+    expect \"Case Name:\"
+    send \"$name\n\"
+    expect \"$\n\"
 
-    spawn out/labeling_for_blue.out
+    spawn out/velocity.out
     expect \"Case Name:\"
     send \"$name\n\"
     expect \"$\n\"
@@ -51,12 +52,12 @@ do
     expect -c " 
     set timeout -1
 
-    # spawn python3 py/bmp_to_png.py
-    # expect \"Case Name:\"
-    # send \"$name\n\"
-    # expect \"$\n\"
+    spawn out/PTV.out
+    expect \"Case Name:\"
+    send \"$name\n\"
+    expect \"$\n\"
 
-    spawn out/labeling_for_blue.out
+    spawn out/velocity.out
     expect \"Case Name:\"
     send \"$name\n\"
     expect \"$\n\"
@@ -71,16 +72,15 @@ do
     expect -c " 
     set timeout -1
 
-    # spawn python3 py/bmp_to_png.py
-    # expect \"Case Name:\"
-    # send \"$name\n\"
-    # expect \"$\n\"
-
-    spawn out/labeling_for_blue.out
+    spawn out/PTV.out
     expect \"Case Name:\"
     send \"$name\n\"
     expect \"$\n\"
 
+    spawn out/velocity.out
+    expect \"Case Name:\"
+    send \"$name\n\"
+    expect \"$\n\"
 
     exit 0
     "
@@ -91,13 +91,13 @@ for name in Data_set_26 Data_set_27 Data_set_28 Data_set_29 Data_set_30
 do
     expect -c " 
     set timeout -1
-
-    # spawn python3 py/bmp_to_png.py
-    # expect \"Case Name:\"
-    # send \"$name\n\"
-    # expect \"$\n\"
     
-    spawn out/labeling_for_blue.out
+    spawn out/PTV.out
+    expect \"Case Name:\"
+    send \"$name\n\"
+    expect \"$\n\"
+
+    spawn out/velocity.out
     expect \"Case Name:\"
     send \"$name\n\"
     expect \"$\n\"

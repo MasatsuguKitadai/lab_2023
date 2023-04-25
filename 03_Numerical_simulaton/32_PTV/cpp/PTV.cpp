@@ -17,9 +17,8 @@ using namespace std;
 
 // 自作設定ファイル
 #include "../hpp/settings.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
-#include "../hpp/loadbmp_24bit.hpp"
-#include "../../parameters.hpp"
+#include "../hpp/functions.hpp"
+#include "../hpp/parameters.hpp"
 
 /*****************************************************************************/
 
@@ -28,7 +27,7 @@ int cal_area[cal_size][cal_size];
 
 /******************************************************************************/
 
-void PTV(int num_1, int num_2)
+void PTV(int num_1, int num_2, const char *name)
 {
     /** 変数の設定 **/
 
@@ -37,9 +36,9 @@ void PTV(int num_1, int num_2)
     char filename_ptv_2[100];
     char filename_ptv_3[100];
 
-    sprintf(filename_ptv, "result/02/stretch/blue/%d.bmp", num_1);
-    sprintf(filename_ptv_2, "result/02/stretch/green/%d.bmp", num_2);
-    sprintf(filename_ptv_3, "result/03/ptv/vector/%d.dat", num_1);
+    sprintf(filename_ptv, "%s/%s/LLS_1/particle_image_bmp/%d.bmp", dir_path, name, num_1);
+    sprintf(filename_ptv_2, "%s/%s/LLS_2/particle_image_bmp/%d.bmp", dir_path, name, num_1);
+    sprintf(filename_ptv_3, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, num_1);
 
     // 一般の変数
     int i, j, k, l, n, m;
@@ -55,9 +54,9 @@ void PTV(int num_1, int num_2)
         y[i] = 0;
     }
 
-    sprintf(filename[0], "result/03/labeling/blue_dat/%d.dat", num_1);
-
-    fp = fopen(filename[0], "r");
+    char filename[100];
+    sprintf(filename, "%s/%s/LLS_1/labeling_position_dat/%d.dat", dir_path, name, num_1);
+    fp = fopen(filename, "r");
 
     i = 0;
     while ((fscanf(fp, "%f\t%f\t%f", &buf[0], &buf[1], &buf[2])) != EOF)
@@ -77,7 +76,7 @@ void PTV(int num_1, int num_2)
     unsigned char ary[px];
 
     // (1) 8bit ファイルの読み込み
-    loadBmp_full_8bit(filename_ptv, header_8bit, ary);
+    Load_Bmp_8bit(filename_ptv, header_8bit, ary);
 
     // (x,y)配列に変換
     h = 0;
@@ -102,7 +101,7 @@ void PTV(int num_1, int num_2)
     /******************************************************************************/
 
     // (2) 2枚目バイナリ読み込み
-    loadBmp_full_8bit(filename_ptv_2, header_8bit, ary);
+    Load_Bmp_8bit(filename_ptv_2, header_8bit, ary);
 
     // (x,y)配列に変換
     h = 0;
@@ -144,7 +143,6 @@ void PTV(int num_1, int num_2)
 
     for (k = 1; k < counter + 1; k++)
     {
-
         // 画像中心の座標
         position_w[0] = cal_size / 2;
         position_h[0] = cal_size / 2;
@@ -455,6 +453,19 @@ void plot_ptv(int num)
 
 int main()
 {
+    /* 保存ディレクトリの設定 */
+    string name_str;
+    cout << "Case Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
+
+    /* ディレクトリの作成 */
+    char dirname[2][100];
+    sprintf(dirname[0], "%s/%s/PTV", dir_path, name);
+    sprintf(dirname[1], "%s/%s/PTV/PTV_vector_dat", dir_path, name);
+    mkdir(dirname[0], dirmode);
+    mkdir(dirname[1], dirmode);
+
     /** PIV loop **/
 
     int i, j;
@@ -463,12 +474,12 @@ int main()
     {
         j = i + delta;
         // j = i + 1;
-        PTV(i, j);
+        PTV(i, j, name);
 
-        if (i < 1000 - delta)
-        {
-            plot_ptv(i);
-        }
+        // if (i < 1000 - delta)
+        // {
+        //     plot_ptv(i);
+        // }
 
         printf("PTV : %3d\n", i);
     }

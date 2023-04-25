@@ -16,9 +16,8 @@ using namespace std;
 
 // 自作設定ファイル
 #include "../hpp/settings.hpp"
-#include "../../parameters.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
-#include "../hpp/loadbmp_24bit.hpp"
+#include "../hpp/parameters.hpp"
+#include "../hpp/functions.hpp"
 
 /*****************************************************************************/
 
@@ -34,9 +33,22 @@ float position_y, position_z;
 
 int main()
 {
-    for (i = 0; i < mesh_y; i++)
+    /* 保存ディレクトリの設定 */
+    string name_str;
+    cout << "Case Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
+
+    /* ディレクトリの作成 */
+    char dirname[2][100];
+    sprintf(dirname[0], "%s/%s/PTV/PTV_velocity_dat", dir_path, name);
+    sprintf(dirname[1], "%s/%s/PTV/PTV_velocity_png", dir_path, name);
+    mkdir(dirname[0], dirmode);
+    mkdir(dirname[1], dirmode);
+
+    for (int i = 0; i < mesh_y; i++)
     {
-        for (j = 0; j < mesh_z; j++)
+        for (int j = 0; j < mesh_z; j++)
         {
             value_y[i][j] = 0;
             value_z[i][j] = 0;
@@ -49,24 +61,24 @@ int main()
 
     int vector_num = 0;
 
-    for (j = 1; j < number - delta; j++)
+    for (int j = 1; j < number - delta; j++)
     {
         // ファイルの読み取り
-        sprintf(filename[1], "result/03/ptv/vector/%d.dat", j);
+        char readfile[100];
+        sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, j);
 
-        fp_2 = fopen(filename[1], "r");
-
+        fp_2 = fopen(readfile, "r");
         while ((fscanf(fp_2, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
         {
             // ベクトルの合計値の計算
             position_y = buf[0];
             position_z = buf[1];
 
-            for (i = 0; i < mesh_y; i++)
+            for (int i = 0; i < mesh_y; i++)
             {
                 if (i * grid_size <= position_y && position_y < (i + 1) * grid_size)
                 {
-                    for (k = 0; k < mesh_z; k++)
+                    for (int k = 0; k < mesh_z; k++)
                     {
                         if (k * grid_size <= position_z && position_z < (k + 1) * grid_size)
                         {
@@ -97,13 +109,14 @@ int main()
 
     counter = 0;
 
-    sprintf(filename[0], "result/03/ptv/velocity/velocity.dat");
+    char writefile[100];
+    sprintf(writefile, "%s/%s/PTV/PTV_velocity_dat/velocity_%s.dat", dir_path, name, name);
 
-    fp = fopen(filename[0], "w");
+    fp = fopen(writefile, "w");
 
-    for (i = 0; i < mesh_y; i++)
+    for (int i = 0; i < mesh_y; i++)
     {
-        for (j = 0; j < mesh_z; j++)
+        for (int j = 0; j < mesh_z; j++)
         {
             if (count_mesh[i][j] != 0)
             {
@@ -125,7 +138,6 @@ int main()
             position_y = i * grid_size + (grid_size / 2);
             position_z = j * grid_size + (grid_size / 2);
 
-            // fprintf(fp, "%.0f\t%.0f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j], value_z[i][j], v_value);
             fprintf(fp, "%.0f\t%.0f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 3, value_z[i][j] * 3, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
@@ -135,19 +147,15 @@ int main()
     /** Gnuplot **/
 
     // ファイル名
-    const char filename_ptv[] = "result/03/ptv/velocity/velocity.dat";
-    sprintf(graphname[0], "result/03/ptv/velocity/velocity.svg");
-    sprintf(graphtitle[0], "Simulation Data [Vector]");
+    char graphfile[100], graphtitle[100];
+    sprintf(graphfile, "%s/%s/PTV/PTV_velocity_png/velocity_%s.png", dir_path, name, name);
+    sprintf(graphtitle, "Vector");
 
     // 軸の設定
 
     // range x
-    // float x_min = 50;
-    // float x_max = width - 50;
-
-    // 資料画像用
-    float x_min = 250;
-    float x_max = 550;
+    float x_min = 50;
+    float x_max = width - 50;
 
     // range y
     float y_min = 50;
@@ -155,8 +163,7 @@ int main()
 
     // range color
     float cb_min = 0;
-    // float cb_max = 15;
-    float cb_max = 4;
+    float cb_max = 15;
 
     // label
     const char *xxlabel = "y [px]";
@@ -170,12 +177,12 @@ int main()
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1600, 800 font 'Times New Roman, 24'\n");
-    fprintf(gp, "set terminal svg enhanced size 800, 800 font 'Times New Roman, 24'\n");
-    // fprintf(gp, "set terminal png enhanced size 2000, 1600 font 'Times New Roman, 24'\n");
+    // fprintf(gp, "set terminal svg enhanced size 800, 800 font 'Times New Roman, 24'\n");
+    fprintf(gp, "set terminal png enhanced size 2000, 1800 font 'Times New Roman, 24'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
-    fprintf(gp, "set output '%s'\n", graphname[0]);
+    fprintf(gp, "set output '%s'\n", graphfile);
 
     // 非表示
     fprintf(gp, "unset key\n");
@@ -185,7 +192,7 @@ int main()
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s'\n", graphtitle[0]);
+    fprintf(gp, "set title '%s'\n", graphtitle);
 
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
@@ -204,7 +211,7 @@ int main()
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", filename_ptv);
+    fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", writefile);
 
     fflush(gp); // Clean up Data
 

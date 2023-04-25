@@ -653,6 +653,7 @@ FUNCTION : main
 
 int main()
 {
+    /* 保存ディレクトリの設定 */
     string name;
     cout << "Case Name:";
     cin >> name;

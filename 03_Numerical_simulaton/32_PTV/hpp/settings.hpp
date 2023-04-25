@@ -15,12 +15,9 @@ FILE *fp, *fp_2, *fp_3, *gp;
 // 円周率 pi
 double pi = 4 * atan(1.0);
 
-// ファイル配列
-char filename[10][200];
-
 // ディレクトリ配列
 char dirname[10][200];
-const char dir_path[] = "/mnt/d/workspace_HDD";
+const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation";
 
 // ヘッダー配列
 unsigned char header_8bit[1078]; // 8bit header
@@ -29,9 +26,7 @@ unsigned char header_24bit[54];  // 24bit header
 unsigned char header_buf[1878]; // 8bit header
 
 // ファイル配列
-char graphname[10][200];
 char imagename[10][200];
-char graphtitle[10][200];
 
 // 計算用バッファー
 float cal[10];

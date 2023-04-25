@@ -4,14 +4,9 @@ DATE    : 2022/11/25
 ******************************************************************************/
 
 /** 画像の設定 **/
-
-// 撮影画像のサイズ
-const int width_original = 800;  // [px] : 横幅
-const int height_original = 600; // [px] : 縦幅
-
 // 変換画像のサイズ
 const int width = 800;  // [px] : 横幅
-const int height = 400; // [px] : 縦幅
+const int height = 800; // [px] : 縦幅
 
 // 二値化の閾値
 const int border = 50;
@@ -32,7 +27,7 @@ int column = 5;
 int points = 5;
 
 // 撮影画像の枚数
-int number = 1600;
+int number = 800;
 
 // 撮影回数
 int times = 1;
@@ -45,8 +40,8 @@ float pos_green = 2.5; // [mm]
 int delta = 10;
 
 // PTV のパラメータ
-const int cal_size = 60;
-const int win_size = 30;
+const int cal_size = 40;
+const int win_size = 20;
 
 int border_piv = 0;
 
@@ -75,6 +70,3 @@ int label_1[width][height];
 // バイナリ
 const int px_8_stretch = width * height;
 const int px_24_stretch = width * height * 3;
-
-const int px_8_original = width_original * height_original;
-const int px_24_original = width_original * height_original * 3;
