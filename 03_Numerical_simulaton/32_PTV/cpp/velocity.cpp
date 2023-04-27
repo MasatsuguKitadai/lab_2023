@@ -42,7 +42,7 @@ int main()
     /* ディレクトリの作成 */
     char dirname[2][100];
     sprintf(dirname[0], "%s/%s/PTV/PTV_velocity_dat", dir_path, name);
-    sprintf(dirname[1], "%s/%s/PTV/PTV_velocity_png", dir_path, name);
+    sprintf(dirname[1], "%s/%s/PTV/PTV_velocity_svg", dir_path, name);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
 
@@ -148,7 +148,7 @@ int main()
 
     // ファイル名
     char graphfile[100], graphtitle[100];
-    sprintf(graphfile, "%s/%s/PTV/PTV_velocity_png/velocity_%s.png", dir_path, name, name);
+    sprintf(graphfile, "%s/%s/PTV/PTV_velocity_svg/velocity_%s.svg", dir_path, name, name);
     sprintf(graphtitle, "Vector");
 
     // 軸の設定
@@ -176,9 +176,7 @@ int main()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    // fprintf(gp, "set terminal svg enhanced size 1600, 800 font 'Times New Roman, 24'\n");
-    // fprintf(gp, "set terminal svg enhanced size 800, 800 font 'Times New Roman, 24'\n");
-    fprintf(gp, "set terminal png enhanced size 2000, 1800 font 'Times New Roman, 24'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル

@@ -28,8 +28,6 @@ z方向 正：鉛直下方向
 // 設定ファイルの読み込み
 #include "../hpp/class.hpp"
 #include "../hpp/functions.hpp"
-using namespace std;
-string main_path;
 string dir_path;
 
 /******************************************************************************
@@ -659,7 +657,7 @@ int main()
     cin >> name;
 
     /* ディレクトリパスの設定 */
-    dir_path = dir_path_sub + name + "/";
+    dir_path = main_path + name + "/";
     cout << dir_path << endl;
 
     cout << "particle [-]      = " << num_particle << endl;

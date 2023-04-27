@@ -40,8 +40,8 @@ float pos_green = 2.5; // [mm]
 int delta = 10;
 
 // PTV のパラメータ
-const int cal_size = 40;
-const int win_size = 20;
+const int cal_size = 20;
+const int win_size = 10;
 
 int border_piv = 0;
 

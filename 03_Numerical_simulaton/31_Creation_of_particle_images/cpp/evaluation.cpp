@@ -11,6 +11,7 @@ using namespace std;
 
 Parameters lls_1; // 前方のLLSの構造体定義
 Parameters lls_2; // 後方のLLSの構造体定義
+string name;      // データセットの名前
 
 const float grid_size = 10; // 格子サイズの設定
 const int number_y = (width_px / grid_size);
@@ -41,15 +42,23 @@ OUT ：
 ******************************************************************************/
 float correct_data()
 {
+    /* 保存ディレクトリの設定 */
+    cout << "Case Name:";
+    cin >> name;
+
     string dir_path_str;
 
-    dir_path_str = dir_path + "/Evaluation";
+    dir_path_str = main_path + name + "/Evaluation";
     const char *dir_path_main = dir_path_str.c_str();
     mkdir(dir_path_main, dir_mode);
 
-    dir_path_str = dir_path + "/Evaluation/error";
+    dir_path_str = main_path + name + "/Evaluation/error";
     const char *dir_path_error = dir_path_str.c_str();
     mkdir(dir_path_error, dir_mode);
+
+    dir_path_str = main_path + name + "/Evaluation/data";
+    const char *dir_path_data = dir_path_str.c_str();
+    mkdir(dir_path_data, dir_mode);
 
     float delta = 10; // 対応枚数の差
     float v_max = 0;  // 最大周方向移動量
@@ -86,11 +95,11 @@ float correct_data()
         }
 
     /* 関数の読み込み */
-    const char read_file[] = "data.csv"; // ファイル名
-    vector<float> Zeta;                  // 参考文献からの値 [-]
-    vector<float> F;                     // 参考文献からの値 [-]
-    vector<float> G;                     // 参考文献からの値 [-]
-    vector<float> H;                     // 参考文献からの値 [-]
+    const char read_file[] = "csv/data.csv"; // ファイル名
+    vector<float> Zeta;                      // 参考文献からの値 [-]
+    vector<float> F;                         // 参考文献からの値 [-]
+    vector<float> G;                         // 参考文献からの値 [-]
+    vector<float> H;                         // 参考文献からの値 [-]
     double zeta, f, g, h;
 
     fp = fopen(read_file, "r");
@@ -167,7 +176,7 @@ float correct_data()
         }
 
     /* データの書き出し(1) */
-    string filename = dir_path + "Evaluation/data/vector_correct.dat";
+    string filename = main_path + name + "/Evaluation/data/vector_correct.dat";
     const char *filename_str = filename.c_str();
 
     fp = fopen(filename_str, "w");
@@ -194,7 +203,7 @@ float correct_data()
         }
 
     /* データの書き出し(2) */
-    string filename_2 = dir_path + "Evaluation/data/vorticity_correct.dat";
+    string filename_2 = main_path + name + "/Evaluation/data/vorticity_correct.dat";
     const char *filename_2_str = filename_2.c_str();
 
     fp = fopen(filename_2_str, "w");
@@ -209,7 +218,7 @@ float correct_data()
     fclose(fp);
 
     /* 渦度プロファイルの書き込み */
-    string filename_3 = dir_path + "/Evaluation/data/vorticity_profile_correct.dat";
+    string filename_3 = main_path + name + "/Evaluation/data/vorticity_profile_correct.dat";
     const char *filename_3_str = filename_3.c_str();
 
     fp = fopen(filename_3_str, "w");
@@ -235,9 +244,9 @@ OUT ：
 void evaluation(float v_max)
 {
     /* ファイル名の定義 */
-    string read_file_1 = dir_path + "/Evaluation/data/average.dat";
-    string read_file_2 = dir_path + "/Evaluation/data/vector_correct.dat";
-    string result_file = dir_path + "/Evaluation/error/error.dat";
+    string read_file_1 = main_path + name + "/PTV/PTV_velocity_dat/velocity_" + name + ".dat";
+    string read_file_2 = main_path + name + "/Evaluation/data/vector_correct.dat";
+    string result_file = main_path + name + "/Evaluation/error/error.dat";
 
     /* 配列の作成 */
     vector<vector<float>> vector_y(2, vector<float>(number));
@@ -354,12 +363,12 @@ OUT ：
 void plot_error()
 {
     /** Gnuplot **/
-    string result_file = dir_path + "/Evaluation/error/error.dat";
+    string result_file = main_path + name + "/Evaluation/error/error.dat";
     const char *result_file_str = result_file.c_str();
 
-    string graphname_y = dir_path + "Evaluation/error/error_y.png";
-    string graphname_z = dir_path + "Evaluation/error/error_z.png";
-    string graphname_value = dir_path + "Evaluation/error/error_value.png";
+    string graphname_y = main_path + name + "/Evaluation/error/error_y.png";
+    string graphname_z = main_path + name + "/Evaluation/error/error_z.png";
+    string graphname_value = main_path + name + "/Evaluation/error/error_value.png";
 
     char graphtitle[] = "Error Value [%]";
     const char *graphname_y_str = graphname_y.c_str();
@@ -391,8 +400,8 @@ void plot_error()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    // fprintf(gp, "set terminal svg enhanced size 1600, 800 font 'Times New Roman, 24'\n");
-    fprintf(gp, "set terminal png enhanced size 1200, 600 font 'Times New Roman, 24'\n");
+    // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal png enhanced size 1200, 600 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -454,8 +463,8 @@ OUT ：
 void plot_vector()
 {
     /** Gnuplot **/
-    string filename = dir_path + "Evaluation/data/vector_correct.dat";
-    string graphname = dir_path + "Evaluation/data/velocity.svg";
+    string filename = main_path + name + "/Evaluation/data/vector_correct.dat";
+    string graphname = main_path + name + "/Evaluation/data/velocity.svg";
 
     const char *filename_str = filename.c_str();
     const char *graphname_str = graphname.c_str();
@@ -487,7 +496,7 @@ void plot_vector()
     }
 
     // fprintf(gp, "set terminal png enhanced size 2000, 1600 font 'Times New Roman, 36'\n");
-    fprintf(gp, "set terminal svg enhanced size 1600, 800 font 'Times New Roman, 24'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -540,8 +549,8 @@ OUT ：
 void plot_vorticity()
 {
     /** Gnuplot **/
-    string filename = dir_path + "Evaluation/data/vorticity_correct.dat";
-    string graphname = dir_path + "Evaluation/data/vorticity.svg";
+    string filename = main_path + name + "/Evaluation/data/vorticity_correct.dat";
+    string graphname = main_path + name + "/Evaluation/data/vorticity.svg";
 
     const char *filename_str = filename.c_str();
     const char *graphname_str = graphname.c_str();
@@ -572,7 +581,7 @@ void plot_vorticity()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 1600, 800 font 'Times New Roman, 24'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -626,9 +635,9 @@ OUT ：
 void plot_vorticity_profile()
 {
     /** Gnuplot **/
-    string filename_1 = dir_path + "Evaluation/data/vorticity_profile_correct.dat";
-    string filename_2 = dir_path + "Evaluation/data/vorticity_profile.dat";
-    string graphname = dir_path + "Evaluation/data/vorticity_profile.svg";
+    string filename_1 = main_path + name + "/Evaluation/data/vorticity_profile_correct.dat";
+    string filename_2 = main_path + name + "/Evaluation/data/vorticity_profile.dat";
+    string graphname = main_path + name + "/Evaluation/data/vorticity_profile.svg";
 
     const char *filename_1_str = filename_1.c_str();
     const char *filename_2_str = filename_2.c_str();
@@ -656,7 +665,7 @@ void plot_vorticity_profile()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 1000, 600 font 'Times New Roman, 24'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio 0.5\n");
 
     // 出力ファイル

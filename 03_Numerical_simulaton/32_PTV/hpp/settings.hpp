@@ -17,7 +17,8 @@ double pi = 4 * atan(1.0);
 
 // ディレクトリ配列
 char dirname[10][200];
-const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation";
+// const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation";
+const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
 
 // ヘッダー配列
 unsigned char header_8bit[1078]; // 8bit header

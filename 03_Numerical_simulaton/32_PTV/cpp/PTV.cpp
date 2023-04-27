@@ -354,10 +354,6 @@ void PTV(int num_1, int num_2, const char *name)
         else
         {
             v_value = sqrt(vx * vx + vy * vy);
-            // angle = atan2(vy, vx);
-            // vx_value = 15 * (float)cos(angle);
-            // vy_value = 15 * (float)sin(angle);
-
             fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);
         }
     }
@@ -367,7 +363,7 @@ void PTV(int num_1, int num_2, const char *name)
     // return 0;
 }
 
-void plot_ptv(int num)
+void plot_ptv(int num, const char *name)
 {
     /** Gnuplot **/
 
@@ -377,8 +373,8 @@ void plot_ptv(int num)
     char imagename[150];
     char graphtitle[100];
 
-    sprintf(filename_ptv, "result/03/ptv/vector/%d.dat", num);
-    sprintf(graphname, "result/03/ptv/img/%d.png", num);
+    sprintf(filename_ptv, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, num);
+    sprintf(graphname, "%s/%s/PTV/PTV_vector_png/%d.png", dir_path, name, num);
     sprintf(graphtitle, "PTV");
 
     // 軸の設定
@@ -460,11 +456,14 @@ int main()
     const char *name = name_str.c_str();
 
     /* ディレクトリの作成 */
-    char dirname[2][100];
+    char dirname[3][100];
     sprintf(dirname[0], "%s/%s/PTV", dir_path, name);
     sprintf(dirname[1], "%s/%s/PTV/PTV_vector_dat", dir_path, name);
+    sprintf(dirname[2], "%s/%s/PTV/PTV_vector_png", dir_path, name);
+
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
+    mkdir(dirname[2], dirmode);
 
     /** PIV loop **/
 
@@ -476,10 +475,10 @@ int main()
         // j = i + 1;
         PTV(i, j, name);
 
-        // if (i < 1000 - delta)
-        // {
-        //     plot_ptv(i);
-        // }
+        if (i < 100 - delta)
+        {
+            plot_ptv(i, name);
+        }
 
         printf("PTV : %3d\n", i);
     }
