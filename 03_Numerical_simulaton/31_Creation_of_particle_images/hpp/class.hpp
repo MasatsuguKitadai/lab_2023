@@ -53,7 +53,8 @@ const float lls_distance = 0.010;                           // LLS間距離 [mm]
 const float lls_1_position = 7.0;                           // 前方のllsの位置 [mm]
 const float lls_1_thickness = 0.003;                        // 前方のllsの厚み [mm]
 const float lls_2_position = lls_1_position + lls_distance; // 後方のllsの位置 [mm]
-const float lls_2_thickness = lls_1_thickness * 3;          // 後方のllsの厚み [mm]
+// const float lls_2_thickness = lls_1_thickness * 3.0;        // 後方のllsの厚み [mm]
+const float lls_2_thickness = lls_1_thickness; // 後方のllsの厚み [mm]
 
 /* 粒子の生成範囲の設定 */
 const float range_x_max = lls_2_position;     // x方向の粒子生成範囲　[mm]
@@ -64,7 +65,8 @@ const float range_y = 20.0 * sqrt(2);            // y方向の粒子生成範囲
 const float range_z = range_y;                   // z方向の粒子生成範囲　[mm]
 
 /* 粒子の生成量の設定 */
-const int num_per_image = 120; // 1枚あたりに映り込む粒子数 [個]
+// const int num_per_image = 100; // 1枚あたりに映り込む粒子数 [個]
+const int num_per_image = 50; // 1枚あたりに映り込む粒子数 [個]
 // const int num_per_image = 240;                                                           // 1枚あたりに映り込む粒子数 [個]
 const int times = 1.0;                                                                   // 粒子数の倍率 [-]
 const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness); // 粒子密度 [個/mm^2]

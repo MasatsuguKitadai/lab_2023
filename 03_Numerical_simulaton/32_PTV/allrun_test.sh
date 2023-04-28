@@ -3,37 +3,42 @@
 g++ cpp/labeling_for_blue.cpp -o "out/labeling_for_blue.out"
 g++ cpp/PTV_new.cpp -o "out/PTV_new.out"
 g++ cpp/velocity.cpp -o "out/velocity.out"
+g++ cpp/vorticity.cpp -o "out/vorticity.out"
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
-name='test_3'
+name='test_2'
 
 ## シミュレーション ###
 expect -c " 
 set timeout -1
 
 # spawn python3 py/bmp_to_png.py
-spawn python3.8 py/bmp_to_png.py
-expect \"Case Name:\"
-send \"$name\n\"
-expect \"$\n\"
+# spawn python3.8 py/bmp_to_png.py
+# expect \"Case Name:\"
+# send \"$name\n\"
+# expect \"$\n\"
 
-spawn out/labeling_for_blue.out
-expect \"Case Name:\"
-send \"$name\n\"
-expect \"$\n\"
+# spawn out/labeling_for_blue.out
+# expect \"Case Name:\"
+# send \"$name\n\"
+# expect \"$\n\"
 
-spawn out/PTV_new.out
-expect \"Case Name:\"
-send \"$name\n\"
-expect \"$\n\"
+# spawn out/PTV_new.out
+# expect \"Case Name:\"
+# send \"$name\n\"
+# expect \"$\n\"
 
 spawn out/velocity.out
 expect \"Case Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
+spawn out/vorticity.out
+expect \"Case Name:\"
+send \"$name\n\"
+expect \"$\n\"
 
 exit 0
 "

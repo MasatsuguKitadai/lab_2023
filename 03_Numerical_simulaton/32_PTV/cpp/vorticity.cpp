@@ -14,18 +14,24 @@ using namespace std;
 #include <algorithm>
 #include <iostream>
 
-// 自作設定ファイル
-#include "../hpp/settings.hpp"
-#include "../../parameters.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
-#include "../hpp/loadbmp_24bit.hpp"
-
 /*****************************************************************************/
 
-const float grid_size = 10;
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
-const int mesh_y = width / grid_size;
-const int mesh_z = height / grid_size;
+/** ディレクトリ **/
+const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
+
+/** 各種パラメータ **/
+const int data = 800;                     // 画像の枚数 [-]
+const int width_px = 800;                 // 画像の横幅 [px]
+const int height_px = 800;                // 画像の縦幅 [px]
+const int size_px = width_px * height_px; // 画像の画素数 [px]
+const int delta_n = 10;                   // 対応させる時刻差 (枚)
+const float grid_size = 10;               // 格子点の大きさ [px]
+
+const int mesh_y = width_px / grid_size;
+const int mesh_z = height_px / grid_size;
 float value_y[mesh_y][mesh_z], value_z[mesh_y][mesh_z], vorticity[mesh_y][mesh_z];
 int count_mesh[mesh_y][mesh_z];
 float position_y, position_z;
@@ -35,11 +41,11 @@ char filename_ptv[100];
 
 // range x
 float x_min = 50;
-float x_max = width - 50;
+float x_max = width_px - 50;
 
 // range y
 float y_min = 50;
-float y_max = height - 50;
+float y_max = height_px - 50;
 
 // range color
 float cb_min = -0.5;
@@ -53,9 +59,22 @@ const char *yylabel = "z [px]";
 
 int main()
 {
-    for (i = 0; i < mesh_y; i++)
+    /* 保存ディレクトリの設定 */
+    string name_str;
+    cout << "Case Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
+
+    /* ディレクトリの作成 */
+    char dirname[2][100];
+    sprintf(dirname[0], "%s/%s/PTV/PTV_vorticity_dat", dir_path, name);
+    sprintf(dirname[1], "%s/%s/PTV/PTV_vorticity_svg", dir_path, name);
+    mkdir(dirname[0], dirmode);
+    mkdir(dirname[1], dirmode);
+
+    for (int i = 0; i < mesh_y; i++)
     {
-        for (j = 0; j < mesh_z; j++)
+        for (int j = 0; j < mesh_z; j++)
         {
             value_y[i][j] = 0;
             value_z[i][j] = 0;
@@ -65,26 +84,27 @@ int main()
     }
 
     // 配列の初期化
-    counter = 0;
+    int counter = 0;
 
-    for (j = 1; j < number - delta; j++)
+    for (int j = 1; j < data - delta_n; j++)
     {
         // ファイルの読み取り
-        sprintf(filename[0], "result/03/ptv/vector/%d.dat", j);
+        char readfile[100];
+        sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, j);
 
-        fp_2 = fopen(filename[0], "r");
-
-        while ((fscanf(fp_2, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
+        float buf[10]; // 読み込み用のバッファ
+        fp = fopen(readfile, "r");
+        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
         {
             // ベクトルの合計値の計算
             position_y = buf[0];
             position_z = buf[1];
 
-            for (i = 0; i < mesh_y; i++)
+            for (int i = 0; i < mesh_y; i++)
             {
                 if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
                 {
-                    for (k = 0; k < mesh_z; k++)
+                    for (int k = 0; k < mesh_z; k++)
                     {
                         if (k * grid_size - 5 <= position_z && position_z < k * grid_size + 5)
                         {
@@ -99,9 +119,7 @@ int main()
             }
         }
 
-        fclose(fp_2);
-
-        // printf("[%d] - [%4d]\n", j);
+        fclose(fp);
     }
 
     float v_y_value = 0;
@@ -113,9 +131,9 @@ int main()
     counter = 0;
 
     /* アベレージ */
-    for (i = 0; i < mesh_y; i++)
+    for (int i = 0; i < mesh_y; i++)
     {
-        for (j = 0; j < mesh_z; j++)
+        for (int j = 0; j < mesh_z; j++)
         {
             if (count_mesh[i][j] != 0)
             {
@@ -132,20 +150,38 @@ int main()
     }
 
     /* 渦度 */
-    for (i = 0; i < mesh_y; i++)
+    for (int i = 0; i < mesh_y; i++)
     {
-        for (j = 0; j < mesh_z; j++)
+        for (int j = 0; j < mesh_z; j++)
         {
             vorticity[i][j] = (value_z[i + 1][j] - value_z[i - 1][j]) / grid_size - (value_y[i][j + 1] - value_y[i][j - 1]) / grid_size;
         }
     }
 
+    /* 渦度プロファイルの書き出し */
+    char writefile[100];
+    sprintf(writefile, "%s/%s/PTV/PTV_vorticity_dat/vorticity_profile.dat", dir_path, name);
+    fp = fopen(writefile, "w");
+    for (int i = 0; i < mesh_y; i++)
+        for (int j = 0; j < mesh_z; j++)
+        {
+            // ベクトルの始点
+            position_y = i * grid_size;
+            position_z = j * grid_size;
+
+            if (position_z == height_px / 2)
+            {
+                fprintf(fp, "%.0f\t%.0f\t%f\n", position_y, position_z, vorticity[i][j]);
+            }
+        }
+    fclose(fp);
+
     /* 渦度の書き出し */
-    sprintf(filename[1], "result/03/ptv/vorticity/vorticity.dat");
-    fp = fopen(filename[1], "w");
-    for (i = 0; i < mesh_y; i++)
+    sprintf(writefile, "%s/%s/PTV/PTV_vorticity_dat/vorticity_%s.dat", dir_path, name, name);
+    fp = fopen(writefile, "w");
+    for (int i = 0; i < mesh_y; i++)
     {
-        for (j = 0; j < mesh_z; j++)
+        for (int j = 0; j < mesh_z; j++)
         {
             // ベクトルの始点
             position_y = i * grid_size;
@@ -157,30 +193,12 @@ int main()
     }
     fclose(fp);
 
-    /* 渦度プロファイルの書き出し */
-    sprintf(filename[2], "result/03/ptv/vorticity/vorticity_profile.dat");
-    fp = fopen(filename[2], "w");
-    for (i = 0; i < mesh_y; i++)
-        for (j = 0; j < mesh_z; j++)
-        {
-            // ベクトルの始点
-            position_y = i * grid_size;
-            position_z = j * grid_size;
-
-            if (position_z == height / 2)
-            {
-                fprintf(fp, "%.0f\t%.0f\t%f\n", position_y, position_z, vorticity[i][j]);
-            }
-        }
-    fclose(fp);
-
     /* 渦度 */
 
     /** Gnuplot **/
-
-    sprintf(filename_ptv, "result/03/ptv/vorticity/vorticity.dat");
-    sprintf(graphname[0], "result/03/ptv/vorticity/vorticity.svg");
-    sprintf(graphtitle[0], "Simulation Data [Vorticity]");
+    char graphfile[100], graphtitle[100];
+    sprintf(graphfile, "%s/%s/PTV/PTV_vorticity_svg/vorticity_%s.svg", dir_path, name, name);
+    sprintf(graphtitle, "Vorticity");
 
     // 軸の設定
 
@@ -191,11 +209,11 @@ int main()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 1600, 800 font 'Times New Roman, 24'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
-    fprintf(gp, "set output '%s'\n", graphname[0]);
+    fprintf(gp, "set output '%s'\n", graphfile);
 
     // 非表示
     fprintf(gp, "unset key\n");
@@ -205,7 +223,7 @@ int main()
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s'\n", graphtitle[0]);
+    fprintf(gp, "set title '%s'\n", graphtitle);
     fprintf(gp, "set view map\n");
 
     // ベクトルの色付け
@@ -225,7 +243,7 @@ int main()
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "splot '%s' using 1:2:5 with pm3d notitle\n", filename_ptv);
+    fprintf(gp, "splot '%s' using 1:2:5 with pm3d notitle\n", writefile);
 
     fflush(gp); // Clean up Data
 

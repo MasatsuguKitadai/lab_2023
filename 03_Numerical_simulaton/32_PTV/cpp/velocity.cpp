@@ -14,17 +14,24 @@ using namespace std;
 #include <algorithm>
 #include <iostream>
 
-// 自作設定ファイル
-#include "../hpp/settings.hpp"
-#include "../hpp/parameters.hpp"
-#include "../hpp/functions.hpp"
-
 /*****************************************************************************/
 
-const float grid_size = 10;
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
-const int mesh_y = width / grid_size;
-const int mesh_z = height / grid_size;
+/** ディレクトリ **/
+const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
+
+/** 各種パラメータ **/
+const int data = 800;                     // 画像の枚数 [-]
+const int width_px = 800;                 // 画像の横幅 [px]
+const int height_px = 800;                // 画像の縦幅 [px]
+const int size_px = width_px * height_px; // 画像の画素数 [px]
+const int delta_n = 10;                   // 対応させる時刻差 (枚)
+const float grid_size = 10;               // 格子点の大きさ [px]
+
+const int mesh_y = width_px / grid_size;
+const int mesh_z = height_px / grid_size;
 float value_y[mesh_y][mesh_z], value_z[mesh_y][mesh_z];
 int count_mesh[mesh_y][mesh_z];
 float position_y, position_z;
@@ -57,18 +64,19 @@ int main()
     }
 
     // 配列の初期化
-    counter = 0;
+    int counter = 0;
 
     int vector_num = 0;
 
-    for (int j = 1; j < number - delta; j++)
+    for (int j = 1; j < data - delta_n; j++)
     {
         // ファイルの読み取り
         char readfile[100];
         sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, j);
 
-        fp_2 = fopen(readfile, "r");
-        while ((fscanf(fp_2, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
+        float buf[10]; // 読み込み用のバッファ
+        fp = fopen(readfile, "r");
+        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
         {
             // ベクトルの合計値の計算
             position_y = buf[0];
@@ -94,8 +102,8 @@ int main()
             }
         }
 
-        fclose(fp_2);
-        // number（データの使用枚数）に注意!!
+        fclose(fp);
+        // data（データの使用枚数）に注意!!
     }
 
     printf("Vector num : %d\n", vector_num);
@@ -123,8 +131,6 @@ int main()
                 // 平均値の算出
                 value_y[i][j] = value_y[i][j] / count_mesh[i][j];
                 value_z[i][j] = value_z[i][j] / count_mesh[i][j];
-
-                // ベクトルの正規化
                 v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]);
             }
             else
@@ -138,7 +144,7 @@ int main()
             position_y = i * grid_size + (grid_size / 2);
             position_z = j * grid_size + (grid_size / 2);
 
-            fprintf(fp, "%.0f\t%.0f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 3, value_z[i][j] * 3, v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%.0f\t%.0f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j], value_z[i][j], v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -155,15 +161,24 @@ int main()
 
     // range x
     float x_min = 50;
-    float x_max = width - 50;
+    float x_max = width_px - 50;
 
     // range y
     float y_min = 50;
-    float y_max = height - 50;
+    float y_max = height_px - 50;
+
+    // // range x
+    // float x_min = 200;
+    // float x_max = 600;
+
+    // // range y
+    // float y_min = 200;
+    // float y_max = 600;
 
     // range color
     float cb_min = 0;
     float cb_max = 15;
+    // float cb_max = 10;
 
     // label
     const char *xxlabel = "y [px]";

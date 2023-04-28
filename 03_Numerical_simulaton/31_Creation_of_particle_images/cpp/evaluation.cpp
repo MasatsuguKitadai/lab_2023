@@ -472,17 +472,25 @@ void plot_vector()
 
     // 軸の設定
 
+    // // range x
+    // float x_min = 50;
+    // float x_max = width_px - 50;
+
+    // // range y
+    // float y_min = 50;
+    // float y_max = height_px - 50;
+
     // range x
-    float x_min = 50;
-    float x_max = width_px - 50;
+    float x_min = 200;
+    float x_max = 600;
 
     // range y
-    float y_min = 50;
-    float y_max = height_px - 50;
+    float y_min = 200;
+    float y_max = 600;
 
     // range color
     float cb_min = 0;
-    float cb_max = 15;
+    float cb_max = 10;
 
     // label
     const char *xxlabel = "y [px]";
