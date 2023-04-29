@@ -12,7 +12,7 @@ g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation.out"
 
 expect -c " 
 set timeout -1
-spawn ./out/numerical_simulation-1.out
+spawn ./out/numerical_simulation.out
 expect \"Case Name:\"
 send \"$name\n\"
 expect \"$\n\"

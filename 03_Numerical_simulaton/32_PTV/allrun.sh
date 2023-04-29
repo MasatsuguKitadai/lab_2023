@@ -13,8 +13,8 @@ TIME_A=`date +%s`
 echo -n INPUT_DATA_NAME:
 read name 
 
-DIR_1="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/particle_image_png" 
-if [ ! -d $DIR_1 ];then
+# DIR_1="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/particle_image_png" 
+# if [ ! -d $DIR_1 ];then
 
     expect -c " 
     set timeout -1
@@ -24,10 +24,10 @@ if [ ! -d $DIR_1 ];then
     expect \"$\n\"
     exit 0
     "
-fi
+# fi
 
-DIR_2="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/labeling_position_dat" 
-if [ ! -d $DIR_2 ];then
+# DIR_2="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/labeling_position_dat" 
+# if [ ! -d $DIR_2 ];then
 
     expect -c " 
     set timeout -1
@@ -37,7 +37,7 @@ if [ ! -d $DIR_2 ];then
     expect \"$\n\"
     exit 0
     "
-fi
+# fi
 
 ## シミュレーション ###
 expect -c " 

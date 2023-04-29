@@ -4,10 +4,10 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 # シミュレーションプログラムの開始
-g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation.out"
+# g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation-1.out"
 
 ## シミュレーション(1) ###
-for name in Data_set_1 Data_set_2 Data_set_3 Data_set_4 Data_set_5 Data_set_6 Data_set_7 Data_set_8 Data_set_9 Data_set_10
+for name in Data_set_1 Data_set_2 Data_set_3 Data_set_4 Data_set_5
 do
     expect -c " 
     set timeout -1
@@ -20,6 +20,21 @@ do
     exit 0
     "
 done
+
+# for name in Data_set_6 Data_set_7 Data_set_8 Data_set_9 Data_set_10
+# do
+#     expect -c " 
+#     set timeout -1
+
+#     spawn ./out/numerical_simulation-1.out
+#     expect \"Case Name:\"
+#     send \"$name\n\"
+#     expect \"$\n\"
+
+#     exit 0
+#     "
+# done
+
 
 ## シミュレーション(2) ###
 # for name in Data_set_11 Data_set_12 Data_set_13 Data_set_14 Data_set_15

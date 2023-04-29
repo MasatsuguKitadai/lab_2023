@@ -132,7 +132,7 @@ int main()
             position_y = i * grid_size * (float)width_mm / width_px;
             position_z = j * grid_size * (float)width_mm / width_px;
 
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 3.0, value_z[i][j] * 3.0, v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm), value_z[i][j] * (width_px / width_mm), v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -165,7 +165,7 @@ int main()
 
     // range color
     float cb_min = 0;
-    float cb_max = 20.0;
+    float cb_max = 5.0;
     // float cb_max = 10;
 
     // label

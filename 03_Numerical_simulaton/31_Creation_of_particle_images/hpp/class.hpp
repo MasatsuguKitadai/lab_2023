@@ -26,7 +26,7 @@ float omega = pi / 180 * 10;  // 角速度
 float nu = 1.004;             // 動粘性係数
 
 // 各種パラメータ
-const float time_max = 2.0;        // シミュレーションする時間 [s]
+const float time_max = 1.0;        // シミュレーションする時間 [s]
 const int shutter_speed = 800;     // 撮影速度 [1/s]
 const float intensity_max = 250.0; // 粒子の最大輝度値 [-]
 const float r_particle = 0.2;      // 粒子半径 [mm]
@@ -65,7 +65,7 @@ const float range_y = 20.0 * sqrt(2);            // y方向の粒子生成範囲
 const float range_z = range_y;                   // z方向の粒子生成範囲　[mm]
 
 /* 粒子の生成量の設定 */
-const int num_per_image = 100;                                                           // 1枚あたりに映り込む粒子数 [個]
+const int num_per_image = 150;                                                           // 1枚あたりに映り込む粒子数 [個]
 const int times = 1.0;                                                                   // 粒子数の倍率 [-]
 const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness); // 粒子密度 [個/mm^2]
 const int num_particle = density_particle * range_x * range_y * range_y * pi * times;    // 生成する粒子数 [-]
