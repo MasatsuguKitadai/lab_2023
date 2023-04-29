@@ -9,25 +9,56 @@ DATE    : 2022/12/15
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
-
-using namespace std;
 #include <vector>
 #include <algorithm>
 #include <iostream>
+using namespace std;
 
-// 自作設定ファイル
-#include "../hpp/settings.hpp"
-#include "../hpp/functions.hpp"
-#include "../hpp/parameters.hpp"
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
+
+/** プロトタイプ宣言 **/
+void PTV(int num, const char *name);
+void plot_ptv(int num, const char *name);
+void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
 
 /*****************************************************************************/
 
-int px = width * height;
-int cal_area[cal_size][cal_size];
+#include "../hpp/settings.hpp"
+int px = width_px * height_px;
+int cal_area[w2][w2];
 
 /******************************************************************************/
 
-void PTV(int num_1, int num_2, const char *name)
+int main()
+{
+    /* 保存ディレクトリの設定 */
+    string name_str;
+    cout << "Case Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
+
+    /** PIV loop **/
+    int i, j;
+
+    for (i = 1; i < data_num - delta_n; i++)
+    {
+        j = i + delta_n;
+        // j = i + 1;
+        PTV(i, name);
+
+        if (i < 100 - delta_n)
+        {
+            plot_ptv(i, name);
+        }
+
+        printf("PTV : %3d\n", i);
+    }
+
+    return 0;
+}
+
+void PTV(int num, const char *name)
 {
     /** 変数の設定 **/
 
@@ -35,10 +66,11 @@ void PTV(int num_1, int num_2, const char *name)
     char filename_ptv[100];
     char filename_ptv_2[100];
     char filename_ptv_3[100];
+    char filename[3][100];
 
-    sprintf(filename_ptv, "%s/%s/LLS_1/particle_image_bmp/%d.bmp", dir_path, name, num_1);
-    sprintf(filename_ptv_2, "%s/%s/LLS_2/particle_image_bmp/%d.bmp", dir_path, name, num_1);
-    sprintf(filename_ptv_3, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, num_1);
+    sprintf(filename_ptv, "%s/%s/LLS_1/particle_image_bmp/%d.bmp", dir_path, name, num);
+    sprintf(filename_ptv_2, "%s/%s/LLS_2/particle_image_bmp/%d.bmp", dir_path, name, num + delta_n);
+    sprintf(filename_ptv_3, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, num);
 
     // 一般の変数
     int i, j, k, l, n, m;
@@ -54,9 +86,11 @@ void PTV(int num_1, int num_2, const char *name)
         y[i] = 0;
     }
 
-    char filename[100];
-    sprintf(filename, "%s/%s/LLS_1/labeling_position_dat/%d.dat", dir_path, name, num_1);
-    fp = fopen(filename, "r");
+    sprintf(filename[0], "%s/%s/LLS_1/labeling_position_dat/%d.dat", dir_path, name, num);
+
+    fp = fopen(filename[0], "r");
+
+    float buf[10];
 
     i = 0;
     while ((fscanf(fp, "%f\t%f\t%f", &buf[0], &buf[1], &buf[2])) != EOF)
@@ -68,12 +102,14 @@ void PTV(int num_1, int num_2, const char *name)
 
     fclose(fp);
 
-    counter = i;
+    int counter = i;
 
     /** BMPファイルの読み取り **/
 
     // image 1次元配列
     unsigned char ary[px];
+    unsigned char image_0[width_px][height_px];
+    unsigned char image_1[width_px][height_px];
 
     // (1) 8bit ファイルの読み込み
     Load_Bmp_8bit(filename_ptv, header_8bit, ary);
@@ -84,7 +120,7 @@ void PTV(int num_1, int num_2, const char *name)
 
     for (i = 0; i < px; i++)
     {
-        if (w == width)
+        if (w == width_px)
         {
             w = 0;
             image_0[w][h] = ary[i];
@@ -109,7 +145,7 @@ void PTV(int num_1, int num_2, const char *name)
 
     for (i = 0; i < px; i++)
     {
-        if (w == width)
+        if (w == width_px)
         {
             w = 0;
             h = h + 1;
@@ -125,62 +161,60 @@ void PTV(int num_1, int num_2, const char *name)
     float ave[2];
     float R, R_tmp;
     int x_ptv, y_ptv;
-    int buf[4];
 
     // ベクトルの算出
     int position_w[2]; // 粒子位置(x)
     int position_h[2]; // 粒子位置(y)
-
     float vx, vy;
     float vx_value, vy_value;
     float v_value, angle;
+    unsigned char win_area[w1][w1];
+    unsigned char cal_area[w2][w2];
 
     /** 相関係数の算出準備 (0) **/
-
     int start_x, start_y;
-
     fp = fopen(filename_ptv_3, "w");
-
     for (k = 1; k < counter + 1; k++)
     {
-        // 画像中心の座標
-        position_w[0] = cal_size / 2;
-        position_h[0] = cal_size / 2;
 
-        position_w[1] = cal_size / 2;
-        position_h[1] = cal_size / 2;
+        // 画像中心の座標
+        position_w[0] = w2 / 2;
+        position_h[0] = w2 / 2;
+
+        position_w[1] = w2 / 2;
+        position_h[1] = w2 / 2;
 
         // x が 0 以下になる
-        if (x[k] - win_size / 2 < 0)
+        if (x[k] - w1 / 2 < 0)
         {
             continue;
         }
-        else if (x[k] + win_size / 2 >= width)
+        else if (x[k] + w1 / 2 >= width_px)
         {
             continue;
         }
         else
         {
-            start_x = x[k] - win_size / 2;
+            start_x = x[k] - w1 / 2;
         }
 
         // y が 0 以下になる
-        if (y[k] - win_size / 2 < 0)
+        if (y[k] - w1 / 2 < 0)
         {
             continue;
         }
-        else if (y[k] + win_size / 2 >= height)
+        else if (y[k] + w1 / 2 >= height_px)
         {
             continue;
         }
         else
         {
-            start_y = y[k] - win_size / 2;
+            start_y = y[k] - w1 / 2;
         }
 
         // 配列への格納
-        for (i = 0; i < win_size; i++)
-            for (j = 0; j < win_size; j++)
+        for (i = 0; i < w1; i++)
+            for (j = 0; j < w1; j++)
             {
                 win_area[i][j] = image_0[i + start_x][j + start_y];
             }
@@ -193,15 +227,14 @@ void PTV(int num_1, int num_2, const char *name)
         }
 
         // 濃度値の総和
-        for (i = 0; i < win_size; i++)
-            for (j = 0; j < win_size; j++)
+        for (i = 0; i < w1; i++)
+            for (j = 0; j < w1; j++)
             {
                 sum[0] = win_area[i][j] + sum[0];
             }
 
         // 濃度地の平均
-        ave[0] = sum[0] / (win_size * win_size);
-        // printf("ave[0] = %.3f\n", ave[0]); // 固定
+        ave[0] = sum[0] / (w1 * w1);
 
         /** 相関係数の算出準備 (1) **/
 
@@ -214,66 +247,66 @@ void PTV(int num_1, int num_2, const char *name)
         buf[3] = 0;
 
         // x が 0 以下になる
-        if (x[k] - cal_size / 2 < 0)
+        if (x[k] - w2 / 2 < 0)
         {
             continue;
         }
-        else if (x[k] + cal_size / 2 >= width)
+        else if (x[k] + w2 / 2 >= width_px)
         {
             continue;
         }
         else
         {
-            start_x = x[k] - cal_size / 2;
+            start_x = x[k] - w2 / 2;
         }
 
         // y が 0 以下になる
-        if (y[k] - cal_size / 2 < 0)
+        if (y[k] - w2 / 2 < 0)
         {
             continue;
         }
         // y が 1024以上になる
-        else if (y[k] + cal_size / 2 >= height)
+        else if (y[k] + w2 / 2 >= height_px)
         {
             continue;
         }
         else
         {
-            start_y = y[k] - cal_size / 2;
+            start_y = y[k] - w2 / 2;
         }
 
         // 解析用の格納
-        for (i = 0; i < cal_size; i++)
-            for (j = 0; j < cal_size; j++)
+        for (i = 0; i < w2; i++)
+            for (j = 0; j < w2; j++)
             {
                 cal_area[i][j] = image_1[i + start_x][j + start_y];
             }
 
         // サブピクセル解析
-        float R_sub[cal_size - win_size][cal_size - win_size];
+        float R_sub[w2 - w1][w2 - w1];
         int index_x = 0;
         int index_y = 0;
 
         // 配列の初期化
-        for (i = 0; i <= cal_size - win_size; i++)
-            for (j = 0; j <= cal_size - win_size; j++)
+        for (i = 0; i <= w2 - w1; i++)
+            for (j = 0; j <= w2 - w1; j++)
             {
                 R_sub[i][j] = 0;
             }
 
-        for (y_ptv = 0; y_ptv <= cal_size - win_size; y_ptv++)
-            for (x_ptv = 0; x_ptv <= cal_size - win_size; x_ptv++)
+        for (y_ptv = 0; y_ptv <= w2 - w1; y_ptv++)
+            for (x_ptv = 0; x_ptv <= w2 - w1; x_ptv++)
             {
                 sum[1] = 0;
 
                 // 合計値・平均値の算出
-                for (i = 0; i < win_size; i++)
-                    for (j = 0; j < win_size; j++)
+                for (i = 0; i < w1; i++)
+                    for (j = 0; j < w1; j++)
                     {
                         sum[1] = cal_area[i + x_ptv][j + y_ptv] + sum[1];
                     }
 
-                ave[1] = sum[1] / (win_size * win_size);
+                ave[1] = sum[1] / (w1 * w1);
 
                 // 相関係数 R の算出
 
@@ -284,9 +317,9 @@ void PTV(int num_1, int num_2, const char *name)
                     cal[i] = 0;
                 }
 
-                for (i = 0; i < win_size; i++)
+                for (i = 0; i < w1; i++)
                 {
-                    for (j = 0; j < win_size; j++)
+                    for (j = 0; j < w1; j++)
                     {
                         cal[0] = win_area[i][j] - ave[0];
                         cal[1] = cal_area[i + x_ptv][j + y_ptv] - ave[1];
@@ -315,22 +348,19 @@ void PTV(int num_1, int num_2, const char *name)
                     index_x = x_ptv;
                     index_y = y_ptv;
                     R = R_sub[x_ptv][y_ptv];
-                    position_w[1] = x_ptv + (win_size / 2);
-                    position_h[1] = y_ptv + (win_size / 2);
-                    // printf("[%d]\t(%d, %d)\tR = %lf\n", k, x_ptv, y_ptv, R);
+                    position_w[1] = x_ptv + (w1 / 2);
+                    position_h[1] = y_ptv + (w1 / 2);
                 }
             }
 
         vx = position_w[1] - position_w[0];
         vy = position_h[1] - position_h[0];
 
-        if (cal_size - win_size > index_x && index_x > 0 && cal_size - win_size > index_y && index_y > 0 && R_sub[index_x][index_y] != 0)
+        if (w2 - w1 > index_x && index_x > 0 && w2 - w1 > index_y && index_y > 0 && R_sub[index_x][index_y] != 0)
         {
             // サブピクセル精度での特定
             float x_sbpx = log(R_sub[index_x - 1][index_y] / R_sub[index_x + 1][index_y]) / (2 * log(R_sub[index_x - 1][index_y] * R_sub[index_x + 1][index_y] / (R_sub[index_x][index_y] * R_sub[index_x][index_y])));
             float y_sbpx = log(R_sub[index_x][index_y - 1] / R_sub[index_x][index_y + 1]) / (2 * log(R_sub[index_x][index_y - 1] * R_sub[index_x][index_y + 1] / (R_sub[index_x][index_y] * R_sub[index_x][index_y])));
-
-            // printf("x_sbpx = %lf\ty_sbpx = %lf\n", x_sbpx, y_sbpx);
 
             if (isnan(x_sbpx) == false)
             {
@@ -354,6 +384,7 @@ void PTV(int num_1, int num_2, const char *name)
         else
         {
             v_value = sqrt(vx * vx + vy * vy);
+
             fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);
         }
     }
@@ -374,22 +405,22 @@ void plot_ptv(int num, const char *name)
     char graphtitle[100];
 
     sprintf(filename_ptv, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, num);
-    sprintf(graphname, "%s/%s/PTV/PTV_vector_png/%d.png", dir_path, name, num);
+    sprintf(graphname, "%s/%s/PTV/PTV_vector_svg/%d.svg", dir_path, name, num);
     sprintf(graphtitle, "PTV");
 
     // 軸の設定
 
     // range x
     float x_min = 0;
-    float x_max = width;
+    float x_max = width_px;
 
     // range y
     float y_min = 0;
-    float y_max = height;
+    float y_max = height_px;
 
     // range color
     float cb_min = 0;
-    float cb_max = cal_size / 2;
+    float cb_max = w2 / 2;
 
     // label
     const char *xxlabel = "y [px]";
@@ -402,7 +433,6 @@ void plot_ptv(int num, const char *name)
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    // fprintf(gp, "set terminal svg enhanced size 800, 600 font 'Times New Roman, 20'\n");
     fprintf(gp, "set terminal png enhanced size 800, 600 font 'Times New Roman, 20'\n");
     fprintf(gp, "set size ratio -1\n");
 
@@ -447,41 +477,50 @@ void plot_ptv(int num, const char *name)
     // return 0;
 }
 
-int main()
+/******************************************************************************
+FUNCTION : Load_bmp_8bit
+概要：8bitのbmp画像を配列に格納する
+ IN ：file_name：読み込むファイル名，header：ヘッダーの格納用配列，binary：輝度値の格納用配列
+OUT ：void / header, binary配列に値を格納する
+******************************************************************************/
+void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[])
 {
-    /* 保存ディレクトリの設定 */
-    string name_str;
-    cout << "Case Name:";
-    cin >> name_str;
-    const char *name = name_str.c_str();
+    FILE *fp;              // ファイルポインタの宣言
+    int i;                 // ループ用変数
+    const int size = 1078; // 画像サイズによって変動する可能性有り
 
-    /* ディレクトリの作成 */
-    char dirname[3][100];
-    sprintf(dirname[0], "%s/%s/PTV", dir_path, name);
-    sprintf(dirname[1], "%s/%s/PTV/PTV_vector_dat", dir_path, name);
-    sprintf(dirname[2], "%s/%s/PTV/PTV_vector_png", dir_path, name);
+    // bmpファイルをバイナリモードで読み取り
+    fp = fopen(file_name, "rb");
 
-    mkdir(dirname[0], dirmode);
-    mkdir(dirname[1], dirmode);
-    mkdir(dirname[2], dirmode);
-
-    /** PIV loop **/
-
-    int i, j;
-
-    for (i = 1; i < number - delta; i++)
+    // 画像ファイルが見つからない場合のエラー処理
+    if (fp == NULL)
     {
-        j = i + delta;
-        // j = i + 1;
-        PTV(i, j, name);
-
-        if (i < 100 - delta)
-        {
-            plot_ptv(i, name);
-        }
-
-        printf("PTV : %3d\n", i);
+        printf("Not found : %s \n", file_name);
+        exit(-1);
     }
 
-    return 0;
+    // ヘッダ情報の読み込み
+    for (i = 0; i < size; i++)
+    {
+        header[i] = fgetc(fp);
+    }
+
+    // 画像がビットマップで無い場合のエラー処理
+    if (!(header[0] == 'B' && header[1] == 'M'))
+    {
+        printf("Not BMP file : %s \n", file_name);
+        exit(-1);
+    }
+
+    int tmp; // 輝度値の一時的な格納用変数
+    i = 0;
+
+    // 輝度値読み込み
+    while ((tmp = fgetc(fp)) != EOF)
+    {
+        binary[i] = tmp;
+        i = i + 1;
+    }
+
+    fclose(fp); // ファイルを閉じる
 }

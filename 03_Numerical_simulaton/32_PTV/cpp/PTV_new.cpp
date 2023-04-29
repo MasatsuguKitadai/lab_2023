@@ -13,6 +13,9 @@ DATE    : 2022/12/15
 #include <algorithm>
 #include <iostream>
 using namespace std;
+#include "../hpp/settings.hpp"
+
+/*****************************************************************************/
 
 FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
@@ -21,24 +24,6 @@ mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_I
 void PTV(const char image_name_1[], const char image_name_2[], const char labeling[], const char writefile[]);
 void plot_ptv(int num, const char *name);
 void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
-
-/*****************************************************************************/
-
-/** ディレクトリ **/
-const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
-
-/** 各種パラメータ **/
-const int data = 800;                     // 画像の枚数 [-]
-const int width_px = 800;                 // 画像の横幅 [px]
-const int height_px = 800;                // 画像の縦幅 [px]
-const int size_px = width_px * height_px; // 画像の画素数 [px]
-const int delta_n = 10;                   // 対応させる時刻差 (枚)
-const int w1 = 10;                        // 探査窓 [px] x [px]
-const int w2 = 40;                        // 検査窓 [px] x [px]
-
-/** 固定パラメータ **/
-unsigned char header_8bit[1078]; // 8bit header
-unsigned char header_24bit[54];  // 24bit header
 
 /******************************************************************************/
 
@@ -63,7 +48,7 @@ int main()
     /** PIV loop **/
     char image_name_1[100], image_name_2[100], labeling[100], writefile[100];
 
-    for (int n = 1; n < data - delta_n; n++)
+    for (int n = 1; n < data_num - delta_n; n++)
     {
         sprintf(image_name_1, "%s/%s/LLS_1/particle_image_bmp/%d.bmp", dir_path, name, n);
         sprintf(image_name_2, "%s/%s/LLS_2/particle_image_bmp/%d.bmp", dir_path, name, n + delta_n);
@@ -239,7 +224,7 @@ void PTV(const char image_name_1[], const char image_name_2[], const char labeli
                 }
 
                 // 最も高い相関係数を取得
-                if (R_sub[x][y] > R_max)
+                if (R_sub[x][y] >= R_max)
                 {
                     index_x = x;
                     index_y = y;

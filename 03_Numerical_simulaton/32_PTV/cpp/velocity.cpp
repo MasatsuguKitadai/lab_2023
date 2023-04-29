@@ -8,27 +8,16 @@ DATE    : 2022/12/13
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
-
-using namespace std;
 #include <vector>
 #include <algorithm>
 #include <iostream>
+using namespace std;
+#include "../hpp/settings.hpp"
 
 /*****************************************************************************/
 
 FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
-
-/** ディレクトリ **/
-const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
-
-/** 各種パラメータ **/
-const int data = 800;                     // 画像の枚数 [-]
-const int width_px = 800;                 // 画像の横幅 [px]
-const int height_px = 800;                // 画像の縦幅 [px]
-const int size_px = width_px * height_px; // 画像の画素数 [px]
-const int delta_n = 10;                   // 対応させる時刻差 (枚)
-const float grid_size = 10;               // 格子点の大きさ [px]
 
 const int mesh_y = width_px / grid_size;
 const int mesh_z = height_px / grid_size;
@@ -54,21 +43,18 @@ int main()
     mkdir(dirname[1], dirmode);
 
     for (int i = 0; i < mesh_y; i++)
-    {
         for (int j = 0; j < mesh_z; j++)
         {
             value_y[i][j] = 0;
             value_z[i][j] = 0;
             count_mesh[i][j] = 0;
         }
-    }
 
     // 配列の初期化
     int counter = 0;
-
     int vector_num = 0;
 
-    for (int j = 1; j < data - delta_n; j++)
+    for (int j = 1; j < data_num - delta_n; j++)
     {
         // ファイルの読み取り
         char readfile[100];
@@ -76,7 +62,7 @@ int main()
 
         float buf[10]; // 読み込み用のバッファ
         fp = fopen(readfile, "r");
-        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
+        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5])) != EOF)
         {
             // ベクトルの合計値の計算
             position_y = buf[0];
@@ -84,11 +70,11 @@ int main()
 
             for (int i = 0; i < mesh_y; i++)
             {
-                if (i * grid_size <= position_y && position_y < (i + 1) * grid_size)
+                if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
                 {
                     for (int k = 0; k < mesh_z; k++)
                     {
-                        if (k * grid_size <= position_z && position_z < (k + 1) * grid_size)
+                        if (k * grid_size - 5 <= position_z && position_z < k * grid_size + 5)
                         {
                             value_y[i][k] = value_y[i][k] + buf[2];
                             value_z[i][k] = value_z[i][k] + buf[3];
@@ -103,7 +89,7 @@ int main()
         }
 
         fclose(fp);
-        // data（データの使用枚数）に注意!!
+        // data_num（データの使用枚数）に注意!!
     }
 
     printf("Vector num : %d\n", vector_num);
@@ -120,6 +106,8 @@ int main()
     char writefile[100];
     sprintf(writefile, "%s/%s/PTV/PTV_velocity_dat/velocity_%s.dat", dir_path, name, name);
 
+    const float time = delta_n / shutter_speed;
+
     fp = fopen(writefile, "w");
 
     for (int i = 0; i < mesh_y; i++)
@@ -129,9 +117,9 @@ int main()
             if (count_mesh[i][j] != 0)
             {
                 // 平均値の算出
-                value_y[i][j] = value_y[i][j] / count_mesh[i][j];
-                value_z[i][j] = value_z[i][j] / count_mesh[i][j];
-                v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]);
+                value_y[i][j] = value_y[i][j] / count_mesh[i][j] * width_mm / width_px;               // y方向の移動量 [mm]
+                value_z[i][j] = value_z[i][j] / count_mesh[i][j] * width_mm / width_px;               // z方向の移動量 [mm]
+                v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]) / time; // 全体の速度 [mm/s]
             }
             else
             {
@@ -141,10 +129,10 @@ int main()
             }
 
             // ベクトルの始点
-            position_y = i * grid_size + (grid_size / 2);
-            position_z = j * grid_size + (grid_size / 2);
+            position_y = i * grid_size * (float)width_mm / width_px;
+            position_z = j * grid_size * (float)width_mm / width_px;
 
-            fprintf(fp, "%.0f\t%.0f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j], value_z[i][j], v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 3.0, value_z[i][j] * 3.0, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -155,34 +143,34 @@ int main()
     // ファイル名
     char graphfile[100], graphtitle[100];
     sprintf(graphfile, "%s/%s/PTV/PTV_velocity_svg/velocity_%s.svg", dir_path, name, name);
-    sprintf(graphtitle, "Vector");
+    sprintf(graphtitle, "Velocity [mm/s]");
 
     // 軸の設定
 
     // range x
-    float x_min = 50;
-    float x_max = width_px - 50;
+    // float x_min = 5;
+    // float x_max = 35;
 
     // range y
-    float y_min = 50;
-    float y_max = height_px - 50;
+    // float y_min = 5;
+    // float y_max = 35;
 
     // // range x
-    // float x_min = 200;
-    // float x_max = 600;
+    const float x_min = 12.5;
+    const float x_max = 27.5;
 
     // // range y
-    // float y_min = 200;
-    // float y_max = 600;
+    const float y_min = x_min;
+    const float y_max = x_max;
 
     // range color
     float cb_min = 0;
-    float cb_max = 15;
+    float cb_max = 20.0;
     // float cb_max = 10;
 
     // label
-    const char *xxlabel = "y [px]";
-    const char *yylabel = "z [px]";
+    const char *xxlabel = "y [mm]";
+    const char *yylabel = "z [mm]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)

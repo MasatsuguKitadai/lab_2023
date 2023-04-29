@@ -13,22 +13,12 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include "../hpp/settings.hpp"
 
 /*****************************************************************************/
 
 FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
-
-/** ディレクトリ **/
-const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
-
-/** 各種パラメータ **/
-const int data = 800;                     // 画像の枚数 [-]
-const int width_px = 800;                 // 画像の横幅 [px]
-const int height_px = 800;                // 画像の縦幅 [px]
-const int size_px = width_px * height_px; // 画像の画素数 [px]
-const int delta_n = 10;                   // 対応させる時刻差 (枚)
-const float grid_size = 10;               // 格子点の大きさ [px]
 
 const int mesh_y = width_px / grid_size;
 const int mesh_z = height_px / grid_size;
@@ -73,7 +63,6 @@ int main()
     mkdir(dirname[1], dirmode);
 
     for (int i = 0; i < mesh_y; i++)
-    {
         for (int j = 0; j < mesh_z; j++)
         {
             value_y[i][j] = 0;
@@ -81,12 +70,11 @@ int main()
             vorticity[i][j] = 0;
             count_mesh[i][j] = 0;
         }
-    }
 
     // 配列の初期化
     int counter = 0;
 
-    for (int j = 1; j < data - delta_n; j++)
+    for (int j = 1; j < data_num - delta_n; j++)
     {
         // ファイルの読み取り
         char readfile[100];
@@ -94,7 +82,7 @@ int main()
 
         float buf[10]; // 読み込み用のバッファ
         fp = fopen(readfile, "r");
-        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8])) != EOF)
+        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5])) != EOF)
         {
             // ベクトルの合計値の計算
             position_y = buf[0];

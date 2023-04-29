@@ -16,10 +16,13 @@ DATE    : 2022/12/1
 #include <sstream>
 using namespace std;
 
-// 自作設定ファイル
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
+
 #include "../hpp/settings.hpp"
-#include "../hpp/functions.hpp"
-#include "../hpp/parameters.hpp"
+
+/** プロトタイプ宣言 **/
+void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
 
 /******************************************************************************/
 
@@ -34,13 +37,13 @@ int main()
     /* ディレクトリの作成 */
     char dirname[2][100];
     sprintf(dirname[0], "%s/%s/LLS_1/labeling_position_dat", dir_path, name);
-    // sprintf(dirname[1], "%s/%s/LLS_1/labeling_image_png", dir_path, name);
+    sprintf(dirname[1], "%s/%s/LLS_1/labeling_image_png", dir_path, name);
     mkdir(dirname[0], dirmode);
-    // mkdir(dirname[1], dirmode);
+    mkdir(dirname[1], dirmode);
 
     // 8bit.bmp
-    unsigned char ary[px_8_stretch];
-    int ary_label[px_8_stretch];
+    unsigned char ary[size_px];
+    int ary_label[size_px];
     int ary_buf[20];
 
     float sum[2];
@@ -61,15 +64,18 @@ int main()
     // 中心座標
     int x[1000], y[1000];
 
+    // 計算用のバッファ
+    float buf[100];
+
     // 軸の設定
 
     // range x
     float x_min = 0;
-    float x_max = width;
+    float x_max = width_px;
 
     // range y
     float y_min = 0;
-    float y_max = height;
+    float y_max = height_px;
 
     // label
     const char *xxlabel = "x [px]";
@@ -78,7 +84,7 @@ int main()
     int num = 0; // ラベリングの番号
     int label = 0;
 
-    for (int m = 1; m <= number; m++)
+    for (int m = 1; m <= data_num; m++)
     {
         // 粒子画像の読み込み
         char readfile[100];
@@ -88,7 +94,7 @@ int main()
         /** ラベリング **/
 
         // 配列の可視化
-        for (int i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < size_px; i++)
         {
             ary_label[i] = 0;
         }
@@ -106,7 +112,7 @@ int main()
         // ラベル番号の初期化
         int n = 0;
 
-        for (int i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < size_px; i++)
         {
             // 変数の初期化
             label = 0;
@@ -121,16 +127,16 @@ int main()
                     for (int k = -1; k <= 1; k++)
                     {
                         // 調べる座標の計算
-                        position = i + width * j + k;
+                        position = i + width_px * j + k;
 
                         // 座標のオーバーフローの回避
                         if (position < 0)
                         {
                             position = 0;
                         }
-                        else if (position > px_8_stretch)
+                        else if (position > size_px)
                         {
-                            position = px_8_stretch;
+                            position = size_px;
                         }
 
                         // 最小ラベルの取得
@@ -164,16 +170,16 @@ int main()
                         for (int k = -1; k <= 1; k++)
                         {
                             // 調べる座標の計算
-                            position = i + width * j + k;
+                            position = i + width_px * j + k;
 
                             // 座標のオーバーフローの回避
                             if (position < 0)
                             {
                                 position = 0;
                             }
-                            else if (position > px_8_stretch)
+                            else if (position > size_px)
                             {
-                                position = px_8_stretch;
+                                position = size_px;
                             }
 
                             // 張替え
@@ -194,7 +200,7 @@ int main()
         }
 
         // 面積の計算
-        for (int i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < size_px; i++)
         {
             label = ary_label[i];
 
@@ -240,7 +246,7 @@ int main()
 
         // 必要ないラベル番号を排除
         for (int i = 0; i < count_2; i++)
-            for (int j = 0; j < px_8_stretch; j++)
+            for (int j = 0; j < size_px; j++)
             {
                 if (trash[i] == ary_label[j])
                 {
@@ -250,7 +256,7 @@ int main()
 
         // ラベルの再張替え
         for (int i = 1; i < count; i++)
-            for (int j = 0; j < px_8_stretch; j++)
+            for (int j = 0; j < size_px; j++)
             {
                 if (ary_label[j] == buf[i])
                 {
@@ -265,7 +271,7 @@ int main()
         }
 
         // 面積の再計算
-        for (int i = 0; i < px_8_stretch; i++)
+        for (int i = 0; i < size_px; i++)
             for (int j = 0; j < n; j++)
             {
                 if (ary_label[i] == j)
@@ -306,12 +312,12 @@ int main()
             float y_sum = 0;
             int count_label = 0;
 
-            for (int j = 0; j < px_8_stretch; j++)
+            for (int j = 0; j < size_px; j++)
             {
                 if (i == ary_label[j])
                 {
-                    x_tmp = j % width;
-                    y_tmp = j / width;
+                    x_tmp = j % width_px;
+                    y_tmp = j / width_px;
 
                     // 合計
                     x_sum = x_sum + x_tmp;
@@ -334,68 +340,119 @@ int main()
 
         for (int i = 1; i <= n; i++)
         {
-            position = x[i] + width * y[i];
-            fprintf(fp, "%d\t%d\t%d\n", x[i], y[i], position);
+            position = x[i] + width_px * y[i];
+            if (position < size_px && position >= 0)
+            {
+                fprintf(fp, "%d\t%d\t%d\n", x[i], y[i], position);
+            }
         }
 
         fclose(fp);
 
-        // if (m <= 1000)
-        // {
-        //     // Gnuplot 呼び出し
-        //     if ((gp = popen("gnuplot", "w")) == NULL)
-        //     {
-        //         printf("gnuplot is not here!\n");
-        //         exit(0); // gnuplotが無い場合、異常ある場合は終了
-        //     }
+        if (m <= 100)
+        {
+            // Gnuplot 呼び出し
+            if ((gp = popen("gnuplot", "w")) == NULL)
+            {
+                printf("gnuplot is not here!\n");
+                exit(0); // gnuplotが無い場合、異常ある場合は終了
+            }
 
-        //     /** Gnuplot **/
-        //     char graphname[100], graphtitle[100], backimage[100];
-        //     sprintf(graphname, "%s/%s/LLS_1/labeling_image_png/%d.png", dir_path, name, m);
-        //     sprintf(backimage, "%s/%s/LLS_1/particle_image_png/%d.png", dir_path, name, m);
-        //     sprintf(graphtitle, "labeling plane [%03d]", m);
+            /** Gnuplot **/
+            char graphname[100], graphtitle[100], backimage[100];
+            sprintf(graphname, "%s/%s/LLS_1/labeling_image_png/%d.png", dir_path, name, m);
+            sprintf(backimage, "%s/%s/LLS_1/particle_image_png/%d.png", dir_path, name, m);
+            sprintf(graphtitle, "labeling plane [%03d]", m);
 
-        //     fprintf(gp, "set terminal png enhanced size 800, 800 font 'Times New Roman, 20'\n");
-        //     fprintf(gp, "set size ratio -1\n");
+            fprintf(gp, "set terminal png enhanced size 800, 800 font 'Times New Roman, 20'\n");
+            fprintf(gp, "set size ratio -1\n");
 
-        //     // 出力ファイル
-        //     fprintf(gp, "set output '%s'\n", graphname);
+            // 出力ファイル
+            fprintf(gp, "set output '%s'\n", graphname);
 
-        //     // 非表示
-        //     fprintf(gp, "unset key\n");
+            // 非表示
+            fprintf(gp, "unset key\n");
 
-        //     // 軸の範囲
-        //     fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
-        //     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
+            // 軸の範囲
+            fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
+            fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
-        //     // グラフタイトル
-        //     fprintf(gp, "set title '%s'\n", graphtitle);
+            // グラフタイトル
+            fprintf(gp, "set title '%s'\n", graphtitle);
 
-        //     // 軸ラベル
-        //     fprintf(gp, "set xlabel '%s'\n", xxlabel);
-        //     fprintf(gp, "set ylabel '%s'\n", yylabel);
+            // 軸ラベル
+            fprintf(gp, "set xlabel '%s'\n", xxlabel);
+            fprintf(gp, "set ylabel '%s'\n", yylabel);
 
-        //     // 軸のラベル位置
-        //     fprintf(gp, "set xlabel offset 0.0, 0.0\n");
-        //     fprintf(gp, "set ylabel offset -1.0, 0.0\n");
+            // 軸のラベル位置
+            fprintf(gp, "set xlabel offset 0.0, 0.0\n");
+            fprintf(gp, "set ylabel offset -1.0, 0.0\n");
 
-        //     // 軸の数値位置
-        //     fprintf(gp, "set xtics offset 0.0, 0.0\n");
-        //     fprintf(gp, "set ytics offset 0.0, 0.0\n");
+            // 軸の数値位置
+            fprintf(gp, "set xtics offset 0.0, 0.0\n");
+            fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
-        //     // グラフの出力
-        //     // fprintf(gp, "plot '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", readfile[2]);
-        //     fprintf(gp, "plot '%s' binary filetype=png with rgbimage, '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", backimage, writefile);
+            // グラフの出力
+            // fprintf(gp, "plot '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", readfile[2]);
+            fprintf(gp, "plot '%s' binary filetype=png with rgbimage, '%s' using 1:2 with points lc 'red' pt 1 ps 1 notitle\n", backimage, writefile);
 
-        //     fflush(gp); // Clean up Data
+            fflush(gp); // Clean up Data
 
-        //     fprintf(gp, "exit\n"); // Quit gnuplot
+            fprintf(gp, "exit\n"); // Quit gnuplot
 
-        //     pclose(gp);
-        // }
+            pclose(gp);
+        }
 
         printf("Labeling blue\t%4d\n", m);
     }
 
     return 0;
+}
+
+/******************************************************************************
+FUNCTION : Load_bmp_8bit
+概要：8bitのbmp画像を配列に格納する
+ IN ：file_name：読み込むファイル名，header：ヘッダーの格納用配列，binary：輝度値の格納用配列
+OUT ：void / header, binary配列に値を格納する
+******************************************************************************/
+void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[])
+{
+    FILE *fp;              // ファイルポインタの宣言
+    int i;                 // ループ用変数
+    const int size = 1078; // 画像サイズによって変動する可能性有り
+
+    // bmpファイルをバイナリモードで読み取り
+    fp = fopen(file_name, "rb");
+
+    // 画像ファイルが見つからない場合のエラー処理
+    if (fp == NULL)
+    {
+        printf("Not found : %s \n", file_name);
+        exit(-1);
+    }
+
+    // ヘッダ情報の読み込み
+    for (i = 0; i < size; i++)
+    {
+        header[i] = fgetc(fp);
+    }
+
+    // 画像がビットマップで無い場合のエラー処理
+    if (!(header[0] == 'B' && header[1] == 'M'))
+    {
+        printf("Not BMP file : %s \n", file_name);
+        exit(-1);
+    }
+
+    int tmp; // 輝度値の一時的な格納用変数
+    i = 0;
+
+    // 輝度値読み込み
+    while ((tmp = fgetc(fp)) != EOF)
+    {
+        binary[i] = tmp;
+        i = i + 1;
+    }
+
+    fclose(fp); // ファイルを閉じる
 }

@@ -281,10 +281,14 @@ void Simulate_Rotation_near_the_ground(float seconds)
         r[i] = r[i] + r[i] * omega * F_tmp * 1 / shutter_speed;     // 半径方向の位置
         phi[i] = phi[i] + r[i] * omega * G_tmp * 1 / shutter_speed; // 周方向の位置（角度）
 
+        // 速度の計算
+        float vy = r[i] * omega * F_tmp * cos(phi[i]) - r[i] * omega * G_tmp * sin(phi[i]); // y方向速度の計算 [mm]
+        float vz = r[i] * omega * F_tmp * sin(phi[i]) + r[i] * omega * G_tmp * cos(phi[i]); // z方向速度の計算 [mm]
+
         // x.position_tank[i] = x.position_tank[i] + sqrt(r[i] * omega) * H_tmp * 1 / shutter_speed; // x座標の計算 [mm]
         x.position_tank[i] = x.position_tank[i] + sqrt(nu * omega) * H_tmp * 1 / shutter_speed; // x座標の計算 [mm]
-        y.position_tank[i] = r[i] * cos(phi[i]) + y_center;                                     // y座標の計算 [mm]
-        z.position_tank[i] = r[i] * sin(phi[i]) + z_center;                                     // z座標の計算 [mm]
+        y.position_tank[i] = y.position_tank[i] + vy * 1 / shutter_speed;                       // y座標の計算 [mm]
+        z.position_tank[i] = z.position_tank[i] + vz * 1 / shutter_speed;                       // z座標の計算 [mm]
 
         // 合計値の計算
         vr_ave += r[i] * omega * F_tmp;
@@ -584,21 +588,7 @@ int main()
     /* ディレクトリの作成 */
     Make_Directory(lls_1.name);
     Make_Directory(lls_2.name);
-    Make_Directory("Calibration");
     Make_Directory("Full");
-
-    /* 校正用画像の作成 */
-    Calibration_Block(num_calibration);
-    calibration.intensity.resize(height_px, vector<float>(width_px));                                       //
-    calibration.dat_file_tank = dir_path + "Calibration/particle_position_tank/calibration_tank.dat";       // datファイルのパス
-    calibration.dat_file_screen = dir_path + "Calibration/particle_position_screen/calibration_screen.dat"; // datファイルのパス
-    calibration.graph_file_tank = dir_path + "Calibration/3d_tank_svg/calibration.svg";                     // datファイルのパス
-    calibration.bmp_file = dir_path + "Calibration/particle_image_bmp/calibration_bmp.bmp";
-    Write_dat_Tank(calibration.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, 250, -250); // datファイルの書き出し
-    gnuplot.Plot_3d_Calibration(calibration.dat_file_tank, calibration.graph_file_tank);                     // 3dグラフの書き出し
-    Write_dat_Screen(calibration.dat_file_tank, calibration.dat_file_screen);
-    Cal_Intensity_Calibration(calibration.intensity);
-    Create_Img_8bit(calibration.bmp_file, calibration.intensity);
 
     /* グリッドファイルの作成 */
     Write_dat_grid(lls_1); // LLS(1)

@@ -60,8 +60,8 @@ float correct_data()
     const char *dir_path_data = dir_path_str.c_str();
     mkdir(dir_path_data, dir_mode);
 
-    float delta = 10; // 対応枚数の差
-    float v_max = 0;  // 最大周方向移動量
+    float delta_n = 10; // 対応枚数の差
+    float v_max = 0;    // 最大周方向移動量
 
     /* 回転中心の設定 */
     const float y_center = 50; // y方向の渦中心 [mm]
@@ -126,7 +126,7 @@ float correct_data()
 
     // zeta の計算
     float zeta_tmp = (lls_1.position + (lls_2.position - lls_1.position) / 2) * sqrt(omega / nu);
-    printf("position [mm] = %.3f\tzeta [-] = %.3f\n", lls_1.position + (lls_2.position - lls_1.position) / 2, zeta_tmp);
+    // printf("position [mm] = %.3f\tzeta [-] = %.3f\n", lls_1.position + (lls_2.position - lls_1.position) / 2, zeta_tmp);
 
     // 関数表の採用
     int index = Find_Closest_Value(zeta_tmp, Zeta);
@@ -149,6 +149,7 @@ float correct_data()
     float F_tmp = Lagrange_Interpolation(zeta_tmp, Zeta_lagrange, F_lagrange);
     float G_tmp = Lagrange_Interpolation(zeta_tmp, Zeta_lagrange, G_lagrange);
     float H_tmp = Lagrange_Interpolation(zeta_tmp, Zeta_lagrange, H_lagrange);
+    printf("F = %.3f\tG = %.3f\tH = %.3f\n", F_tmp, G_tmp, H_tmp);
 
     /* 回転半径の計算 */
     for (int i = 0; i < number_y; i++)
@@ -165,18 +166,18 @@ float correct_data()
         for (int j = 0; j < number_z; j++)
         {
             // 粒子位置の積分
-            r[i][j] = r[i][j] + r[i][j] * omega * F_tmp * 1 / shutter_speed * delta;     // 半径方向の位置
-            phi[i][j] = phi[i][j] + r[i][j] * omega * G_tmp * 1 / shutter_speed * delta; // 周方向の位置（角度）
+            // r[i][j] = r[i][j] + r[i][j] * omega * F_tmp * 1 / shutter_speed * delta_n;     // 半径方向の位置
+            // phi[i][j] = phi[i][j] + r[i][j] * omega * G_tmp * 1 / shutter_speed * delta_n; // 周方向の位置（角度）
+            // v_y[i][j] = (r[i][j] * cos(phi[i][j]) + width_mm / 2) - position_y_mm[i][j];   // y方向移動量の計算 [mm]
+            // v_z[i][j] = (r[i][j] * sin(phi[i][j]) + height_mm / 2) - position_z_mm[i][j];  // z方向移動量の計算 [mm]
 
-            v_y[i][j] = (r[i][j] * cos(phi[i][j]) + width_mm / 2) - position_y_mm[i][j];  // y方向移動量の計算 [mm]
-            v_z[i][j] = (r[i][j] * sin(phi[i][j]) + height_mm / 2) - position_z_mm[i][j]; // z方向移動量の計算 [mm]
-
-            v_y[i][j] = v_y[i][j] * width_px / width_mm;
-            v_z[i][j] = v_z[i][j] * width_px / width_mm;
+            // 粒子位置の積分
+            v_y[i][j] = r[i][j] * omega * F_tmp * cos(phi[i][j]) - r[i][j] * omega * G_tmp * sin(phi[i][j]); // y方向速度の計算 [mm]
+            v_z[i][j] = r[i][j] * omega * F_tmp * sin(phi[i][j]) + r[i][j] * omega * G_tmp * cos(phi[i][j]); // z方向速度の計算 [mm]
         }
 
     /* データの書き出し(1) */
-    string filename = main_path + name + "/Evaluation/data/vector_correct.dat";
+    string filename = main_path + name + "/Evaluation/data/velocity_correct.dat";
     const char *filename_str = filename.c_str();
 
     fp = fopen(filename_str, "w");
@@ -185,7 +186,7 @@ float correct_data()
         for (int j = 0; j < number_z; j++)
         {
             float v_value = sqrt(v_y[i][j] * v_y[i][j] + v_z[i][j] * v_z[i][j]);
-            fprintf(fp, "%.0f\t%.0f\t%lf\t%lf\t%lf\n", position_y_px[i][j], position_z_px[i][j], v_y[i][j], v_z[i][j], v_value);
+            fprintf(fp, "%f\t%f\t%lf\t%lf\t%lf\n", position_y_mm[i][j], position_z_mm[i][j], v_y[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_z[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_value);
             if (v_value >= v_max)
             {
                 v_max = v_value;
@@ -211,7 +212,7 @@ float correct_data()
     {
         for (int j = 0; j < number_z; j++)
         {
-            fprintf(fp, "%.0f\t%.0f\t%lf\n", position_y_px[i][j], position_z_px[i][j], vorticity[i][j]);
+            fprintf(fp, "%f\t%f\t%lf\n", position_y_mm[i][j], position_z_mm[i][j], vorticity[i][j]);
         }
         fprintf(fp, "\n");
     }
@@ -227,7 +228,7 @@ float correct_data()
         {
             if (position_z_px[i][j] == height_px / 2)
             {
-                fprintf(fp, "%.0f\t%.0f\t%lf\n", position_y_px[i][j], position_z_px[i][j], vorticity[i][j]);
+                fprintf(fp, "%f\t%f\t%lf\n", position_y_mm[i][j], position_z_mm[i][j], vorticity[i][j]);
             }
         }
     fclose(fp);
@@ -245,7 +246,7 @@ void evaluation(float v_max)
 {
     /* ファイル名の定義 */
     string read_file_1 = main_path + name + "/PTV/PTV_velocity_dat/velocity_" + name + ".dat";
-    string read_file_2 = main_path + name + "/Evaluation/data/vector_correct.dat";
+    string read_file_2 = main_path + name + "/Evaluation/data/velocity_correct.dat";
     string result_file = main_path + name + "/Evaluation/error/error.dat";
 
     /* 配列の作成 */
@@ -319,7 +320,7 @@ void evaluation(float v_max)
     {
         for (int j = 0; j < height_px / grid_size; j++)
         {
-            fprintf(fp, "%.0f\t%.0f\t%f\t%f\t%f\n", y[count], z[count], error_y[count], error_z[count], error_value[count]);
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", y[count], z[count], error_y[count], error_z[count], error_value[count]);
             count += 1;
         }
         fprintf(fp, "\n");
@@ -338,6 +339,7 @@ void evaluation(float v_max)
         rmse_y += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]);
         rmse_z += (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
         rmse_value += (vector_value[0][i] - vector_value[1][i]) * (vector_value[0][i] - vector_value[1][i]);
+        // printf("SUM[%d]: y = %.3f [px]\n", i, rmse_y);
     }
 
     rmse_y = sqrt(rmse_y / number);
@@ -378,12 +380,12 @@ void plot_error()
     // 軸の設定
 
     // range x
-    float x_min = 50;
-    float x_max = width_px - 50;
+    float x_min = 12.5;
+    float x_max = width_mm - 12.5;
 
     // range y
-    float y_min = 50;
-    float y_max = height_px - 50;
+    float y_min = 12.5;
+    float y_max = height_mm - 12.5;
 
     // range color
     float cb_min = 0;
@@ -460,41 +462,33 @@ FUNCTION :
  IN ：
 OUT ：
 ******************************************************************************/
-void plot_vector()
+void plot_velocity()
 {
     /** Gnuplot **/
-    string filename = main_path + name + "/Evaluation/data/vector_correct.dat";
+    string filename = main_path + name + "/Evaluation/data/velocity_correct.dat";
     string graphname = main_path + name + "/Evaluation/data/velocity.svg";
 
     const char *filename_str = filename.c_str();
     const char *graphname_str = graphname.c_str();
-    char graphtitle[] = "Correct Data [Vector]";
+    char graphtitle[] = "Velocoty : Correct Data [mm/s]";
 
     // 軸の設定
 
-    // // range x
-    // float x_min = 50;
-    // float x_max = width_px - 50;
-
-    // // range y
-    // float y_min = 50;
-    // float y_max = height_px - 50;
-
     // range x
-    float x_min = 200;
-    float x_max = 600;
+    float x_min = 12.5;
+    float x_max = width_mm - 12.5;
 
     // range y
-    float y_min = 200;
-    float y_max = 600;
+    float y_min = 12.5;
+    float y_max = height_mm - 12.5;
 
     // range color
     float cb_min = 0;
-    float cb_max = 10;
+    float cb_max = 5;
 
     // label
-    const char *xxlabel = "y [px]";
-    const char *yylabel = "z [px] ";
+    const char *xxlabel = "y [mm]";
+    const char *yylabel = "z [mm] ";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -567,12 +561,12 @@ void plot_vorticity()
     // 軸の設定
 
     // range x
-    float x_min = 50;
-    float x_max = width_px - 50;
+    float x_min = 12.5;
+    float x_max = width_mm - 12.5;
 
     // range y
-    float y_min = 50;
-    float y_max = height_px - 50;
+    float y_min = 12.5;
+    float y_max = height_mm - 12.5;
 
     // range color
     float cb_min = -0.5;
@@ -644,7 +638,7 @@ void plot_vorticity_profile()
 {
     /** Gnuplot **/
     string filename_1 = main_path + name + "/Evaluation/data/vorticity_profile_correct.dat";
-    string filename_2 = main_path + name + "/Evaluation/data/vorticity_profile.dat";
+    string filename_2 = main_path + name + "/PTV/PTV_vorticity_dat/vorticity_profile.dat";
     string graphname = main_path + name + "/Evaluation/data/vorticity_profile.svg";
 
     const char *filename_1_str = filename_1.c_str();
@@ -655,8 +649,8 @@ void plot_vorticity_profile()
     // 軸の設定
 
     // range x
-    float x_min = 50;
-    float x_max = width_px - 50;
+    float x_min = 12.5;
+    float x_max = width_mm - 12.5;
 
     // range y
     float y_min = -1.5;
@@ -725,7 +719,7 @@ int main()
     evaluation(v);
 
     plot_error();
-    plot_vector();
+    plot_velocity();
     plot_vorticity();
     plot_vorticity_profile();
 
