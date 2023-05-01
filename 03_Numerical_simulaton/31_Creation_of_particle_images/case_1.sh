@@ -4,7 +4,7 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 # シミュレーションプログラムの開始
-# g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation-1.out"
+g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation-1.out"
 
 ## シミュレーション(1) ###
 for name in Data_set_1 Data_set_2 Data_set_3 Data_set_4 Data_set_5

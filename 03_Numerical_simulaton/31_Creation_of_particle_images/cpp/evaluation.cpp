@@ -18,6 +18,36 @@ const int number_y = (width_px / grid_size);
 const int number_z = (height_px / grid_size);
 const int number = number_y * number_z;
 
+/** プロトタイプ宣言 **/
+void Initialization();
+float correct_data();
+void evaluation(float v_max);
+void plot_error();
+void plot_velocity();
+void plot_vorticity();
+void plot_vorticity_profile();
+
+/******************************************************************************
+FUNCTION :
+ IN ：
+OUT ：
+******************************************************************************/
+int main()
+{
+    Initialization();
+    float v = correct_data();
+    printf("v_max = %f\n", v);
+
+    evaluation(v);
+
+    plot_error();
+    plot_velocity();
+    plot_vorticity();
+    plot_vorticity_profile();
+
+    return 0;
+}
+
 /******************************************************************************
 FUNCTION : Initialization
 概要：各パラメータの設定を行う
@@ -336,10 +366,16 @@ void evaluation(float v_max)
     // 合計値の計算
     for (int i = 0; i < number; i++)
     {
-        rmse_y += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]);
-        rmse_z += (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
-        rmse_value += (vector_value[0][i] - vector_value[1][i]) * (vector_value[0][i] - vector_value[1][i]);
-        // printf("SUM[%d]: y = %.3f [px]\n", i, rmse_y);
+        if (vector_y[0][i] != 0 && vector_z[0][i] != 0)
+        {
+            rmse_y += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]);
+            rmse_z += (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
+            rmse_value += (vector_value[0][i] - vector_value[1][i]) * (vector_value[0][i] - vector_value[1][i]);
+        }
+        else
+        {
+            printf("check [%d] (%.0f, %.0f)\n", i, y[i], z[i]);
+        }
     }
 
     rmse_y = sqrt(rmse_y / number);
@@ -703,25 +739,4 @@ void plot_vorticity_profile()
     fprintf(gp, "exit\n"); // Quit gnuplot
 
     pclose(gp);
-}
-
-/******************************************************************************
-FUNCTION :
- IN ：
-OUT ：
-******************************************************************************/
-int main()
-{
-    Initialization();
-    float v = correct_data();
-    printf("v_max = %f\n", v);
-
-    evaluation(v);
-
-    plot_error();
-    plot_velocity();
-    plot_vorticity();
-    plot_vorticity_profile();
-
-    return 0;
 }

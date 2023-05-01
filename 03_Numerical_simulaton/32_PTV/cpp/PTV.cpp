@@ -38,6 +38,16 @@ int main()
     cin >> name_str;
     const char *name = name_str.c_str();
 
+    /* ディレクトリの作成 */
+    char dirname[3][100];
+    sprintf(dirname[0], "%s/%s/PTV", dir_path, name);
+    sprintf(dirname[1], "%s/%s/PTV/PTV_vector_dat", dir_path, name);
+    sprintf(dirname[2], "%s/%s/PTV/PTV_vector_svg", dir_path, name);
+
+    mkdir(dirname[0], dirmode);
+    mkdir(dirname[1], dirmode);
+    mkdir(dirname[2], dirmode);
+
     /** PIV loop **/
     int i, j;
 
@@ -433,7 +443,7 @@ void plot_ptv(int num, const char *name)
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal png enhanced size 800, 600 font 'Times New Roman, 20'\n");
+    fprintf(gp, "set terminal svg enhanced size 800, 600 font 'Times New Roman, 20'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル

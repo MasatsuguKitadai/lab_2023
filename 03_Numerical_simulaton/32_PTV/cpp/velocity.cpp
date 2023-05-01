@@ -120,6 +120,14 @@ int main()
                 value_y[i][j] = value_y[i][j] / count_mesh[i][j] * width_mm / width_px;               // y方向の移動量 [mm]
                 value_z[i][j] = value_z[i][j] / count_mesh[i][j] * width_mm / width_px;               // z方向の移動量 [mm]
                 v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]) / time; // 全体の速度 [mm/s]
+
+                // 誤ベクトル処理
+                if (v_value >= 2.5)
+                {
+                    value_y[i][j] = 0;
+                    value_z[i][j] = 0;
+                    v_value = 0;
+                }
             }
             else
             {
@@ -129,9 +137,8 @@ int main()
             }
 
             // ベクトルの始点
-            position_y = i * grid_size * (float)width_mm / width_px;
-            position_z = j * grid_size * (float)width_mm / width_px;
-
+            position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
+            position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
             fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm), value_z[i][j] * (width_px / width_mm), v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
@@ -156,16 +163,16 @@ int main()
     // float y_max = 35;
 
     // // range x
-    const float x_min = 12.5;
-    const float x_max = 27.5;
+    const float x_min = width_shot_center - 7.5;
+    const float x_max = width_shot_center + 7.5;
 
     // // range y
-    const float y_min = x_min;
-    const float y_max = x_max;
+    const float y_min = height_shot_center - 7.5;
+    const float y_max = height_shot_center + 7.5;
 
     // range color
     float cb_min = 0;
-    float cb_max = 5.0;
+    float cb_max = 2.5;
     // float cb_max = 10;
 
     // label
@@ -179,7 +186,8 @@ int main()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
+    // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル

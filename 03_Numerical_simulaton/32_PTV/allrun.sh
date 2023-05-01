@@ -18,7 +18,8 @@ read name
 
     expect -c " 
     set timeout -1
-    spawn python3 py/bmp_to_png.py
+    spawn python3.8 py/bmp_to_png.py
+    # spawn python3 py/bmp_to_png.py
     expect \"Case Name:\"
     send \"$name\n\"
     expect \"$\n\"
