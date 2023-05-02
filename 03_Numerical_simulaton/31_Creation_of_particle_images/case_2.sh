@@ -1,4 +1,6 @@
 #!/bin/bash
+# num_particle = 200 [-]
+# omega = 10 [deg/s]
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   

@@ -76,7 +76,7 @@ lineskip=-0.5ex
 {\LARGE \@title \par}
 \end{center}
 \begin{flushright}
-{\large \@date 報告書 No.24}\\
+{\large \@date 報告書 No.27}\\
 {\large M2 \@author}
 \end{flushright}
 \par\vskip 1.5em
@@ -84,8 +84,8 @@ lineskip=-0.5ex
 \makeatother
 
 \author{来代 勝胤}
-\title{令和4年度 4月 第1週 報告書}
-\date{2022/4/4}
+\title{令和4年度 5月 第1週 報告書}
+\date{2022/5/2}
 
 \begin{document}
 \columnseprule=0.1mm
@@ -93,40 +93,68 @@ lineskip=-0.5ex
 
 \section*{報告内容}
 \begin{enumerate}[1.]
-  \item 計測アルゴリズムの精度評価
+  \item 数値シミュレーションデータの作成
+  \item 実用性評価の結果
   \item 今後の予定
 \end{enumerate}
 
-\section*{進捗状況}
-ケーシングなし・回転ありのタイヤモデルの後流について撮影を行った．
-その結果，対象物の後流では流れが減速するため，
-対応したPTVアルゴリズムが必要であるとわかった．
-
-\section{計測アルゴリズムの精度評価}
-\subsection{データセット作成}
+\section{数値シミュレーションデータの作成}
 \subsection{シミュレーション条件}
 \begin{table}[hbtp]
   \label{table:data_type}
-  \caption{シミュレーション条件}
+  \caption{作成予定のシミュレーション条件}
   \centering
-  \begin{tabular}{ c | c | c | c }
-           & \textgt{粒子数密度} [$-/\mathrm{mm}^3$] & \textgt{角速度} [deg/s] & \textgt{精度の予測} \\ \hline
-    Case 1 &                                         & 5.0                     & \Circle             \\ \hline
-    Case 2 &                                         & 5.0                     & \TriangleUp         \\ \hline
-    Case 3 &                                         & 5.0                     & \Cross              \\ \hline
-    Case 4 &                                         & 10.0                    &                     \\ \hline
-    Case 5 &                                         & 10.0                    &                     \\ \hline
-    Case 6 &                                         & 10.0                    &                     \\ \hline
-    Case 7 &                                         & 15.0                    &                     \\ \hline
-    Case 8 &                                         & 15.0                    &                     \\ \hline
-    Case 9 &                                         & 15.0                    &                     \\ \hline
+  \begin{tabular}{ c | c | c }
+           & \textgt{粒子数密度} [-/枚] & \textgt{角速度} [deg/s] \\ \hline
+    Case 1 & 100                        & 5.0                     \\ \hline
+    Case 2 & 100                        & 10.0                    \\ \hline
+    Case 3 & 100                        & 15.0                    \\ \hline
+    Case 4 & 200                        & 5.0                     \\ \hline
+    Case 5 & 200                        & 15.0                    \\ \hline
+    Case 6 & 200                        & 10.0                    \\ \hline
+    Case 7 & 300                        & 5.0                     \\ \hline
+    Case 8 & 300                        & 10.0                    \\ \hline
+    Case 9 & 300                        & 15.0                    \\ \hline
   \end{tabular}
 \end{table}
 
+\subsection{Case 1 についてのPIV結果}
+\begin{figure}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=80mm]{../images/vector_simulation.png}
+    \caption{PIV result of velocity}
+  \end{center}
+\end{figure}
 
-\section{今後の予定}
+\newpage
+\subsection{速度場の真値}
+\begin{figure}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=80mm]{../images/vector_true_value.png}
+    \caption{True value of velocity}
+  \end{center}
+\end{figure}
+
+\section{実用性評価の結果}
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \caption{RMSEによる誤差の値と誤差率}
+  \centering
+  \begin{tabular}{ c | c c }
+    \hline
+    RMSE                & 0.083 & [mm/s] \\ \hline
+    Error ratio of RMSE & 3.316 & [\%]   \\ \hline
+  \end{tabular}
+\end{table}
+
+\section{来週の予定}
 \begin{itemize}
-  \item 粒子に対応したPTVプログラムの作成
+  \item 日本実験力学会 登録内容 決定
+  \item 三角翼の流れ場測定
+  \item 粒子数密度の検討
+  \item 車両モデル測定実験に向けた準備
 \end{itemize}
 
 \end{document}

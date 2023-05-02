@@ -37,8 +37,10 @@ int main()
     Initialization();
     float v = correct_data();
     printf("v_max = %f\n", v);
-
     evaluation(v);
+
+    // float v_max = 2.5;
+    // evaluation(v_max);
 
     plot_error();
     plot_velocity();
@@ -195,15 +197,8 @@ float correct_data()
     for (int i = 0; i < number_y; i++)
         for (int j = 0; j < number_z; j++)
         {
-            // 粒子位置の積分
-            // r[i][j] = r[i][j] + r[i][j] * omega * F_tmp * 1 / shutter_speed * delta_n;     // 半径方向の位置
-            // phi[i][j] = phi[i][j] + r[i][j] * omega * G_tmp * 1 / shutter_speed * delta_n; // 周方向の位置（角度）
-            // v_y[i][j] = (r[i][j] * cos(phi[i][j]) + width_mm / 2) - position_y_mm[i][j];   // y方向移動量の計算 [mm]
-            // v_z[i][j] = (r[i][j] * sin(phi[i][j]) + height_mm / 2) - position_z_mm[i][j];  // z方向移動量の計算 [mm]
-
-            // 粒子位置の積分
-            v_y[i][j] = r[i][j] * omega * F_tmp * cos(phi[i][j]) - r[i][j] * omega * G_tmp * sin(phi[i][j]); // y方向速度の計算 [mm]
-            v_z[i][j] = r[i][j] * omega * F_tmp * sin(phi[i][j]) + r[i][j] * omega * G_tmp * cos(phi[i][j]); // z方向速度の計算 [mm]
+            v_y[i][j] = r[i][j] * omega * F_tmp * cos(phi[i][j]) - r[i][j] * omega * G_tmp * sin(phi[i][j]); // y方向速度の計算 [mm/s]
+            v_z[i][j] = r[i][j] * omega * F_tmp * sin(phi[i][j]) + r[i][j] * omega * G_tmp * cos(phi[i][j]); // z方向速度の計算 [mm/s]
         }
 
     /* データの書き出し(1) */
@@ -372,10 +367,6 @@ void evaluation(float v_max)
             rmse_z += (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
             rmse_value += (vector_value[0][i] - vector_value[1][i]) * (vector_value[0][i] - vector_value[1][i]);
         }
-        else
-        {
-            printf("check [%d] (%.0f, %.0f)\n", i, y[i], z[i]);
-        }
     }
 
     rmse_y = sqrt(rmse_y / number);
@@ -387,9 +378,9 @@ void evaluation(float v_max)
     float rmse_z_per = rmse_z / v_max * 100;
     float rmse_value_per = rmse_value / v_max * 100;
 
-    printf("RMSE:    y = %.3f [px]\t%.3f[%]\n", rmse_y, rmse_y_per);
-    printf("RMSE:    z = %.3f [px]\t%.3f[%]\n", rmse_z, rmse_z_per);
-    printf("RMSE:value = %.3f [px]\t%.3f[%]\n", rmse_value, rmse_value_per);
+    printf("RMSE:    y = %.3f [mm/s]\t%.3f[%]\n", rmse_y, rmse_y_per);
+    printf("RMSE:    z = %.3f [mm/s]\t%.3f[%]\n", rmse_z, rmse_z_per);
+    printf("RMSE:value = %.3f [mm/s]\t%.3f[%]\n", rmse_value, rmse_value_per);
 }
 
 /******************************************************************************
@@ -506,7 +497,7 @@ void plot_velocity()
 
     const char *filename_str = filename.c_str();
     const char *graphname_str = graphname.c_str();
-    char graphtitle[] = "Velocoty : Correct Data [mm/s]";
+    char graphtitle[] = "Velocoty : Ture value [mm/s]";
 
     // 軸の設定
 
@@ -520,7 +511,7 @@ void plot_velocity()
 
     // range color
     float cb_min = 0;
-    float cb_max = 5;
+    float cb_max = 2.5;
 
     // label
     const char *xxlabel = "y [mm]";
@@ -533,8 +524,7 @@ void plot_velocity()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    // fprintf(gp, "set terminal png enhanced size 2000, 1600 font 'Times New Roman, 36'\n");
-    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル

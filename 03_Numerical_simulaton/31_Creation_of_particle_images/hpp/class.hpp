@@ -17,8 +17,8 @@ using namespace std;
 const float pi = 4 * atan(1.0); // 円周率
 
 /* 保存ディレクトリの設定 */
-// const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
-const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
+const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
+// const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
 
 /* 流れの条件 */
 const float flow_speed = 8.5; // 流速 [mm/s]
@@ -29,7 +29,8 @@ float nu = 1.004;             // 動粘性係数
 const float time_max = 1.0;        // シミュレーションする時間 [s]
 const int shutter_speed = 800;     // 撮影速度 [1/s]
 const float intensity_max = 250.0; // 粒子の最大輝度値 [-]
-const float r_particle = 0.2;      // 粒子半径 [mm]
+const float r_particle = 1.0;      // 粒子半径 [mm]
+// const float r_particle = 0.2;      // 粒子半径 [mm]
 const float camera_angle = 55;     // カメラの設置角度 [°]
 const float angle_of_view = 30;    // カメラ(レンズ)の視野角 [°]
 const float camera_position = 500; // カメラの設置位置 [mm] (水槽の中心からどの程度カメラが離れているか)
@@ -61,7 +62,7 @@ const float range_x_max = lls_2_position;     // x方向の粒子生成範囲　
 const float range_x_min = lls_2_position - 3; // x方向の粒子生成範囲　[mm]
 
 const float range_x = range_x_max - range_x_min; // y方向の粒子生成範囲　[mm]
-const float range_y = 20.0 * sqrt(2);            // y方向の粒子生成範囲　[mm]
+const float range_y = width_mm / 2.0 * sqrt(2);  // y方向の粒子生成範囲　[mm]
 const float range_z = range_y;                   // z方向の粒子生成範囲　[mm]
 
 /* 粒子の生成量の設定 */

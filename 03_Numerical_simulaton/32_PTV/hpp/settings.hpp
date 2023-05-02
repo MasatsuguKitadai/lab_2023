@@ -3,8 +3,8 @@ PROGRAM : settings.h
 DATE    : 2022/11/11
 ******************************************************************************/
 /** ディレクトリ **/
-const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
-// const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation/";
+// const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
+const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation/";
 
 /** 各種パラメータ **/
 const int data_num = 800;                 // 画像の枚数 [-]
