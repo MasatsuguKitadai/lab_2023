@@ -1,5 +1,4 @@
-out/numerical_simulation-1.out | 回転角速度 10 [deg/s], 粒子数密度 1 倍 (Data_Set_1 ~ Data_Set_10)
-out/numerical_simulation-2.out | 回転角速度 10 [deg/s], 粒子数密度 3 倍 (Data_Set_11 ~ Data_Set_15)
-out/numerical_simulation-3.out | 回転角速度 10 [deg/s], 粒子数密度 5 倍 (Data_Set_16 ~ Data_Set_20)
-out/numerical_simulation-4.out | 回転角速度 15 [deg/s], 粒子数密度 1 倍 (Data_Set_21 ~ Data_Set_25)
-out/numerical_simulation-5.out | 回転角速度  5 [deg/s], 粒子数密度 1 倍 (Data_Set_26 ~ Data_Set_30)
+case_1 : num = 200, omega = 10.0 * pi / 180 [rad/s]
+case_2 : num = 100, omega = 10.0 * pi / 180 [rad/s]
+case_3 : num = 300, omega = 10.0 * pi / 180 [rad/s]
+case_4 : num = 200, omega = 10.0 * pi / 180 [rad/s]

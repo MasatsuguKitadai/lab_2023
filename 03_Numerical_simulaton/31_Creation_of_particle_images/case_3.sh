@@ -1,19 +1,19 @@
 #!/bin/bash
-# num_particle = 100 [-]
+# num_particle = 300 [-]
 # omega = 10 [deg/s]
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 # シミュレーションプログラムの開始
-g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation-2.out"
+g++ cpp/numerical_simulation.cpp -o "out/numerical_simulation-3.out"
 
-for name in Data_set_6 Data_set_7 Data_set_8 Data_set_9 Data_set_10
+for name in Data_set_11 Data_set_12 Data_set_13 Data_set_14 Data_set_15
 do
     expect -c " 
     set timeout -1
 
-    spawn ./out/numerical_simulation-2.out
+    spawn ./out/numerical_simulation-3.out
     expect \"Case Name:\"
     send \"$name\n\"
     expect \"$\n\"
