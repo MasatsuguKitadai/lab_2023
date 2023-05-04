@@ -1,5 +1,5 @@
 #!/bin/bash
-# num_particle = 100 [-]
+# num_particle = 200 [-]
 # omega = 10 [deg/s]
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
