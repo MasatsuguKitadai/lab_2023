@@ -356,7 +356,7 @@ void evaluation(float v_max)
     /* RMSE の算出 */
     float rmse_y = 0;
     float rmse_z = 0;
-    float rmse_value = 0;
+    float rmse_yz = 0;
 
     // 合計値の計算
     for (int i = 0; i < number; i++)
@@ -365,22 +365,22 @@ void evaluation(float v_max)
         {
             rmse_y += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]);
             rmse_z += (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
-            rmse_value += (vector_value[0][i] - vector_value[1][i]) * (vector_value[0][i] - vector_value[1][i]);
+            rmse_yz += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]) + (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
         }
     }
 
     rmse_y = sqrt(rmse_y / number);
     rmse_z = sqrt(rmse_z / number);
-    rmse_value = sqrt(rmse_value / number);
+    rmse_yz = sqrt(rmse_yz / number);
 
     /* RMSE 誤差率の算出 */
     float rmse_y_per = rmse_y / v_max * 100;
     float rmse_z_per = rmse_z / v_max * 100;
-    float rmse_value_per = rmse_value / v_max * 100;
+    float rmse_yz_per = rmse_yz / v_max * 100;
 
-    printf("RMSE:    y = %.3f [mm/s]\t%.3f[%]\n", rmse_y, rmse_y_per);
-    printf("RMSE:    z = %.3f [mm/s]\t%.3f[%]\n", rmse_z, rmse_z_per);
-    printf("RMSE:value = %.3f [mm/s]\t%.3f[%]\n", rmse_value, rmse_value_per);
+    printf("RMSE:  y = %.3f [mm/s]\t%.3f[%]\n", rmse_y, rmse_y_per);
+    printf("RMSE:  z = %.3f [mm/s]\t%.3f[%]\n", rmse_z, rmse_z_per);
+    printf("RMSE: yz = %.3f [mm/s]\t%.3f[%]\n", rmse_yz, rmse_yz_per);
 }
 
 /******************************************************************************
