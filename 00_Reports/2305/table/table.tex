@@ -90,17 +90,6 @@ lineskip=-0.5ex
 \begin{document}
 \maketitle
 
-\section*{報告内容}
-\begin{enumerate}[1.]
-  \item 計測アルゴリズムの精度評価
-  \item 今後の予定
-\end{enumerate}
-
-\section*{進捗状況}
-ケーシングなし・回転ありのタイヤモデルの後流について撮影を行った．
-その結果，対象物の後流では流れが減速するため，
-対応したPTVアルゴリズムが必要であるとわかった．
-
 \section{計測アルゴリズムの精度評価}
 \subsection{データセット作成}
 \subsection{シミュレーション条件}
@@ -119,6 +108,27 @@ lineskip=-0.5ex
     Case 7 & 15.0                    & 29.1667                                 & \TriangleUp         \\ \hline
     Case 8 & 15.0                    & 87.5001                                 & \Cross              \\ \hline
     Case 9 & 15.0                    & 145.8335                                & \Cross              \\ \hline
+  \end{tabular}
+\end{table}
+
+\section{数値シミュレーションデータの作成}
+\subsection{シミュレーション条件}
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \caption{作成予定のシミュレーション条件}
+  \centering
+  \begin{tabular}{c c c c}
+    \hline
+           & \textgt{粒子数密度} [-/枚] & \textgt{角速度} [rad/s] & \textgt{RMSE} [\%] \\ \hline \hline
+    Case 1 & 100                        & $10.0 \times \pi / 180$ & 5.654              \\ \hline
+    Case 2 & 200                        & $10.0 \times \pi / 180$ & 5.915              \\ \hline
+    Case 3 & 300                        & $10.0 \times \pi / 180$ & 7.220              \\ \hline
+    Case 4 & 100                        & $5.0  \times \pi / 180$ & 計算中             \\ \hline
+    Case 5 & 200                        & $5.0  \times \pi / 180$ & 計算中             \\ \hline
+    Case 6 & 300                        & $5.0  \times \pi / 180$ & 計算中             \\ \hline
+    Case 7 & 100                        & $15.0 \times \pi / 180$ & 計算中             \\ \hline
+    Case 8 & 200                        & $15.0 \times \pi / 180$ & 計算中             \\ \hline
+    Case 9 & 300                        & $15.0 \times \pi / 180$ & 計算中             \\ \hline
   \end{tabular}
 \end{table}
 

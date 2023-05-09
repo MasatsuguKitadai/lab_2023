@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.4.3)  25 APR 2023 13:29
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.4.3)  8 MAY 2023 14:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -501,7 +501,11 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \g__pdf_backend_annotation_int=\count324
 \g__pdf_backend_link_int=\count325
 \g__pdf_backend_link_sf_int=\count326
-) (./table.aux)
+) (./table.aux
+
+LaTeX Warning: Label `table:data_type' multiply defined.
+
+)
 \openout1 = `table.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
@@ -600,40 +604,43 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 13.31541pt on input line 93.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 105.
+(Font)              scaled to size 11.09619pt on input line 94.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 105.
+(Font)              scaled to size 11.09619pt on input line 94.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 111.
+(Font)              scaled to size 6.47278pt on input line 100.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 111.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 111.
+(Font)              scaled to size 4.62341pt on input line 100.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 100.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 111.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 100.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 112.
+(Font)              scaled to size 9.24683pt on input line 101.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 112.
+(Font)              scaled to size 9.24683pt on input line 101.
  (I search kanjifont definition file: . . ) (I search font definition file: . . . . . . . . . )
-LaTeX Font Info:    Trying to load font information for U+ifgeo on input line 113.
+LaTeX Font Info:    Trying to load font information for U+ifgeo on input line 102.
  (/usr/share/texlive/texmf-dist/tex/latex/ifsym/uifgeo.fd) [1
 
 ] (./table.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `table.out' has not changed.
-(rerunfilecheck)             Checksum: 10630D1B1DB9B6745487791B87BDC2F7;276.
+(rerunfilecheck)             Checksum: 8568F8CB73891D0D71CAC1CE59454776;438.
  ) 
 Here is how much of TeX's memory you used:
- 15268 strings out of 478741
- 235857 string characters out of 5860983
- 539147 words of memory out of 5000000
- 33483 multiletter control sequences out of 15000+600000
+ 15269 strings out of 478741
+ 235868 string characters out of 5860983
+ 545248 words of memory out of 5000000
+ 33484 multiletter control sequences out of 15000+600000
  479387 words of font info for 82 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  60i,12n,64p,375b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on table.dvi (1 page, 4804 bytes).
+Output written on table.dvi (1 page, 5568 bytes).

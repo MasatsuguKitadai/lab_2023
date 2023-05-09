@@ -23,7 +23,7 @@ const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 
 /* 流れの条件 */
 const float flow_speed = 8.5; // 流速 [mm/s]
-float omega = pi / 180 * 10;  // 角速度
+float omega = pi / 180 * 5;   // 角速度
 float nu = 1.004;             // 動粘性係数
 
 // 各種パラメータ
@@ -67,7 +67,7 @@ const float range_y = width_mm / 2.0 * sqrt(2);  // y方向の粒子生成範囲
 const float range_z = range_y;                   // z方向の粒子生成範囲　[mm]
 
 /* 粒子の生成量の設定 */
-const int num_per_image = 300;                                                           // 1枚あたりに映り込む粒子数 [個]
+const int num_per_image = 200;                                                           // 1枚あたりに映り込む粒子数 [個]
 const int times = 1.0;                                                                   // 粒子数の倍率 [-]
 const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness); // 粒子密度 [個/mm^2]
 const int num_particle = density_particle * range_x * range_y * range_y * pi * times;    // 生成する粒子数 [-]

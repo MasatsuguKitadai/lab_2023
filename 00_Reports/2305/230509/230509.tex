@@ -76,7 +76,7 @@ lineskip=-0.5ex
 {\LARGE \@title \par}
 \end{center}
 \begin{flushright}
-{\large \@date 報告書 No.27}\\
+{\large \@date 報告書 No.28}\\
 {\large M2 \@author}
 \end{flushright}
 \par\vskip 1.5em
@@ -84,8 +84,8 @@ lineskip=-0.5ex
 \makeatother
 
 \author{来代 勝胤}
-\title{令和4年度 5月 第1週 報告書}
-\date{2022/5/2}
+\title{令和4年度 5月 第2週 報告書}
+\date{2022/5/9}
 
 \begin{document}
 \columnseprule=0.1mm
@@ -98,57 +98,7 @@ lineskip=-0.5ex
   \item 今後の予定
 \end{enumerate}
 
-\section{数値シミュレーションデータの作成}
-\subsection{シミュレーション条件}
-\begin{table}[hbtp]
-  \label{table:data_type}
-  \caption{作成予定のシミュレーション条件}
-  \centering
-  \begin{tabular}{ c c c c}
-    \hline
-           & \textgt{粒子数密度} [-/枚] & \textgt{角速度} [deg/s] & \textgt{RMSE} [mm/s] \\ \hline \hline
-    Case 1 & 100                        & 10.0                    &                      \\ \hline
-    Case 2 & 200                        & 10.0                    &                      \\ \hline
-    Case 3 & 300                        & 10.0                    &                      \\ \hline
-    Case 4 & 100                        & 5.0                     &                      \\ \hline
-    Case 5 & 200                        & 5.0                     &                      \\ \hline
-    Case 6 & 300                        & 5.0                     &                      \\ \hline
-    Case 7 & 100                        & 15.0                    &                      \\ \hline
-    Case 8 & 200                        & 15.0                    &                      \\ \hline
-    Case 9 & 300                        & 15.0                    &                      \\ \hline
-  \end{tabular}
-\end{table}
 
-\subsection{Case 1 についてのPIV結果}
-\begin{figure}[htbp]
-  \footnotesize
-  \begin{center}
-    \includegraphics[width=80mm]{../images/vector_simulation.png}
-    \caption{PIV result of velocity}
-  \end{center}
-\end{figure}
-
-\newpage
-\subsection{速度場の真値}
-\begin{figure}[htbp]
-  \footnotesize
-  \begin{center}
-    \includegraphics[width=80mm]{../images/vector_true_value.png}
-    \caption{True value of velocity}
-  \end{center}
-\end{figure}
-
-\section{実用性評価の結果}
-\begin{table}[hbtp]
-  \label{table:data_type}
-  \caption{RMSEによる誤差の値と誤差率}
-  \centering
-  \begin{tabular}{ c | c c }
-    \hline
-    RMSE                & 0.083 & [mm/s] \\ \hline
-    Error ratio of RMSE & 3.316 & [\%]   \\ \hline
-  \end{tabular}
-\end{table}
 
 \section{来週の予定}
 \begin{itemize}

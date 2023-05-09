@@ -59,11 +59,11 @@ OUT ：void
 void Initialization()
 {
     /* パラメータの設定 */
-    float distance = 0.010;                     // LLS間距離 [mm]
-    lls_1.position = 7.0;                       // 前方のllsの位置 [mm]
-    lls_1.thickness = 0.003;                    // 前方のllsの厚み [mm]
-    lls_2.position = lls_1.position + distance; // 前方のllsの位置 [mm]
-    lls_2.thickness = 0.009;                    // 後方のllsの厚み [mm]
+    const float dx = 0.010;               // LLS間距離 [mm]
+    lls_1.position = 7.0;                 // 前方のllsの位置 [mm]
+    lls_1.thickness = 0.003;              // 前方のllsの厚み [mm]
+    lls_2.position = lls_1.position + dx; // 前方のllsの位置 [mm]
+    lls_2.thickness = 0.009;              // 後方のllsの厚み [mm]
 }
 
 /******************************************************************************
@@ -99,8 +99,10 @@ float correct_data()
     const float y_center = 50; // y方向の渦中心 [mm]
     const float z_center = 50; // y方向の渦中心 [mm]
 
-    float omega = pi / 180 * 10; // 角速度
-    float nu = 1.004;            // 動粘性係数
+    float omega = pi / 180 * 10; // 角速度 (case-1, case-4, case-7)
+    // float omega = pi / 180 * 5; // 角速度 (case-2, case-5, case-8)
+    // float omega = pi / 180 * 15; // 角速度 (case-3, case-6, case-9)
+    float nu = 1.004; // 動粘性係数
 
     /* 配列の作成 */
     vector<vector<float>> position_y_mm(number_y, vector<float>(number_z));
@@ -183,6 +185,12 @@ float correct_data()
     float H_tmp = Lagrange_Interpolation(zeta_tmp, Zeta_lagrange, H_lagrange);
     printf("F = %.3f\tG = %.3f\tH = %.3f\n", F_tmp, G_tmp, H_tmp);
 
+    const float dx = 0.010;                    // LLS間距離 [mm]
+    const float vx = sqrt(nu * omega) * H_tmp; //  主流方向の速度
+
+    printf("     Vx = %.3f\n", vx);
+    printf("delta n = %.1f\n", dx / vx * 800);
+
     /* 回転半径の計算 */
     for (int i = 0; i < number_y; i++)
         for (int j = 0; j < number_z; j++)
@@ -212,10 +220,12 @@ float correct_data()
         {
             float v_value = sqrt(v_y[i][j] * v_y[i][j] + v_z[i][j] * v_z[i][j]);
             fprintf(fp, "%f\t%f\t%lf\t%lf\t%lf\n", position_y_mm[i][j], position_z_mm[i][j], v_y[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_z[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_value);
-            if (v_value >= v_max)
-            {
-                v_max = v_value;
-            }
+            if (width_mm / 2 - 8 <= position_y_mm[i][j] && position_y_mm[i][j] <= width_mm / 2 + 8)
+                if (height_mm / 2 - 8 <= position_z_mm[i][j] && position_z_mm[i][j] <= height_mm / 2 + 8)
+                    if (v_value >= v_max)
+                    {
+                        v_max = v_value;
+                    }
         }
 
     fclose(fp);
