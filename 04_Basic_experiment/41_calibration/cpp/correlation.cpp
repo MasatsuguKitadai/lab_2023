@@ -2,28 +2,52 @@
 PROGRAM : correlation
 AUTHER  : Masatsugu Kitadai
 DATE    : 2022/11/14
-******************************************************************************/
+****/
 
-// 既存ライブラリ
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
+#include <vector>
+#include <iostream>
+using namespace std;
 
-// 自作設定ファイル
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
+
+/** プロトタイプ宣言 **/
+void Ditect_calibration_points();
+
 #include "../hpp/settings.hpp"
-#include "../../parameters/parameters.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
 
-/******************************************************************************/
+/******************************************************************************
+PROGRAM : main
+概要    ：
+******************************************************************************/
+int main()
+{
+    /* データ名の読み取り */
+    string name_str;
+    cout << "Data Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
+
+    /* ディレクトリの作成 */
+    char dirname[100];
+    sprintf(dirname, "%s/%s", dir_path, name);
+    mkdir(dirname, dirmode);
+
+    return 0;
+}
 
 int main()
 {
-    // ディレクトリの作成
-    sprintf(dirname[0], "%s/%s/correlation", dir_path, dataname);
-    mkdir(dirname[0], dirmode);
+    /* ディレクトリの作成 */
+    char dirname[100];
+    sprintf(dirname, "%s/%s/42_correlation", dir_path, name);
+    mkdir(dirname, dirmode);
 
-    /** (1) 円形画像の読み込み ****************************************************************************/
+    /** (1) 円形画像の読み込み **/
 
     // dot.bmp
     int size = 40;
@@ -35,21 +59,21 @@ int main()
     sprintf(filename[0], "dot/dot.bmp");
     loadBmp_full_8bit(filename[0], header_8bit, ary_dot);
 
-    /** (2) 校正用画像の読み込み と 相関係数の計算 ****************************************************************************/
+    /** (2) 校正用画像の読み込み と 相関係数の計算 **/
 
     // 8bit.bmp
-    unsigned char ary_calibration[px_8_original];
+    unsigned char ary_calibration[px_8_origin];
     double sum[2];
     double ave[2];
     double R = 0;
     int x, y;
     int position[2];
 
-    // 校正画像の読み込みde
+    // 校正画像の読み込み
     sprintf(filename[1], "%s/%s/binarization/8bit.bmp", dir_path, dataname);
     loadBmp_full_8bit(filename[1], header_8bit, ary_calibration);
 
-    /** 相互相関係数の算出 *********************************************************************/
+    /** 相互相関係数の算出 **/
 
     // 配列の初期化
     for (i = 0; i < 2; i++)
@@ -216,4 +240,12 @@ int main()
     pclose(gp);
 
     return 0;
+}
+
+/******************************************************************************
+PROGRAM : Ditect_calibration_points
+概要    ：校正画像の校正点を特定する
+****/
+void Ditect_calibration_points()
+{
 }

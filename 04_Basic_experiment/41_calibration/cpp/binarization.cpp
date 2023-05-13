@@ -49,15 +49,14 @@ int main()
 
 /******************************************************************************
 PROGRAM : Binarization
-AUTHER  : Masatsugu Kitadai
-DATE    : 2022/12/15
+概要：校正画像の二値化処理を行う
 ******************************************************************************/
 
 void Binarization(const char *name)
 {
     /* ディレクトリの作成 */
     char dirname[100];
-    sprintf(dirname, "%s/%s/binarization", dir_path, name);
+    sprintf(dirname, "%s/%s/41_binarization", dir_path, name);
     mkdir(dirname, dirmode);
 
     /** BMPファイルの読み取り **/
@@ -117,21 +116,57 @@ void Binarization(const char *name)
 /******************************************************************************
 PROGRAM : Ditect_threhold
 概要：大津の二値化法によってしきい値を見つける
- IN ：file_name：
- 読み込むファイル名，header：ヘッダーの格納用配列，binary：輝度値の格納用配列
-OUT ：void / header, binary配列に値を格納する
 ******************************************************************************/
-void Ditect_threhold(unsigned char binary_8bit[])
+int Ditect_threhold(unsigned char binary_8bit[])
 {
     /** ヒストグラムの計算 **/
-    int hist[256] = {0}; // 8bit ヒストグラム用配列
+    int histgram[256] = {0}; // 8bit ヒストグラム用配列 [-]
     for (int i = 0; i < px_8_origin; i++)
     {
         if (binary_8bit[i] == i)
         {
-            hist[i] += 1;
+            histgram[i] += 1;
         }
     }
+
+    /** 確立の計算 **/
+    float probability[256] = {0}; // 各輝度値の確率 [-]
+    for (int i = 0; i < px_8_origin; i++)
+    {
+        probability[i] = histgram[i] / px_8_origin;
+    }
+
+    /** クラスごとの計算 **/
+    for (int i = 0; i < px_8_origin; i++)
+    {
+        float sum_0 = 0;
+        float sum_1 = 0;
+
+        // クラス分け
+        for (int j = 0; j < px_8_origin; j++)
+        {
+            if (j <= i)
+            {
+                sum_0 += histgram[j];
+            }
+            else
+            {
+                sum_1 += histgram[j];
+            }
+        };
+
+        // クラス平均値の計算
+        float average_0 = average_0 / px_8_origin;
+        float average_1 = average_1 / px_8_origin;
+
+        // クラス確率の計算
+        float probability_0 = average_0 / px_8_origin;
+        float probability_1 = average_1 / px_8_origin;
+    }
+
+    float threhold = 0;
+
+    return threhold;
 }
 
 /******************************************************************************
