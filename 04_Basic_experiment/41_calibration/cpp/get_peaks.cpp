@@ -4,47 +4,54 @@ AUTHER  : Masatsugu Kitadai
 DATE    : 2022/11/17
 ******************************************************************************/
 
-// 既存ライブラリ
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
-
-using namespace std;
 #include <vector>
-#include <algorithm>
 #include <iostream>
+using namespace std;
 
-// 自作設定ファイル
-#include "../hpp/settings.hpp"
-#include "../../parameters/parameters.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
-// 配列
-double ary_correlation[px_8_original];
-double ary_label[px_8_original];
+/** プロトタイプ宣言 **/
 
 int tmp = 0;
 char string_buf[100];
 int x, y;
 
-/******************************************************************************/
+/*****************************************************************************/
 
+#include "../hpp/settings.hpp"
+
+/******************************************************************************
+PROGRAM : main
+DATE    : 2023/05/15
+******************************************************************************/
 int main()
 {
-    // ディレクトリの作成
-    sprintf(dirname[0], "%s/%s/get_peaks", dir_path, dataname);
-    printf("PATH = %s\n", dirname[0]);
-    mkdir(dirname[0], dirmode);
+    /* データ名の読み取り */
+    string name_str;
+    cout << "Data Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
 
-    for (i = 0; i < px_8_original; i++)
-    {
-        ary_correlation[i] = 0;
-        ary_label[i] = 0;
-    }
+    return 0;
+}
+
+/******************************************************************************
+PROGRAM : Get_peaks
+DATE    : 2023/05/15
+******************************************************************************/
+void Get_peaks(const char *name);
+{
+    // 配列
+    float ary_correlation[px_8_origin] = {0};
+    float ary_label[px_8_origin] = {0};
 
     // 相関係数ファイルの読み込み
-    sprintf(filename[0], "%s/%s/correlation/correlation.dat", dir_path, dataname);
+    sprintf(filename[0], "%s/%s/41_calibration/correlation/correlation.dat", dir_path, name);
 
     i = 0;
 
@@ -54,7 +61,7 @@ int main()
     {
         ary_correlation[i] = buf[2];
 
-        if (buf[0] == width_original - interr_size / 2 - 1)
+        if (buf[0] == width_origin - interr_size / 2 - 1)
         {
             fgets(string_buf, 100, fp);
         }
@@ -77,7 +84,7 @@ int main()
         ary_label[i] = buf[2];
         i = i + 1;
 
-        if (buf[0] == width_original - interr_size / 2 - 1)
+        if (buf[0] == width_origin - interr_size / 2 - 1)
         {
             fgets(string_buf, 100, fp);
         }
@@ -98,28 +105,28 @@ int main()
     printf("label = %d\n", label);
 
     // 各エリアのピーク値の取得
-    double peak = 0;
+    float peak = 0;
     int position;
 
     for (i = 0; i < label; i++)
     {
         peak = 0;
 
-        for (j = 0; j < px_8_original; j++)
+        for (j = 0; j < px_8_origin; j++)
         {
             // ピーク値を持つ座標の取得
             if (ary_label[j] == i + 1)
             {
                 // 配列の位置調整
-                cal[0] = j % width_original - interr_size / 2; // 余り
-                cal[1] = (width_original - interr_size) * (int(j / width_original) - interr_size / 2);
+                cal[0] = j % width_origin - interr_size / 2; // 余り
+                cal[1] = (width_origin - interr_size) * (int(j / width_origin) - interr_size / 2);
                 position = cal[0] + cal[1];
 
                 if (ary_correlation[position] > peak)
                 {
                     peak = ary_correlation[position]; //
-                    x = j % width_original;           // 余りがx座標になる
-                    y = j / width_original;           // 少数以下は切り捨て
+                    x = j % width_origin;             // 余りがx座標になる
+                    y = j / width_origin;             // 少数以下は切り捨て
                 }
             }
         }
@@ -206,12 +213,12 @@ int main()
     // 軸の設定
 
     // range x
-    double x_min = 0;
-    double x_max = width_original;
+    float x_min = 0;
+    float x_max = width_origin;
 
     // range y
-    double y_min = 0;
-    double y_max = height_original;
+    float y_min = 0;
+    float y_max = height_origin;
 
     // label
     const char *xxlabel = "x [px]";

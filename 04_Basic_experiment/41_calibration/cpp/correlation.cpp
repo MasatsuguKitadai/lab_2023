@@ -16,7 +16,12 @@ FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
 /** プロトタイプ宣言 **/
-void Ditect_calibration_points();
+void Ditect_calibration_points(const char *name);
+void Gnuplot(const char *name);
+void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
+void Load_Bmp_24bit(const char file_name[], unsigned char header[], unsigned char binary[]);
+
+/*****************************************************************************/
 
 #include "../hpp/settings.hpp"
 
@@ -37,53 +42,60 @@ int main()
     sprintf(dirname, "%s/%s", dir_path, name);
     mkdir(dirname, dirmode);
 
+    Ditect_calibration_points(name);
+    Gnuplot(name);
+
     return 0;
 }
 
-int main()
+/******************************************************************************
+PROGRAM : Ditect_calibration_points
+概要    ： 校正画像の校正点を取得する
+******************************************************************************/
+void Ditect_calibration_points(const char *name)
 {
     /* ディレクトリの作成 */
     char dirname[100];
-    sprintf(dirname, "%s/%s/42_correlation", dir_path, name);
+    sprintf(dirname, "%s/%s/41_calibration/correlation", dir_path, name);
     mkdir(dirname, dirmode);
 
     /** (1) 円形画像の読み込み **/
 
     // dot.bmp
-    int size = 40;
-    int px_dot = size * size;
+    const int size = 40;
+    const int px_dot = size * size;
     unsigned char ary_dot[px_dot];
 
     // 参照dot画像の読み込み
-    // sprintf(filename[0], "dot/%dx%d.bmp", interr_size, interr_size);
-    sprintf(filename[0], "dot/dot.bmp");
-    loadBmp_full_8bit(filename[0], header_8bit, ary_dot);
+    const char dotfile[] = "header/dot.bmp";
+    Load_Bmp_8bit(dotfile, header_8bit, ary_dot);
 
     /** (2) 校正用画像の読み込み と 相関係数の計算 **/
 
     // 8bit.bmp
     unsigned char ary_calibration[px_8_origin];
-    double sum[2];
-    double ave[2];
-    double R = 0;
-    int x, y;
+    float sum[2];
+    float ave[2];
+    float R = 0;
+    float cal[10];
     int position[2];
 
     // 校正画像の読み込み
-    sprintf(filename[1], "%s/%s/binarization/8bit.bmp", dir_path, dataname);
-    loadBmp_full_8bit(filename[1], header_8bit, ary_calibration);
+    char imgfile[100];
+    sprintf(imgfile, "%s/%s/41_calibration/binarization/calibration_8bit.bmp", dir_path, name);
+    Load_Bmp_8bit(imgfile, header_8bit, ary_calibration);
 
     /** 相互相関係数の算出 **/
 
     // 配列の初期化
-    for (i = 0; i < 2; i++)
+    for (int i = 0; i < 2; i++)
     {
         sum[i] = 0;
         ave[i] = 0;
     }
 
     // 濃度値の総和
-    for (i = 0; i < px_dot; i++)
+    for (int i = 0; i < px_dot; i++)
     {
         sum[0] = ary_dot[i] + sum[0];
     }
@@ -94,41 +106,42 @@ int main()
     /** 相関係数の算出準備 (1) **/
 
     // 相互相関平面の書き出し
-    sprintf(filename[2], "%s/%s/correlation/correlation.dat", dir_path, dataname);
-    fp = fopen(filename[2], "w");
+    char filename[100];
+    sprintf(filename, "%s/%s/41_calibration/correlation/correlation.dat", dir_path, name);
+    fp = fopen(filename, "w");
 
-    for (y = 0; y < height_original - interr_size; y++)
+    for (int y = 0; y < height_origin - calibration_size; y++)
     {
-        for (x = 0; x < width_original - interr_size; x++)
+        for (int x = 0; x < width_origin - calibration_size; x++)
         {
             sum[1] = 0;
 
             // 合計値・平均値の算出
-            for (j = 0; j < interr_size; j++)
+            for (int j = 0; j < calibration_size; j++)
             {
-                for (i = 0; i < interr_size; i++)
+                for (int i = 0; i < calibration_size; i++)
                 {
-                    position[0] = width_original * (y + j) + (x + i);
+                    position[0] = width_origin * (y + j) + (x + i);
                     sum[1] = ary_calibration[position[0]] + sum[1];
                 }
             }
 
-            ave[1] = sum[1] / (interr_size * interr_size);
+            ave[1] = sum[1] / (calibration_size * calibration_size);
 
             // 相関係数 R の算出
 
             // 配列の初期化
-            for (i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 cal[i] = 0;
             }
 
-            for (i = 0; i < interr_size; i++)
+            for (int i = 0; i < calibration_size; i++)
             {
-                for (j = 0; j < interr_size; j++)
+                for (int j = 0; j < calibration_size; j++)
                 {
-                    position[0] = interr_size * j + i;                // dot 画像の位置
-                    position[1] = width_original * (y + j) + (x + i); // 校正画像の位置
+                    position[0] = calibration_size * j + i;         // dot 画像の位置
+                    position[1] = width_origin * (y + j) + (x + i); // 校正画像の位置
 
                     cal[0] = ary_dot[position[0]] - ave[0];
                     cal[1] = ary_calibration[position[1]] - ave[1];
@@ -150,36 +163,45 @@ int main()
                 R = cal[2] / (cal[5] * cal[6]);
             }
 
-            fprintf(fp, "%d\t%d\t%lf\n", x + interr_size / 2, y + interr_size / 2, R);
+            fprintf(fp, "%d\t%d\t%lf\n", x + calibration_size / 2, y + calibration_size / 2, R);
         }
 
         fprintf(fp, "\n");
     }
 
     fclose(fp);
+}
 
+/******************************************************************************
+PROGRAM : Gnuplot
+概要    ：相間平面の画像を作成する
+******************************************************************************/
+void Gnuplot(const char *name)
+{
     /** Gnuplot **/
-
-    sprintf(graphname[0], "%s/%s/correlation/correlation.png", dir_path, dataname);
-    sprintf(graphtitle[0], "Correlation plane");
+    char datafile[100];
+    char graphfile[100];
+    sprintf(datafile, "%s/%s/41_calibration/correlation/correlation.dat", dir_path, name);
+    sprintf(graphfile, "%s/%s/41_calibration/correlation/correlation.png", dir_path, name);
+    const char graphtitle[] = "Correlation plane";
 
     // 軸の設定
 
     // range x
-    double x_min = 0;
-    double x_max = width_original;
+    float x_min = 0;
+    float x_max = width_origin;
 
     // range y
-    double y_min = 0;
-    double y_max = height_original;
+    float y_min = 0;
+    float y_max = height_origin;
 
     // range color
-    double cb_min = -1;
-    double cb_max = 1;
+    float cb_min = -1;
+    float cb_max = 1;
 
     // label
-    const char *xxlabel = "x [px]";
-    const char *yylabel = "y [px]";
+    const char *xxlabel = "x [pixel]";
+    const char *yylabel = "y [pixel]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -189,17 +211,10 @@ int main()
     }
 
     fprintf(gp, "set terminal pngcairo enhanced size 1000, 800 font 'Times New Roman, 20'\n");
-    // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 24' \n");
     fprintf(gp, "set size ratio -1\n");
 
-    // 描画マージン
-    // fprintf(gp, "set lmargin screen 0.15\n");
-    // fprintf(gp, "set rmargin screen 0.85\n");
-    // fprintf(gp, "set tmargin screen 0.85\n");
-    // fprintf(gp, "set bmargin screen 0.15\n");
-
     // 出力ファイル
-    fprintf(gp, "set output '%s'\n", graphname[0]);
+    fprintf(gp, "set output '%s'\n", graphfile);
 
     // 非表示
     fprintf(gp, "unset key\n");
@@ -212,7 +227,7 @@ int main()
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s'\n", graphtitle[0]);
+    fprintf(gp, "set title '%s'\n", graphtitle);
 
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
@@ -231,21 +246,110 @@ int main()
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "splot '%s' using 1:2:3 with pm3d lc palette notitle\n", filename[2]);
-    // fprintf(gp, "splot '%s' with pm3d lc palette notitle\n", filename);
+    fprintf(gp, "splot '%s' using 1:2:3 with pm3d lc palette notitle\n", datafile);
 
     fflush(gp); // Clean up Data
 
     fprintf(gp, "exit\n"); // Quit gnuplot
     pclose(gp);
-
-    return 0;
 }
 
 /******************************************************************************
-PROGRAM : Ditect_calibration_points
-概要    ：校正画像の校正点を特定する
-****/
-void Ditect_calibration_points()
+FUNCTION : Load_bmp_8bit
+概要：8bitのbmp画像を配列に格納する
+ IN ：file_name：読み込むファイル名，header：ヘッダーの格納用配列，binary：輝度値の格納用配列
+OUT ：void / header, binary配列に値を格納する
+******************************************************************************/
+void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[])
 {
+    FILE *fp;              // ファイルポインタの宣言
+    int i;                 // ループ用変数
+    const int size = 1078; // 画像サイズによって変動する可能性有り
+
+    // bmpファイルをバイナリモードで読み取り
+    fp = fopen(file_name, "rb");
+
+    // 画像ファイルが見つからない場合のエラー処理
+    if (fp == NULL)
+    {
+        printf("Not found : %s \n", file_name);
+        exit(-1);
+    }
+
+    // ヘッダ情報の読み込み
+    for (i = 0; i < size; i++)
+    {
+        header[i] = fgetc(fp);
+    }
+
+    // 画像がビットマップで無い場合のエラー処理
+    if (!(header[0] == 'B' && header[1] == 'M'))
+    {
+        printf("Not BMP file : %s \n", file_name);
+        exit(-1);
+    }
+
+    int tmp; // 輝度値の一時的な格納用変数
+    i = 0;
+
+    // 輝度値読み込み
+    while ((tmp = fgetc(fp)) != EOF)
+    {
+        binary[i] = tmp;
+        i = i + 1;
+    }
+
+    // printf("data length = %d\n", i);
+
+    fclose(fp); // ファイルを閉じる
+}
+
+/******************************************************************************
+FUNCTION : Load_bmp_24bit
+概要：8bitのbmp画像を配列に格納する
+ IN ：file_name：読み込むファイル名，header：ヘッダーの格納用配列，binary：輝度値の格納用配列
+OUT ：void / header, binary配列に値を格納する
+******************************************************************************/
+void Load_Bmp_24bit(const char file_name[], unsigned char header[], unsigned char binary[])
+{
+    FILE *fp;            // ファイルポインタの宣言
+    int i;               // ループ用変数
+    const int size = 54; // 画像サイズによって変動する可能性有り
+
+    // bmpファイルをバイナリモードで読み取り
+    fp = fopen(file_name, "rb");
+
+    // 画像ファイルが見つからない場合のエラー処理
+    if (fp == NULL)
+    {
+        printf("Not found : %s \n", file_name);
+        exit(-1);
+    }
+
+    // ヘッダ情報の読み込み
+    for (i = 0; i < size; i++)
+    {
+        header[i] = fgetc(fp);
+    }
+
+    // 画像がビットマップで無い場合のエラー処理
+    if (!(header[0] == 'B' && header[1] == 'M'))
+    {
+        printf("Not BMP file : %s \n", file_name);
+        exit(-1);
+    }
+
+    int tmp; // 輝度値の一時的な格納用変数
+    i = 0;
+
+    // 輝度値読み込み
+    while ((tmp = fgetc(fp)) != EOF)
+    {
+        binary[i] = tmp;
+        i = i + 1;
+    }
+
+    // printf("data length = %d\n", i);
+
+    fclose(fp); // ファイルを閉じる
 }

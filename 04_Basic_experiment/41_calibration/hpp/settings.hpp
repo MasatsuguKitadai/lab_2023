@@ -4,7 +4,7 @@ DATE    : 2023/5/12
 ******************************************************************************/
 /** ディレクトリ **/
 // const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/";
-const char dir_path[] = "/mnt/e/workspace_SSD/04_basic_experiment/";
+const char dir_path[] = "/mnt/e/workspace_SSD/04_basic_experiment";
 // const char dir_path[] = "/mnt/g/workspace_SSD/03_numerical_simulation/"; // SSD
 
 /** 各種パラメータ **/
@@ -28,8 +28,9 @@ const float height_mm = 40;          // 実際の撮影範囲の縦幅 [mm]
 const float width_shot_center = 50;  // y方向の撮影中心 [mm]
 const float height_shot_center = 50; // z方向の撮影中心 [mm]
 
+/* 相間係数の計算 */
+const int calibration_size = 40; //
+
 /** 固定パラメータ **/
 unsigned char header_8bit[1078]; // 8bit header
 unsigned char header_24bit[54];  // 24bit header
-
-/*  */

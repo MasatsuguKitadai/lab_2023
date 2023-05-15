@@ -56,7 +56,9 @@ void Binarization(const char *name)
 {
     /* ディレクトリの作成 */
     char dirname[100];
-    sprintf(dirname, "%s/%s/41_binarization", dir_path, name);
+    sprintf(dirname, "%s/%s/41_calibration", dir_path, name);
+    mkdir(dirname, dirmode);
+    sprintf(dirname, "%s/%s/41_calibration/binarization", dir_path, name);
     mkdir(dirname, dirmode);
 
     /** BMPファイルの読み取り **/
@@ -69,7 +71,7 @@ void Binarization(const char *name)
 
     sprintf(filename[0], "header/%dx%d_8bit.bmp", width_origin, height_origin);
     sprintf(filename[1], "%s/data/%s/calibration/calibration_0001.bmp", dir_path, name);
-    sprintf(filename[2], "%s/%s/binarization/calibration_8bit.bmp", dir_path, name);
+    sprintf(filename[2], "%s/%s/41_calibration/binarization/calibration_8bit.bmp", dir_path, name);
 
     // バイナリ読み込み
     Load_Bmp_8bit(filename[0], header_8bit, binary_8bit);
