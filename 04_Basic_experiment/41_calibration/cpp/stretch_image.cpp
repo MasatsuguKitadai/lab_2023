@@ -4,21 +4,22 @@ AUTHER  : Masatsugu Kitadai
 DATE    : 2022/11/17
 ******************************************************************************/
 
-// 既存ライブラリ
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
-
-using namespace std;
 #include <vector>
-#include <algorithm>
 #include <iostream>
+using namespace std;
 
-// 自作設定ファイル
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
+
+/** プロトタイプ宣言 **/
+
+/*****************************************************************************/
+
 #include "../hpp/settings.hpp"
-#include "../../parameters/parameters.hpp"
-#include "../hpp/loadbmp_8bit.hpp"
 
 /******************************************************************************/
 
@@ -28,10 +29,10 @@ int x_buf, y_buf;
 double delta_x, delta_y;
 
 // bmp 1次元配列
-unsigned char binary[px_8_original];
-unsigned char binary_stretch[px_8_stretch];
-unsigned char binary_2d[width_original][height_original];
-unsigned char binary_2d_new[width][height];
+unsigned char binary[px_8_origin] = {0};
+unsigned char binary_stretch[px_8_stretch] = {0};
+unsigned char binary_2d[width_origin][height_origin] = {0};
+unsigned char binary_2d_new[width][height] = {0};
 
 // gnuplot
 char xxlabel[100] = "x [px]";
@@ -50,16 +51,16 @@ int main()
 {
 
     /** ディレクトリの作成 **/
-    sprintf(dirname[0], "%s/%s/stretch_image", dir_path, dataname);
-    mkdir(dirname[0], dirmode);
+    sprintf(dirname, "%s/%s/stretch_image", dir_path, dataname);
+    mkdir(dirname, dirmode);
 
     // 配列の初期化
-    for (i = 0; i < px_8_original; i++)
+    for (int i = 0; i < px_8_origin; i++)
     {
         binary[i] = 0;
     }
 
-    for (i = 0; i < px_8_stretch; i++)
+    for (int i = 0; i < px_8_stretch; i++)
     {
         binary_stretch[i] = 0;
     }
@@ -69,12 +70,12 @@ int main()
     loadBmp_full_8bit(filename[0], header_8bit, binary);
 
     // 2次元配列への格納
-    i = 0;
-    j = 0;
+    int i = 0;
+    int j = 0;
 
-    for (k = 0; k < px_8_original; k++)
+    for (int k = 0; k < px_8_origin; k++)
     {
-        if (i == width_original)
+        if (int i == width_origin)
         {
             i = 0;
             j = j + 1;
@@ -86,35 +87,9 @@ int main()
         // printf("[%d][%d]\t2d = %d\tdata = %d\n", i, j, binary_2d[i][j], binary[k]);
     }
 
-    // チェック（元画像の書き出し）
-
-    // sprintf(filename[5], "%s/%s/binarization/8bit_test.bmp", dir_path, dataname);
-
-    // unsigned char binary_buf[px_8_original];
-
-    // k = 0;
-    // for (j = 0; j < height_original; j++)
-    // {
-    //     for (i = 0; i < width_original; i++)
-    //     {
-    //         binary[k] = binary_2d[i][j];
-    //         k = k + 1;
-    //     }
-    // }
-
-    // fp = fopen(filename[5], "wb");
-
-    // // ヘッダー情報の書き込み
-    // fwrite(header_8bit, sizeof(unsigned char), 1078, fp);
-
-    // // 画像情報の書き込み
-    // fwrite(binary, sizeof(unsigned char), px_8_original, fp);
-
-    // fclose(fp);
-
     double distance; // 参照点の奥行間距離
 
-    for (n = 0; n < 3; n++)
+    for (int n = 0; n < 3; n++)
     {
 
         // キャリブレーション用の式の格納

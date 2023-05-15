@@ -2,7 +2,7 @@
 PROGRAM : correlation
 AUTHER  : Masatsugu Kitadai
 DATE    : 2022/11/14
-****/
+******************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>

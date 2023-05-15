@@ -9,6 +9,7 @@ DATE    : 2022/11/17
 #include <math.h>
 #include <sys/stat.h>
 #include <vector>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -16,10 +17,7 @@ FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
 /** プロトタイプ宣言 **/
-
-int tmp = 0;
-char string_buf[100];
-int x, y;
+void Get_peaks(const char *name);
 
 /*****************************************************************************/
 
@@ -37,6 +35,8 @@ int main()
     cin >> name_str;
     const char *name = name_str.c_str();
 
+    Get_peaks(name);
+
     return 0;
 }
 
@@ -44,8 +44,18 @@ int main()
 PROGRAM : Get_peaks
 DATE    : 2023/05/15
 ******************************************************************************/
-void Get_peaks(const char *name);
+void Get_peaks(const char *name)
 {
+    /* ディレクトリの作成 */
+    char dirname[100];
+    sprintf(dirname, "%s/%s/41_calibration/get_peaks", dir_path, name);
+    mkdir(dirname, dirmode);
+
+    // バッファ
+    float buf[10];
+    float cal[10];
+    char filename[10][200];
+
     // 配列
     float ary_correlation[px_8_origin] = {0};
     float ary_label[px_8_origin] = {0};
@@ -53,74 +63,77 @@ void Get_peaks(const char *name);
     // 相関係数ファイルの読み込み
     sprintf(filename[0], "%s/%s/41_calibration/correlation/correlation.dat", dir_path, name);
 
-    i = 0;
+    int tmp = 0;
 
     fp = fopen(filename[0], "r");
 
-    while ((fscanf(fp, "%lf\t%lf\t%lf", &buf[0], &buf[1], &buf[2])) != EOF)
+    while ((fscanf(fp, "%f\t%f\t%f", &buf[0], &buf[1], &buf[2])) != EOF)
     {
-        ary_correlation[i] = buf[2];
+        ary_correlation[tmp] = buf[2];
 
-        if (buf[0] == width_origin - interr_size / 2 - 1)
+        if (buf[0] == width_origin - calibration_size / 2 - 1)
         {
+            char string_buf[100];
             fgets(string_buf, 100, fp);
         }
 
-        i = i + 1;
+        tmp += 1;
     }
 
     // printf("correlation = %d\n", i);
     fclose(fp);
 
     // ラベリングファイルの読み込み
-    sprintf(filename[1], "%s/%s/labeling/labeling.dat", dir_path, dataname);
+    sprintf(filename[1], "%s/%s/41_calibration/labeling/labeling.dat", dir_path, name);
 
-    i = 0;
+    tmp = 0;
 
+    float max = 0;
     fp = fopen(filename[1], "r");
 
-    while ((fscanf(fp, "%lf\t%lf\t%lf", &buf[0], &buf[1], &buf[2])) != EOF)
+    while ((fscanf(fp, "%f\t%f\t%f", &buf[0], &buf[1], &buf[2])) != EOF)
     {
-        ary_label[i] = buf[2];
-        i = i + 1;
+        ary_label[tmp] = buf[2];
+        tmp += 1;
 
-        if (buf[0] == width_origin - interr_size / 2 - 1)
+        if (buf[0] == width_origin - calibration_size / 2 - 1)
         {
+            char string_buf[100];
             fgets(string_buf, 100, fp);
         }
 
         // ラベルの最大値の取得
-        if (buf[2] > tmp)
+        if (buf[2] > max)
         {
-            tmp = buf[2];
+            max = buf[2];
         }
     }
 
     fclose(fp);
 
     // ラベルの最大値の確保
-    int label = tmp;
+    int label = max;
     vector<pair<int, int>> v;
 
     printf("label = %d\n", label);
 
     // 各エリアのピーク値の取得
-    float peak = 0;
-    int position;
 
-    for (i = 0; i < label; i++)
+    for (int i = 0; i < label; i++)
     {
-        peak = 0;
+        float peak = 0;
+        int x = 0;
+        int y = 0;
 
-        for (j = 0; j < px_8_origin; j++)
+        for (int j = 0; j < px_8_origin; j++)
         {
             // ピーク値を持つ座標の取得
             if (ary_label[j] == i + 1)
             {
                 // 配列の位置調整
-                cal[0] = j % width_origin - interr_size / 2; // 余り
-                cal[1] = (width_origin - interr_size) * (int(j / width_origin) - interr_size / 2);
-                position = cal[0] + cal[1];
+                cal[0] = j % width_origin - calibration_size / 2; // 余り
+                cal[1] = (width_origin - calibration_size) * (int(j / width_origin) - calibration_size / 2);
+                int position = cal[0] + cal[1];
 
                 if (ary_correlation[position] > peak)
                 {
@@ -133,14 +146,14 @@ void Get_peaks(const char *name);
 
         v.push_back({x, y});
 
-        // printf("[%2d] :\t%3d\t%3d\t%lf\n", i + 1, v[i].first, v[i].second, peak);
+        // printf("[%2d] :\t%3d\t%3d\t%f\n", i + 1, v[i].first, v[i].second, peak);
     }
 
     // 並び替え
     sort(v.begin(), v.end());
 
     // 値の確認
-    for (i = 0; i < v.size(); i++)
+    for (int i = 0; i < v.size(); i++)
     {
         printf("[%d]\t%d\t%d\n", i + 1, v[i].first, v[i].second);
     }
@@ -152,18 +165,18 @@ void Get_peaks(const char *name);
     vector<pair<int, int>> v_buf;
 
     // ファイルの書き出し
-    for (i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        sprintf(filename[2], "%s/%s/get_peaks/peak_positions_%1.1fmm.dat", dir_path, dataname, 2.5 * i);
+        sprintf(filename[2], "%s/%s/41_calibration/get_peaks/peak_positions_%1.1fmm.dat", dir_path, name, 2.5 * i);
 
         fp = fopen(filename[2], "w");
 
         // 初期値
         initial = points * i;
 
-        for (j = 0; j < column; j++)
+        for (int j = 0; j < column; j++)
         {
-            for (k = 0; k < points; k++)
+            for (int k = 0; k < points; k++)
             {
                 tmp = j * points * 3 + k + initial;
                 v_buf.push_back({v[tmp].second, v[tmp].first});
@@ -171,7 +184,7 @@ void Get_peaks(const char *name);
 
             stretch_x = (width / (column - 1)) * j;
 
-            for (k = 0; k < v_buf.size(); k++)
+            for (int k = 0; k < v_buf.size(); k++)
             {
                 sort(v_buf.begin(), v_buf.end());
 
@@ -194,11 +207,11 @@ void Get_peaks(const char *name);
     }
 
     // すべての座標の書き出し
-    sprintf(filename[2], "%s/%s/get_peaks/peak_positions.dat", dir_path, dataname);
+    sprintf(filename[2], "%s/%s/41_calibration/get_peaks/peak_positions.dat", dir_path, name);
 
     fp = fopen(filename[2], "w");
 
-    for (i = 0; i < label; i++)
+    for (int i = 0; i < label; i++)
     {
         fprintf(fp, "%d\t%d\n", v[i].first, v[i].second);
     }
@@ -208,7 +221,7 @@ void Get_peaks(const char *name);
     /** Gnuplot **/
 
     // グラフの背景
-    sprintf(filename[3], "%s/%s/binarization/8bit.png", dir_path, dataname);
+    sprintf(filename[3], "%s/%s/41_calibration/binarization/calibration_8bit.png", dir_path, name);
 
     // 軸の設定
 
@@ -231,18 +244,21 @@ void Get_peaks(const char *name);
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    for (i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        sprintf(filename[2], "%s/%s/get_peaks/peak_positions_%1.1fmm.dat", dir_path, dataname, 2.5 * i);
-        sprintf(graphname[0], "%s/%s/get_peaks/peak_positions_%1.1fmm.png", dir_path, dataname, i * 2.5);
-        sprintf(graphtitle[0], "Peak positions : %1.1f [mm]", i * 2.5);
+        char graphname[100];
+        char graphtitle[100];
+
+        sprintf(filename[2], "%s/%s/41_calibration/get_peaks/peak_positions_%1.1fmm.dat", dir_path, name, 2.5 * i);
+        sprintf(graphname, "%s/%s/41_calibration/get_peaks/peak_positions_%1.1fmm.png", dir_path, name, i * 2.5);
+        sprintf(graphtitle, "Peak positions : %1.1f [mm]", i * 2.5);
 
         fprintf(gp, "set terminal pngcairo enhanced size 1000, 800 font 'Times New Roman, 20'\n");
         // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 24' \n");
         fprintf(gp, "set size ratio -1\n");
 
         // 出力ファイル
-        fprintf(gp, "set output '%s'\n", graphname[0]);
+        fprintf(gp, "set output '%s'\n", graphname);
 
         // 非表示
         fprintf(gp, "unset key\n");
@@ -251,7 +267,7 @@ void Get_peaks(const char *name);
         fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
         // グラフタイトル
-        fprintf(gp, "set title '%s'\n", graphtitle[0]);
+        fprintf(gp, "set title '%s'\n", graphtitle);
 
         // 軸ラベル
         fprintf(gp, "set xlabel '%s'\n", xxlabel);
@@ -274,6 +290,4 @@ void Get_peaks(const char *name);
 
     fprintf(gp, "exit\n"); // Quit gnuplot
     pclose(gp);
-
-    return 0;
 }

@@ -1,11 +1,11 @@
 import cv2
-import settings
-import parameters
 
-file_path = str(settings.dirpath) + str(parameters.dataname)
+name = "230512_delta"
+dirpath = "/mnt/e/workspace_SSD/04_basic_experiment/"
+file_path = str(dirpath) + str(name)
 
 ## png に変換 ##
-img = cv2.imread(file_path + '/binarization/8bit.bmp',
+img = cv2.imread(file_path + '/41_calibration/binarization/calibration_8bit.bmp',
                  cv2.IMREAD_GRAYSCALE)
 # img_rotate = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-cv2.imwrite(file_path + '/binarization/8bit.png', img)
+cv2.imwrite(file_path + '/41_calibration/binarization/calibration_8bit.png', img)

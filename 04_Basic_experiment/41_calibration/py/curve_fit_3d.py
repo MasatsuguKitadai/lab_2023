@@ -6,16 +6,16 @@ import numpy as np
 import os
 
 ## 設定ファイルのインポート ##
-import settings
-import parameters
+name = "230512_delta"
+dirpath = "/mnt/e/workspace_SSD/04_basic_experiment/"
+file_path = str(dirpath) + str(name)
 
 ## フォルダパス設定 ##
-file_path = str(settings.dirpath) + str(parameters.dataname)
+file_path = str(dirpath) + str(name)
+dir = file_path + "/41_calibration"
 
-dir = file_path + '/curve_fit'
-
-if not os.path.exists(dir):
-    os.makedirs(dir)
+if not os.path.exists(dir + '/curve_fit'):
+    os.makedirs(dir + '/curve_fit')
 
 ## 2次元3次曲面 ##
 
@@ -32,8 +32,8 @@ for num in range(3):
     distance = 2.5 * num
 
     ## データの読み込み ##
-    data_file_1 = str(file_path) + \
-        '/get_peaks/peak_positions_' + str('{:1}'.format(distance)) + 'mm.dat'
+    data_file_1 = str(dir) + '/get_peaks/peak_positions_' + \
+        str('{:1}'.format(distance)) + 'mm.dat'
     print(str(data_file_1))
 
     x_data = np.loadtxt(data_file_1, comments='#', usecols=0)
@@ -53,6 +53,6 @@ for num in range(3):
 
     print(np_write)
 
-    np.savetxt(dir + '/curve_fit_' + str('{:1}'.format(distance)) + 'mm.dat',
+    np.savetxt(dir + '/curve_fit/curve_fit_' + str('{:1}'.format(distance)) + 'mm.dat',
                np_write.reshape(10, 2), fmt='%3.12f')
     #    np_write.reshape(2, 20), fmt='%3.12f')
