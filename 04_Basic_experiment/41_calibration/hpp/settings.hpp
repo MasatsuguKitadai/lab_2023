@@ -23,6 +23,7 @@ const int border = 10;                               // 校正画像のしきい
 
 const int px_8_origin = width_origin * height_origin;        // 8bit画像の画素数 [pixel]
 const int px_24_origin = width_origin * height_origin * 3.0; // 24bit画像の画素数 [pixel]
+const int px_8 = width * height;                             // 8bit画像の画素数 [pixel]
 
 /* 撮影画像の設定 */
 const float width_mm = 40;           // 実際の撮影範囲の横幅 [mm]

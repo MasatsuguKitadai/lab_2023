@@ -3,7 +3,6 @@ PROGRAM : binarization
 AUTHER  : Masatsugu Kitadai
 DATE    : 2022/11/11
 ******************************************************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -28,7 +27,6 @@ void Load_Bmp_24bit(const char file_name[], unsigned char header[], unsigned cha
 PROGRAM : main
 DATE    : 2023/05/12
 ******************************************************************************/
-
 int main()
 {
     /* データ名の読み取り */
@@ -51,7 +49,6 @@ int main()
 PROGRAM : Binarization
 概要：校正画像の二値化処理を行う
 ******************************************************************************/
-
 void Binarization(const char *name)
 {
     /* ディレクトリの作成 */

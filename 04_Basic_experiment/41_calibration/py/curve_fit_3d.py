@@ -48,11 +48,11 @@ for num in range(3):
     popt_1, pcov_1 = curve_fit(func, X, x_data)
     popt_2, pcov_2 = curve_fit(func, X, y_data)
 
-    np_write = np.hstack((popt_1.reshape(10, 1), popt_2.reshape(10, 1)))
-    # np_write = np.hstack((popt_1.reshape(1, 10), popt_2.reshape(1, 10)))
+    # np_write = np.hstack((popt_1.reshape(10, 1), popt_2.reshape(10, 1)))
+    np_write = np.hstack((popt_1.reshape(1, 10), popt_2.reshape(1, 10)))
 
     print(np_write)
 
     np.savetxt(dir + '/curve_fit/curve_fit_' + str('{:1}'.format(distance)) + 'mm.dat',
-               np_write.reshape(10, 2), fmt='%3.12f')
+               np_write.reshape(2, 10), fmt='%3.12f')
     #    np_write.reshape(2, 20), fmt='%3.12f')
