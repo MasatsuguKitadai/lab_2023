@@ -15,37 +15,39 @@ TIME_A=`date +%s`
 expect -c " 
 set timeout -1
 
-spawn out/binarization.out
+spawn ./out/binarization.out
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-spawn python3 py/bmp_to_png.py
+# spawn python3 py/bmp_to_png.py
+spawn python3.8 py/bmp_to_png.py
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-spawn out/correlation.out
+spawn ./out/correlation.out
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-spawn out/labeling.out
+spawn ./out/labeling.out
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-spawn out/get_peaks.out
+spawn ./out/get_peaks.out
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-spawn python3 py/curve_fit_3d.py
+# spawn python3 py/curve_fit_3d.py
+spawn python3.8 py/curve_fit_3d.py
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-spawn out/stretch_image.out
+spawn ./out/stretch_image.out
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"

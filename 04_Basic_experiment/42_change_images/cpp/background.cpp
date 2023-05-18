@@ -85,7 +85,7 @@ void Background(const char *name, const char *data_set)
 
     /** 配列の合計値の算出 **/
 
-    for (int i = 1; i <= 100; i++)
+    for (int i = 1; i <= 1000; i++)
     {
         sprintf(filename[0], "%s/data/%s/%s/data_%04d.bmp", dir_path, name, data_set, i);
 
@@ -104,7 +104,7 @@ void Background(const char *name, const char *data_set)
 
     for (int i = 0; i < px_24_origin; i++)
     {
-        ave[i] = sum[i] / 800;
+        ave[i] = sum[i] / 1000;
     }
 
     /** BMPファイルの書き出し **/

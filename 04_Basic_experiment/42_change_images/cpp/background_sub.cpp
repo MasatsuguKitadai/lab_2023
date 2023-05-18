@@ -107,7 +107,7 @@ void Background(const char *name, const char *data_set)
 
     for (int i = 0; i < px_24_origin; i++)
     {
-        ave[i] = sum[i] / 800;
+        ave[i] = sum[i] / 100;
     }
 
     /** BMPファイルの書き出し **/
