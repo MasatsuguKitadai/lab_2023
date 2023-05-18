@@ -1,16 +1,13 @@
 #!/bin/bash
-g++ cpp/background.cpp -o "out/background.out"
-g++ cpp/background_sub.cpp -o "out/background_sub.out"
-g++ cpp/filter.cpp -o "out/filter.out"
-g++ cpp/split.cpp -o "out/split.out"
-g++ cpp/stretch_images.cpp -o "out/stretch_images.out"
+g++ cpp/binarization.cpp -o "out/binarization.out"
+g++ cpp/correlation.cpp -o "out/correlation.out"
+g++ cpp/labeling.cpp -o "out/labeling.out"
+g++ cpp/get_peaks.cpp -o "out/get_peaks.out"
+g++ cpp/stretch_image.cpp -o "out/stretch_image.out"
 
 # 名前の読み取り
 echo -n DATA_NAME:
 read name 
-
-echo -n DATA_SET:
-read set 
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
@@ -18,33 +15,41 @@ TIME_A=`date +%s`
 expect -c " 
 set timeout -1
 
-spawn out/background.out
+spawn out/binarization.out
 expect \"Data Name:\"
 send \"$name\n\"
-expect \"Data Set:\"
-send \"$set\n\"
 expect \"$\n\"
 
-spawn out/background_sub.out
+spawn python3 py/bmp_to_png.py
 expect \"Data Name:\"
 send \"$name\n\"
-expect \"Data Set:\"
-send \"$set\n\"
 expect \"$\n\"
 
-spawn out/split.out
+spawn out/correlation.out
 expect \"Data Name:\"
 send \"$name\n\"
-expect \"Data Set:\"
-send \"$set\n\"
 expect \"$\n\"
 
-spawn out/stretch_images.out
+spawn out/labeling.out
 expect \"Data Name:\"
 send \"$name\n\"
-expect \"Data Set:\"
-send \"$set\n\"
 expect \"$\n\"
+
+spawn out/get_peaks.out
+expect \"Data Name:\"
+send \"$name\n\"
+expect \"$\n\"
+
+spawn python3 py/curve_fit_3d.py
+expect \"Data Name:\"
+send \"$name\n\"
+expect \"$\n\"
+
+spawn out/stretch_image.out
+expect \"Data Name:\"
+send \"$name\n\"
+expect \"$\n\"
+
 exit 0
 "
 

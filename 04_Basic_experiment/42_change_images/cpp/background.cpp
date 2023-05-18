@@ -85,7 +85,7 @@ void Background(const char *name, const char *data_set)
 
     /** 配列の合計値の算出 **/
 
-    for (int i = 1; i < 801; i++)
+    for (int i = 1; i <= 100; i++)
     {
         sprintf(filename[0], "%s/data/%s/%s/data_%04d.bmp", dir_path, name, data_set, i);
 

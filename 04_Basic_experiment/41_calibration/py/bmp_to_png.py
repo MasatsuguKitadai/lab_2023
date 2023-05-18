@@ -1,6 +1,8 @@
 import cv2
 
-name = "230512_delta"
+# フォルダ名の読み込み
+name = input('Data Name:')
+
 dirpath = "/mnt/e/workspace_SSD/04_basic_experiment/"
 file_path = str(dirpath) + str(name)
 

@@ -5,8 +5,11 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import os
 
+
+# フォルダ名の読み込み
+name = input('Data Name:')
+
 ## 設定ファイルのインポート ##
-name = "230512_delta"
 dirpath = "/mnt/e/workspace_SSD/04_basic_experiment/"
 file_path = str(dirpath) + str(name)
 

@@ -87,7 +87,7 @@ void Filter(const char *name)
     // 青色
     for (int n = 1; n <= 100; n++)
     {
-        sprintf(filename[0], "%s/%s/42_change_images/blue/data/blue_%04d.bmp", dir_path, name, n);
+        sprintf(filename[0], "%s/%s/42_change_images/blue/data/data_%04d.bmp", dir_path, name, n);
 
         // バイナリ読み込み
         Load_Bmp_24bit(filename[0], header_24bit, binary);
@@ -155,7 +155,7 @@ void Filter(const char *name)
     // 緑色
     for (int n = 1; n < 100; n++)
     {
-        sprintf(filename[1], "%s/%s/42_change_images/green/data/green_%04d.bmp", dir_path, name, n);
+        sprintf(filename[1], "%s/%s/42_change_images/green/data/data_%04d.bmp", dir_path, name, n);
 
         // 初期化
         for (int i = 0; i < px_24_origin; i++)

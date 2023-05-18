@@ -70,6 +70,8 @@ void Binarization(const char *name)
     sprintf(filename[1], "%s/data/%s/calibration/calibration_0001.bmp", dir_path, name);
     sprintf(filename[2], "%s/%s/41_calibration/binarization/calibration_8bit.bmp", dir_path, name);
 
+    printf("%s\n", filename[1]);
+
     // バイナリ読み込み
     Load_Bmp_8bit(filename[0], header_8bit, binary_8bit);
     Load_Bmp_24bit(filename[1], header_24bit, binary_24bit);

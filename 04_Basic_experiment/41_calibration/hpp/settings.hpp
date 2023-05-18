@@ -19,7 +19,7 @@ const int w1 = 30;                                   // 探査窓 [pixel] x [pix
 const int w2 = 60;                                   // 検査窓 [pixel] x [pixel]
 const int grid_size = 10;                            // グリッドサイズ [pixel]
 const float shutter_speed = 800;                     // 撮影速度 [1/s]
-const int border = 10;                               // 校正画像のしきい値 [-]
+const int border = 30;                               // 校正画像のしきい値 [-]
 
 const int px_8_origin = width_origin * height_origin;        // 8bit画像の画素数 [pixel]
 const int px_24_origin = width_origin * height_origin * 3.0; // 24bit画像の画素数 [pixel]
