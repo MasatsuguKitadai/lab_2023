@@ -18,19 +18,19 @@ TIME_A=`date +%s`
 expect -c " 
 set timeout -1
 
-# spawn ./out/background.out
-# expect \"Data Name:\"
-# send \"$name\n\"
-# expect \"Data Set:\"
-# send \"$set\n\"
-# expect \"$\n\"
+spawn ./out/background.out
+expect \"Data Name:\"
+send \"$name\n\"
+expect \"Data Set:\"
+send \"$set\n\"
+expect \"$\n\"
 
-# spawn ./out/background_sub.out
-# expect \"Data Name:\"
-# send \"$name\n\"
-# expect \"Data Set:\"
-# send \"$set\n\"
-# expect \"$\n\"
+spawn ./out/background_sub.out
+expect \"Data Name:\"
+send \"$name\n\"
+expect \"Data Set:\"
+send \"$set\n\"
+expect \"$\n\"
 
 spawn ./out/filter.out
 expect \"Data Name:\"
