@@ -1,9 +1,9 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.4.3)  17 MAY 2023 12:40
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.4.3)  20 MAY 2023 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/kitadai/workspace/lab_2023/00_Reports/2305/TOYOTIRE/230517
-(/home/kitadai/workspace/lab_2023/00_Reports/2305/TOYOTIRE/230517.tex
+**/home/kitadai/workspace/lab_2023/00_Reports/2305/TOYOTIRE/230520
+(/home/kitadai/workspace/lab_2023/00_Reports/2305/TOYOTIRE/230520.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
@@ -417,8 +417,12 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \g__pdf_backend_annotation_int=\count310
 \g__pdf_backend_link_int=\count311
 \g__pdf_backend_link_sf_int=\count312
-) (./230517.aux)
-\openout1 = `230517.aux'.
+) (./230520.aux
+
+LaTeX Warning: Label `table:data_type' multiply defined.
+
+)
+\openout1 = `230520.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
 LaTeX Font Info:    ... okay on input line 95.
@@ -495,9 +499,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 95.
 LaTeX Info: Redefining \pageref on input line 95.
 LaTeX Info: Redefining \nameref on input line 95.
- (./230517.out) (./230517.out)
+ (./230520.out) (./230520.out)
 \@outlinefile=\write3
-\openout3 = `230517.out'.
+\openout3 = `230520.out'.
 
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
 (Font)              scaled to size 15.9785pt on input line 98.
@@ -511,21 +515,47 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 111.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 111.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 116.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 116.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 116.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 148.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 148.
+File: ../images/vector_true_value.png Graphic file (type bmp)
+<../images/vector_true_value.png>
+File: ../images/vector_simulation.png Graphic file (type bmp)
+<../images/vector_simulation.png>
  [1
 
 
+] (./230520.aux)
 
-] (./230517.aux)
-Package rerunfilecheck Info: File `230517.out' has not changed.
-(rerunfilecheck)             Checksum: E55056F2AC3559ABF062F71204693846;331.
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `230520.out' has not changed.
+(rerunfilecheck)             Checksum: B9AEE7C0150CD674438D47BAED23604B;510.
  ) 
 Here is how much of TeX's memory you used:
- 14751 strings out of 478741
- 227985 string characters out of 5860983
- 525651 words of memory out of 5000000
- 33004 multiletter control sequences out of 15000+600000
- 475799 words of font info for 62 fonts, out of 8000000 for 9000
+ 14814 strings out of 478741
+ 229161 string characters out of 5860983
+ 535914 words of memory out of 5000000
+ 33047 multiletter control sequences out of 15000+600000
+ 478409 words of font info for 77 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,5n,64p,358b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,8n,64p,358b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 230517.dvi (1 page, 3380 bytes).
+Output written on 230520.dvi (1 page, 5792 bytes).

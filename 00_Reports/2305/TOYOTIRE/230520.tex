@@ -108,6 +108,51 @@ lineskip=-0.5ex
 \section*{進捗報告}
 
 \section{数値シミュレーションによる計測手法評価}
+\subsection{作成する数値シミュレーションの条件}
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \caption{数値シミュレーション条件}
+  \centering
+  \begin{tabular}{c c c}
+    \hline
+           & \textgt{粒子数密度} [-/枚] & \textgt{角速度} [deg/s] \\ \hline \hline
+    Case 1 & 100                        & 10.0                    \\ \hline
+    Case 2 & 200                        & 10.0                    \\ \hline
+    Case 3 & 300                        & 10.0                    \\ \hline
+    Case 4 & 100                        & 5.0                     \\ \hline
+    Case 5 & 200                        & 5.0                     \\ \hline
+    Case 6 & 300                        & 5.0                     \\ \hline
+    Case 7 & 100                        & 15.0                    \\ \hline
+    Case 8 & 200                        & 15.0                    \\ \hline
+    Case 9 & 300                        & 15.0                    \\ \hline
+  \end{tabular}
+\end{table}
+
+\subsection{速度場の真値とPIV結果}
+
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \caption{RMSEによる誤差の値と誤差率}
+  \centering
+  \begin{tabular}{ c c c }
+    \hline
+           & Error ratio of RMSE [\%] \\ \hline \hline
+    Case 1 & 5.654                    \\ \hline
+    Case 2 & 5.915                    \\ \hline
+    Case 3 & 7.220                    \\ \hline
+  \end{tabular}
+\end{table}
+
+
+\begin{figure}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=80mm]{../images/vector_true_value.png}
+    \caption{True value of velocity : Case 1}
+    \includegraphics[width=80mm]{../images/vector_simulation.png}
+    \caption{PIV result of velocity : Case 1}
+  \end{center}
+\end{figure}
 
 \section{三角翼後流の計測}
 
