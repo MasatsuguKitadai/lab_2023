@@ -91,7 +91,7 @@ int main()
     int num = 0; // ラベリングの番号
     int label = 0;
 
-    for (int m = 1; m <= data_num; m++)
+    for (int m = 1; m <= number; m++)
     {
         // 粒子画像の読み込み
         char readfile[100];

@@ -59,7 +59,7 @@ int main()
     int counter = 0;
     int vector_num = 0;
 
-    for (int j = 1; j < data_num - delta_n; j++)
+    for (int j = 1; j < number - delta_n; j++)
     {
         // ファイルの読み取り
         char readfile[100];
@@ -73,28 +73,32 @@ int main()
             position_y = buf[0];
             position_z = buf[1];
 
-            for (int i = 0; i < mesh_y; i++)
+            if (border_max >= buf[5] && buf[5] >= border_min)
             {
-                if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
+                for (int i = 0; i < mesh_y; i++)
                 {
-                    for (int k = 0; k < mesh_z; k++)
+                    if (i * grid_size - grid_size / 2 <= position_y && position_y < i * grid_size + grid_size / 2)
                     {
-                        if (k * grid_size - 5 <= position_z && position_z < k * grid_size + 5)
+                        for (int k = 0; k < mesh_z; k++)
                         {
-                            value_y[i][k] = value_y[i][k] + buf[2];
-                            value_z[i][k] = value_z[i][k] + buf[3];
-                            count_mesh[i][k] = count_mesh[i][k] + 1;
-                            vector_num += 1;
-                            break;
+                            if (k * grid_size - grid_size / 2 <= position_z && position_z < k * grid_size + grid_size / 2)
+                            {
+                                value_y[i][k] = value_y[i][k] + buf[2];
+                                value_z[i][k] = value_z[i][k] + buf[3];
+                                count_mesh[i][k] = count_mesh[i][k] + 1;
+                                vector_num += 1;
+                                break;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
             }
         }
 
         fclose(fp);
-        // data_num（データの使用枚数）に注意!!
+        printf("Reading : %d\n", j);
+        // number（データの使用枚数）に注意!!
     }
 
     printf("Vector num : %d\n", vector_num);
@@ -127,12 +131,12 @@ int main()
                 v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]) / time; // 全体の速度 [mm/s]
 
                 // 誤ベクトル処理
-                // if (v_value >= 2.5)
-                // {
-                //     value_y[i][j] = 0;
-                //     value_z[i][j] = 0;
-                //     v_value = 0;
-                // }
+                if (100 < v_value)
+                {
+                    value_y[i][j] = 0;
+                    value_z[i][j] = 0;
+                    v_value = 0;
+                }
             }
             else
             {
@@ -144,7 +148,7 @@ int main()
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
             position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j], value_z[i][j], v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 1.5, value_z[i][j] * 1.5, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -177,7 +181,7 @@ int main()
 
     // range color
     float cb_min = 0;
-    float cb_max = 100;
+    float cb_max = 60;
 
     // label
     const char *xxlabel = "y [mm]";

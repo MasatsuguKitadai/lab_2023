@@ -53,7 +53,7 @@ int main()
     /** PIV loop **/
     int i, j;
 
-    for (i = 1; i < data_num - delta_n; i++)
+    for (i = 1; i < number - delta_n; i++)
     {
         j = i + delta_n;
         // j = i + 1;
@@ -387,19 +387,9 @@ void PTV(int num, const char *name, const char *data_set)
         }
 
         // ベクトルの計算
-        if (R <= 0.70)
-        {
-            v_value = 0;
-            angle = 0;
-            vx = 0;
-            vy = 0;
-        }
-        else
-        {
-            v_value = sqrt(vx * vx + vy * vy);
-            fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);
-            vector_num += 1;
-        }
+        v_value = sqrt(vx * vx + vy * vy);
+        fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);
+        vector_num += 1;
     }
 
     fclose(fp);

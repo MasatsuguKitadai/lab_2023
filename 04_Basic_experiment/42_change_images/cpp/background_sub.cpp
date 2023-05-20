@@ -55,9 +55,6 @@ int main()
 
     Background(name, blue);
     Background(name, green);
-    // Background_blue(name, blue);
-    // Background_green(name, green);
-
     return 0;
 }
 

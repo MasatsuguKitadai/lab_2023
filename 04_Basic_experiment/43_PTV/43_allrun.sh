@@ -16,12 +16,12 @@ TIME_A=`date +%s`
 expect -c " 
 set timeout -1
 
-spawn ./out/labeling_for_blue.out
-expect \"Data Name:\"
-send \"$name\n\"
-expect \"Data Set:\"
-send \"$set\n\"
-expect \"$\n\"
+# spawn ./out/labeling_for_blue.out
+# expect \"Data Name:\"
+# send \"$name\n\"
+# expect \"Data Set:\"
+# send \"$set\n\"
+# expect \"$\n\"
 
 spawn ./out/PTV.out
 expect \"Data Name:\"
