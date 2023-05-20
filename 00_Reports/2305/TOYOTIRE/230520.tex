@@ -101,13 +101,19 @@ lineskip=-0.5ex
   \item 数値シミュレーションによる計測手法の評価
   \item 三角翼後流の計測
   \item 車両モデル周りの流れ計測
-  \item ISTP-33 アブスト投稿
   \item 6月の予定
 \end{enumerate}
 
 \section*{進捗報告}
+今月は，ISTPへの投稿に向けた数値シミュレーションデータの作成と解析および
+可視化情報シンポジウムの原稿作成に向けた
+三角翼後流と車両モデル周りにおける二次流れの計測実験を行った．
 
 \section{数値シミュレーションによる計測手法評価}
+先月に引き続き，数値シミュレーションを用いた
+計測アルゴリズム評価に向け，
+Table.1 に示す条件に沿ってデータを作成した．\\
+
 \subsection{作成する数値シミュレーションの条件}
 \begin{table}[hbtp]
   \label{table:data_type}
@@ -128,7 +134,25 @@ lineskip=-0.5ex
   \end{tabular}
 \end{table}
 
+\newpage
 \subsection{速度場の真値とPIV結果}
+
+\begin{figure}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=80mm]{../images/vector_true_value.png}
+    \caption{True value of velocity : Case 1}
+    \includegraphics[width=80mm]{../images/vector_simulation.png}
+    \caption{PIV result of velocity : Case 1}
+  \end{center}
+\end{figure}
+
+Fig.1 に Case 1 における速度場の真値，
+Fig.2 に Case 1 の数値シミュレーションにPTVを適用した結果を示す．
+FIg.2 にはベクトルの抜けはあるが回転の方向と速度の大きさが
+一致していることが確認できる．
+
+\newpage
 
 \begin{table}[hbtp]
   \label{table:data_type}
@@ -143,23 +167,25 @@ lineskip=-0.5ex
   \end{tabular}
 \end{table}
 
-
-\begin{figure}[htbp]
-  \footnotesize
-  \begin{center}
-    \includegraphics[width=80mm]{../images/vector_true_value.png}
-    \caption{True value of velocity : Case 1}
-    \includegraphics[width=80mm]{../images/vector_simulation.png}
-    \caption{PIV result of velocity : Case 1}
-  \end{center}
-\end{figure}
+また Table.1 にCase.1 ～ Case.3 についてRMSE率を示している．
+結果を見ると粒子数密度が上がるにつれて
+真値との差が広がっていることが確認でき，
+Case 2 と Case 3 の間に計測精度が大きく低下することがわかる．
 
 \section{三角翼後流の計測}
 
 \section{車両モデル周りの流れ計測}
 
+\newpage
+
 \section{ISTP-33 アブスト投稿}
 
 \section{6月の予定}
+\begin{itemize}
+  \item 可視化情報シンポジウム 原稿提出 (5/31)
+  \item 数値シミュレーションの結果整理
+  \item ISTP 原稿提出 (6/30)
+\end{itemize}
+
 
 \end{document}
