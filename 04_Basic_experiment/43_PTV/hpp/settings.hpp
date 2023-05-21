@@ -6,7 +6,7 @@ DATE    : 2022/11/11
 const char dir_path[] = "/mnt/e/workspace_SSD/04_basic_experiment";
 
 /** 各種パラメータ **/
-const int number = 2000;                  // 画像の枚数 [-]
+const int number = 4000;                  // 画像の枚数 [-]
 const int width_px = 800;                 // 画像の横幅 [px]
 const int height_px = 320;                // 画像の縦幅 [px]
 const int size_px = width_px * height_px; // 画像の画素数 [px]
@@ -22,7 +22,7 @@ const float width_mm = 100.0;          // 実際の撮影範囲の横幅 [mm]
 const float height_mm = 40.0;          // 実際の撮影範囲の縦幅 [mm]
 const float width_shot_center = 50.0;  // y方向の撮影中心 [mm]
 const float height_shot_center = 20.0; // z方向の撮影中心 [mm]
-const float border_min = 0.75;         // PTVの相関係数のしきい値 [-]
+const float border_min = 0.0;          // PTVの相関係数のしきい値 [-]
 const float border_max = 1.00;         // PTVの相関係数のしきい値 [-]
 
 /** 固定パラメータ **/

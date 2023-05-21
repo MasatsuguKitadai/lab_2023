@@ -164,16 +164,16 @@ int main()
     // 軸の設定
 
     // range x
-    // float x_min = 5;
-    // float x_max = 35;
+    const float x_min = 30;
+    const float x_max = 70;
 
     // range y
     // float y_min = 5;
     // float y_max = 35;
 
     // // range x
-    const float x_min = 0;
-    const float x_max = 100;
+    // const float x_min = 0;
+    // const float x_max = 100;
 
     // // range y
     const float y_min = 0;
