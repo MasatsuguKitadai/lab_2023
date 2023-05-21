@@ -99,8 +99,7 @@ lineskip=-0.5ex
 \section*{報告内容}
 \begin{enumerate}[1.]
   \item 数値シミュレーションによる計測手法の評価
-  \item 三角翼後流の計測
-  \item 車両モデル周りの流れ計測
+  \item 二次流れの計測
   \item 6月の予定
 \end{enumerate}
 
@@ -110,11 +109,37 @@ lineskip=-0.5ex
 三角翼後流と車両モデル周りにおける二次流れの計測実験を行った．
 
 \section{数値シミュレーションによる計測手法評価}
-先月に引き続き，数値シミュレーションを用いた
-計測アルゴリズム評価に向け，
-Table.1 に示す条件に沿ってデータを作成した．\\
-
 \subsection{作成する数値シミュレーションの条件}
+先月に引き続き，数値シミュレーションを用いた
+計測アルゴリズム評価に向け，以下に示す解析解について
+Table.1 に示す条件に沿ってデータを作成した．
+また，粒子数密度及び壁面の回転速度を Table.2 のように
+変更し，合計9つのパターンについて計算を行った．\\
+
+\subsection*{流れの解析解}
+\begin{eqnarray*}
+  \zeta &=& z \sqrt{\frac{\omega}{\nu}}\\
+  V_r &=& r \omega F \left(\zeta\right)\\
+  V_\theta &=& r \omega G \left(\zeta\right)\\
+  u &=& \sqrt{\nu \omega} H \left(\zeta\right)
+\end{eqnarray*}
+
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \caption{シミュレーション条件}
+  \centering
+  \begin{tabular}{ c c | r l}
+    \hline
+    動粘性係数              & $\nu$        & $1.004 \times 10^{-6}$ & [$\mathrm{m}^2$/s] \\ \hline
+    $\mathrm{LLS}_1$ の位置 & $x_0$        & 7.000                  & [mm]               \\ \hline
+    $\mathrm{LLS}_1$ の厚み & $T_1$        & $3.086\times 10^{-3}$  & [mm]               \\ \hline
+    $\mathrm{LLS}_2$ の厚み & $T_2$        & $9.259\times 10^{-3}$  & [mm/s]             \\ \hline
+    LLS 間の距離            & $\Delta x$   & $9.645\times 10^{-3}$  & [mm/s]             \\ \hline
+    撮影範囲                & $y \times z$ & $40 \times 40$         & [mm]               \\ \hline
+    画像サイズ              & $w \times h$ & $800 \times 800$       & [px]               \\ \hline
+  \end{tabular}
+\end{table}
+
 \begin{table}[hbtp]
   \label{table:data_type}
   \caption{数値シミュレーション条件}
@@ -137,22 +162,10 @@ Table.1 に示す条件に沿ってデータを作成した．\\
 \newpage
 \subsection{速度場の真値とPIV結果}
 
-\begin{figure}[htbp]
-  \footnotesize
-  \begin{center}
-    \includegraphics[width=80mm]{../images/vector_true_value.png}
-    \caption{True value of velocity : Case 1}
-    \includegraphics[width=80mm]{../images/vector_simulation.png}
-    \caption{PIV result of velocity : Case 1}
-  \end{center}
-\end{figure}
-
 Fig.1 に Case 1 における速度場の真値，
 Fig.2 に Case 1 の数値シミュレーションにPTVを適用した結果を示す．
 FIg.2 にはベクトルの抜けはあるが回転の方向と速度の大きさが
 一致していることが確認できる．
-
-\newpage
 
 \begin{table}[hbtp]
   \label{table:data_type}
@@ -167,10 +180,22 @@ FIg.2 にはベクトルの抜けはあるが回転の方向と速度の大き�
   \end{tabular}
 \end{table}
 
-また Table.1 にCase.1 ～ Case.3 についてRMSE率を示している．
+また Table.3 にCase.1 ～ Case.3 についてRMSE率を示している．
 結果を見ると粒子数密度が上がるにつれて
 真値との差が広がっていることが確認でき，
 Case 2 と Case 3 の間に計測精度が大きく低下することがわかる．
+
+\newpage
+
+\begin{figure}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=80mm]{../images/vector_true_value.png}
+    \caption{True value of velocity : Case 1}
+    \includegraphics[width=80mm]{../images/vector_simulation.png}
+    \caption{PIV result of velocity : Case 1}
+  \end{center}
+\end{figure}
 
 \section{三角翼後流の計測}
 
