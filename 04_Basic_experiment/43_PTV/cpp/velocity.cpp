@@ -195,7 +195,7 @@ int main()
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル

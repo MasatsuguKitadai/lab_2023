@@ -6,7 +6,7 @@ DATE    : 2022/11/11
 const char dir_path[] = "/mnt/e/workspace_SSD/04_basic_experiment";
 
 /** 各種パラメータ **/
-const int number = 4000;                  // 画像の枚数 [-]
+const int number = 2000;                  // 画像の枚数 [-]
 const int width_px = 800;                 // 画像の横幅 [px]
 const int height_px = 320;                // 画像の縦幅 [px]
 const int size_px = width_px * height_px; // 画像の画素数 [px]
