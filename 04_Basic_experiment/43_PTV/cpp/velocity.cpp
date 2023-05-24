@@ -148,7 +148,7 @@ int main()
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
             position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 1.5, value_z[i][j] * 1.5, v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 1.5, value_z[i][j] * 1.5, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -164,24 +164,24 @@ int main()
     // 軸の設定
 
     // range x
-    const float x_min = 30;
-    const float x_max = 70;
+    // const float x_min = 30;
+    // const float x_max = 70;
 
     // range y
     // float y_min = 5;
     // float y_max = 35;
 
     // // range x
-    // const float x_min = 0;
-    // const float x_max = 100;
+    const float x_min = 0;
+    const float x_max = 90;
 
     // // range y
     const float y_min = 0;
-    const float y_max = 40;
+    const float y_max = 30;
 
     // range color
     float cb_min = 0;
-    float cb_max = 60;
+    float cb_max = 50;
 
     // label
     const char *xxlabel = "y [mm]";
@@ -195,7 +195,7 @@ int main()
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -224,7 +224,7 @@ int main()
     fprintf(gp, "set ylabel offset 0.0, 0.0\n");
 
     // 軸の数値位置
-    fprintf(gp, "set xtics offset 0.0, 0.0\n");
+    fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力

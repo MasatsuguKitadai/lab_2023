@@ -6,14 +6,14 @@ DATE    : 2022/11/11
 const char dir_path[] = "/mnt/e/workspace_SSD/04_basic_experiment";
 
 /** 各種パラメータ **/
-const int number = 2000;                  // 画像の枚数 [-]
+const int number = 4000;                  // 画像の枚数 [-]
 const int width_px = 800;                 // 画像の横幅 [px]
 const int height_px = 320;                // 画像の縦幅 [px]
 const int size_px = width_px * height_px; // 画像の画素数 [px]
 const int delta_n = 10;                   // 対応させる時刻差 (枚)
 const int w1 = 30;                        // 探査窓 [px] x [px]
 const int w2 = 60;                        // 検査窓 [px] x [px]
-const int grid_size = 10;                 // グリッドサイズ [px]
+const int grid_size = 8;                  // グリッドサイズ [px]
 const float shutter_speed = 800;          // 撮影速度 [1/s]
 const float frame_rate = 800;             // 撮影速度 [1/s]
 
