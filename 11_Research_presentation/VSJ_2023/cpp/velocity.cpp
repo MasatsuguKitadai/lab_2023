@@ -47,11 +47,11 @@ int main()
     // 軸の設定
 
     // // range x
-    const float x_min = 30;
-    const float x_max = 90;
+    const float x_min = 0;
+    const float x_max = 30;
 
     // // range y
-    const float y_min = 0;
+    const float y_min = 90;
     const float y_max = 30;
 
     // range color
@@ -59,8 +59,8 @@ int main()
     float cb_max = 50;
 
     // label
-    const char *xxlabel = "y [mm]";
-    const char *yylabel = "z [mm]";
+    const char *xxlabel = "z [mm]";
+    const char *yylabel = "y [mm]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -69,7 +69,8 @@ int main()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 1200, 700 font 'Times New Roman, 34'\n");
+    // fprintf(gp, "set terminal svg enhanced size 1200, 700 font 'Times New Roman, 34'\n");
+    fprintf(gp, "set terminal svg enhanced size 700, 1000 font 'Times New Roman, 30'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -98,7 +99,8 @@ int main()
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", readfile);
+    // fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", readfile);
+    fprintf(gp, "plot '%s' using 2:1:4:3:5 with vectors lc palette lw 1 notitle\n", readfile);
 
     fflush(gp); // Clean up Data
 
