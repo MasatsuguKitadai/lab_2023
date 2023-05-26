@@ -34,8 +34,8 @@ int main()
     // ファイル名
     char readfile[100];
     char graphfile[100];
-    // char graphtitle[] = "Time averaged velocity : Wake of vehicle model";
-    char graphtitle[] = "Time averaged velocity : Wake of delta wing model";
+    char graphtitle[] = "Time averaged velocity : Wake of vehicle model";
+    // char graphtitle[] = "Time averaged velocity : Wake of delta wing model";
 
     sprintf(readfile, "data/%s.dat", data_name);
     sprintf(graphfile, "results/velocity_%s.svg", data_name);
