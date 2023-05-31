@@ -29,6 +29,7 @@ z方向 正：鉛直下方向
 #include "../hpp/class.hpp"
 #include "../hpp/functions.hpp"
 using namespace std;
+string dir_path;
 
 /******************************************************************************
 FUNCTION : Settings
@@ -51,6 +52,196 @@ Parameters calibration; // 後方のLLSの構造体定義
 
 Gnuplot gnuplot; // gnuplotの設定
 
+/* プロトタイプ宣言 */
+void Initialization();
+void Make_Directory(string name);
+void File_Name_Creator(Parameters &parameter, int i);
+void Calibration_Block(int number);
+void Simulate_Free_Vortex(float seconds);
+void Simulate_Uniform(float seconds);
+void Simulate_Rotation_near_the_ground(float seconds);
+void Write_dat_Tank(string file_path, vector<float> x, vector<float> y, vector<float> z, float max, float min);
+void Write_dat_grid(Parameters parameter);
+float Slip_by_Camera_Angle(float position_x, float position_lls);
+void Tank_to_Camera();
+void Write_dat_Camera(string file_path_read, string file_path_write);
+void Perspective_Projection();
+void Write_dat_Screen(string file_path_read, string file_path_write);
+void Cal_Intensity(vector<vector<float>> &intensity, float position, float min, float max, float mu, float sigma);
+void Cal_Intensity_Calibration(vector<vector<float>> &intensity);
+void Create_Img_8bit(string file_path, vector<vector<float>> &intensity);
+void Create_Img_24bit(string file_path, vector<vector<float>> &intensity_blue, vector<vector<float>> &intensity_green);
+
+/******************************************************************************
+FUNCTION : main
+概要：メインの処理
+******************************************************************************/
+int main()
+{
+    /* 保存ディレクトリの設定 */
+    string name;
+    cout << "Case Name:";
+    cin >> name;
+
+    /* ディレクトリパスの設定 */
+    dir_path = main_path + name + "/";
+    cout << dir_path << endl;
+
+    cout << "particle [-]      = " << num_particle << endl;
+    cout << "density  [個/mm3] = " << density_particle << endl;
+
+    /* 初期設定 */
+    Initialization();
+
+    /* ディレクトリの作成 */
+    Make_Directory(lls_1.name);
+    Make_Directory(lls_2.name);
+    Make_Directory("Calibration");
+    Make_Directory("Full");
+
+    /* 校正用画像の作成 */
+    Calibration_Block(num_calibration);
+    calibration.intensity.resize(height_px, vector<float>(width_px));                                       //
+    calibration.dat_file_tank = dir_path + "Calibration/particle_position_tank/calibration_tank.dat";       // datファイルのパス
+    calibration.dat_file_camera = dir_path + "Calibration/particle_position_camera/calibration_camera.dat"; // datファイルのパス
+    calibration.dat_file_screen = dir_path + "Calibration/particle_position_screen/calibration_screen.dat"; // datファイルのパス
+    calibration.graph_file_tank = dir_path + "Calibration/3d_tank_svg/calibration.svg";                     // datファイルのパス
+    calibration.bmp_file = dir_path + "Calibration/particle_image_bmp/calibration_bmp.bmp";
+
+    /* 水槽座標系からカメラ座標系への変換 */
+    Tank_to_Camera();
+
+    /* スクリーン座標への変換 */
+    Perspective_Projection();
+
+    Write_dat_Tank(calibration.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, 250, -250); // datファイルの書き出し
+    gnuplot.Plot_3d_Calibration(calibration.dat_file_tank, calibration.graph_file_tank);                     // 3dグラフの書き出し
+    Write_dat_Camera(calibration.dat_file_tank, calibration.dat_file_camera);                                //
+    Write_dat_Screen(calibration.dat_file_camera, calibration.dat_file_screen);
+    Cal_Intensity_Calibration(calibration.intensity);
+    Create_Img_8bit(calibration.bmp_file, calibration.intensity);
+
+    /* 乱数の生成 */
+    srand((unsigned int)time(NULL));
+
+    /* 配列の準備 */
+    x.position_tank.clear();
+    y.position_tank.clear();
+    z.position_tank.clear();
+
+    /* 配列のリサイズ */
+    x.Resize_Vector(num_particle);
+    y.Resize_Vector(num_particle);
+    z.Resize_Vector(num_particle);
+
+    /* 粒子に3次元の初期位置を与える */
+    x.Initial_Position(num_particle);
+    y.Initial_Position(num_particle);
+    z.Initial_Position(num_particle);
+
+    /* グリッドファイルの作成 */
+    Write_dat_grid(lls_1); // LLS(1)
+    Write_dat_grid(lls_2); // LLS(2)
+
+    Write_dat_Camera(lls_1.dat_file_grid_tank, lls_1.dat_file_grid_camera); // 水槽座標系からカメラ座標系への変換
+    Write_dat_Camera(lls_2.dat_file_grid_tank, lls_2.dat_file_grid_camera); // 水槽座標系からカメラ座標系への変換
+
+    Write_dat_Screen(lls_1.dat_file_grid_camera, lls_1.dat_file_grid_screen); //  カメラ座標系からスクリーン座標系への変換
+    Write_dat_Screen(lls_2.dat_file_grid_camera, lls_2.dat_file_grid_screen); //  カメラ座標系からスクリーン座標系への変換
+
+    for (int i = 1; i <= shutter_speed * time_max; i++)
+    {
+        printf("[%d]\t", i);
+
+        /* ベクターの初期化 */
+        lls_1.intensity.clear();                                    // LLS(1)
+        lls_1.intensity.resize(height_px, vector<float>(width_px)); //
+
+        lls_2.intensity.clear();                                    // LLS(2)
+        lls_2.intensity.resize(height_px, vector<float>(width_px)); //
+
+        float seconds = 1.0 / shutter_speed * (i - 1.0);
+
+        /* 自由渦のシミュレーション */
+        // Simulate_Free_Vortex(seconds);
+
+        /* 一様流のシミュレーション */
+        // Simulate_Uniform(seconds);
+
+        /* 回転板に引きずられる流れのシミュレーション */
+        Simulate_Rotation_near_the_ground(seconds);
+
+        /* 水槽座標系からカメラ座標系への変換 */
+        Tank_to_Camera();
+
+        /* スクリーン座標への変換 */
+        Perspective_Projection();
+
+        /* 位置情報の書き出しとグラフの作成 */
+        gnuplot.seconds = seconds; // 描画する時刻 [s]
+
+        // すべての粒子位置の書き出しと3dグラフ作成
+        // 水槽座標系について
+        string dat_file_3d_tank = dir_path + "Full/particle_position_tank/" + to_string(i) + ".dat"; // datファイルのパス
+        string svg_file_3d_tank = dir_path + "Full/3d_tank_svg/" + to_string(i) + ".svg";            // datファイルのパス
+        Write_dat_Tank(dat_file_3d_tank, x.position_tank, y.position_tank, z.position_tank, 250, -250);
+        gnuplot.Plot_3d_Tank(dat_file_3d_tank, svg_file_3d_tank, lls_1.dat_file_grid_tank, lls_2.dat_file_grid_tank);
+
+        // カメラ座標系について
+        string dat_file_3d_camera = dir_path + "Full/particle_position_camera/" + to_string(i) + ".dat"; // datファイルのパス
+        string svg_file_3d_camera = dir_path + "Full/3d_camera_svg/" + to_string(i) + ".svg";            // datファイルのパス
+        Write_dat_Camera(dat_file_3d_tank, dat_file_3d_camera);
+        gnuplot.Plot_3d_Camera(dat_file_3d_camera, svg_file_3d_camera, lls_1.dat_file_grid_camera, lls_2.dat_file_grid_camera);
+
+        /* ファイル名の作成 */
+        File_Name_Creator(lls_1, i);
+        File_Name_Creator(lls_2, i);
+
+        // LLS(1) の粒子位置の書き出しとyzグラフ作成
+        Write_dat_Tank(lls_1.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, lls_1.max, lls_1.min); // datファイルの書き出し
+
+        // LLS(1) の水槽座標，yzグラフ作成
+        gnuplot.Plot_yz_Tank(lls_1.dat_file_tank, lls_1.graph_file_tank, lls_1.dat_file_grid_tank); // yz面グラフの書き出し(前方)
+
+        // LLS(1) の水槽座標からカメラ座標へ変換
+        Write_dat_Camera(lls_1.dat_file_tank, lls_1.dat_file_camera);
+
+        // LLS(1) のカメラ座標，xyグラフ作成
+        gnuplot.Plot_xy_Camera(lls_1.dat_file_camera, lls_1.graph_file_camera, lls_1.dat_file_grid_camera); // xy面グラフの書き出し(後方)
+
+        // LLS(1) のカメラ座標からスクリーン座標へ変換
+        Write_dat_Screen(lls_1.dat_file_camera, lls_1.dat_file_screen);
+
+        /* 前方のLLSで撮影される粒子像の書き出し */
+        Cal_Intensity(lls_1.intensity, lls_1.position, lls_1.min, lls_1.max, lls_1.position, lls_1.sigma);
+        Create_Img_8bit(lls_1.bmp_file, lls_1.intensity);
+
+        // LLS(2) の粒子位置の書き出し
+        Write_dat_Tank(lls_2.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, lls_2.max, lls_2.min); // datファイルの書き出し
+
+        // LLS(2) の水槽座標，yzグラフ作成
+        gnuplot.Plot_yz_Tank(lls_2.dat_file_tank, lls_2.graph_file_tank, lls_2.dat_file_grid_tank); // yz面グラフの書き出し(後方)
+
+        // LLS(2) の水槽座標からカメラ座標へ変換
+        Write_dat_Camera(lls_2.dat_file_tank, lls_2.dat_file_camera);
+
+        // LLS(2) のカメラ座標，xyグラフ作成
+        gnuplot.Plot_xy_Camera(lls_2.dat_file_camera, lls_2.graph_file_camera, lls_2.dat_file_grid_camera); // xy面グラフの書き出し(後方)
+
+        // LLS(2) のカメラ座標からスクリーン座標へ変換
+        Write_dat_Screen(lls_2.dat_file_camera, lls_2.dat_file_screen);
+
+        /* 後方のLLSで撮影される粒子像 */
+        Cal_Intensity(lls_2.intensity, lls_2.position, lls_2.min, lls_2.max, lls_2.position, lls_2.sigma);
+        Create_Img_8bit(lls_2.bmp_file, lls_2.intensity);
+
+        string full_bmp_file = dir_path + "Full/particle_image_bmp/" + to_string(i) + ".bmp"; // datファイルのパス
+        Create_Img_24bit(full_bmp_file, lls_1.intensity, lls_2.intensity);
+    }
+
+    return 0;
+}
+
 /******************************************************************************
 FUNCTION : Initialization
 概要：各パラメータの設定を行う
@@ -59,47 +250,50 @@ OUT ：void
 ******************************************************************************/
 void Initialization()
 {
+    /* パラメータの設定 */
+    lls_1.position = lls_1_position;   // 前方のllsの位置 [mm]
+    lls_1.thickness = lls_1_thickness; // 前方のllsの厚み [mm]
+    lls_2.thickness = lls_2_thickness; // 後方のllsの厚み [mm]
+
     /* llsの設定 */
     lls_1.name = "LLS_1";
-    lls_1.position = 0;                                                                     // 前方のllsの位置 [mm]
-    lls_1.thickness = 1;                                                                    // 前方のllsの厚み [mm]
+
     lls_1.dat_file_grid_tank = dir_path + "/" + lls_1.name + "/LLS_zone_tank/zone.dat";     //
     lls_1.dat_file_grid_camera = dir_path + "/" + lls_1.name + "/LLS_zone_camera/zone.dat"; //
     lls_1.dat_file_grid_screen = dir_path + "/" + lls_1.name + "/LLS_zone_screen/zone.dat"; //
     lls_1.Cal();                                                                            // 初期設定
 
     lls_2.name = "LLS_2";
-    lls_2.position = 2.5;                                                                   // 後方のllsの位置 [mm]
-    lls_2.thickness = 3;                                                                    // 後方のllsの厚み [mm]
-    lls_2.dat_file_grid_tank = dir_path + "/" + lls_2.name + "/LLS_zone_tank/zone.dat";     //
+    lls_2.position = lls_1.position + lls_distance;                                         // 後方のllsの位置 [mm]
+    lls_2.dat_file_grid_tank = dir_path + "/" + lls_2.name + "/LLS_zone_tank/zone.dat ";    //
     lls_2.dat_file_grid_camera = dir_path + "/" + lls_2.name + "/LLS_zone_camera/zone.dat"; //
     lls_2.dat_file_grid_screen = dir_path + "/" + lls_2.name + "/LLS_zone_screen/zone.dat"; //
     lls_2.Cal();                                                                            // 初期設定
 
     /* 粒子の生成範囲 */
-    x.range_max = lls_2.position;             // x方向の粒子生成の下限範囲 [mm]
-    x.range_min = -1 * flow_speed * time_max; // x方向の粒子生成の上限範囲 [mm]
+    x.range_max = range_x_max; // x方向の粒子生成の下限範囲 [mm]
+    x.range_min = range_x_min; // x方向の粒子生成の上限範囲 [mm]
     x.Cal_Range();
 
-    y.range_max = 150; // y方向の粒子生成の下限範囲 [mm]
-    y.range_min = -50; // y方向の粒子生成の上限範囲 [mm]
+    y.range_max = width_shot_center + range_y; // y方向の粒子生成の下限範囲 [mm]
+    y.range_min = width_shot_center - range_y; // y方向の粒子生成の上限範囲 [mm]
     y.Cal_Range();
 
-    z.range_max = 150; // z方向の粒子生成の下限範囲 [mm]
-    z.range_min = -50; // z方向の粒子生成の上限範囲 [mm]
+    z.range_max = height_shot_center + range_z; // z方向の粒子生成の下限範囲 [mm]
+    z.range_min = height_shot_center - range_z; // z方向の粒子生成の上限範囲 [mm]
     z.Cal_Range();
 
     /* Gnuplotの設定 */
     gnuplot.dir_path = dir_path; // ディレクトリのパス
 
-    gnuplot.x_max = 50.0;  // x方向軸の上限範囲 [mm]
-    gnuplot.x_min = -50.0; // x方向軸の下限範囲 [mm]
+    gnuplot.x_max = lls_1.position + 0.1; // x方向軸の上限範囲 [mm]
+    gnuplot.x_min = lls_1.position - 0.1; // x方向軸の下限範囲 [mm]
 
-    gnuplot.y_max = 110.0; // y方向軸の上限範囲 [mm]
-    gnuplot.y_min = -10.0; // y方向軸の下限範囲 [mm]
+    gnuplot.y_max = y.range_max; // y方向軸の上限範囲 [mm]
+    gnuplot.y_min = y.range_min; // y方向軸の下限範囲 [mm]
 
-    gnuplot.z_max = 110.0; // z方向軸の上限範囲 [mm]
-    gnuplot.z_min = -10.0; // z方向軸の下限範囲 [mm]
+    gnuplot.z_max = z.range_max; // z方向軸の上限範囲 [mm]
+    gnuplot.z_min = z.range_min; // z方向軸の下限範囲 [mm]
 }
 
 /******************************************************************************
@@ -287,19 +481,15 @@ void Simulate_Rotation_near_the_ground(float seconds)
     const float y_center = 50; // y方向の渦中心 [mm]
     const float z_center = 50; // y方向の渦中心 [mm]
 
-    float omega = 0.0628; // 角速度
-    float nu = 1.004;     // 動粘性係数
-    // float nu = 1.004 / 1000; // 動粘性係数 | 水 20度
-
-    vector<float> r(x.position_camera.size());   // 回転半径 [mm]
-    vector<float> phi(x.position_camera.size()); // 回転角 [-]
+    vector<float> r(x.position_tank.size());   // 回転半径 [mm]
+    vector<float> phi(x.position_tank.size()); // 回転角 [-]
 
     /* 関数の読み込み */
-    const char read_file[] = "data.csv"; // ファイル名
-    vector<float> Zeta;                  // 参考文献からの値 [-]
-    vector<float> F;                     // 参考文献からの値 [-]
-    vector<float> G;                     // 参考文献からの値 [-]
-    vector<float> H;                     // 参考文献からの値 [-]
+    const char read_file[] = "csv/data.csv"; // ファイル名
+    vector<float> Zeta;                      // 参考文献からの値 [-]
+    vector<float> F;                         // 参考文献からの値 [-]
+    vector<float> G;                         // 参考文献からの値 [-]
+    vector<float> H;                         // 参考文献からの値 [-]
     double zeta, f, g, h;
 
     fp = fopen(read_file, "r");
@@ -331,11 +521,16 @@ void Simulate_Rotation_near_the_ground(float seconds)
         phi[i] = atan2(z_tmp, y_tmp);                // 回転角の初期値計算
     }
 
+    float vr_ave = 0;
+    float vtheta_ave = 0;
+    float u_ave = 0;
+    float r_ave = 0;
+
     /* 粒子位置の計算 */
     for (int i = 0; i < x.position_tank.size(); i++)
     {
         // zeta の計算
-        float zeta_tmp = (x.position_tank[i] + 250) * sqrt(omega / nu);
+        float zeta_tmp = x.position_tank[i] * sqrt(omega / nu);
 
         // 関数表の採用
         int index = Find_Closest_Value(zeta_tmp, Zeta);
@@ -346,12 +541,12 @@ void Simulate_Rotation_near_the_ground(float seconds)
         vector<float> G_lagrange;
         vector<float> H_lagrange;
 
-        for (int i = -1; i <= 1; i++)
+        for (int j = -1; j <= 1; j++)
         {
-            Zeta_lagrange.push_back(Zeta[index + i]);
-            F_lagrange.push_back(F[index + i]);
-            G_lagrange.push_back(G[index + i]);
-            H_lagrange.push_back(H[index + i]);
+            Zeta_lagrange.push_back(Zeta[index + j]);
+            F_lagrange.push_back(F[index + j]);
+            G_lagrange.push_back(G[index + j]);
+            H_lagrange.push_back(H[index + j]);
         }
 
         // 関数値の格納
@@ -363,11 +558,28 @@ void Simulate_Rotation_near_the_ground(float seconds)
         r[i] = r[i] + r[i] * omega * F_tmp * 1 / shutter_speed;     // 半径方向の位置
         phi[i] = phi[i] + r[i] * omega * G_tmp * 1 / shutter_speed; // 周方向の位置（角度）
 
+        // 速度の計算
+        float vy = r[i] * omega * F_tmp * cos(phi[i]) - r[i] * omega * G_tmp * sin(phi[i]); // y方向速度の計算 [mm]
+        float vz = r[i] * omega * F_tmp * sin(phi[i]) + r[i] * omega * G_tmp * cos(phi[i]); // z方向速度の計算 [mm]
+
         // x.position_tank[i] = x.position_tank[i] + sqrt(r[i] * omega) * H_tmp * 1 / shutter_speed; // x座標の計算 [mm]
-        x.position_tank[i] = x.position_tank[i] + sqrt(r[i] * omega) * H_tmp * 1 / shutter_speed * 100; // x座標の計算 [mm]
-        y.position_tank[i] = r[i] * cos(phi[i]) + y_center;                                             // y座標の計算 [mm]
-        z.position_tank[i] = r[i] * sin(phi[i]) + z_center;                                             // z座標の計算 [mm]
+        x.position_tank[i] = x.position_tank[i] + sqrt(nu * omega) * H_tmp * 1 / shutter_speed; // x座標の計算 [mm]
+        y.position_tank[i] = y.position_tank[i] + vy * 1 / shutter_speed;                       // y座標の計算 [mm]
+        z.position_tank[i] = z.position_tank[i] + vz * 1 / shutter_speed;                       // z座標の計算 [mm]
+
+        // 合計値の計算
+        vr_ave += r[i] * omega * F_tmp;
+        vtheta_ave += r[i] * omega * G_tmp;
+        u_ave += sqrt(nu * omega) * H_tmp;
+        r_ave += r[i];
     }
+
+    // 平均値の計算
+    vr_ave = vr_ave / x.position_tank.size();
+    vtheta_ave = vtheta_ave / x.position_tank.size();
+    u_ave = u_ave / x.position_tank.size();
+    r_ave = r_ave / x.position_tank.size();
+    printf("r = %.3f\tVr = %.3f\tVΘ = %.3f\tu = %.3f\n", r_ave, vr_ave, vtheta_ave, u_ave);
 }
 
 /******************************************************************************
@@ -404,7 +616,6 @@ FUNCTION : Write_dat_grid
  IN ：
 OUT ：
 ******************************************************************************/
-
 void Write_dat_grid(Parameters parameter)
 {
     const char *file_path_c = parameter.dat_file_grid_tank.c_str(); // str型からchar型への変換
@@ -440,7 +651,6 @@ FUNCTION : Slip_by_Camera_Angle
  IN ：position_x：粒子のx方向位置 [mm]，position_lls：LLS位置 [mm]
 OUT ：slip_y：y方向のズレ [px]
 ******************************************************************************/
-
 float Slip_by_Camera_Angle(float position_x, float position_lls)
 {
     const float px_by_mm = width_px / width_mm;                       // 撮影範囲[mm]と撮影画素の関係[px]
@@ -455,7 +665,6 @@ FUNCTION : Tank_to_Camera_Axis
  IN ：file_path_read：水槽座標系の粒子位置，file_path_write：視点座標系の粒子位置
 OUT ：void
 ******************************************************************************/
-
 void Tank_to_Camera()
 {
     const float rad = camera_angle * pi / 180; // カメラの設置角度を計算 [rad]
@@ -477,7 +686,6 @@ FUNCTION : Write_dat_Camera
  IN ：file_path_read：水槽座標系の粒子位置，file_path_write：視点座標系の粒子位置
 OUT ：void
 ******************************************************************************/
-
 void Write_dat_Camera(string file_path_read, string file_path_write)
 {
     const float rad = camera_angle * pi / 180.0; // カメラの設置角度を計算 [rad]
@@ -512,7 +720,6 @@ FUNCTION : Perspective_Projection
  IN ：file_path_read：カメラ座標系の粒子位置，file_path_read：スクリーン座標系の粒子位置
 OUT ：
 ******************************************************************************/
-
 void Perspective_Projection()
 {
     /* 視野角の計算 */
@@ -537,7 +744,6 @@ FUNCTION : Write_dat_Screen
  IN ：file_path_read：カメラ座標系の粒子位置，file_path_read：スクリーン座標系の粒子位置
 OUT ：
 ******************************************************************************/
-
 void Write_dat_Screen(string file_path_read, string file_path_write)
 {
     /* 視野角の計算 */
@@ -573,7 +779,6 @@ FUNCTION : Cal_Intensity
  IN ：*data：使用するオブジェクト名
 OUT ：
 ******************************************************************************/
-
 void Cal_Intensity(vector<vector<float>> &intensity, float position, float min, float max, float mu, float sigma)
 {
     /* yzの位置による輝度値の計算 */
@@ -639,7 +844,6 @@ FUNCTION : Create_Img_8bit
  IN ：file_path：生成画像の名前，intensity：画像の輝度値
 OUT ：void / bmp 画像の生成
 ******************************************************************************/
-
 void Create_Img_8bit(string file_path, vector<vector<float>> &intensity)
 {
     const int binary_size = width_px * height_px; // 画像のデータサイズ
@@ -687,7 +891,6 @@ FUNCTION : Create_Img_24bit
  IN ：file_path：生成画像の名前，intensity：画像の輝度値
 OUT ：void / bmp 画像の生成
 ******************************************************************************/
-
 void Create_Img_24bit(string file_path, vector<vector<float>> &intensity_blue, vector<vector<float>> &intensity_green)
 {
     const int binary_size = width_px * height_px * 3; // 画像のデータサイズ
@@ -731,175 +934,4 @@ void Create_Img_24bit(string file_path, vector<vector<float>> &intensity_blue, v
     fwrite(binary_c, sizeof(unsigned char), binary_size, fp);
 
     fclose(fp);
-}
-
-/******************************************************************************
-FUNCTION : main
-概要：メインの処理
-******************************************************************************/
-
-int main()
-{
-    /* 保存ディレクトリの設定 */
-    string name;
-    cout << "Case Name:";
-    cin >> name;
-
-    /* ディレクトリパスの設定 */
-    dir_path = main_path + name + "/";
-    cout << dir_path << endl;
-
-    cout << "particle [-]      = " << num_particle << endl;
-    cout << "density  [個/mm3] = " << density_particle << endl;
-
-    /* 初期設定 */
-    Initialization();
-
-    /* ディレクトリの作成 */
-    Make_Directory(lls_1.name);
-    Make_Directory(lls_2.name);
-    Make_Directory("Calibration");
-    Make_Directory("Full");
-
-    /* 校正用画像の作成 */
-    Calibration_Block(num_calibration);
-    calibration.intensity.resize(height_px, vector<float>(width_px));                                       //
-    calibration.dat_file_tank = dir_path + "Calibration/particle_position_tank/calibration_tank.dat";       // datファイルのパス
-    calibration.dat_file_camera = dir_path + "Calibration/particle_position_camera/calibration_camera.dat"; // datファイルのパス
-    calibration.dat_file_screen = dir_path + "Calibration/particle_position_screen/calibration_screen.dat"; // datファイルのパス
-    calibration.graph_file_tank = dir_path + "Calibration/3d_tank_svg/calibration.svg";                     // datファイルのパス
-    calibration.bmp_file = dir_path + "Calibration/particle_image_bmp/calibration_bmp.bmp";
-
-    /* 水槽座標系からカメラ座標系への変換 */
-    Tank_to_Camera();
-
-    /* スクリーン座標への変換 */
-    Perspective_Projection();
-
-    Write_dat_Tank(calibration.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, 250, -250); // datファイルの書き出し
-    gnuplot.Plot_3d_Calibration(calibration.dat_file_tank, calibration.graph_file_tank);                     // 3dグラフの書き出し
-    Write_dat_Camera(calibration.dat_file_tank, calibration.dat_file_camera);                                //
-    Write_dat_Screen(calibration.dat_file_camera, calibration.dat_file_screen);
-    Cal_Intensity_Calibration(calibration.intensity);
-    Create_Img_8bit(calibration.bmp_file, calibration.intensity);
-
-    /* 乱数の生成 */
-    srand((unsigned int)time(NULL));
-
-    /* 配列の準備 */
-    x.position_tank.clear();
-    y.position_tank.clear();
-    z.position_tank.clear();
-
-    /* 配列のリサイズ */
-    x.Resize_Vector(num_particle);
-    y.Resize_Vector(num_particle);
-    z.Resize_Vector(num_particle);
-
-    /* 粒子に3次元の初期位置を与える */
-    x.Initial_Position(num_particle);
-    y.Initial_Position(num_particle);
-    z.Initial_Position(num_particle);
-
-    /* グリッドファイルの作成 */
-    Write_dat_grid(lls_1); // LLS(1)
-    Write_dat_grid(lls_2); // LLS(2)
-
-    Write_dat_Camera(lls_1.dat_file_grid_tank, lls_1.dat_file_grid_camera); // 水槽座標系からカメラ座標系への変換
-    Write_dat_Camera(lls_2.dat_file_grid_tank, lls_2.dat_file_grid_camera); // 水槽座標系からカメラ座標系への変換
-
-    Write_dat_Screen(lls_1.dat_file_grid_camera, lls_1.dat_file_grid_screen); //  カメラ座標系からスクリーン座標系への変換
-    Write_dat_Screen(lls_2.dat_file_grid_camera, lls_2.dat_file_grid_screen); //  カメラ座標系からスクリーン座標系への変換
-
-    for (int i = 1; i <= shutter_speed * time_max; i++)
-    {
-        /* ベクターの初期化 */
-        lls_1.intensity.clear();                                    // LLS(1)
-        lls_1.intensity.resize(height_px, vector<float>(width_px)); //
-
-        lls_2.intensity.clear();                                    // LLS(2)
-        lls_2.intensity.resize(height_px, vector<float>(width_px)); //
-
-        float seconds = 1.0 / shutter_speed * (i - 1.0);
-
-        /* 自由渦のシミュレーション */
-        // Simulate_Free_Vortex(seconds);
-
-        /* 一様流のシミュレーション */
-        // Simulate_Uniform(seconds);
-
-        /* 回転板に引きずられる流れのシミュレーション */
-        Simulate_Rotation_near_the_ground(seconds);
-
-        /* 水槽座標系からカメラ座標系への変換 */
-        Tank_to_Camera();
-
-        /* スクリーン座標への変換 */
-        Perspective_Projection();
-
-        printf("n = %3d\t\ttime [s] = %.3f\n", i, seconds);
-
-        /* 位置情報の書き出しとグラフの作成 */
-        gnuplot.seconds = seconds; // 描画する時刻 [s]
-
-        // すべての粒子位置の書き出しと3dグラフ作成
-        // 水槽座標系について
-        string dat_file_3d_tank = dir_path + "Full/particle_position_tank/" + to_string(i) + ".dat"; // datファイルのパス
-        string svg_file_3d_tank = dir_path + "Full/3d_tank_svg/" + to_string(i) + ".svg";            // datファイルのパス
-        Write_dat_Tank(dat_file_3d_tank, x.position_tank, y.position_tank, z.position_tank, 250, -250);
-        gnuplot.Plot_3d_Tank(dat_file_3d_tank, svg_file_3d_tank, lls_1.dat_file_grid_tank, lls_2.dat_file_grid_tank);
-
-        // カメラ座標系について
-        string dat_file_3d_camera = dir_path + "Full/particle_position_camera/" + to_string(i) + ".dat"; // datファイルのパス
-        string svg_file_3d_camera = dir_path + "Full/3d_camera_svg/" + to_string(i) + ".svg";            // datファイルのパス
-        Write_dat_Camera(dat_file_3d_tank, dat_file_3d_camera);
-        gnuplot.Plot_3d_Camera(dat_file_3d_camera, svg_file_3d_camera, lls_1.dat_file_grid_camera, lls_2.dat_file_grid_camera);
-
-        /* ファイル名の作成 */
-        File_Name_Creator(lls_1, i);
-        File_Name_Creator(lls_2, i);
-
-        // LLS(1) の粒子位置の書き出しとyzグラフ作成
-        Write_dat_Tank(lls_1.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, lls_1.max, lls_1.min); // datファイルの書き出し
-
-        // LLS(1) の水槽座標，yzグラフ作成
-        gnuplot.Plot_yz_Tank(lls_1.dat_file_tank, lls_1.graph_file_tank, lls_1.dat_file_grid_tank); // yz面グラフの書き出し(前方)
-
-        // LLS(1) の水槽座標からカメラ座標へ変換
-        Write_dat_Camera(lls_1.dat_file_tank, lls_1.dat_file_camera);
-
-        // LLS(1) のカメラ座標，xyグラフ作成
-        gnuplot.Plot_xy_Camera(lls_1.dat_file_camera, lls_1.graph_file_camera, lls_1.dat_file_grid_camera); // xy面グラフの書き出し(後方)
-
-        // LLS(1) のカメラ座標からスクリーン座標へ変換
-        Write_dat_Screen(lls_1.dat_file_camera, lls_1.dat_file_screen);
-
-        /* 前方のLLSで撮影される粒子像の書き出し */
-        Cal_Intensity(lls_1.intensity, lls_1.position, lls_1.min, lls_1.max, lls_1.position, lls_1.sigma);
-        Create_Img_8bit(lls_1.bmp_file, lls_1.intensity);
-
-        // LLS(2) の粒子位置の書き出し
-        Write_dat_Tank(lls_2.dat_file_tank, x.position_tank, y.position_tank, z.position_tank, lls_2.max, lls_2.min); // datファイルの書き出し
-
-        // LLS(2) の水槽座標，yzグラフ作成
-        gnuplot.Plot_yz_Tank(lls_2.dat_file_tank, lls_2.graph_file_tank, lls_2.dat_file_grid_tank); // yz面グラフの書き出し(後方)
-
-        // LLS(2) の水槽座標からカメラ座標へ変換
-        Write_dat_Camera(lls_2.dat_file_tank, lls_2.dat_file_camera);
-
-        // LLS(2) のカメラ座標，xyグラフ作成
-        gnuplot.Plot_xy_Camera(lls_2.dat_file_camera, lls_2.graph_file_camera, lls_2.dat_file_grid_camera); // xy面グラフの書き出し(後方)
-
-        // LLS(2) のカメラ座標からスクリーン座標へ変換
-        Write_dat_Screen(lls_2.dat_file_camera, lls_2.dat_file_screen);
-
-        /* 後方のLLSで撮影される粒子像 */
-        Cal_Intensity(lls_2.intensity, lls_2.position, lls_2.min, lls_2.max, lls_2.position, lls_2.sigma);
-        Create_Img_8bit(lls_2.bmp_file, lls_2.intensity);
-
-        string full_bmp_file = dir_path + "Full/particle_image_bmp/" + to_string(i) + ".bmp"; // datファイルのパス
-        Create_Img_24bit(full_bmp_file, lls_1.intensity, lls_2.intensity);
-    }
-
-    return 0;
 }

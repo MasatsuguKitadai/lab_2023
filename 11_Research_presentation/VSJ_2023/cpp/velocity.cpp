@@ -84,15 +84,15 @@ void gnuplot_1()
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
+    // fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
 
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
     // 軸ラベル
-    fprintf(gp, "set xlabel '%s' offset 1.0, 0.0\n", xxlabel);
-    fprintf(gp, "set ylabel '%s' offset 0.0, 1.0\n", yylabel);
+    fprintf(gp, "set xlabel '%s' offset 0.0, 0.5\n", xxlabel);
+    fprintf(gp, "set ylabel '%s' offset 1.0, 0.0\n", yylabel);
     fprintf(gp, "set cblabel 'velocity [mm/s]' offset 0.0, 0.0\n");
 
     // 軸の数値位置
@@ -161,15 +161,15 @@ void gnuplot_2()
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
+    // fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
 
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
     // 軸ラベル
-    fprintf(gp, "set xlabel '%s' offset 1.0, 0.0\n", xxlabel);
-    fprintf(gp, "set ylabel '%s' offset 0.0, 1.0\n", yylabel);
+    fprintf(gp, "set xlabel '%s' offset 0.0, 0.5\n", xxlabel);
+    fprintf(gp, "set ylabel '%s' offset 1.0, 0.0\n", yylabel);
     fprintf(gp, "set cblabel 'velocity [mm/s]' offset 0.0, 0.0\n");
 
     // 軸の数値位置

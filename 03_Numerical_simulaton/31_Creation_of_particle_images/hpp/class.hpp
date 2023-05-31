@@ -22,8 +22,8 @@ const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 // const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
 
 /* 主要パラメータ */
-const float deg = 15;          // 壁面の回転速度 [deg/s]
-const int num_per_image = 200; // 1枚あたりに映り込む粒子数 [個]
+const float deg = 10;          // 壁面の回転速度 [deg/s]
+const int num_per_image = 100; // 1枚あたりに映り込む粒子数 [個]
 
 /* 流れの条件 */
 const float flow_speed = 8.5;       // 流速 [mm/s]
@@ -66,7 +66,7 @@ const float lls_2_thickness = lls_1_thickness * 3.0;        // 後方のllsの�
 const float range_x_max = lls_2_position;     // x方向の粒子生成範囲　[mm]
 const float range_x_min = lls_2_position - 3; // x方向の粒子生成範囲　[mm]
 
-const float range_x = range_x_max - range_x_min; // y方向の粒子生成範囲　[mm]
+const float range_x = range_x_max - range_x_min; // x方向の粒子生成範囲　[mm]
 const float range_y = width_mm / 2.0 * sqrt(2);  // y方向の粒子生成範囲　[mm]
 const float range_z = range_y;                   // z方向の粒子生成範囲　[mm]
 
