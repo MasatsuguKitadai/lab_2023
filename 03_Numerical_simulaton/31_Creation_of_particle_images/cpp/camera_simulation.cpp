@@ -151,7 +151,8 @@ int main()
 
     for (int i = 1; i <= shutter_speed * time_max; i++)
     {
-        printf("[%d]\t", i);
+        // printf("[%d]\t", i);
+        printf("[%d]\n", i);
 
         /* ベクターの初期化 */
         lls_1.intensity.clear();                                    // LLS(1)
@@ -166,10 +167,10 @@ int main()
         // Simulate_Free_Vortex(seconds);
 
         /* 一様流のシミュレーション */
-        // Simulate_Uniform(seconds);
+        Simulate_Uniform(seconds);
 
         /* 回転板に引きずられる流れのシミュレーション */
-        Simulate_Rotation_near_the_ground(seconds);
+        // Simulate_Rotation_near_the_ground(seconds);
 
         /* 水槽座標系からカメラ座標系への変換 */
         Tank_to_Camera();
