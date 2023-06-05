@@ -258,7 +258,6 @@ void Initialization()
 
     /* llsの設定 */
     lls_1.name = "LLS_1";
-
     lls_1.dat_file_grid_tank = dir_path + "/" + lls_1.name + "/LLS_zone_tank/zone.dat";     //
     lls_1.dat_file_grid_camera = dir_path + "/" + lls_1.name + "/LLS_zone_camera/zone.dat"; //
     lls_1.dat_file_grid_screen = dir_path + "/" + lls_1.name + "/LLS_zone_screen/zone.dat"; //
@@ -401,7 +400,7 @@ void Calibration_Block(int number)
     // 水槽座標系における校正ブロックの範囲 [mm]
     float calibration_x = 2.5;
     float calibration_y = 100.0;
-    float calibration_z = 90.0;
+    float calibration_z = 100.0;
 
     // 校正点の位置を与える
     int count = 0;
@@ -815,11 +814,10 @@ FUNCTION : Cal_Intensity_Calibration
  IN ：*data：使用するオブジェクト名
 OUT ：
 ******************************************************************************/
-
 void Cal_Intensity_Calibration(vector<vector<float>> &intensity)
 {
     /* yzの位置による輝度値の計算 */
-    float sigma_particle = 0.5 * magnification / 3.0 * width_px / width_mm;
+    float sigma_particle = 0.15 * magnification / 3.0 * width_px / width_mm;
 
     for (int i = 0; i < x.position_tank.size(); i++)
     {

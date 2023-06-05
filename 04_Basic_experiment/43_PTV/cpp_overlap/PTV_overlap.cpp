@@ -28,44 +28,43 @@ void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char
 int px = width_px * height_px;
 int cal_area[w2][w2];
 
-int delta_n2;
-
 /******************************************************************************/
 
 int main()
 {
     /* 保存ディレクトリの設定 */
-    const char *name = "20230517-3";
-    const char *data_set = "tyre_001";
+    string name_str;
+    cout << "Data Name:";
+    cin >> name_str;
+    const char *name = name_str.c_str();
 
-    cout << "Delta:";
-    cin >> delta_n2;
-    cout << "n=" << delta_n2 << endl;
+    string data_set_str;
+    cout << "Data Set:";
+    cin >> data_set_str;
+    const char *data_set = data_set_str.c_str();
 
     /* ディレクトリの作成 */
     char dirname[3][100];
-    sprintf(dirname[0], "%s/%s/43_PTV/%s_n=%d", dir_path, name, data_set, delta_n2);
-    sprintf(dirname[1], "%s/%s/43_PTV/%s_n=%d/PTV_vector_dat", dir_path, name, data_set, delta_n2);
-    sprintf(dirname[2], "%s/%s/43_PTV/%s_n=%d/PTV_vector_svg", dir_path, name, data_set, delta_n2);
+    sprintf(dirname[0], "%s/%s/43_PTV/%s_overlap/PTV_vector_dat", dir_path, name, data_set);
+    sprintf(dirname[1], "%s/%s/43_PTV/%s_overlap/PTV_vector_svg", dir_path, name, data_set);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
-    mkdir(dirname[2], dirmode);
 
     /** PIV loop **/
     int i, j;
 
-    for (i = 1; i < number - delta_n2; i++)
+    for (i = 1; i < number - delta_n; i++)
     {
-        j = i + delta_n2;
+        j = i + delta_n;
         // j = i + 1;
         printf("PTV : %3d\t", i);
 
         PTV(i, name, data_set);
 
-        // if (i < 100 - delta_n2)
-        // {
-        //     plot_ptv(i, name, data_set);
-        // }
+        if (i < 100 - delta_n)
+        {
+            plot_ptv(i, name, data_set);
+        }
     }
 
     return 0;
@@ -81,9 +80,9 @@ void PTV(int num, const char *name, const char *data_set)
     char filename_ptv_3[100];
     char filename[3][100];
 
-    sprintf(filename_ptv, "%s/%s/42_change_images/%s/blue/%04d.bmp", dir_path, name, data_set, num);
-    sprintf(filename_ptv_2, "%s/%s/42_change_images/%s/green/%04d.bmp", dir_path, name, data_set, num + delta_n2);
-    sprintf(filename_ptv_3, "%s/%s/43_PTV/%s_n=%d/PTV_vector_dat/%04d.dat", dir_path, name, data_set, delta_n2, num);
+    sprintf(filename_ptv, "%s/%s/42_change_images/%s/blue_overlap/%04d.bmp", dir_path, name, data_set, num);
+    sprintf(filename_ptv_2, "%s/%s/42_change_images/%s/green/%04d.bmp", dir_path, name, data_set, num + delta_n);
+    sprintf(filename_ptv_3, "%s/%s/43_PTV/%s_overlap/PTV_vector_dat/%04d.dat", dir_path, name, data_set, num);
 
     // 一般の変数
     int i, j, k, l, n, m;
@@ -100,7 +99,7 @@ void PTV(int num, const char *name, const char *data_set)
         y[i] = 0;
     }
 
-    sprintf(filename[0], "%s/%s/43_PTV/%s/labeling_position_dat/%04d.dat", dir_path, name, data_set, num);
+    sprintf(filename[0], "%s/%s/43_PTV/%s_overlap/labeling_position_dat/%04d.dat", dir_path, name, data_set, num);
 
     fp = fopen(filename[0], "r");
 
@@ -410,8 +409,8 @@ void plot_ptv(int num, const char *name, const char *data_set)
     char imagename[150];
     char graphtitle[100];
 
-    sprintf(filename_ptv, "%s/%s/43_PTV/%s_n=%d/PTV_vector_dat/%04d.dat", dir_path, name, data_set, delta_n2, num);
-    sprintf(graphname, "%s/%s/43_PTV/%s_n=%d/PTV_vector_svg/%04d.svg", dir_path, name, data_set, delta_n2, num);
+    sprintf(filename_ptv, "%s/%s/43_PTV/%s_overlap/PTV_vector_dat/%04d.dat", dir_path, name, data_set, num);
+    sprintf(graphname, "%s/%s/43_PTV/%s_overlap/PTV_vector_svg/%04d.svg", dir_path, name, data_set, num);
     sprintf(graphtitle, "PTV");
 
     // 軸の設定

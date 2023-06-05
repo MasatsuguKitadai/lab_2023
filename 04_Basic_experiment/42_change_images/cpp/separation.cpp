@@ -49,7 +49,7 @@ int main()
     cin >> data_set_str;
     const char *data_set = data_set_str.c_str();
 
-    Split(name, data_set);
+    Separation(name, data_set);
 
     return 0;
 }
@@ -58,7 +58,7 @@ int main()
 PROGRAM : Split
 DATE    : 2023/05/12
 ******************************************************************************/
-void Split(const char *name, const char *data_set)
+void Separation(const char *name, const char *data_set)
 {
     float buf[10];
     char filename[10][100];

@@ -26,7 +26,7 @@ const float deg = 10;          // 壁面の回転速度 [deg/s]
 const int num_per_image = 200; // 1枚あたりに映り込む粒子数 [個]
 
 /* 流れの条件 */
-const float flow_speed = 8.5;       // 流速 [mm/s]
+const float flow_speed = 3.0;       // 流速 [mm/s]
 const float omega = pi / 180 * deg; // 角速度
 const float nu = 1.004;             // 動粘性係数
 
@@ -38,13 +38,13 @@ const float intensity_max = 250.0; // 粒子の最大輝度値 [-]
 const float r_particle = 0.2;      // 粒子半径 [mm]
 const float camera_angle = 55;     // カメラの設置角度 [°]
 const float angle_of_view = 30;    // カメラ(レンズ)の視野角 [°]
-const float camera_position = 400; // カメラの設置位置 [mm] (水槽の中心からどの程度カメラが離れているか)
+const float camera_position = 500; // カメラの設置位置 [mm] (水槽の中心からどの程度カメラが離れているか)
 const float focal_length = 25;     // レンズの焦点距離 [mm]
-const float magnification = 2.5;   // 拡大率 [-]
+const float magnification = 3;     // 拡大率 [-]
 
 /* 生成する画像の設定 */
 const int width_px = 800;                     // 画像の横幅 [px]
-const int height_px = 600;                    // 画像の縦幅 [px]
+const int height_px = 800;                    // 画像の縦幅 [px]
 const int binary_size = width_px * height_px; // バイナリデータの大きさ [-]
 const int header_size = 1078;                 // 8bit bmp のヘッダーファイル
 
@@ -79,15 +79,15 @@ const int num_particle = density_particle * range_x * range_y * range_y * pi * t
 /* 校正板 */
 const int point_x = 3;
 const int point_y = 5;
-const int point_z = 11;
+const int point_z = 10;
 const int num_calibration = point_x * point_y * point_z;
 
 /******************************************************************************/
 
 FILE *fp, *fp_r, *fp_w, *gp;
 mode_t dir_mode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
-const string header_path = "header/800x600_8bit.bmp";        // 使用するヘッダーファイル
-const string header_path_color = "header/800x600_24bit.bmp"; // 使用するヘッダーファイル
+const string header_path = "header/800x800_8bit.bmp";        // 使用するヘッダーファイル
+const string header_path_color = "header/800x800_24bit.bmp"; // 使用するヘッダーファイル
 
 /******************************************************************************/
 
@@ -116,6 +116,7 @@ public:
     FUNCTION : Cal_Sigma
     概要：輝度値の与える範囲を計算
     ******************************************************************************/
+
     void Cal()
     {
         // 3sigmaの範囲に収まるように輝度値を計算
@@ -251,7 +252,7 @@ public:
         fprintf(gp, "set ticslevel 0\n");
 
         // 軸の数値位置
-        fprintf(gp, "set xtics 0.05 offset 0.0, 0.0\n");
+        fprintf(gp, "set xtics 20 offset 0.0, 0.0\n");
         fprintf(gp, "set ytics 20 offset 0.0, 0.0\n");
         fprintf(gp, "set ztics 20 offset 0.0, 0.0\n");
 
@@ -458,7 +459,7 @@ public:
         fprintf(gp, "set ticslevel 0\n");
 
         // 軸の数値位置
-        fprintf(gp, "set xtics 0.05 offset 0.0, 0.0\n");
+        fprintf(gp, "set xtics 20 offset 0.0, 0.0\n");
         fprintf(gp, "set ytics 20 offset 25.0, 1.8\n");
         fprintf(gp, "set ztics 20 offset 0.0, 0.0\n");
 

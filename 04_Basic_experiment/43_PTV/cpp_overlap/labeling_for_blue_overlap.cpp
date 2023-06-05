@@ -42,8 +42,8 @@ int main()
     /* ディレクトリの作成 */
     char dirname[3][100];
     sprintf(dirname[0], "%s/%s/43_PTV", dir_path, name);
-    sprintf(dirname[1], "%s/%s/43_PTV/%s", dir_path, name, data_set);
-    sprintf(dirname[2], "%s/%s/43_PTV/%s/labeling_position_dat", dir_path, name, data_set);
+    sprintf(dirname[1], "%s/%s/43_PTV/%s_overlap", dir_path, name, data_set);
+    sprintf(dirname[2], "%s/%s/43_PTV/%s_overlap/labeling_position_dat", dir_path, name, data_set);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
     mkdir(dirname[2], dirmode);
@@ -95,7 +95,7 @@ int main()
     {
         // 粒子画像の読み込み
         char readfile[100];
-        sprintf(readfile, "%s/%s/42_change_images/%s/blue/%04d.bmp", dir_path, name, data_set, m);
+        sprintf(readfile, "%s/%s/42_change_images/%s/blue_overlap/%04d.bmp", dir_path, name, data_set, m);
         Load_Bmp_8bit(readfile, header_8bit, ary);
 
         /** ラベリング **/
@@ -342,7 +342,7 @@ int main()
 
         // 各座標ごとに書き出し
         char writefile[100];
-        sprintf(writefile, "%s/%s/43_PTV/%s/labeling_position_dat/%04d.dat", dir_path, name, data_set, m);
+        sprintf(writefile, "%s/%s/43_PTV/%s_overlap/labeling_position_dat/%04d.dat", dir_path, name, data_set, m);
         fp = fopen(writefile, "w");
 
         for (int i = 1; i <= n; i++)

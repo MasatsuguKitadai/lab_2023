@@ -2,7 +2,7 @@
 g++ cpp/background.cpp -o "out/background.out"
 g++ cpp/background_sub.cpp -o "out/background_sub.out"
 g++ cpp/filter.cpp -o "out/filter.out"
-g++ cpp/split.cpp -o "out/split.out"
+g++ cpp/separation.cpp -o "out/separation.out"
 g++ cpp/stretch_images.cpp -o "out/stretch_images.out"
 
 # 名前の読み取り
@@ -35,7 +35,7 @@ expect \"$\n\"
 # send \"$name\n\"
 # expect \"$\n\"
 
-spawn ./out/split.out
+spawn ./out/separation.out
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"Data Set:\"

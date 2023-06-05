@@ -59,7 +59,8 @@ int main()
     int counter = 0;
     int vector_num = 0;
 
-    for (int j = 1; j < number - delta_n; j++)
+    // for (int j = 1; j < number - delta_n; j++)
+    for (int j = 1; j < number - 20; j++)
     {
         // ファイルの読み取り
         char readfile[100];
@@ -148,7 +149,7 @@ int main()
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
             position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 1.5, value_z[i][j] * 1.5, v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 2.0, value_z[i][j] * 2.0, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
