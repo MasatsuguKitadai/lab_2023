@@ -80,8 +80,15 @@ int main()
     dir_path = main_path + name + "/";
     cout << dir_path << endl;
 
-    cout << "particle [-]      = " << num_particle << endl;
-    cout << "density  [個/mm3] = " << density_particle << endl;
+    /* 設定の書き出し */
+    cout << endl;
+    cout << "////////////////////////////////////////////" << endl;
+    cout << "density (1) [個/mm3] : " << density_particle << endl;
+    cout << "density (2) [個/枚]  : " << num_per_image << endl;
+    cout << "particle    [-]      : " << num_particle << endl;
+    cout << "omega       [rad/s]  : " << deg << " × 180/pi" << endl;
+    cout << "////////////////////////////////////////////" << endl;
+    cout << endl;
 
     /* 初期設定 */
     Initialization();
@@ -138,7 +145,7 @@ int main()
         // すべての粒子位置の書き出しと3dグラフ作成
         // 水槽座標系について
         string dat_file_3d_tank = dir_path + "Full/particle_position_tank/" + to_string(i) + ".dat"; // datファイルのパス
-        string svg_file_3d_tank = dir_path + "Full/3d_tank_svg/" + to_string(i) + ".svg";            // datファイルのパス
+        string svg_file_3d_tank = dir_path + "Full/3d_tank_png/" + to_string(i) + ".png";            // datファイルのパス
         Write_dat_Tank(dat_file_3d_tank, x.position_tank, y.position_tank, z.position_tank, 250, -250);
         gnuplot.Plot_3d_Tank(dat_file_3d_tank, svg_file_3d_tank, lls_1.dat_file_grid_tank, lls_2.dat_file_grid_tank);
 
@@ -289,7 +296,8 @@ void Make_Directory(string name)
     const char *dir_path_grid_screen = dir_path_str.c_str();
     mkdir(dir_path_grid_screen, dir_mode);
 
-    dir_path_str = dir_path + "/" + name + "/3d_tank_svg";
+    // dir_path_str = dir_path + "/" + name + "/3d_tank_svg";
+    dir_path_str = dir_path + "/" + name + "/3d_tank_png";
     const char *dir_path_svg_tank = dir_path_str.c_str();
     mkdir(dir_path_svg_tank, dir_mode);
 

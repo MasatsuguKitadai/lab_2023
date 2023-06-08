@@ -1,9 +1,9 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.4.3)  8 MAY 2023 14:08
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  6 JUN 2023 14:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/kitadai/workspace/lab_2023/00_Reports/2305/230509/230509
-(/home/kitadai/workspace/lab_2023/00_Reports/2305/230509/230509.tex
+**/home/kitadai/workspace/lab_2023/00_Reports/2306/230606/230606
+(/home/kitadai/workspace/lab_2023/00_Reports/2306/230606/230606.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
@@ -505,8 +505,8 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \g__pdf_backend_annotation_int=\count324
 \g__pdf_backend_link_int=\count325
 \g__pdf_backend_link_sf_int=\count326
-) (./230509.aux)
-\openout1 = `230509.aux'.
+) (./230606.aux)
+\openout1 = `230606.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
 LaTeX Font Info:    ... okay on input line 90.
@@ -583,9 +583,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 90.
 LaTeX Info: Redefining \pageref on input line 90.
 LaTeX Info: Redefining \nameref on input line 90.
- (./230509.out) (./230509.out)
+ (./230606.out) (./230606.out)
 \@outlinefile=\write3
-\openout3 = `230509.out'.
+\openout3 = `230606.out'.
 
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
 (Font)              scaled to size 15.9785pt on input line 93.
@@ -599,21 +599,77 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 94.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 94.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 108.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 108.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 108.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 108.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 115.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 115.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 118.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 118.
+File: ../images/velocity_n=8.png Graphic file (type bmp)
+<../images/velocity_n=8.png>
+File: ../images/velocity_n=9.png Graphic file (type bmp)
+<../images/velocity_n=9.png>
+File: ../images/velocity_n=10.png Graphic file (type bmp)
+<../images/velocity_n=10.png>
+File: ../images/velocity_n=11.png Graphic file (type bmp)
+<../images/velocity_n=11.png>
+File: ../images/velocity_n=12.png Graphic file (type bmp)
+<../images/velocity_n=12.png>
+File: ../images/velocity_n=13.png Graphic file (type bmp)
+<../images/velocity_n=13.png>
+File: ../images/velocity_n=14.png Graphic file (type bmp)
+<../images/velocity_n=14.png>
+File: ../images/velocity_n=15.png Graphic file (type bmp)
+<../images/velocity_n=15.png>
+File: ../images/velocity_n=16.png Graphic file (type bmp)
+<../images/velocity_n=16.png>
  [1
 
 
+]
+File: ../images/blue.bmp Graphic file (type bmp)
+<../images/blue.bmp>
+File: ../images/blue_overlap.bmp Graphic file (type bmp)
+<../images/blue_overlap.bmp>
+File: ../images/vector.png Graphic file (type bmp)
+<../images/vector.png>
 
-] (./230509.aux)
-Package rerunfilecheck Info: File `230509.out' has not changed.
-(rerunfilecheck)             Checksum: 74D109790889592D056EBF26750F1947;50.
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 194--195
+ [] 
+ []
+
+File: ../images/vector_overlap.png Graphic file (type bmp)
+<../images/vector_overlap.png>
+
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 196--197
+ [][] 
+ []
+
+[2] (./230606.aux)
+Package rerunfilecheck Info: File `230606.out' has not changed.
+(rerunfilecheck)             Checksum: 5F95AA006A735C4A55DE5573C6BB50C8;311.
  ) 
 Here is how much of TeX's memory you used:
- 15169 strings out of 478741
- 234357 string characters out of 5860983
- 532060 words of memory out of 5000000
- 33411 multiletter control sequences out of 15000+600000
- 476134 words of font info for 63 fonts, out of 8000000 for 9000
+ 15284 strings out of 478741
+ 236999 string characters out of 5860983
+ 540061 words of memory out of 5000000
+ 33495 multiletter control sequences out of 15000+600000
+ 478744 words of font info for 78 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,5n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,8n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 230509.dvi (1 page, 2528 bytes).
+Output written on 230606.dvi (2 pages, 9328 bytes).

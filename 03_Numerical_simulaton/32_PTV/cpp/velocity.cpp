@@ -54,11 +54,11 @@ int main()
     int counter = 0;
     int vector_num = 0;
 
-    for (int j = 1; j < data_num - delta_n; j++)
+    for (int k = 1; k < data_num - delta_n; k++)
     {
         // ファイルの読み取り
         char readfile[100];
-        sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, j);
+        sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, k);
 
         float buf[10]; // 読み込み用のバッファ
         fp = fopen(readfile, "r");
@@ -68,22 +68,25 @@ int main()
             position_y = buf[0];
             position_z = buf[1];
 
-            for (int i = 0; i < mesh_y; i++)
+            if (border_max >= buf[5] && buf[5] >= border_min)
             {
-                if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
+                for (int i = 0; i < mesh_y; i++)
                 {
-                    for (int k = 0; k < mesh_z; k++)
+                    if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
                     {
-                        if (k * grid_size - 5 <= position_z && position_z < k * grid_size + 5)
+                        for (int j = 0; j < mesh_z; j++)
                         {
-                            value_y[i][k] = value_y[i][k] + buf[2];
-                            value_z[i][k] = value_z[i][k] + buf[3];
-                            count_mesh[i][k] = count_mesh[i][k] + 1;
-                            vector_num += 1;
-                            break;
+                            if (j * grid_size - 5 <= position_z && position_z < j * grid_size + 5)
+                            {
+                                value_y[i][j] = value_y[i][j] + buf[2];
+                                value_z[i][j] = value_z[i][j] + buf[3];
+                                count_mesh[i][j] = count_mesh[i][j] + 1;
+                                vector_num += 1;
+                                break;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -138,7 +141,7 @@ int main()
 
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
-            position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
+            position_z = j * grid_size * (float)height_mm / height_px + (height_shot_center - height_mm / 2);
             fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm), value_z[i][j] * (width_px / width_mm), v_value); // 資料画像用にベクトルの長さを誇張
         }
     }

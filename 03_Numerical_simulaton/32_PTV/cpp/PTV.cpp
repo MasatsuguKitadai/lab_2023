@@ -54,15 +54,13 @@ int main()
     for (i = 1; i < data_num - delta_n; i++)
     {
         j = i + delta_n;
-        // j = i + 1;
+        printf("PTV : %3d\t", i);
         PTV(i, name);
 
         if (i < 100 - delta_n)
         {
             plot_ptv(i, name);
         }
-
-        printf("PTV : %3d\n", i);
     }
 
     return 0;
@@ -180,6 +178,8 @@ void PTV(int num, const char *name)
     float v_value, angle;
     unsigned char win_area[w1][w1];
     unsigned char cal_area[w2][w2];
+
+    int vector_num = 0;
 
     /** 相関係数の算出準備 (0) **/
     int start_x, start_y;
@@ -353,7 +353,12 @@ void PTV(int num, const char *name)
                     R_sub[x_ptv][y_ptv] = cal[2] / (cal[5] * cal[6]);
                 }
 
-                if (R_sub[x_ptv][y_ptv] > R)
+                // 誤ベクトルの処理
+                float vx_tmp = x_ptv + (w1 / 2) - position_w[0];
+                float vy_tmp = y_ptv + (w1 / 2) - position_h[0];
+                float v_value_tmp = sqrt(vx_tmp * vx_tmp + vy_tmp * vy_tmp);
+
+                if (R_sub[x_ptv][y_ptv] > R && 10.0 > v_value_tmp)
                 {
                     index_x = x_ptv;
                     index_y = y_ptv;
@@ -383,25 +388,20 @@ void PTV(int num, const char *name)
             }
         }
 
-        // ベクトルの計算
-        if (R <= 0.90)
+        // 算出できてないものを判別する
+        if (R == 0.0)
         {
-            v_value = 0;
-            angle = 0;
-            vx = 0;
-            vy = 0;
+            R = -1.0;
         }
-        else
-        {
-            v_value = sqrt(vx * vx + vy * vy);
 
-            fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);
-        }
+        v_value = sqrt(vx * vx + vy * vy);
+        fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);
+        vector_num += 1;
     }
 
     fclose(fp);
 
-    // return 0;
+    printf("Number of vector = %d\n", vector_num);
 }
 
 void plot_ptv(int num, const char *name)
@@ -443,7 +443,7 @@ void plot_ptv(int num, const char *name)
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 800, 600 font 'Times New Roman, 20'\n");
+    fprintf(gp, "set terminal svg enhanced size 800, 500 font 'Times New Roman, 20'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -457,7 +457,7 @@ void plot_ptv(int num, const char *name)
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s'\n", graphtitle);
+    fprintf(gp, "set title '%s' offset 0.0, 0.5\n", graphtitle);
 
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
@@ -468,8 +468,8 @@ void plot_ptv(int num, const char *name)
     fprintf(gp, "set ylabel '%s'\n", yylabel);
 
     // 軸のラベル位置
-    fprintf(gp, "set xlabel offset 0.0, 0.0\n");
-    fprintf(gp, "set ylabel offset 0.0, 0.0\n");
+    fprintf(gp, "set xlabel offset 0.0, 0.5\n");
+    fprintf(gp, "set ylabel offset 1.0, 0.0\n");
 
     // 軸の数値位置
     fprintf(gp, "set xtics offset 0.0, 0.0\n");

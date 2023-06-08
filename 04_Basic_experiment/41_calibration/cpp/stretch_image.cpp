@@ -116,7 +116,7 @@ void Stretch_image(const char *name)
 
         fp = fopen(filename[1], "r");
 
-        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8], &buf[9])) != EOF)
+        while (fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5], &buf[6], &buf[7], &buf[8], &buf[9]) != EOF)
         {
             a[i] = buf[0];
             b[i] = buf[1];
@@ -128,7 +128,7 @@ void Stretch_image(const char *name)
             h[i] = buf[7];
             o[i] = buf[8];
             p[i] = buf[9];
-            i = i + 1;
+            i += 1;
         }
 
         fclose(fp);

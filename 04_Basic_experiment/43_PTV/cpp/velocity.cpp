@@ -159,7 +159,7 @@ int main()
 
     // ファイル名
     char graphfile[100], graphtitle[100];
-    sprintf(graphfile, "%s/%s/43_PTV/%s/PTV_velocity_svg/velocity.svg", dir_path, name, data_set);
+    sprintf(graphfile, "%s/%s/43_PTV/%s/PTV_velocity_svg/velocity.png", dir_path, name, data_set);
     sprintf(graphtitle, "Velocity [mm/s]");
 
     // 軸の設定
@@ -173,8 +173,11 @@ int main()
     // float y_max = 35;
 
     // // range x
-    const float x_min = 0;
-    const float x_max = 90;
+    // const float x_min = 0;
+    // const float x_max = 90;
+
+    const float x_min = 20;
+    const float x_max = 70;
 
     // // range y
     const float y_min = 0;
@@ -182,7 +185,7 @@ int main()
 
     // range color
     float cb_min = 0;
-    float cb_max = 50;
+    float cb_max = 30;
 
     // label
     const char *xxlabel = "y [mm]";
@@ -196,7 +199,8 @@ int main()
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
+    // fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal png enhanced size 900, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -209,20 +213,17 @@ int main()
     fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
-    // グラフタイトル
-    fprintf(gp, "set title '%s'\n", graphtitle);
-
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
-    // 軸ラベル
-    fprintf(gp, "set xlabel '%s'\n", xxlabel);
-    fprintf(gp, "set ylabel '%s'\n", yylabel);
+    // // 軸ラベル
+    // fprintf(gp, "set xlabel '%s'\n", xxlabel);
+    // fprintf(gp, "set ylabel '%s'\n", yylabel);
 
-    // 軸のラベル位置
-    fprintf(gp, "set xlabel offset 0.0, 0.0\n");
-    fprintf(gp, "set ylabel offset 0.0, 0.0\n");
+    // // 軸のラベル位置
+    // fprintf(gp, "set xlabel offset 0.0, 0.5\n");
+    // fprintf(gp, "set ylabel offset 1.0, 0.0\n");
 
     // 軸の数値位置
     fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");

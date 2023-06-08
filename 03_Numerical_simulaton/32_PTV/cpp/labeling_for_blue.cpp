@@ -364,7 +364,8 @@ int main()
             sprintf(backimage, "%s/%s/LLS_1/particle_image_png/%d.png", dir_path, name, m);
             sprintf(graphtitle, "labeling plane [%03d]", m);
 
-            fprintf(gp, "set terminal png enhanced size 800, 800 font 'Times New Roman, 20'\n");
+            // fprintf(gp, "set terminal png enhanced size 800, 800 font 'Times New Roman, 20'\n");
+            fprintf(gp, "set terminal png enhanced size 800, 500 font 'Times New Roman, 20'\n");
             fprintf(gp, "set size ratio -1\n");
 
             // 出力ファイル
@@ -378,7 +379,7 @@ int main()
             fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
             // グラフタイトル
-            fprintf(gp, "set title '%s'\n", graphtitle);
+            fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
 
             // 軸ラベル
             fprintf(gp, "set xlabel '%s'\n", xxlabel);
@@ -403,7 +404,7 @@ int main()
             pclose(gp);
         }
 
-        printf("Labeling blue\t%4d\n", m);
+        printf("Labeling blue\t%4d\tn = %d\n", m, n);
     }
 
     return 0;

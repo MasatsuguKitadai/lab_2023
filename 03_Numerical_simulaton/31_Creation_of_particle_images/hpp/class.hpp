@@ -23,7 +23,7 @@ const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 
 /* 主要パラメータ */
 const float deg = 10;          // 壁面の回転速度 [deg/s]
-const int num_per_image = 200; // 1枚あたりに映り込む粒子数 [個]
+const int num_per_image = 300; // 1枚あたりに映り込む粒子数 [個]
 
 /* 流れの条件 */
 const float flow_speed = 8.5;       // 流速 [mm/s]
@@ -44,13 +44,16 @@ const float magnification = 2.5;   // 拡大率 [-]
 
 /* 生成する画像の設定 */
 const int width_px = 800;                     // 画像の横幅 [px]
-const int height_px = 600;                    // 画像の縦幅 [px]
+const int height_px = 400;                    // 画像の縦幅 [px]
 const int binary_size = width_px * height_px; // バイナリデータの大きさ [-]
 const int header_size = 1078;                 // 8bit bmp のヘッダーファイル
 
+/* 仮想上の校正ブロックの設定 */
+const float offset_x = 7.0; // LLS(1) の設置位置
+
 /* 仮想上の撮影画像の設定 */
 const float width_mm = 40;           // 実際の撮影範囲の横幅 [mm]
-const float height_mm = 40;          // 実際の撮影範囲の縦幅 [mm]
+const float height_mm = 20;          // 実際の撮影範囲の縦幅 [mm]
 const float width_shot_center = 50;  // y方向の撮影中心 [mm]
 const float height_shot_center = 50; // z方向の撮影中心 [mm]
 
@@ -63,18 +66,19 @@ const float lls_2_thickness = lls_1_thickness * 3.0;        // 後方のllsの�
 // const float lls_2_thickness = lls_1_thickness; // 後方のllsの厚み [mm]
 
 /* 粒子の生成範囲の設定 */
-const float range_x_max = lls_2_position; // x方向の粒子生成範囲　[mm]
-// const float range_x_min = lls_2_position - 3; // x方向の粒子生成範囲　[mm]
-const float range_x_min = -250 * 0.003; // x方向の粒子生成範囲　[mm]
+const float range_x_max = lls_2_position;     // x方向の粒子生成範囲　[mm]
+const float range_x_min = lls_2_position - 3; // x方向の粒子生成範囲　[mm]
+// const float range_x_min = -250 * 0.003; // x方向の粒子生成範囲　[mm]
 
 const float range_x = range_x_max - range_x_min; // x方向の粒子生成範囲　[mm]
 const float range_y = width_mm / 2.0 * sqrt(2);  // y方向の粒子生成範囲　[mm]
-const float range_z = range_y;                   // z方向の粒子生成範囲　[mm]
+const float range_z = width_mm / 2.0 * sqrt(2);  // z方向の粒子生成範囲　[mm]
 
 /* 粒子の生成量の設定 */
-const int times = 1.0;                                                                   // 粒子数の倍率 [-]
-const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness); // 粒子密度 [個/mm^2]
-const int num_particle = density_particle * range_x * range_y * range_y * pi * times;    // 生成する粒子数 [-]
+const int times = 1.0; // 粒子数の倍率 [-]
+// const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness); // 粒子密度 [個/mm^2]
+const float density_particle = num_per_image / (width_mm * width_mm * lls_1_thickness); // 粒子密度 [個/mm^2]
+const int num_particle = density_particle * range_x * range_y * range_y * pi * times;   // 生成する粒子数 [-]
 
 /* 校正板 */
 const int point_x = 3;
@@ -86,8 +90,8 @@ const int num_calibration = point_x * point_y * point_z;
 
 FILE *fp, *fp_r, *fp_w, *gp;
 mode_t dir_mode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
-const string header_path = "header/800x600_8bit.bmp";        // 使用するヘッダーファイル
-const string header_path_color = "header/800x600_24bit.bmp"; // 使用するヘッダーファイル
+const string header_path = "header/800x400_8bit.bmp";        // 使用するヘッダーファイル
+const string header_path_color = "header/800x400_24bit.bmp"; // 使用するヘッダーファイル
 
 /******************************************************************************/
 
@@ -287,7 +291,7 @@ public:
             exit(0); // gnuplotが無い場合、異常ある場合は終了
         }
 
-        fprintf(gp, "set terminal svg size 800, 800 font 'Times New Roman, 24'\n");
+        fprintf(gp, "set terminal png size 800, 800 font 'Times New Roman, 22'\n");
 
         // 出力ファイル
         fprintf(gp, "set output '%s'\n", graph_path_c);
@@ -309,7 +313,7 @@ public:
 
         // タイトル
         fprintf(gp, "set title 't = %1.3f [s]'\n", seconds);
-        fprintf(gp, "set title offset -2.0, 0.0\n");
+        fprintf(gp, "set title offset -2.0, -1.0\n");
 
         // 軸ラベル
         fprintf(gp, "set xlabel 'x [mm]'\n");
@@ -317,14 +321,14 @@ public:
         fprintf(gp, "set zlabel 'z [mm]'\n");
 
         // 軸のラベル位置
-        fprintf(gp, "set xlabel offset 2.0, 0.5\n");
-        fprintf(gp, "set ylabel offset -6.0, 0.0\n");
+        fprintf(gp, "set xlabel offset 0.0, -1.0\n");
+        fprintf(gp, "set ylabel offset 1.0, 0.0\n");
         fprintf(gp, "set zlabel offset 0.5, 0.0\n");
         fprintf(gp, "set ticslevel 0\n");
 
         // 軸の数値位置
-        fprintf(gp, "set xtics 0.05 offset 0.0, 0.0\n");
-        fprintf(gp, "set ytics 20 offset 0.0, 0.0\n");
+        fprintf(gp, "set xtics 0.05 offset 0.0, -0.5\n");
+        fprintf(gp, "set ytics 20 offset 1.0, 0.0\n");
         fprintf(gp, "set ztics 20 offset 0.0, 0.0\n");
 
         // グラフの出力

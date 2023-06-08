@@ -398,9 +398,9 @@ void Calibration_Block(int number)
     z.Resize_Vector(number);
 
     // 水槽座標系における校正ブロックの範囲 [mm]
-    float calibration_x = 2.5;
-    float calibration_y = 100.0;
-    float calibration_z = 100.0;
+    float calibration_x = 2.5 * 0.003;
+    float calibration_y = 40;
+    float calibration_z = 40;
 
     // 校正点の位置を与える
     int count = 0;
@@ -408,7 +408,7 @@ void Calibration_Block(int number)
         for (int j = 0; j < point_y; j++)
             for (int k = 0; k < point_z; k++)
             {
-                x.position_tank[count] = calibration_x / (point_x - 1) * i;
+                x.position_tank[count] = calibration_x / (point_x - 1) * i + offset_x;
                 y.position_tank[count] = calibration_y / (point_y - 1) * j + (width_shot_center - calibration_y / 2);
                 z.position_tank[count] = calibration_z / (point_z - 1) * k + (height_shot_center - calibration_z / 2);
                 count += 1;

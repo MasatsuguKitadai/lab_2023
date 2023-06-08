@@ -386,6 +386,12 @@ void PTV(int num, const char *name, const char *data_set)
             }
         }
 
+        // 算出できてないものを判別する
+        if (R == 0.0)
+        {
+            R = -1.0;
+        }
+
         // ベクトルの計算
         v_value = sqrt(vx * vx + vy * vy);
         fprintf(fp, "%.1f\t%.1f\t%lf\t%lf\t%lf\t%lf\n", x[k], y[k], vx, vy, v_value, R);

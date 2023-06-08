@@ -27,8 +27,8 @@ if [ ! -d $DIR_1 ];then
     "
 fi
 
-DIR_2="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/labeling_position_dat" 
-if [ ! -d $DIR_2 ];then
+# DIR_2="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/labeling_position_dat" 
+# if [ ! -d $DIR_2 ];then
 
     expect -c " 
     set timeout -1
@@ -38,7 +38,7 @@ if [ ! -d $DIR_2 ];then
     expect \"$\n\"
     exit 0
     "
-fi
+# fi
 
 ## シミュレーション ###
 expect -c " 
