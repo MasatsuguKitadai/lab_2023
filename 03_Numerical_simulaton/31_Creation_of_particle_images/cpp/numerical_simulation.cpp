@@ -178,6 +178,8 @@ int main()
 
         string full_bmp_file = dir_path + "Full/particle_image_bmp/" + to_string(i) + ".bmp"; // datファイルのパス
         Create_Img_24bit(full_bmp_file, lls_1.intensity, lls_2.intensity);
+
+        printf("\n");
     }
 
     return 0;
@@ -434,7 +436,7 @@ void Simulate_Rotation_near_the_ground(float seconds)
     vtheta_ave = vtheta_ave / x.position_tank.size();
     u_ave = u_ave / x.position_tank.size();
     r_ave = r_ave / x.position_tank.size();
-    printf("r = %.3f\tVr = %.3f\tVΘ = %.3f\tu = %.3f\n", r_ave, vr_ave, vtheta_ave, u_ave);
+    printf("r = %.3f\tVr = %.3f\tVΘ = %.3f\tu = %.3f\t", r_ave, vr_ave, vtheta_ave, u_ave);
 }
 
 /******************************************************************************
@@ -543,6 +545,7 @@ void Cal_Intensity(vector<vector<float>> &intensity, float position, float min, 
 {
     /* yzの位置による輝度値の計算 */
     float sigma_particle = r_particle / 3 * width_px / width_mm;
+    int n = 0;
 
     for (int i = 0; i < x.position_tank.size(); i++)
     {
@@ -564,8 +567,12 @@ void Cal_Intensity(vector<vector<float>> &intensity, float position, float min, 
                         // printf("%f\t%f\t%lf\n", y_tmp, z_tmp, intensity[j][k]);
                     }
                 }
+
+            n += 1;
         }
     }
+
+    printf("n = %d\t", n);
 }
 
 /******************************************************************************

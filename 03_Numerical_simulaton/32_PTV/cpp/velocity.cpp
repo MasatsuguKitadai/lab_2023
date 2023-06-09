@@ -216,7 +216,7 @@ int main()
 
     // 軸のラベル位置
     fprintf(gp, "set xlabel offset 0.0, 0.5\n");
-    fprintf(gp, "set ylabel offset 1.0, 0.0\n");
+    fprintf(gp, "set ylabel offset 1.5, 0.0\n");
 
     // 軸の数値位置
     fprintf(gp, "set xtics offset 0.0, 0.0\n");
