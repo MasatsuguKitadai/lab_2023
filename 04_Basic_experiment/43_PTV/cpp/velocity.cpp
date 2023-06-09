@@ -21,8 +21,10 @@ mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_I
 
 const int mesh_y = width_px / grid_size;
 const int mesh_z = height_px / grid_size;
-float value_y[mesh_y][mesh_z], value_z[mesh_y][mesh_z];
-int count_mesh[mesh_y][mesh_z];
+float value_y[mesh_y][mesh_z] = {0};
+float value_z[mesh_y][mesh_z] = {0};
+float r[mesh_y][mesh_z] = [0];
+int count_mesh[mesh_y][mesh_z] = {0};
 float position_y, position_z;
 
 /******************************************************************************/
@@ -46,14 +48,6 @@ int main()
     sprintf(dirname[1], "%s/%s/43_PTV/%s/PTV_velocity_svg", dir_path, name, data_set);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
-
-    for (int i = 0; i < mesh_y; i++)
-        for (int j = 0; j < mesh_z; j++)
-        {
-            value_y[i][j] = 0;
-            value_z[i][j] = 0;
-            count_mesh[i][j] = 0;
-        }
 
     // 配列の初期化
     int counter = 0;
@@ -84,9 +78,10 @@ int main()
                         {
                             if (k * grid_size - grid_size / 2 <= position_z && position_z < k * grid_size + grid_size / 2)
                             {
-                                value_y[i][k] = value_y[i][k] + buf[2];
-                                value_z[i][k] = value_z[i][k] + buf[3];
-                                count_mesh[i][k] = count_mesh[i][k] + 1;
+                                value_y[i][k] += buf[2];
+                                value_z[i][k] += buf[3];
+                                r[i][k] += buf[5];
+                                count_mesh[i][k] += 1;
                                 vector_num += 1;
                                 break;
                             }
@@ -107,6 +102,8 @@ int main()
     float v_y_value = 0;
     float v_z_value = 0;
     float v_value = 0;
+    float r_ave = 0;
+
     float all_ave_value = 0;
     float all_ave_y = 0;
     float all_ave_z = 0;
@@ -130,6 +127,7 @@ int main()
                 value_y[i][j] = value_y[i][j] / count_mesh[i][j] * width_mm / width_px;               // y方向の移動量 [mm]
                 value_z[i][j] = value_z[i][j] / count_mesh[i][j] * height_mm / height_px;             // z方向の移動量 [mm]
                 v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]) / time; // 全体の速度 [mm/s]
+                r_ave = r[i][j] / count_mesh[i][j];
 
                 // 誤ベクトル処理
                 if (100 < v_value)
@@ -137,6 +135,7 @@ int main()
                     value_y[i][j] = 0;
                     value_z[i][j] = 0;
                     v_value = 0;
+                    r_ave = 0;
                 }
             }
             else
@@ -144,12 +143,13 @@ int main()
                 value_y[i][j] = 0;
                 value_z[i][j] = 0;
                 v_value = 0;
+                r_ave = 0;
             }
 
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
             position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 2.0, value_z[i][j] * 2.0, v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 2.0, value_z[i][j] * 2.0, v_value, r_ave); // 資料画像用にベクトルの長さを誇張
         }
     }
 

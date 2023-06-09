@@ -1,7 +1,7 @@
 /******************************************************************************
-PROGRAM : 12_PTV
+PROGRAM : n-v,w,r
 AUTHER  : Masatsugu Kitadai
-DATE    : 2022/12/13
+DATE    : 2023/6/8
 ******************************************************************************/
 // 既存ライブラリ
 #include <stdio.h>
@@ -21,8 +21,6 @@ mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_I
 
 const int mesh_y = width_px / grid_size;
 const int mesh_z = height_px / grid_size;
-float value_y[mesh_y][mesh_z], value_z[mesh_y][mesh_z];
-int count_mesh[mesh_y][mesh_z];
 float position_y, position_z;
 
 /******************************************************************************/
@@ -31,71 +29,70 @@ int main()
 {
     /* 保存ディレクトリの設定 */
     string name_str;
-    cout << "Case Name:";
+    cout << "Data Name:";
     cin >> name_str;
     const char *name = name_str.c_str();
 
-    /* ディレクトリの作成 */
-    char dirname[2][100];
-    sprintf(dirname[0], "%s/%s/PTV/PTV_velocity_dat", dir_path, name);
-    sprintf(dirname[1], "%s/%s/PTV/PTV_velocity_svg", dir_path, name);
-    mkdir(dirname[0], dirmode);
-    mkdir(dirname[1], dirmode);
+    string data_set_str;
+    cout << "Data Set:";
+    cin >> data_set_str;
+    const char *data_set = data_set_str.c_str();
 
-    for (int i = 0; i < mesh_y; i++)
-        for (int j = 0; j < mesh_z; j++)
-        {
-            value_y[i][j] = 0;
-            value_z[i][j] = 0;
-            count_mesh[i][j] = 0;
-        }
+    /* ディレクトリの作成 */
+    char dirname[100];
+    sprintf(dirname, "%s/%s/43_PTV/%s_graph", dir_path, name, data_set);
+    mkdir(dirname, dirmode);
 
     // 配列の初期化
+    float value_y[mesh_y][mesh_z] = {0};
+    float value_z[mesh_y][mesh_z] = {0};
+    int count_mesh[mesh_y][mesh_z] = {0};
     int counter = 0;
     int vector_num = 0;
 
-    for (int k = 1; k < data_num - delta_n; k++)
+    /* 書き込み用ファイルの設定 */
+    char writefile[100][3];
+    sprintf(writefile[0], "%s/%s/43_PTV/%s/n-v/velocity.dat", dir_path, name, data_set);
+
+    for (int i = 8; i <= 17; i++)
     {
-        // ファイルの読み取り
-        char readfile[100];
-        sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, k);
+        /* 変数の設定 */
+        vector<float> y; // y軸方向 [mm]
+        vector<float> z; // z軸方向 [mm]
+        vector<float> v; // y方向の速度ベクトル [mm/s]
+        vector<float> w; // z方向の速度ベクトル [mm/s]
+        vector<float> r; // 相互相間係数 [-]
 
+        /* ファイルの読み取り */
         float buf[10]; // 読み込み用のバッファ
+        char readfile[100];
+        sprintf(readfile, "%s/%s/43_PTV/%s_n=%d/PTV_velocity_dat/velocity.dat", dir_path, name, data_set, i);
         fp = fopen(readfile, "r");
-        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5])) != EOF)
+        while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5])) != EOF)
         {
-            // ベクトルの合計値の計算
-            position_y = buf[0];
-            position_z = buf[1];
-
-            if (border_max >= buf[5] && buf[5] >= border_min)
+            const int grid_distance = 10.0; // 代表点距離 [mm]
+            if (buf[0] % grid_distance == grid_distance / 2.0 && buf[1] % grid_distance == grid_distance / 2.0)
             {
-                for (int i = 0; i < mesh_y; i++)
-                {
-                    if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
-                    {
-                        for (int j = 0; j < mesh_z; j++)
-                        {
-                            if (j * grid_size - 5 <= position_z && position_z < j * grid_size + 5)
-                            {
-                                value_y[i][j] = value_y[i][j] + buf[2];
-                                value_z[i][j] = value_z[i][j] + buf[3];
-                                count_mesh[i][j] = count_mesh[i][j] + 1;
-                                vector_num += 1;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
+                y.push_back(buf[0]);
+                z.push_back(buf[1]);
+                v.push_back(buf[2]);
+                w.push_back(buf[3]);
+                r.push_back(buf[5]);
             }
         }
-
         fclose(fp);
-        // data_num（データの使用枚数）に注意!!
-    }
 
-    printf("Vector num : %d\n", vector_num);
+        /* 平均の計算 */
+        const int grid_num = width_mm / 10.0 * height_mm / 10.0;
+        for (int m = 0; m < grid_num; m++)
+            for (int n = 0; n < r.size(); n++)
+            {
+                const float if ()
+                {
+                    /* code */
+                }
+            }
+    }
 
     float v_y_value = 0;
     float v_z_value = 0;
@@ -107,7 +104,7 @@ int main()
     counter = 0;
 
     char writefile[100];
-    sprintf(writefile, "%s/%s/PTV/PTV_velocity_dat/velocity_%s.dat", dir_path, name, name);
+    sprintf(writefile, "%s/%s/43_PTV/%s/PTV_velocity_dat/velocity.dat", dir_path, name, data_set);
 
     const float time = delta_n / shutter_speed;
 
@@ -121,11 +118,11 @@ int main()
             {
                 // 平均値の算出
                 value_y[i][j] = value_y[i][j] / count_mesh[i][j] * width_mm / width_px;               // y方向の移動量 [mm]
-                value_z[i][j] = value_z[i][j] / count_mesh[i][j] * width_mm / width_px;               // z方向の移動量 [mm]
+                value_z[i][j] = value_z[i][j] / count_mesh[i][j] * height_mm / height_px;             // z方向の移動量 [mm]
                 v_value = sqrt(value_y[i][j] * value_y[i][j] + value_z[i][j] * value_z[i][j]) / time; // 全体の速度 [mm/s]
 
                 // 誤ベクトル処理
-                if (v_value >= 2.5)
+                if (100 < v_value)
                 {
                     value_y[i][j] = 0;
                     value_z[i][j] = 0;
@@ -141,8 +138,8 @@ int main()
 
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
-            position_z = j * grid_size * (float)height_mm / height_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm), value_z[i][j] * (width_px / width_mm), v_value); // 資料画像用にベクトルの長さを誇張
+            position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 2.0, value_z[i][j] * 2.0, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -152,31 +149,33 @@ int main()
 
     // ファイル名
     char graphfile[100], graphtitle[100];
-    sprintf(graphfile, "%s/%s/PTV/PTV_velocity_svg/velocity_%s.svg", dir_path, name, name);
+    sprintf(graphfile, "%s/%s/43_PTV/%s/PTV_velocity_svg/velocity.png", dir_path, name, data_set);
     sprintf(graphtitle, "Velocity [mm/s]");
 
     // 軸の設定
 
     // range x
-    // float x_min = 5;
-    // float x_max = 35;
+    // const float x_min = 30;
+    // const float x_max = 70;
 
     // range y
     // float y_min = 5;
     // float y_max = 35;
 
     // // range x
-    const float x_min = width_shot_center - 7.5;
-    const float x_max = width_shot_center + 7.5;
+    // const float x_min = 0;
+    // const float x_max = 90;
+
+    const float x_min = 20;
+    const float x_max = 70;
 
     // // range y
-    const float y_min = height_shot_center - 7.5;
-    const float y_max = height_shot_center + 7.5;
+    const float y_min = 0;
+    const float y_max = 30;
 
     // range color
     float cb_min = 0;
-    float cb_max = 2.5;
-    // float cb_max = 10;
+    float cb_max = 30;
 
     // label
     const char *xxlabel = "y [mm]";
@@ -185,12 +184,11 @@ int main()
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
     {
-        printf("gnuplot is not here!\n");
-        exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
+    // fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal png enhanced size 900, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -203,23 +201,20 @@ int main()
     fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
-    // グラフタイトル
-    // fprintf(gp, "set title '%s'\n", graphtitle);
-
     // ベクトルの色付け
     fprintf(gp, "set palette rgb 22,13,-31\n");
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
-    // 軸ラベル
-    fprintf(gp, "set xlabel '%s'\n", xxlabel);
-    fprintf(gp, "set ylabel '%s'\n", yylabel);
+    // // 軸ラベル
+    // fprintf(gp, "set xlabel '%s'\n", xxlabel);
+    // fprintf(gp, "set ylabel '%s'\n", yylabel);
 
-    // 軸のラベル位置
-    fprintf(gp, "set xlabel offset 0.0, 0.5\n");
-    fprintf(gp, "set ylabel offset 1.0, 0.0\n");
+    // // 軸のラベル位置
+    // fprintf(gp, "set xlabel offset 0.0, 0.5\n");
+    // fprintf(gp, "set ylabel offset 1.0, 0.0\n");
 
     // 軸の数値位置
-    fprintf(gp, "set xtics offset 0.0, 0.0\n");
+    fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
