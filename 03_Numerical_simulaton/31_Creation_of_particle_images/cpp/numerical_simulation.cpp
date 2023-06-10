@@ -72,9 +72,15 @@ FUNCTION : main
 int main()
 {
     /* 保存ディレクトリの設定 */
-    string name;
-    cout << "Case Name:";
-    cin >> name;
+    char name_tmp[100];
+    sprintf(name_tmp, "%.f-%d", deg, num_per_image);
+    string name = string(name_tmp);
+
+    /* 保存ディレクトリの設定 */
+    // string name;
+    // cout << "Case Name:";
+    // cin >> name;
+
 
     /* ディレクトリパスの設定 */
     dir_path = main_path + name + "/";
@@ -125,7 +131,7 @@ int main()
 
     for (int i = 1; i <= shutter_speed * time_max; i++)
     {
-        printf("[%d]\t", i);
+        // printf("[%d]\t", i);
 
         /* ベクターの初期化 */
         lls_1.intensity.clear();                                    // LLS(1)
@@ -179,7 +185,7 @@ int main()
         string full_bmp_file = dir_path + "Full/particle_image_bmp/" + to_string(i) + ".bmp"; // datファイルのパス
         Create_Img_24bit(full_bmp_file, lls_1.intensity, lls_2.intensity);
 
-        printf("\n");
+        // printf("\n");
     }
 
     return 0;
@@ -436,7 +442,7 @@ void Simulate_Rotation_near_the_ground(float seconds)
     vtheta_ave = vtheta_ave / x.position_tank.size();
     u_ave = u_ave / x.position_tank.size();
     r_ave = r_ave / x.position_tank.size();
-    printf("r = %.3f\tVr = %.3f\tVΘ = %.3f\tu = %.3f\t", r_ave, vr_ave, vtheta_ave, u_ave);
+    // printf("r = %.3f\tVr = %.3f\tVΘ = %.3f\tu = %.3f\t", r_ave, vr_ave, vtheta_ave, u_ave);
 }
 
 /******************************************************************************
@@ -572,7 +578,7 @@ void Cal_Intensity(vector<vector<float>> &intensity, float position, float min, 
         }
     }
 
-    printf("n = %d\t", n);
+    // printf("n = %d\t", n);
 }
 
 /******************************************************************************
