@@ -22,8 +22,8 @@ const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 // const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
 
 /* 主要パラメータ */
-const float deg = 16;          // 壁面の回転速度 [deg/s]
-const int num_per_image = 100; // 1枚あたりに映り込む粒子数 [個]
+const float deg = 10;          // 壁面の回転速度 [deg/s]
+const int num_per_image = 250; // 1枚あたりに映り込む粒子数 [個]
 
 /* 流れの条件 */
 const float flow_speed = 8.5;       // 流速 [mm/s]
