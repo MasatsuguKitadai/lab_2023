@@ -32,30 +32,30 @@ TIME_A=`date +%s`
 
 #############################################################
 
-## プロセス(1)
-./out/10-50.out &
-pid1=${!}
-sleep 1
-./out/10-100.out &
-pid2=${!}
-sleep 1
-./out/10-150.out &
-pid3=${!}
-sleep 1
-wait ${pid1} ${pid2} ${pid3}
+# ## プロセス(1)
+# ./out/10-50.out &
+# pid1=${!}
+# sleep 1
+# ./out/10-100.out &
+# pid2=${!}
+# sleep 1
+# ./out/10-150.out &
+# pid3=${!}
+# sleep 1
+# wait ${pid1} ${pid2} ${pid3}
 
-# 処理時間の計算
-TIME_B=`date +%s`
+# # 処理時間の計算
+# TIME_B=`date +%s`
 
-PT=`expr ${TIME_B} - ${TIME_A}`
-H=`expr ${PT} / 3600`
-PT=`expr ${PT} % 3600`
-M=`expr ${PT} / 60`
-S=`expr ${PT} % 60`
+# PT=`expr ${TIME_B} - ${TIME_A}`
+# H=`expr ${PT} / 3600`
+# PT=`expr ${PT} % 3600`
+# M=`expr ${PT} / 60`
+# S=`expr ${PT} % 60`
 
-# Finish
-echo "Finish\t:" `date '+%y/%m/%d %H:%M:%S'`
-echo "Time\t: ${H}:${M}:${S}"
+# # Finish
+# echo "Finish\t:" `date '+%y/%m/%d %H:%M:%S'`
+# echo "Time\t: ${H}:${M}:${S}"
 
 #############################################################
 
