@@ -66,10 +66,7 @@ sleep 1
 ./out/10-250.out &
 pid2=${!}
 sleep 1
-./out/10-300.out &
-pid3=${!}
-sleep 1
-wait ${pid1} ${pid2} ${pid3}
+wait ${pid1} ${pid2}
 
 # 処理時間の計算
 TIME_B=`date +%s`
@@ -87,10 +84,10 @@ echo "Time\t: ${H}:${M}:${S}"
 #############################################################
 
 ## プロセス(3)
-./out/10-400.out &
+./out/10-300.out &
 pid1=${!}
 sleep 1
-./out/10-450.out &
+./out/10-350.out &
 pid2=${!}
 sleep 1
 wait ${pid1} ${pid2}
@@ -111,13 +108,34 @@ echo "Time\t: ${H}:${M}:${S}"
 #############################################################
 
 ## プロセス(4)
-./out/10-350.out &
+./out/10-400.out &
 pid1=${!}
 sleep 1
-./out/10-500.out &
+./out/10-450.out &
 pid2=${!}
 sleep 1
 wait ${pid1} ${pid2} 
+
+# 処理時間の計算
+TIME_B=`date +%s`
+
+PT=`expr ${TIME_B} - ${TIME_A}`
+H=`expr ${PT} / 3600`
+PT=`expr ${PT} % 3600`
+M=`expr ${PT} / 60`
+S=`expr ${PT} % 60`
+
+# Finish
+echo "Finish\t:" `date '+%y/%m/%d %H:%M:%S'`
+echo "Time\t: ${H}:${M}:${S}"
+
+#############################################################
+
+## プロセス(5)
+./out/10-500.out &
+pid1=${!}
+sleep 1
+wait ${pid1} 
 
 # 処理時間の計算
 TIME_B=`date +%s`
