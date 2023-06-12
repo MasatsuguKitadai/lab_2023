@@ -68,7 +68,7 @@ const float lls_2_thickness = lls_1_thickness * 3.0;        // 後方のllsの�
 
 /* 粒子の生成範囲の設定 */
 const float range_x_max = lls_2_position + 0.05; // x方向の粒子生成範囲　[mm]
-const float range_x_min = lls_2_position - 1.5;  // x方向の粒子生成範囲　[mm]
+const float range_x_min = lls_2_position - 1.0;  // x方向の粒子生成範囲　[mm]
 // const float range_x_min = -250 * 0.003; // x方向の粒子生成範囲　[mm]
 
 const float range_x = range_x_max - range_x_min; // x方向の粒子生成範囲　[mm]

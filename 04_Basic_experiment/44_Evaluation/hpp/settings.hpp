@@ -13,9 +13,10 @@ const int size_px = width_px * height_px; // 画像の画素数 [px]
 const int delta_n = 11;                   // 対応させる時刻差 (枚)
 const int w1 = 30;                        // 探査窓 [px] x [px]
 const int w2 = 60;                        // 検査窓 [px] x [px]
-const int grid_size = 16;                 // グリッドサイズ [px] (8 pixcel = 1 mm)
-const float shutter_speed = 800;          // 撮影速度 [1/s]
-const float frame_rate = 800;             // 撮影速度 [1/s]
+// const int grid_size = 8;                  // グリッドサイズ [px]
+const int grid_size = 16;        // グリッドサイズ [px]
+const float shutter_speed = 800; // 撮影速度 [1/s]
+const float frame_rate = 800;    // 撮影速度 [1/s]
 
 /* 仮想上の撮影画像の設定 */
 const float width_mm = 100.0;          // 実際の撮影範囲の横幅 [mm]

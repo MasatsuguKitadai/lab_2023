@@ -23,7 +23,7 @@ const int mesh_y = width_px / grid_size;
 const int mesh_z = height_px / grid_size;
 float value_y[mesh_y][mesh_z] = {0};
 float value_z[mesh_y][mesh_z] = {0};
-float r[mesh_y][mesh_z] = [0];
+float r[mesh_y][mesh_z] = {0};
 int count_mesh[mesh_y][mesh_z] = {0};
 float position_y, position_z;
 
@@ -118,7 +118,6 @@ int main()
     fp = fopen(writefile, "w");
 
     for (int i = 0; i < mesh_y; i++)
-    {
         for (int j = 0; j < mesh_z; j++)
         {
             if (count_mesh[i][j] != 0)
@@ -147,11 +146,12 @@ int main()
             }
 
             // ベクトルの始点
-            position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
-            position_z = j * grid_size * (float)width_mm / width_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\n", position_y - 5, position_z - 5, value_y[i][j] * 2.0, value_z[i][j] * 2.0, v_value, r_ave); // 資料画像用にベクトルの長さを誇張
+            // position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
+            // position_z = j * grid_size * (float)height_mm / height_px + (height_shot_center - height_mm / 2);
+            position_y = i * grid_size * (float)width_mm / width_px;
+            position_z = j * grid_size * (float)height_mm / height_px;
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 3.0, value_z[i][j] * 3.0, v_value, r_ave); // 資料画像用にベクトルの長さを誇張
         }
-    }
 
     fclose(fp);
 
@@ -176,12 +176,12 @@ int main()
     // const float x_min = 0;
     // const float x_max = 90;
 
-    const float x_min = 20;
-    const float x_max = 70;
+    const float x_min = 0;
+    const float x_max = 100;
 
     // // range y
     const float y_min = 0;
-    const float y_max = 30;
+    const float y_max = 40;
 
     // range color
     float cb_min = 0;

@@ -81,7 +81,6 @@ int main()
     // cout << "Case Name:";
     // cin >> name;
 
-
     /* ディレクトリパスの設定 */
     dir_path = main_path + name + "/";
     cout << dir_path << endl;
@@ -131,7 +130,7 @@ int main()
 
     for (int i = 1; i <= shutter_speed * time_max; i++)
     {
-        // printf("[%d]\t", i);
+        printf("[%d]\t", i);
 
         /* ベクターの初期化 */
         lls_1.intensity.clear();                                    // LLS(1)
