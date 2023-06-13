@@ -1,5 +1,5 @@
 #!/bin/bash
-g++ cpp/PTV_test.cpp -o "out/PTV_test.out"
+g++ cpp/PTV_n.cpp -o "out/PTV_n.out"
 # g++ cpp/velocity.cpp -o "out/velocity.out"
 
 # 名前の読み取り
@@ -10,13 +10,12 @@ for delta in 8 9 10 11 12 13 14 15 16 17
 do
     expect -c " 
     set timeout -1
-    spawn ./out/PTV_test.out
+    spawn ./out/PTV_n.out
     expect \"Delta:\"
     send \"$delta\n\"
     expect \"$\n\"
     "
 done
-
 
 # 処理時間の計算
 TIME_B=`date +%s`

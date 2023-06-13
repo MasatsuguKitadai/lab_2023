@@ -1,4 +1,4 @@
-\documentclass[twocolumn,a4j]{jsarticle}
+\documentclass[a4j]{jsarticle}
 \setlength{\topmargin}{-20.4cm}
 \setlength{\oddsidemargin}{-10.4mm}
 \setlength{\evensidemargin}{-10.4mm}
@@ -91,19 +91,55 @@ lineskip=-0.5ex
 \columnseprule=0.1mm
 \maketitle
 
-\section*{報告内容}
-\begin{enumerate}[1.]
-  \item 枚数差の組み合わせ変更
-  \item 来週の予定
-\end{enumerate}
+\begin{figure*}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=140mm]{../images/vector_grid.png}
+    \caption{Velocity vectors of delta wake : $n = 10$}
+  \end{center}
+  \begin{minipage}[b]{0.33\linewidth}
+    \centering
+    \includegraphics[keepaspectratio, scale=0.26]{../images/x=40,y=10.png}
+    \subcaption{Blue : $(x,y) = (40,10)$}
+  \end{minipage}
+  \begin{minipage}[b]{0.33\linewidth}
+    \centering
+    \includegraphics[keepaspectratio, scale=0.26]{../images/x=50,y=20.png}
+    \subcaption{Red : $(x,y) = (50,20)$}
+  \end{minipage}
+  \begin{minipage}[b]{0.33\linewidth}
+    \centering
+    \includegraphics[keepaspectratio, scale=0.26]{../images/x=90,y=20.png}
+    \subcaption{Pink : $(x,y) = (90,20)$}
+  \end{minipage}
+  \caption{Value transition of $v$, $w$ and $R$}
+\end{figure*}
 
-\section{枚数差の組み合わせ変更}
+\begin{multicols*}{2}
+  \section*{報告内容}
+  \begin{enumerate}[1.]
+    \item 枚数差の組み合わせ変更(続)
+    \item 来週の予定
+  \end{enumerate}
+  \section{枚数差の組み合わせ変更(続)}
+  枚数差の組み合わせによる各値の推移を調べた．
+  撮影画像に対して Fig.1 のように $y,z$ 方向に 10 [mm] 間隔で格子点を配置し，
+  その点上での $y$方向速度 $v$ [mm/s]， $z$方向速度 $w$ [mm/s]，および
+  PTVプログラムで算出される相互相間係数 $R$ [-] の変化をFig.2に示す．
+  \vskip \baselineskip
+  また，Fig.2で取り上げた代表点について，青(40,10)は渦成分を大きく含むと考えられる位置，
+  赤(50,20)は渦の中心付近の位置，紫(90,20)は渦の影響が少ないと考えられる位置
+  を選択している．Fig.2(a) は$R$のピークが$n=10$にあることに対して，
+  Fig.2(c) は$n=9$にあることがわかる，
+  これより，主流方向の速度を考慮したPTVアルゴリズムの作成が必要であることがわかる．
+
+  \section{来週の予定}
+  \begin{itemize}
+    \item 数値シミュレーション結果のグラフ作成
+    \item ISTP-33 原稿作成
+  \end{itemize}
+\end{multicols*}
 
 
-\section{来週の予定}
-\begin{itemize}
-  \item 数値シミュレーション結果のグラフ作成
-  \item ISTP-33 原稿作成
-\end{itemize}
 
 \end{document}

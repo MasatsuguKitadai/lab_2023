@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  13 JUN 2023 11:59
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  13 JUN 2023 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -406,10 +406,6 @@ Package: ajmacros 2019/04/01 21:00 iNOUE Koich! <inoue@ma.ns.musashi-tech.ac.jp>
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \c@tracingmulticols=\count309
-
-
-Package multicol Warning: May not work with the twocolumn option on input line 142.
-
 \mult@box=\box84
 \multicol@leftmargin=\dimen268
 \c@unbalance=\count310
@@ -552,14 +548,14 @@ LaTeX Font Info:    ... okay on input line 90.
 * \headsep=15.69719pt
 * \topskip=12.76073pt
 * \footskip=28.45792pt
-* \marginparwidth=27.74062pt
+* \marginparwidth=18.49374pt
 * \marginparsep=18.49374pt
 * \columnsep=18.49374pt
 * \skip\footins=16.0pt plus 5.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
-* \@twocolumntrue
+* \@twocolumnfalse
 * \@twosidefalse
 * \@mparswitchfalse
 * \@reversemarginfalse
@@ -595,25 +591,65 @@ LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 93.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 93.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 95.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 95.
+File: ../images/vector_grid.png Graphic file (type bmp)
+<../images/vector_grid.png>
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 98.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 98.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+File: ../images/x=40,y=10.png Graphic file (type bmp)
+<../images/x=40,y=10.png>
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 103.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 103.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 94.
+(Font)              scaled to size 7.39746pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 103.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 94.
+(Font)              scaled to size 7.39746pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 5.5481pt on input line 103.
+File: ../images/x=50,y=20.png Graphic file (type bmp)
+<../images/x=50,y=20.png>
+File: ../images/x=90,y=20.png Graphic file (type bmp)
+<../images/x=90,y=20.png>
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 13.31541pt on input line 119.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 13.31541pt on input line 119.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 13.31541pt on input line 119.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 13.31541pt on input line 119.
  [1
-
-
 
 ] (./230613.aux)
 Package rerunfilecheck Info: File `230613.out' has not changed.
-(rerunfilecheck)             Checksum: F227703CC1B2700B4AF484B14453B255;118.
+(rerunfilecheck)             Checksum: 791F142542860BF3A79B27E0589B6A6C;125.
  ) 
 Here is how much of TeX's memory you used:
- 15169 strings out of 478741
- 234357 string characters out of 5860983
- 531062 words of memory out of 5000000
- 33411 multiletter control sequences out of 15000+600000
- 476134 words of font info for 63 fonts, out of 8000000 for 9000
+ 15272 strings out of 478741
+ 236107 string characters out of 5860983
+ 537076 words of memory out of 5000000
+ 33485 multiletter control sequences out of 15000+600000
+ 482651 words of font info for 96 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,5n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 230613.dvi (1 page, 2388 bytes).
+Output written on 230613.dvi (1 page, 5016 bytes).

@@ -144,11 +144,11 @@ void Gnuplot(const char *name, const char *data_set)
             sprintf(graphname, "%s/%s/44_Evaluation/%s/graph/x=%.0f,y=%.0f.png", dir_path, name, data_set, y_tmp, z_tmp);
 
             // 描画範囲の指定
-            const int x_min = 7;
-            const int x_max = 18;
+            const float x_min = 7.5;
+            const float x_max = 17.5;
 
-            const float y_min = -80;
-            const float y_max = 80;
+            const float y_min = -100;
+            const float y_max = 100;
 
             // Gnuplot 呼び出し
             if ((gp = popen("gnuplot", "w")) == NULL)
@@ -167,7 +167,7 @@ void Gnuplot(const char *name, const char *data_set)
             fprintf(gp, "set key right top\n");
 
             // 軸の範囲
-            fprintf(gp, "set xrange [%d:%d]\n", x_min, x_max);
+            fprintf(gp, "set xrange [%.1f:%.1f]\n", x_min, x_max);
             fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
             fprintf(gp, "set y2range [%.3f:%.3f]\n", -0.0, 1.0);
 
@@ -178,7 +178,7 @@ void Gnuplot(const char *name, const char *data_set)
 
             // 軸のラベル位置
             fprintf(gp, "set xlabel offset 0.0, 0.0\n");
-            fprintf(gp, "set ylabel offset 0.0, 0.0\n");
+            fprintf(gp, "set ylabel offset 1.0, 0.0\n");
             fprintf(gp, "set y2label offset 0.0, 0.0\n");
             fprintf(gp, "set ticslevel 0\n");
 

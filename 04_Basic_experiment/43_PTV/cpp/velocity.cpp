@@ -159,7 +159,7 @@ int main()
 
     // ファイル名
     char graphfile[100], graphtitle[100];
-    sprintf(graphfile, "%s/%s/43_PTV/%s/PTV_velocity_svg/velocity.png", dir_path, name, data_set);
+    sprintf(graphfile, "%s/%s/43_PTV/%s/PTV_velocity_svg/velocity.svg", dir_path, name, data_set);
     sprintf(graphtitle, "Velocity [mm/s]");
 
     // 軸の設定
@@ -199,8 +199,8 @@ int main()
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
-    // fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set terminal png enhanced size 900, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
+    // fprintf(gp, "set terminal png enhanced size 900, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -227,7 +227,7 @@ int main()
 
     // 軸の数値位置
     fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");
-    fprintf(gp, "set ytics offset 0.0, 0.0\n");
+    fprintf(gp, "set ytics 10 offset 0.0, 0.0\n");
 
     // グラフの出力
     fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", writefile);

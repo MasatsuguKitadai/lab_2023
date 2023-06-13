@@ -5,7 +5,12 @@ g++ cpp/velocity.cpp -o "out/velocity.out"
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A="date +%s"
 
-data="20230517"   
+# 名前の読み取り
+echo -n DATA_NAME:
+read data 
+
+echo -n DATA_SET:
+read set 
 
 for delta in 8 9 10 11 12 13 14 15 16 17
 do
@@ -15,7 +20,7 @@ do
     expect \"Data Name:\"
     send \"$data\n\"
     expect \"Data Set:\"
-    send \"delta_001_n=$delta\n\"
+    send \"${set}_n=$delta\n\"
     expect \"$\n\"
     "
 done
