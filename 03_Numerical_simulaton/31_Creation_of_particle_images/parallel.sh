@@ -3,7 +3,8 @@
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
-## プロセス(2)
+#############################################################
+
 ./out/numerical_simulation_300.out
 pid1=${!}
 sleep 1
@@ -81,3 +82,5 @@ S=`expr ${PT} % 60`
 # Finish
 echo "Finish\t:" `date '+%y/%m/%d %H:%M:%S'`
 echo "Time\t: ${H}:${M}:${S}"
+
+#############################################################
