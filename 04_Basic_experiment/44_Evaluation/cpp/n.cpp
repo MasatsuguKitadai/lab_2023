@@ -188,13 +188,13 @@ void Gnuplot(const char *name, const char *data_set)
             fprintf(gp, "set y2tics 0.2 offset 0.0, 0.0\n");
 
             // グラフの出力 (n-v)
-            fprintf(gp, "plot '%s' using 1:2 axes x1y1 with points lc 'blue' ps 1 pt 7 title 'v', ", filename);
+            fprintf(gp, "plot '%s' using 1:2 axes x1y1 with points lc 'blue' ps 1.5 pt 7 title 'v', ", filename);
             fprintf(gp, "'%s' using 1:2 axes x1y1 with lines lc 'blue' lw 1 notitle,", filename);
             // グラフの出力 (n-w)
-            fprintf(gp, "'%s' using 1:3 axes x1y1 with points lc 'red' ps 1 pt 7 title 'w', ", filename);
+            fprintf(gp, "'%s' using 1:3 axes x1y1 with points lc 'red' ps 1.5 pt 7 title 'w', ", filename);
             fprintf(gp, "'%s' using 1:3 axes x1y1 with lines lc 'red' lw 1 notitle, ", filename);
             // グラフの出力 (n-r)
-            fprintf(gp, "'%s' using 1:4 axes x1y2 with points lc 'black' ps 1 pt 7 title 'r', ", filename);
+            fprintf(gp, "'%s' using 1:4 axes x1y2 with points lc 'black' ps 1.5 pt 7 title 'R', ", filename);
             fprintf(gp, "'%s' using 1:4 axes x1y2 with lines lc 'black' lw 1 notitle\n", filename);
 
             fflush(gp); // Clean up Data
