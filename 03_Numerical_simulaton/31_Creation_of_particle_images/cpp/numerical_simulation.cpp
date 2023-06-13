@@ -130,7 +130,7 @@ int main()
 
     for (int i = 1; i <= shutter_speed * time_max; i++)
     {
-        printf("[%d]\t", i);
+        printf("[%d]\n", i);
 
         /* ベクターの初期化 */
         lls_1.intensity.clear();                                    // LLS(1)
