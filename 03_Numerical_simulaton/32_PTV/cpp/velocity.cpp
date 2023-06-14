@@ -72,11 +72,11 @@ int main()
             {
                 for (int i = 0; i < mesh_y; i++)
                 {
-                    if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
+                    if (i * grid_size - grid_size / 2 <= position_y && position_y < i * grid_size + grid_size / 2)
                     {
                         for (int j = 0; j < mesh_z; j++)
                         {
-                            if (j * grid_size - 5 <= position_z && position_z < j * grid_size + 5)
+                            if (j * grid_size - grid_size / 2 <= position_z && position_z < j * grid_size + grid_size / 2)
                             {
                                 value_y[i][j] = value_y[i][j] + buf[2];
                                 value_z[i][j] = value_z[i][j] + buf[3];
@@ -142,7 +142,7 @@ int main()
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
             position_z = j * grid_size * (float)height_mm / height_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm), value_z[i][j] * (width_px / width_mm), v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm) * e, value_z[i][j] * (width_px / width_mm) * e, v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 

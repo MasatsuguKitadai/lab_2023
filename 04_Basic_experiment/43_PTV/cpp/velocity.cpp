@@ -70,11 +70,11 @@ int main()
 
             if (border_max >= buf[5] && buf[5] >= border_min)
             {
-                for (int i = 0; i < mesh_y; i++)
+                for (int i = 0; i <= mesh_y; i++)
                 {
                     if (i * grid_size - grid_size / 2 <= position_y && position_y < i * grid_size + grid_size / 2)
                     {
-                        for (int k = 0; k < mesh_z; k++)
+                        for (int k = 0; k <= mesh_z; k++)
                         {
                             if (k * grid_size - grid_size / 2 <= position_z && position_z < k * grid_size + grid_size / 2)
                             {
@@ -93,7 +93,7 @@ int main()
         }
 
         fclose(fp);
-        printf("Reading : %d\n", j);
+        // printf("Reading : %d\n", j);
         // number（データの使用枚数）に注意!!
     }
 
@@ -117,8 +117,8 @@ int main()
 
     fp = fopen(writefile, "w");
 
-    for (int i = 0; i < mesh_y; i++)
-        for (int j = 0; j < mesh_z; j++)
+    for (int i = 0; i <= mesh_y; i++)
+        for (int j = 0; j <= mesh_z; j++)
         {
             if (count_mesh[i][j] != 0)
             {
@@ -150,7 +150,7 @@ int main()
             // position_z = j * grid_size * (float)height_mm / height_px + (height_shot_center - height_mm / 2);
             position_y = i * grid_size * (float)width_mm / width_px;
             position_z = j * grid_size * (float)height_mm / height_px;
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 3.0, value_z[i][j] * 3.0, v_value, r_ave); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * 2.5, value_z[i][j] * 2.5, v_value, r_ave); // 資料画像用にベクトルの長さを誇張
         }
 
     fclose(fp);
@@ -185,7 +185,7 @@ int main()
 
     // range color
     float cb_min = 0;
-    float cb_max = 30;
+    float cb_max = 50;
 
     // label
     const char *xxlabel = "y [mm]";
@@ -199,7 +199,7 @@ int main()
     }
 
     // fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 800, 400 font 'Times New Roman, 16'\n");
     // fprintf(gp, "set terminal png enhanced size 900, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
@@ -217,13 +217,13 @@ int main()
     fprintf(gp, "set palette rgb 22,13,-31\n");
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
-    // // 軸ラベル
-    // fprintf(gp, "set xlabel '%s'\n", xxlabel);
-    // fprintf(gp, "set ylabel '%s'\n", yylabel);
+    // 軸ラベル
+    fprintf(gp, "set xlabel '%s'\n", xxlabel);
+    fprintf(gp, "set ylabel '%s'\n", yylabel);
 
-    // // 軸のラベル位置
-    // fprintf(gp, "set xlabel offset 0.0, 0.5\n");
-    // fprintf(gp, "set ylabel offset 1.0, 0.0\n");
+    // 軸のラベル位置
+    fprintf(gp, "set xlabel offset 0.0, 0.5\n");
+    fprintf(gp, "set ylabel offset 1.0, 0.0\n");
 
     // 軸の数値位置
     fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");

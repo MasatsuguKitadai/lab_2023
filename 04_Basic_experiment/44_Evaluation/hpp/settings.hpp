@@ -26,6 +26,11 @@ const float height_shot_center = 20.0; // z方向の撮影中心 [mm]
 const float border_min = 0.0;          // PTVの相関係数のしきい値 [-]
 const float border_max = 1.00;         // PTVの相関係数のしきい値 [-]
 
+/* 評価時のパラメータ */
+const float grid_distance = 10.0; // 代表点距離 [mm]
+const int n_max = 12;             // PTVの最大対応枚数 [-]
+const int n_min = 8;              // PTVの最小対応枚数 [-]
+
 /** 固定パラメータ **/
 unsigned char header_8bit[1078]; // 8bit header
 unsigned char header_24bit[54];  // 24bit header

@@ -26,6 +26,7 @@ const float width_shot_center = 50;  // y方向の撮影中心 [mm]
 const float height_shot_center = 50; // z方向の撮影中心 [mm]
 const float border_min = 0.90;       // PTVの相関係数のしきい値 [-]
 const float border_max = 1.00;       // PTVの相関係数のしきい値 [-]
+const float e = 1.50;                // 描画するベクトルの倍率 [-]
 
 /** 固定パラメータ **/
 unsigned char header_8bit[1078]; // 8bit header
