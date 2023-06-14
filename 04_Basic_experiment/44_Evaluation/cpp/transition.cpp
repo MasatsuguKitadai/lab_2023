@@ -76,7 +76,7 @@ void Create_new_file(const char *name, const char *data_set)
         {
             float y_tmp = i * grid_distance;
             float z_tmp = j * grid_distance;
-            sprintf(filename, "%s/%s/44_Evaluation/%s/data/x=%.0f,y=%.0f.dat", dir_path, name, data_set, y_tmp, z_tmp);
+            sprintf(filename, "%s/%s/44_Evaluation/%s/data/y=%.0f,z=%.0f.dat", dir_path, name, data_set, y_tmp, z_tmp);
             fp = fopen(filename, "w");
             fclose(fp);
         }
@@ -120,7 +120,7 @@ void Load_data(const char *name, const char *data_set, int n)
     char filename[100];
     for (int i = 0; i < r.size(); i++)
     {
-        sprintf(filename, "%s/%s/44_Evaluation/%s/data/x=%.0f,y=%.0f.dat", dir_path, name, data_set, y[i], z[i]);
+        sprintf(filename, "%s/%s/44_Evaluation/%s/data/y=%.0f,z=%.0f.dat", dir_path, name, data_set, y[i], z[i]);
         fp = fopen(filename, "a");
         fprintf(fp, "%d\t%f\t%f\t%f\n", n, v[i] / t, w[i] / t, r[i]);
         fclose(fp);
@@ -140,8 +140,8 @@ void Gnuplot(const char *name, const char *data_set)
         {
             float y_tmp = i * grid_distance;
             float z_tmp = j * grid_distance;
-            sprintf(filename, "%s/%s/44_Evaluation/%s/data/x=%.0f,y=%.0f.dat", dir_path, name, data_set, y_tmp, z_tmp);
-            sprintf(graphname, "%s/%s/44_Evaluation/%s/graph/x=%.0f,y=%.0f.png", dir_path, name, data_set, y_tmp, z_tmp);
+            sprintf(filename, "%s/%s/44_Evaluation/%s/data/y=%.0f,z=%.0f.dat", dir_path, name, data_set, y_tmp, z_tmp);
+            sprintf(graphname, "%s/%s/44_Evaluation/%s/graph/y=%.0f,z=%.0f.png", dir_path, name, data_set, y_tmp, z_tmp);
 
             // 描画範囲の指定
             const float x_min = 7.5;

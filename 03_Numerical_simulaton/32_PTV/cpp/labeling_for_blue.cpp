@@ -118,7 +118,7 @@ int main()
             label = 0;
             tmp = 0;
 
-            if (ary[i] >= 20)
+            if (ary[i] >= 1)
             // if (ary[i] != 0)
             {
                 // エリア内のラベルの確認
