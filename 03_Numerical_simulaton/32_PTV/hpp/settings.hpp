@@ -31,3 +31,38 @@ const float e = 1.50;                // 描画するベクトルの倍率 [-]
 /** 固定パラメータ **/
 unsigned char header_8bit[1078]; // 8bit header
 unsigned char header_24bit[54];  // 24bit header
+
+/******************************************************************************
+FUNCTION : Progress_meter
+概要     ：進捗割合を表示する
+******************************************************************************/
+int Progress_meter(const char program_name[], int i, int max, int progress_count)
+{
+    /* メーターの表示 */
+    if (i == 0)
+    {
+        printf("\n【%s】\n", program_name);
+        printf("0    10   20   30   40   50   60   70   80   90  100 [%%]\n"
+               "|----|----|----|----|----|----|----|----|----|----|\n"
+               "*");
+        fflush(stdout);
+        progress_count += 1;
+    }
+
+    /* 進捗率の計算 */
+    const float progress_ratio = (float)i / (float)max * 50.0; // [%]
+    if (progress_ratio > progress_count)
+    {
+        printf("*");
+        fflush(stdout);
+        progress_count += 1;
+    }
+
+    /* 完了 */
+    if (i == max - 1)
+    {
+        printf("*\n\n");
+    }
+
+    return progress_count;
+}

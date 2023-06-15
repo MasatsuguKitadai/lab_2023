@@ -1,13 +1,13 @@
 #!/bin/bash
 g++ cpp/labeling_for_blue.cpp -o "out/labeling_for_blue.out"
-g++ cpp/PTV.cpp -o "out/PTV_case1.out"
+g++ cpp/PTV.cpp -o "out/PTV.out"
 
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
+for name in 50 100 150 200 250 300 350 500
 # for name in 50 100 150 200 250 300 350 400 450 500
-for name in 500
 do
     expect -c " 
     set timeout -1
@@ -22,7 +22,7 @@ do
     send \"10-$name\n\"
     expect \"$\n\"
 
-    spawn out/PTV_case1.out
+    spawn out/PTV.out
     expect \"Case Name:\"
     send \"10-$name\n\"
     expect \"$\n\"

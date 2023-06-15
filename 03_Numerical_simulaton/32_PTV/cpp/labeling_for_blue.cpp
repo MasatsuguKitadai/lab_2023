@@ -24,6 +24,10 @@ mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_I
 /** プロトタイプ宣言 **/
 void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
 
+/* 進捗表示 */
+const char program_name[] = "LABELING FOR BLUE IMAGE";
+int progress_counter = 0; // 進捗表記用
+
 /******************************************************************************/
 
 int main()
@@ -404,7 +408,8 @@ int main()
             pclose(gp);
         }
 
-        printf("Labeling blue\t%4d\tn = %d\n", m, n);
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, m - 1, data_num, progress_counter);
     }
 
     return 0;

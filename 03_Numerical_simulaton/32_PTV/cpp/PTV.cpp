@@ -17,14 +17,19 @@ using namespace std;
 FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
+#include "../hpp/settings.hpp"
+
 /** プロトタイプ宣言 **/
 void PTV(int num, const char *name);
 void plot_ptv(int num, const char *name);
 void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
 
+/* 進捗表示 */
+const char program_name[] = "PTV";
+int progress_counter = 0; // 進捗表記用
+
 /*****************************************************************************/
 
-#include "../hpp/settings.hpp"
 int px = width_px * height_px;
 int cal_area[w2][w2];
 
@@ -51,16 +56,18 @@ int main()
     /** PIV loop **/
     int i, j;
 
-    for (i = 1; i < data_num - delta_n; i++)
+    for (i = 1; i <= data_num - delta_n; i++)
     {
         j = i + delta_n;
-        printf("PTV : %3d\t", i);
         PTV(i, name);
 
         if (i < 100 - delta_n)
         {
             plot_ptv(i, name);
         }
+
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, i - 1, data_num - delta_n, progress_counter);
     }
 
     return 0;
@@ -400,8 +407,6 @@ void PTV(int num, const char *name)
     }
 
     fclose(fp);
-
-    printf("Number of vector = %d\n", vector_num);
 }
 
 void plot_ptv(int num, const char *name)

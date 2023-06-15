@@ -43,6 +43,10 @@ void Cal_Intensity_Calibration(vector<vector<float>> &intensity);
 void Create_Img_8bit(string file_path, vector<vector<float>> &intensity);
 void Create_Img_24bit(string file_path, vector<vector<float>> &intensity_blue, vector<vector<float>> &intensity_green);
 
+/* 進捗表示 */
+const char program_name[] = "NUMERICAL SIMULATION";
+int progress_counter = 0; // 進捗表記用
+
 /******************************************************************************
 FUNCTION : Settings
 概要：構造体の各要素に任意の値を与える
@@ -88,10 +92,10 @@ int main()
     /* 設定の書き出し */
     cout << endl;
     cout << "////////////////////////////////////////////" << endl;
-    cout << "density (1) [個/mm3] : " << density_particle << endl;
-    cout << "density (2) [個/枚]  : " << num_per_image << endl;
-    cout << "particle    [-]      : " << num_particle << endl;
-    cout << "omega       [rad/s]  : " << deg << " × 180/pi" << endl;
+    cout << "Density (1) [個/mm3] : " << density_particle << endl;
+    cout << "Density (2) [個/枚]  : " << num_per_image << endl;
+    cout << "Particle    [-]      : " << num_particle << endl;
+    cout << "Omega       [rad/s]  : " << deg << " × 180/pi" << endl;
     cout << "////////////////////////////////////////////" << endl;
     cout << endl;
 
@@ -130,7 +134,8 @@ int main()
 
     for (int i = 1; i <= shutter_speed * time_max; i++)
     {
-        printf("[%d]\n", i);
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, i - 1, shutter_speed * time_max, progress_counter);
 
         /* ベクターの初期化 */
         lls_1.intensity.clear();                                    // LLS(1)
@@ -183,8 +188,6 @@ int main()
 
         string full_bmp_file = dir_path + "Full/particle_image_bmp/" + to_string(i) + ".bmp"; // datファイルのパス
         Create_Img_24bit(full_bmp_file, lls_1.intensity, lls_2.intensity);
-
-        // printf("\n");
     }
 
     return 0;
