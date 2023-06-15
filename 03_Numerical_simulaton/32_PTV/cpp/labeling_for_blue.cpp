@@ -88,6 +88,8 @@ int main()
     int num = 0; // ラベリングの番号
     int label = 0;
 
+    float sum_label = 0; // ラベルの合計
+
     for (int m = 1; m <= data_num; m++)
     {
         // 粒子画像の読み込み
@@ -351,6 +353,8 @@ int main()
             }
         }
 
+        sum_label += n;
+
         fclose(fp);
 
         if (m <= 100)
@@ -411,6 +415,10 @@ int main()
         /* 進捗表示 */
         progress_counter = Progress_meter(program_name, m - 1, data_num, progress_counter);
     }
+
+    // ラベルの平均
+    const float ave_label = sum_label / data_num;
+    printf("AVERAGE = %.1f [個/枚]\n\n", ave_label);
 
     return 0;
 }

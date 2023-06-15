@@ -95,8 +95,6 @@ int main()
         // data_num（データの使用枚数）に注意!!
     }
 
-    printf("Vector num : %d\n", vector_num);
-
     float v_y_value = 0;
     float v_z_value = 0;
     float v_value = 0;
@@ -142,7 +140,7 @@ int main()
             // ベクトルの始点
             position_y = i * grid_size * (float)width_mm / width_px + (width_shot_center - width_mm / 2);
             position_z = j * grid_size * (float)height_mm / height_px + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm) * e, value_z[i][j] * (width_px / width_mm) * e, v_value); // 資料画像用にベクトルの長さを誇張
+            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", position_y, position_z, value_y[i][j] * (width_px / width_mm), value_z[i][j] * (width_px / width_mm), v_value); // 資料画像用にベクトルの長さを誇張
         }
     }
 
@@ -230,6 +228,9 @@ int main()
     fprintf(gp, "exit\n"); // Quit gnuplot
 
     pclose(gp);
+
+    /* 使用したベクトルの本数 */
+    printf("\nVector num : %d\n\n", vector_num);
 
     return 0;
 }

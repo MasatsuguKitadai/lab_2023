@@ -221,7 +221,7 @@ float correct_data()
             float v_value = sqrt(v_y[i][j] * v_y[i][j] + v_z[i][j] * v_z[i][j]);
             float position_y_tmp = position_y_mm[i][j] + (width_shot_center - width_mm / 2);
             float position_z_tmp = position_z_mm[i][j] + (height_shot_center - height_mm / 2);
-            fprintf(fp, "%f\t%f\t%lf\t%lf\t%lf\n", position_y_tmp, position_z_tmp, v_y[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_z[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_value);
+            fprintf(fp, "%f\t%f\t%lf\t%lf\t%lf\n", position_y_tmp, position_z_tmp, v_y[i][j] * (delta_n / shutter_speed) * (width_px / width_mm), v_z[i][j] * (delta_n / shutter_speed) * (height_px / height_mm), v_value);
             if (width_mm / 2 - 8 <= position_y_mm[i][j] && position_y_mm[i][j] <= width_mm / 2 + 8)
                 if (height_mm / 2 - 8 <= position_z_mm[i][j] && position_z_mm[i][j] <= height_mm / 2 + 8)
                     if (v_value >= v_max)
@@ -390,9 +390,9 @@ void evaluation(float v_max)
     float rmse_z_per = rmse_z / v_max * 100;
     float rmse_yz_per = rmse_yz / v_max * 100;
 
-    printf("RMSE:  y = %.3f [mm/s]\t%.3f[%]\n", rmse_y, rmse_y_per);
-    printf("RMSE:  z = %.3f [mm/s]\t%.3f[%]\n", rmse_z, rmse_z_per);
-    printf("RMSE: yz = %.3f [mm/s]\t%.3f[%]\n", rmse_yz, rmse_yz_per);
+    printf("RMSE:  y = %.3f [mm/s]\t%.3f[%%]\n", rmse_y, rmse_y_per);
+    printf("RMSE:  z = %.3f [mm/s]\t%.3f[%%]\n", rmse_z, rmse_z_per);
+    printf("RMSE: yz = %.3f [mm/s]\t%.3f[%%]\n", rmse_yz, rmse_yz_per);
 }
 
 /******************************************************************************
@@ -456,7 +456,7 @@ void plot_error()
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title 'Error Value : E_y [%]'\n");
+    fprintf(gp, "set title 'Error Value : E_y [%%]'\n");
     fprintf(gp, "set view map\n");
 
     // ベクトルの色付け
@@ -479,12 +479,12 @@ void plot_error()
     fprintf(gp, "splot '%s' using 1:2:3 with pm3d notitle\n", result_file_str);
 
     // z成分
-    fprintf(gp, "set title 'Error Value : E_z [%]'\n");
+    fprintf(gp, "set title 'Error Value : E_z [%%]'\n");
     fprintf(gp, "set output '%s'\n", graphname_z_str);
     fprintf(gp, "splot '%s' using 1:2:4 with pm3d notitle\n", result_file_str);
 
     // 総成分
-    fprintf(gp, "set title 'Error Value : E [%]'\n");
+    fprintf(gp, "set title 'Error Value : E [%%]'\n");
     fprintf(gp, "set output '%s'\n", graphname_value_str);
     fprintf(gp, "splot '%s' using 1:2:5 with pm3d notitle\n", result_file_str);
 
