@@ -6,7 +6,7 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
-for name in 50 100 150 200 250 300 350 500
+for name in 400
 # for name in 50 100 150 200 250 300 350 400 450 500
 do
     expect -c " 
