@@ -38,13 +38,6 @@ int main()
     cin >> name_str;
     const char *name = name_str.c_str();
 
-    /* ディレクトリの作成 */
-    char dirname[2][100];
-    sprintf(dirname[0], "%s/%s/PTV/PTV_vorticity_dat", dir_path, name);
-    sprintf(dirname[1], "%s/%s/PTV/PTV_vorticity_svg", dir_path, name);
-    mkdir(dirname[0], dirmode);
-    mkdir(dirname[1], dirmode);
-
     for (int i = 0; i < mesh_y; i++)
         for (int j = 0; j < mesh_z; j++)
         {
@@ -57,7 +50,7 @@ int main()
 
     // ファイルの読み取り
     char readfile[100];
-    sprintf(readfile, "%s/%s/PTV/PTV_velocity_dat/velocity_%s.dat", dir_path, name, name);
+    sprintf(readfile, "%s/%s/Evaluation/data/velocity_correct.dat", dir_path, name);
     float buf[10]; // 読み込み用のバッファ
     fp = fopen(readfile, "r");
     int tmp_y = 0;
@@ -83,28 +76,15 @@ int main()
     const float delta_x = grid_size * width_mm / width_px;
 
     /* 渦度 */
-    for (int i = 0; i < mesh_y; i++)
-        for (int j = 0; j < mesh_z; j++)
+    for (int i = 1; i < mesh_y - 1; i++)
+        for (int j = 1; j < mesh_z - 1; j++)
         {
             vorticity[i][j] = (value_z[i + 1][j] - value_z[i - 1][j]) / delta_x - (value_y[i][j + 1] - value_y[i][j - 1]) / delta_x;
         }
 
-    /* 渦度プロファイルの書き出し */
-    char writefile[100];
-    sprintf(writefile, "%s/%s/PTV/PTV_vorticity_dat/vorticity_profile.dat", dir_path, name);
-    fp = fopen(writefile, "w");
-    for (int i = 0; i < mesh_y; i++)
-        for (int j = 0; j < mesh_z; j++)
-        {
-            if (position_z[i][j] == height_px / 2)
-            {
-                fprintf(fp, "%f\t%f\t%f\n", position_y[i][j] - offset, position_z[i][j] - offset, vorticity[i][j]);
-            }
-        }
-    fclose(fp);
-
     /* 渦度の書き出し */
-    sprintf(writefile, "%s/%s/PTV/PTV_vorticity_dat/vorticity_%s.dat", dir_path, name, name);
+    char writefile[100];
+    sprintf(writefile, "%s/%s/Evaluation/data/vorticity_correct.dat", dir_path, name);
     fp = fopen(writefile, "w");
     for (int i = 1; i < mesh_y; i++)
     {
@@ -116,12 +96,27 @@ int main()
     }
     fclose(fp);
 
+    /* 渦度プロファイルの書き出し */
+    sprintf(writefile, "%s/%s/Evaluation/data/vorticity_profile_correct.dat", dir_path, name);
+    fp = fopen(writefile, "w");
+    for (int i = 0; i < mesh_y; i++)
+        for (int j = 0; j < mesh_z; j++)
+        {
+            if (position_z[i][j] == height_px / 2)
+            {
+                fprintf(fp, "%f\t%f\t%f\n", position_y[i][j] - offset, position_z[i][j] - offset, vorticity[i][j]);
+            }
+        }
+    fclose(fp);
+
     /* 渦度 */
 
     /** Gnuplot **/
     char graphfile[100], graphtitle[100];
-    sprintf(graphfile, "%s/%s/PTV/PTV_vorticity_svg/vorticity_%s.svg", dir_path, name, name);
+    sprintf(graphfile, "%s/%s/Evaluation/data/vorticity.svg", dir_path, name);
     sprintf(graphtitle, "Vorticity");
+
+    sprintf(writefile, "%s/%s/Evaluation/data/vorticity_correct.dat", dir_path, name);
 
     // 軸の設定
     // range x

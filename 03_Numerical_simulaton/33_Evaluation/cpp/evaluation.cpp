@@ -42,7 +42,6 @@ int main()
     // float v_max = 2.5;
     // evaluation(v_max);
 
-    plot_error();
     plot_velocity();
     plot_vorticity();
     plot_vorticity_profile();
@@ -233,11 +232,14 @@ float correct_data()
     fclose(fp);
 
     /* 渦渡場の計算 */
+    const float offset = width_mm / width_px * grid_size / 2;
+    const float delta_x = grid_size * width_mm / width_px;
+
     vector<vector<float>> vorticity(number_y, vector<float>(number_z));
     for (int i = 1; i < number_y - 1; i++)
         for (int j = 1; j < number_z - 1; j++)
         {
-            vorticity[i][j] = (v_z[i + 1][j] - v_z[i - 1][j]) / grid_size - (v_y[i][j + 1] - v_y[i][j - 1]) / grid_size;
+            vorticity[i][j] = (v_z[i + 1][j] - v_z[i - 1][j]) / delta_x - (v_y[i][j + 1] - v_y[i][j - 1]) / delta_x;
         }
 
     /* データの書き出し(2) */
@@ -245,11 +247,13 @@ float correct_data()
     const char *filename_2_str = filename_2.c_str();
 
     fp = fopen(filename_2_str, "w");
-    for (int i = 0; i < number_y; i++)
+    for (int i = 1; i < number_y; i++)
     {
-        for (int j = 0; j < number_z; j++)
+        for (int j = 1; j < number_z; j++)
         {
-            fprintf(fp, "%f\t%f\t%lf\n", position_y_mm[i][j], position_z_mm[i][j], vorticity[i][j]);
+            float position_y_tmp = position_y_mm[i][j] + (width_shot_center - width_mm / 2);
+            float position_z_tmp = position_z_mm[i][j] + (height_shot_center - height_mm / 2);
+            fprintf(fp, "%f\t%f\t%lf\n", position_y_tmp - offset, position_z_tmp - offset, vorticity[i][j]);
         }
         fprintf(fp, "\n");
     }
@@ -263,9 +267,11 @@ float correct_data()
     for (int i = 0; i < width_px / grid_size; i++)
         for (int j = 0; j < height_px / grid_size; j++)
         {
+            float position_y_tmp = position_y_mm[i][j] + (width_shot_center - width_mm / 2);
+            float position_z_tmp = position_z_mm[i][j] + (height_shot_center - height_mm / 2);
             if (position_z_px[i][j] == height_px / 2)
             {
-                fprintf(fp, "%f\t%f\t%lf\n", position_y_mm[i][j], position_z_mm[i][j], vorticity[i][j]);
+                fprintf(fp, "%f\t%f\t%lf\n", position_y_tmp, position_z_tmp, vorticity[i][j]);
             }
         }
     fclose(fp);
@@ -348,27 +354,11 @@ void evaluation(float v_max)
         error_value[i] = abs(vector_value[0][i] - vector_value[1][i]) / v_max * 100;
     }
 
-    /* 誤差率の書き込み */
-    const char *result_file_str = result_file.c_str();
-    count = 0;
-
-    fp = fopen(result_file_str, "w");
-    for (int i = 0; i < width_px / grid_size; i++)
-    {
-        for (int j = 0; j < height_px / grid_size; j++)
-        {
-            fprintf(fp, "%f\t%f\t%f\t%f\t%f\n", y[count], z[count], error_y[count], error_z[count], error_value[count]);
-            count += 1;
-        }
-        fprintf(fp, "\n");
-    }
-
-    fclose(fp);
-
     /* RMSE の算出 */
     float rmse_y = 0;
     float rmse_z = 0;
     float rmse_yz = 0;
+    int count_tmp = 0;
 
     // 合計値の計算
     for (int i = 0; i < number; i++)
@@ -378,17 +368,27 @@ void evaluation(float v_max)
             rmse_y += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]);
             rmse_z += (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
             rmse_yz += (vector_y[0][i] - vector_y[1][i]) * (vector_y[0][i] - vector_y[1][i]) + (vector_z[0][i] - vector_z[1][i]) * (vector_z[0][i] - vector_z[1][i]);
+            count_tmp += 1;
         }
     }
 
-    rmse_y = sqrt(rmse_y / number);
-    rmse_z = sqrt(rmse_z / number);
-    rmse_yz = sqrt(rmse_yz / number);
+    rmse_y = sqrt(rmse_y / count_tmp);
+    rmse_z = sqrt(rmse_z / count_tmp);
+    rmse_yz = sqrt(rmse_yz / count_tmp);
 
     /* RMSE 誤差率の算出 */
     float rmse_y_per = rmse_y / v_max * 100;
     float rmse_z_per = rmse_z / v_max * 100;
     float rmse_yz_per = rmse_yz / v_max * 100;
+
+    /* 誤差率の書き込み */
+    const char *result_file_str = result_file.c_str();
+    count = 0;
+
+    fp = fopen(result_file_str, "w");
+    fprintf(fp, "%f\t%f\t%f\n", rmse_y, rmse_z, rmse_yz);
+    fprintf(fp, "%f\t%f\t%f\n", rmse_y_per, rmse_z_per, rmse_yz_per);
+    fclose(fp);
 
     printf("RMSE:  y = %.3f [mm/s]\t%.3f[%%]\n", rmse_y, rmse_y_per);
     printf("RMSE:  z = %.3f [mm/s]\t%.3f[%%]\n", rmse_z, rmse_z_per);
@@ -569,7 +569,7 @@ void plot_velocity()
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", filename_str);
+    fprintf(gp, "plot '%s' using 1:2:($3*2.0):($4*2.0):5 with vectors head filled lc palette lw 1 notitle\n", filename_str);
 
     fflush(gp); // Clean up Data
 
@@ -589,30 +589,33 @@ OUT ：
 void plot_vorticity()
 {
     /** Gnuplot **/
-    string filename = main_path + name + "/Evaluation/data/vorticity_correct.dat";
+    string filename_1 = main_path + name + "/Evaluation/data/vorticity_correct.dat";
+    string filename_2 = main_path + name + "/Evaluation/data/velocity_correct.dat";
     string graphname = main_path + name + "/Evaluation/data/vorticity.svg";
 
-    const char *filename_str = filename.c_str();
+    const char *filename_1_str = filename_1.c_str();
+    const char *filename_2_str = filename_2.c_str();
     const char *graphname_str = graphname.c_str();
     char graphtitle[] = "Correct Data [Vorticity]";
 
     // 軸の設定
 
-    // range x
-    float x_min = 12.5;
-    float x_max = width_mm - 12.5;
+    // // range x
+    const float x_min = width_shot_center - 7.5;
+    const float x_max = width_shot_center + 7.5;
 
-    // range y
-    float y_min = 12.5;
-    float y_max = height_mm - 12.5;
+    // // range y
+    const float y_min = height_shot_center - 7.5;
+    const float y_max = height_shot_center + 7.5;
 
     // range color
     float cb_min = -0.5;
     float cb_max = 0.5;
 
     // label
-    const char *xxlabel = "y [px]";
-    const char *yylabel = "z [px] ";
+    const char *xxlabel = "{/:Italic y} [pixel]";
+    const char *yylabel = "{/:Italic z} [pixel]";
+    const char *cblabel = "Vorticity [-]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -621,7 +624,7 @@ void plot_vorticity()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 1000, 1000 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 600, 550 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
@@ -630,12 +633,16 @@ void plot_vorticity()
     // 非表示
     fprintf(gp, "unset key\n");
 
+    // 軸の表記桁数の指定
+    fprintf(gp, "set format x '%%.0f'\n");
+    fprintf(gp, "set format y '%%.0f'\n");
+    fprintf(gp, "set format cb '%%.2f'\n");
+
     // 軸の範囲
     fprintf(gp, "set xrange [%.3f:%.3f]\n", x_min, x_max);
     fprintf(gp, "set yrange [%.3f:%.3f]\n", y_min, y_max);
 
     // グラフタイトル
-    fprintf(gp, "set title '%s'\n", graphtitle);
     fprintf(gp, "set view map\n");
 
     // ベクトルの色付け
@@ -643,27 +650,23 @@ void plot_vorticity()
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
     // 軸ラベル
-    fprintf(gp, "set xlabel '%s'\n", xxlabel);
-    fprintf(gp, "set ylabel '%s'\n", yylabel);
-
-    // 軸のラベル位置
-    fprintf(gp, "set xlabel offset 0.0, 0.0\n");
-    fprintf(gp, "set ylabel offset 0.0, 0.0\n");
+    fprintf(gp, "set xlabel '%s'  offset 0.0, 1.2\n", xxlabel);
+    fprintf(gp, "set ylabel '%s'  offset 0.0, 0.0\n", yylabel);
+    fprintf(gp, "set cblabel '%s' offset -1.0, 0.0\n", cblabel);
 
     // 軸の数値位置
-    fprintf(gp, "set xtics offset 0.0, 0.0\n");
-    fprintf(gp, "set ytics offset 0.0, 0.0\n");
+    fprintf(gp, "set xtics offset 0.0, 0.8\n");
+    fprintf(gp, "set ytics offset 0.5, 0.0\n");
+    fprintf(gp, "set cbtics 0.1 offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "splot '%s' using 1:2:3 with pm3d notitle\n", filename_str);
+    fprintf(gp, "splot '%s' using 1:2:3 with pm3d, '%s' using 1:2:(0):($3*2.0):($4*2.0):(0) with vectors head filled lt 2 lc 'black' lw 1 notitle\n", filename_1_str, filename_2_str);
 
     fflush(gp); // Clean up Data
 
     fprintf(gp, "exit\n"); // Quit gnuplot
 
     pclose(gp);
-
-    // return 0;
 }
 
 /******************************************************************************

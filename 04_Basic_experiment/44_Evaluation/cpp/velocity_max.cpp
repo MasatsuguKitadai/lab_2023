@@ -109,7 +109,7 @@ int main()
     Plot_velocity(name, data_set);
 
     /* データの書き出し (2) Number*/
-    const float delta = width_mm / width_px * grid_size / 2;
+    const float offset = width_mm / width_px * grid_size / 2;
     counter = 0;
     sprintf(filename, "%s/%s/44_Evaluation/%s/result/number.dat", dir_path, name, data_set);
     fp = fopen(filename, "w");
@@ -126,7 +126,7 @@ int main()
         const int tmp = n_r[i];
         if (y[tmp][i] != 0 && z[tmp][i] != 0)
         {
-            fprintf(fp, "%f\t%f\t%f\n", y[tmp][i] - delta, z[tmp][i] - delta, n_r[i] + n_min);
+            fprintf(fp, "%f\t%f\t%f\n", y[tmp][i] - offset, z[tmp][i] - offset, n_r[i] + n_min);
         }
 
         counter += 1;
@@ -217,8 +217,8 @@ void Plot_velocity(const char *name, const char *data_set)
     const float cb_max = 50;
 
     // label
-    const char *xxlabel = "y [mm]";
-    const char *yylabel = "z [mm] ";
+    const char *xxlabel = "{/:Italic y} [mm]";
+    const char *yylabel = "{/:Italic z} [mm] ";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -301,8 +301,9 @@ void Plot_number(const char *name, const char *data_set)
     const int cb_max = n_max;
 
     // label
-    const char *xxlabel = "y [mm]";
-    const char *yylabel = "z [mm] ";
+    const char *xxlabel = "{/:Italic y} [mm]";
+    const char *yylabel = "{/:Italic z} [mm]";
+    const char *cblabel = "{/:Italic n} [-]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -334,12 +335,9 @@ void Plot_number(const char *name, const char *data_set)
     fprintf(gp, "set cbtics 1\n");
 
     // 軸ラベル
-    fprintf(gp, "set xlabel '%s'\n", xxlabel);
-    fprintf(gp, "set ylabel '%s'\n", yylabel);
-
-    // 軸のラベル位置
-    fprintf(gp, "set xlabel offset 0.0, 0.5\n");
-    fprintf(gp, "set ylabel offset 1.5, 0.0\n");
+    fprintf(gp, "set xlabel '%s' offset 0.0, 0.5\n", xxlabel);
+    fprintf(gp, "set ylabel '%s' offset 1.5, 0.0\n", yylabel);
+    fprintf(gp, "set cblabel '%s' offset -0.5, 0.0\n", cblabel);
 
     // 軸の数値位置
     fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");
@@ -348,7 +346,7 @@ void Plot_number(const char *name, const char *data_set)
     // グラフの出力
     fprintf(gp, "set pm3d map\n");
     // fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors head filled lt 2 lc 'black' lw 1 notitle\n", filename);
-    fprintf(gp, "splot '%s' using 1:2:3 with pm3d, '%s' using 1:2:(0):3:4:(0) with vectors head filled lt 2 lc 'black' lw 1 notitle\n", filename_1, filename_2);
+    fprintf(gp, "splot '%s' using 1:2:3 with pm3d, '%s' using 1:2:(0):($3*2.0):($4*2.0):(0) with vectors head filled lt 2 lc 'black' lw 1 notitle\n", filename_1, filename_2);
 
     fflush(gp); // Clean up Data
 

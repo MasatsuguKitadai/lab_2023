@@ -28,6 +28,19 @@ void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char
 const char program_name[] = "LABELING FOR BLUE IMAGE";
 int progress_counter = 0; // 進捗表記用
 
+/* 変数指定 */
+const int num = 5000;
+int area[num];
+int maximum_x[num], maximum_y[num];
+int minimum_x[num], minimum_y[num];
+
+// 最大・最小の座標
+float point_x[4][num];
+float point_y[4][num];
+
+// 中心座標
+int x[num], y[num];
+
 /******************************************************************************/
 
 int main()
@@ -53,20 +66,9 @@ int main()
     float sum[2];
     float ave[2];
     int position;
-    int area[1000];
     int count = 0;
     int min;
     int tmp = 0;
-
-    int maximum_x[1000], maximum_y[1000];
-    int minimum_x[1000], minimum_y[1000];
-
-    // 最大・最小の座標
-    float point_x[4][1000];
-    float point_y[4][1000];
-
-    // 中心座標
-    int x[1000], y[1000];
 
     // 計算用のバッファ
     float buf[100];
@@ -110,7 +112,7 @@ int main()
             buf[i] = 0;
         }
 
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < num; i++)
         {
             area[i] = 0;
         }
@@ -124,7 +126,7 @@ int main()
             label = 0;
             tmp = 0;
 
-            if (ary[i] >= 1)
+            if (ary[i] >= 10)
             // if (ary[i] != 0)
             {
                 // エリア内のラベルの確認
@@ -224,10 +226,10 @@ int main()
         int count_2 = 0;
 
         // 不必要なラベル番号
-        int trash[100];
+        int trash[1000];
 
         // 配列初期化
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 1000; i++)
         {
             trash[i] = 0;
         }
@@ -271,7 +273,7 @@ int main()
             }
 
         // 配列の初期化
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < num; i++)
         {
             area[i] = 0;
         }
@@ -303,7 +305,7 @@ int main()
         n = tmp;
 
         // 配列の初期化
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < num; i++)
         {
             x[i] = 0;
             y[i] = 0;
