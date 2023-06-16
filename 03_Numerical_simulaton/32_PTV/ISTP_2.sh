@@ -13,15 +13,15 @@ do
     expect -c " 
     set timeout -1
 
-    spawn python3 py/bmp_to_png.py
-    expect \"Case Name:\"
-    send \"$name-50\n\"
-    expect \"$\n\"
+    # spawn python3 py/bmp_to_png.py
+    # expect \"Case Name:\"
+    # send \"$name-50\n\"
+    # expect \"$\n\"
 
-    spawn out/labeling_for_blue.out
-    expect \"Case Name:\"
-    send \"$name-50\n\"
-    expect \"$\n\"
+    # spawn out/labeling_for_blue.out
+    # expect \"Case Name:\"
+    # send \"$name-50\n\"
+    # expect \"$\n\"
 
     spawn out/PTV.out
     expect \"Case Name:\"
