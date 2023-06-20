@@ -91,14 +91,14 @@ float correct_data()
     const char *dir_path_data = dir_path_str.c_str();
     mkdir(dir_path_data, dir_mode);
 
-    float delta_n = 10; // 対応枚数の差
-    float v_max = 0;    // 最大周方向移動量
+    float omega = pi / 180 * 10; // 角速度 (case-1, case-4, case-7)
+    float delta_n = 10.4;        // 対応枚数の差
+    float v_max = 0;             // 最大周方向移動量
 
     /* 回転中心の設定 */
     const float y_center = 50; // y方向の渦中心 [mm]
     const float z_center = 50; // y方向の渦中心 [mm]
 
-    float omega = pi / 180 * 14; // 角速度 (case-1, case-4, case-7)
     // float omega = pi / 180 * 5; // 角速度 (case-2, case-5, case-8)
     // float omega = pi / 180 * 15; // 角速度 (case-3, case-6, case-9)
     float nu = 1.004; // 動粘性係数

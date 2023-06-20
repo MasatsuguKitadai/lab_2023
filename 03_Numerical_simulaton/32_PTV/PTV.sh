@@ -26,14 +26,17 @@ if [ ! -d $DIR_1 ];then
     "
 fi
 
-expect -c " 
-set timeout -1
-spawn ./out/labeling_for_blue.out
-expect \"Case Name:\"
-send \"$name\n\"
-expect \"$\n\"
-exit 0
-"
+DIR_2="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/labeling_position_dat" 
+if [ ! -d $DIR_2 ];then
+    expect -c " 
+    set timeout -1
+    spawn ./out/labeling_for_blue.out
+    expect \"Case Name:\"
+    send \"$name\n\"
+    expect \"$\n\"
+    exit 0
+    "
+fi
 
 ## シミュレーション ###
 expect -c " 
