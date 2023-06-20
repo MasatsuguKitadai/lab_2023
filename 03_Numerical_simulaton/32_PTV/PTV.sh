@@ -13,32 +13,27 @@ TIME_A=`date +%s`
 echo -n INPUT_DATA_NAME:
 read name 
 
-# # DIR_1="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/particle_image_png" 
-# # if [ ! -d $DIR_1 ];then
+DIR_1="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/particle_image_png" 
+if [ ! -d $DIR_1 ];then
+    expect -c " 
+    set timeout -1
+    # spawn python3.8 py/bmp_to_png.py
+    spawn python3 py/bmp_to_png.py
+    expect \"Case Name:\"
+    send \"$name\n\"
+    expect \"$\n\"
+    exit 0
+    "
+fi
 
-#     expect -c " 
-#     set timeout -1
-#     # spawn python3.8 py/bmp_to_png.py
-#     spawn python3 py/bmp_to_png.py
-#     expect \"Case Name:\"
-#     send \"$name\n\"
-#     expect \"$\n\"
-#     exit 0
-#     "
-# # fi
-
-# # DIR_2="/mnt/e/workspace_SSD/03_numerical_simulation/$name/LLS_1/labeling_position_dat" 
-# # if [ ! -d $DIR_2 ];then
-
-#     expect -c " 
-#     set timeout -1
-#     spawn ./out/labeling_for_blue.out
-#     expect \"Case Name:\"
-#     send \"$name\n\"
-#     expect \"$\n\"
-#     exit 0
-#     "
-# # fi
+expect -c " 
+set timeout -1
+spawn ./out/labeling_for_blue.out
+expect \"Case Name:\"
+send \"$name\n\"
+expect \"$\n\"
+exit 0
+"
 
 ## シミュレーション ###
 expect -c " 
