@@ -2,7 +2,7 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
-for name in 6 7 8
+for name in 13 14 15
 do
     expect -c " 
     set timeout -1

@@ -13,7 +13,10 @@ Parameters lls_1; // 前方のLLSの構造体定義
 Parameters lls_2; // 後方のLLSの構造体定義
 string name;      // データセットの名前
 
-const float grid_size = 8; // 格子サイズの設定
+const float grid_size = 8;   // 格子サイズの設定
+const float v_10 = 2.520075; // omega = 10 [deg/s] の最大速度ベクトル
+float deg_tmp;               // 対象の角速度
+
 const int number_y = (width_px / grid_size);
 const int number_z = (height_px / grid_size);
 const int number = number_y * number_z;
@@ -34,11 +37,18 @@ OUT ：
 ******************************************************************************/
 int main()
 {
+    /* 保存ディレクトリの設定 */
+    cout << "Case Name:";
+    cin >> name;
+
+    /* 保存ディレクトリの設定 */
+    cout << "Speed of rotation:";
+    cin >> deg_tmp;
+
     Initialization();
     float v = correct_data();
     printf("v_max = %f\n", v);
 
-    const float v_10 = 2.520075; // omega = 10 [deg/s] の最大速度ベクトル
     evaluation(v_10);
 
     // float v_max = 2.5;
@@ -75,10 +85,6 @@ OUT ：
 ******************************************************************************/
 float correct_data()
 {
-    /* 保存ディレクトリの設定 */
-    cout << "Case Name:";
-    cin >> name;
-
     string dir_path_str;
 
     dir_path_str = main_path + name + "/Evaluation";
@@ -93,8 +99,8 @@ float correct_data()
     const char *dir_path_data = dir_path_str.c_str();
     mkdir(dir_path_data, dir_mode);
 
-    float omega = pi / 180 * 14; // 角速度 (case-1, case-4, case-7)
-    float v_max = 0;             // 最大周方向移動量
+    float omega = pi / 180 * deg_tmp; // 角速度 (case-1, case-4, case-7)
+    float v_max = 0;                  // 最大周方向移動量
 
     /* 回転中心の設定 */
     const float y_center = 50; // y方向の渦中心 [mm]
