@@ -37,7 +37,9 @@ int main()
     Initialization();
     float v = correct_data();
     printf("v_max = %f\n", v);
-    evaluation(v);
+
+    const float v_10 = 2.520075; // omega = 10 [deg/s] の最大速度ベクトル
+    evaluation(v_10);
 
     // float v_max = 2.5;
     // evaluation(v_max);
@@ -91,8 +93,7 @@ float correct_data()
     const char *dir_path_data = dir_path_str.c_str();
     mkdir(dir_path_data, dir_mode);
 
-    float omega = pi / 180 * 10; // 角速度 (case-1, case-4, case-7)
-    float delta_n = 10.4;        // 対応枚数の差
+    float omega = pi / 180 * 14; // 角速度 (case-1, case-4, case-7)
     float v_max = 0;             // 最大周方向移動量
 
     /* 回転中心の設定 */
@@ -189,6 +190,8 @@ float correct_data()
 
     printf("     Vx = %.3f\n", vx);
     printf("delta n = %.1f\n", dx / vx * 800);
+
+    float delta_n = dx / vx * 800; // 対応枚数の差
 
     /* 回転半径の計算 */
     for (int i = 0; i < number_y; i++)
