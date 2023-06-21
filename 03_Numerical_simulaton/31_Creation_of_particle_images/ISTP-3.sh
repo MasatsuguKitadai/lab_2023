@@ -8,8 +8,6 @@ do
     set timeout -1
 
     spawn out/$name-300.out
-    expect \"Case Name:\"
-    send \"$name-300\n\"
     expect \"$\n\"
 
     exit 0

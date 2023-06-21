@@ -19,13 +19,12 @@ const float pi = 4 * atan(1.0); // 円周率
 /* 保存ディレクトリの設定 */
 // const string main_path = "/mnt/d/kitadai/03_numerical_simulation/"; // SSD ワークステーション
 // const string main_path = "/mnt/g/workspace_SSD/03_numerical_simulation/"; // SSD ワークステーション
-const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 // const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
+const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
 
 /* 流れの条件 */
-const float flow_speed = 8.5;       // 流速 [mm/s]
-const float omega = pi / 180 * deg; // 角速度
-const float nu = 1.004;             // 動粘性係数
+const float flow_speed = 8.5; // 流速 [mm/s]
+const float nu = 1.004;       // 動粘性係数
 
 // 各種パラメータ
 const float time_max = 1.0;        // シミュレーションする時間 [s]
@@ -70,11 +69,6 @@ const float range_x_min = lls_2_position - 1.0;  // x方向の粒子生成範囲
 const float range_x = range_x_max - range_x_min; // x方向の粒子生成範囲　[mm]
 const float range_y = width_mm / 2.0 * sqrt(2);  // y方向の粒子生成範囲　[mm]
 const float range_z = width_mm / 2.0 * sqrt(2);  // z方向の粒子生成範囲　[mm]
-
-/* 粒子の生成量の設定 */
-// const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness); // 粒子密度 [個/mm^2]
-const float density_particle = num_per_image / (width_mm * height_mm * lls_1_thickness);       // 粒子密度 [個/mm^2]
-const int num_particle = density_particle * range_x * width_mm * sqrt(2) * width_mm * sqrt(2); // 生成する粒子数 [-]
 
 /* 校正板 */
 const int point_x = 3;

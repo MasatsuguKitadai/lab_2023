@@ -34,7 +34,7 @@ string dir_path;
 void Initialization();
 void Make_Directory(string name);
 void File_Name_Creator(Parameters &parameter, int i);
-void Simulate_Rotation_near_the_ground(float seconds);
+void Simulate_Rotation_near_the_ground(float seconds, float omega);
 void Write_dat_Tank(string file_path, vector<float> x, vector<float> y, vector<float> z, float max, float min);
 void Write_dat_grid(Parameters parameter);
 void Write_dat_Screen(string file_path_read, string file_path_write);
@@ -85,20 +85,25 @@ int main()
     /* 主要パラメータ */
     const float deg = tmp_1;             // 壁面の回転速度 [deg/s]
     const float particle_number = tmp_2; // 1枚あたりに映り込む粒子数 [個]
+    const float omega = pi / 180 * deg;  // 角速度 [rad/s]
+
+    /* 粒子の生成量の設定 */
+    const float particle_density = particle_number / (width_mm * height_mm * lls_1_thickness);     // 粒子密度 [個/mm^2]
+    const int num_particle = particle_density * range_x * width_mm * sqrt(2) * width_mm * sqrt(2); // 生成する粒子数 [個/枚]
 
     /* 保存ディレクトリの設定 */
     char name_tmp[100];
     sprintf(name_tmp, "%.0f-%.0f", deg, particle_number);
     string name = string(name_tmp);
 
-    /* ディレクトリパスの設定 */
-    dir_path = main_path + name + "/";
-    cout << dir_path << endl;
+    // /* ディレクトリパスの設定 */
+    // dir_path = main_path + name + "/";
+    // cout << dir_path << endl;
 
     /* 設定の書き出し */
     cout << endl;
     cout << "////////////////////////////////////////////" << endl;
-    cout << "Density (1) [個/mm3] : " << density_particle << endl;
+    cout << "Density (1) [個/mm3] : " << particle_density << endl;
     cout << "Density (2) [個/枚]  : " << particle_number << endl;
     cout << "Particle    [-]      : " << num_particle << endl;
     cout << "Omega       [rad/s]  : " << deg << " × 180/pi" << endl;
@@ -153,7 +158,7 @@ int main()
         float seconds = 1.0 / shutter_speed * (i - 1.0);
 
         /* 回転板に引きずられる流れのシミュレーション */
-        Simulate_Rotation_near_the_ground(seconds);
+        Simulate_Rotation_near_the_ground(seconds, omega);
 
         /* 位置情報の書き出しとグラフの作成 */
         gnuplot.seconds = seconds; // 描画する時刻 [s]
@@ -346,7 +351,7 @@ FUNCTION : Simulate_Rotation_near_the_ground
  IN ：seconds：計算する時刻 [s]
 OUT ：void /  x[]，y[]，z[] 配列に値を格納する
 ******************************************************************************/
-void Simulate_Rotation_near_the_ground(float seconds)
+void Simulate_Rotation_near_the_ground(float seconds, float omega)
 {
     /* 回転中心の設定 */
     const float y_center = 50; // y方向の渦中心 [mm]

@@ -146,6 +146,9 @@
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M63.00,79.28 L63.00,282.93 L470.29,282.93 L470.29,79.28 L63.00,79.28 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<g transform="translate(14.40,181.11) rotate(270)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="middle">
+		<text><tspan font-family="Times New Roman"  font-style="italic" >F</tspan><tspan font-family="Times New Roman" >, </tspan><tspan font-family="Times New Roman"  font-style="italic" >G</tspan><tspan font-family="Times New Roman" >, </tspan><tspan font-family="Times New Roman"  font-style="italic" >H</tspan><tspan font-family="Times New Roman" > [-]</tspan></text>
+	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(266.64,334.68)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="middle">

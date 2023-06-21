@@ -2,12 +2,14 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
-for name in 9 11 12
+for name in 13 14 15
 do
     expect -c " 
     set timeout -1
 
-    spawn out/$name-300.out
+    spawn out/numerical_simulation.out
+    expect \"Case Name:\"
+    send \"$name-300\n\"
     expect \"$\n\"
 
     exit 0

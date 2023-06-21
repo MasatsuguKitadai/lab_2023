@@ -195,7 +195,7 @@ void gnuplot_1()
 
     // label
     const char *xxlabel = "{/Symbol z} [-]";
-    const char *yylabel = "{/:Italic y} [mm]";
+    const char *yylabel = "{/:Italic F}, {/:Italic G}, {/:Italic H} [-]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -216,9 +216,6 @@ void gnuplot_1()
     // 凡例の設定
     fprintf(gp, "set key right outside font 'Times New Roman, 16'\n");
 
-    // 視点の変更
-    fprintf(gp, "set view 60, 30, 1, 1\n");
-
     // 軸の表記桁数の指定
     fprintf(gp, "set format x '%%.0f'\n");
     fprintf(gp, "set format y '%%.1f'\n");
@@ -233,12 +230,12 @@ void gnuplot_1()
 
     // 軸のラベル位置
     fprintf(gp, "set xlabel offset 0.0, 0.8\n");
-    fprintf(gp, "set ylabel offset 0.0, 0.0\n");
+    fprintf(gp, "set ylabel offset 2.5, 0.0\n");
     fprintf(gp, "set ticslevel 0\n");
 
     // 軸の数値位置
     fprintf(gp, "set xtics 1.0 offset 0.0, 0.3 font 'Times New Roman, 16'\n");
-    fprintf(gp, "set ytics 0.5 offset 0.3, 0.0    font 'Times New Roman, 16'\n");
+    fprintf(gp, "set ytics 0.5 offset 0.3, 0.0 font 'Times New Roman, 16'\n");
 
     // グラフの出力
     fprintf(gp, "plot '%s' using 1:2 with lines lw 1 lc 'blue' title 'F',", readfile); // LLS(1) の描画
