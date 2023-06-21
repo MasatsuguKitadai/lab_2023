@@ -97,8 +97,7 @@ int main()
     string name = string(name_tmp);
 
     // /* ディレクトリパスの設定 */
-    // dir_path = main_path + name + "/";
-    // cout << dir_path << endl;
+    dir_path = main_path + name + "/";
 
     /* 設定の書き出し */
     cout << endl;
