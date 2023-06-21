@@ -364,10 +364,10 @@ void evaluation(float v_max)
     }
 
     /* RMSE の算出 */
-    float rmse_y = 0;
-    float rmse_z = 0;
-    float rmse_yz = 0;
-    int count_tmp = 0;
+    float rmse_y = 0;  // y方向のRMSE
+    float rmse_z = 0;  // z方向のRMSE
+    float rmse_yz = 0; // yz方向のRMSE
+    int count_tmp = 0; // ベクトルの存在する格子数の数
 
     // 合計値の計算
     for (int i = 0; i < number; i++)
@@ -384,6 +384,7 @@ void evaluation(float v_max)
     rmse_y = sqrt(rmse_y / count_tmp);
     rmse_z = sqrt(rmse_z / count_tmp);
     rmse_yz = sqrt(rmse_yz / count_tmp);
+    const int null = number - count_tmp; // ベクトルの存在しない格子の数 [-]
 
     /* RMSE 誤差率の算出 */
     float rmse_y_per = rmse_y / v_max * 100;
@@ -402,6 +403,7 @@ void evaluation(float v_max)
     printf("RMSE:  y = %.3f [mm/s]\t%.3f[%%]\n", rmse_y, rmse_y_per);
     printf("RMSE:  z = %.3f [mm/s]\t%.3f[%%]\n", rmse_z, rmse_z_per);
     printf("RMSE: yz = %.3f [mm/s]\t%.3f[%%]\n", rmse_yz, rmse_yz_per);
+    printf("NULL: %d [-]\n", null);
 }
 
 /******************************************************************************

@@ -75,15 +75,21 @@ FUNCTION : main
 
 int main()
 {
-    /* 保存ディレクトリの設定 */
-    char name_tmp[100];
-    sprintf(name_tmp, "%.f-%d", deg, num_per_image);
-    string name = string(name_tmp);
+    /* パラメータ設定 */
+    float tmp_1, tmp_2;
+    printf("Rotational speed :");
+    scanf("%f", &tmp_1);
+    printf("Particle number :");
+    scanf("%f", &tmp_2);
+
+    /* 主要パラメータ */
+    const float deg = tmp_1;             // 壁面の回転速度 [deg/s]
+    const float particle_number = tmp_2; // 1枚あたりに映り込む粒子数 [個]
 
     /* 保存ディレクトリの設定 */
-    // string name;
-    // cout << "Case Name:";
-    // cin >> name;
+    char name_tmp[100];
+    sprintf(name_tmp, "%.0f-%.0f", deg, particle_number);
+    string name = string(name_tmp);
 
     /* ディレクトリパスの設定 */
     dir_path = main_path + name + "/";
@@ -93,7 +99,7 @@ int main()
     cout << endl;
     cout << "////////////////////////////////////////////" << endl;
     cout << "Density (1) [個/mm3] : " << density_particle << endl;
-    cout << "Density (2) [個/枚]  : " << num_per_image << endl;
+    cout << "Density (2) [個/枚]  : " << particle_number << endl;
     cout << "Particle    [-]      : " << num_particle << endl;
     cout << "Omega       [rad/s]  : " << deg << " × 180/pi" << endl;
     cout << "////////////////////////////////////////////" << endl;
