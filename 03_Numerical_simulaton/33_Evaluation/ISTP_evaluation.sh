@@ -39,7 +39,9 @@ do
 done
 
 ## シミュレーション(1) ###
-for num in 400 450 500 
+for num in 50 100 150 200 250
+# for num in 400 450 500 
+# for num in 50 100 150 200 250 300 350 400 450 500 
 do
     expect -c " 
     set timeout -1
