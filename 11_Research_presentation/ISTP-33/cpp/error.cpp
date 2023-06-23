@@ -107,12 +107,14 @@ void gnuplot_2()
     /** Gnuplot **/
 
     // ファイル名
-    char readfile[] = "data/error_2.dat";
+    char readfile_1[] = "data/error_2-50.dat";
+    char readfile_2[] = "data/error_2-300.dat";
     char graphfile[] = "results/error_2.svg";
     char graphtitle[] = "Number of blue particles per an image : {/:Italic n} = 50 [-/sheet]";
 
-    printf("READ FILE   : %s\n", readfile);
-    printf("GRAPH FILE  : %s\n", graphfile);
+    printf("READ FILE (1) : %s\n", readfile_1);
+    printf("READ FILE (2) : %s\n", readfile_2);
+    printf("GRAPH FILE    : %s\n", graphfile);
 
     // 軸の設定
 
@@ -122,7 +124,7 @@ void gnuplot_2()
 
     // range y
     const float y_min = 0.0;
-    const float y_max = 5.0;
+    const float y_max = 10.0;
 
     // label
     const char *xxlabel = "Rotation speed : {/Symbol w} [rad/s]";
@@ -143,7 +145,8 @@ void gnuplot_2()
 
     // 非表示
     fprintf(gp, "unset key\n");
-    fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
+    fprintf(gp, "set key right top\n");
+    // fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
 
     // 軸の表記桁数の指定
     fprintf(gp, "set format x '%%.0f'\n");
@@ -163,7 +166,8 @@ void gnuplot_2()
     fprintf(gp, "set ytics 1 offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "plot '%s' using 1:4 with points pt 7 ps 0.5 lc 'black' notitle\n", readfile);
+    fprintf(gp, "plot '%s' using 1:4 with points pt 7 ps 0.5 lc 'red' title '{/:Italic n} =   50', '%s' using 1:4 with lines lw 0.5 lc 'red' notitle, ", readfile_1, readfile_1);
+    fprintf(gp, "'%s' using 1:4 with points pt 7 ps 0.5 lc 'blue' title '{/:Italic n} = 300', '%s' using 1:4 with lines lw 0.5 lc 'blue' notitle,\n", readfile_2, readfile_2);
 
     fflush(gp); // Clean up Data
 

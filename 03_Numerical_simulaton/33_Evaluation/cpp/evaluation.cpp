@@ -525,8 +525,11 @@ void plot_velocity()
     // 軸の設定
 
     // // range x
-    const float x_min = width_shot_center - 7.5;
-    const float x_max = width_shot_center + 7.5;
+    // const float x_min = width_shot_center - 7.5;
+    // const float x_max = width_shot_center + 7.5;
+
+    const float x_min = width_shot_center - 17.5;
+    const float x_max = width_shot_center + 17.5;
 
     // // range y
     const float y_min = height_shot_center - 7.5;
@@ -547,7 +550,8 @@ void plot_velocity()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
+    // fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 16'\n");
+    fprintf(gp, "set terminal svg enhanced size 1000, 500 font 'Times New Roman, 16'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル

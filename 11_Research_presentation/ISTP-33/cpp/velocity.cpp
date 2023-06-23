@@ -27,8 +27,10 @@ int main()
 {
     const char data_1[] = "velocity_correct";
     const char data_2[] = "velocity_10-50";
+    const char data_3[] = "velocity_10-500";
     gnuplot_1(data_1);
     gnuplot_1(data_2);
+    gnuplot_1(data_3);
 
     return 0;
 }

@@ -1,6 +1,4 @@
 #!/bin/bash
-g++ cpp/labeling_for_blue.cpp -o "out/labeling_for_blue.out"
-g++ cpp/PTV.cpp -o "out/PTV.out"
 g++ cpp/velocity.cpp -o "out/velocity.out"
 g++ cpp/vorticity.cpp -o "out/vorticity.out"
 
@@ -8,26 +6,30 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
-# for name in 6 7 8 9 11 12 13 14 15
-for name in 6 9 13
+for num in 6 7 8 9 10 11 12 13 14 
 do
     expect -c " 
     set timeout -1
 
-    spawn python3 py/bmp_to_png.py
+    spawn out/velocity.out
     expect \"Case Name:\"
-    send \"$name-300\n\"
+    send \"$num-50\n\"
     expect \"$\n\"
 
-    spawn out/labeling_for_blue.out
+    spawn out/vorticity.out
     expect \"Case Name:\"
-    send \"$name-300\n\"
+    send \"$num-50\n\"
     expect \"$\n\"
 
-    spawn out/PTV.out
-    expect \"Case Name:\"
-    send \"$name-300\n\"
-    expect \"$\n\"
+    exit 0
+    "
+done
+
+## シミュレーション(1) ###
+for name in 6 7 8 9 10 11 12 13 14 
+do
+    expect -c " 
+    set timeout -1
 
     spawn out/velocity.out
     expect \"Case Name:\"
@@ -37,6 +39,26 @@ do
     spawn out/vorticity.out
     expect \"Case Name:\"
     send \"$name-300\n\"
+    expect \"$\n\"
+
+    exit 0
+    "
+done
+
+## シミュレーション(1) ###
+for name in 400 450 500 
+do
+    expect -c " 
+    set timeout -1
+
+    spawn out/velocity.out
+    expect \"Case Name:\"
+    send \"10-$name\n\"
+    expect \"$\n\"
+
+    spawn out/vorticity.out
+    expect \"Case Name:\"
+    send \"10-$name\n\"
     expect \"$\n\"
 
     exit 0
