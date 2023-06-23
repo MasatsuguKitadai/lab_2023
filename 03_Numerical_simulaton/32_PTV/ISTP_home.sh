@@ -8,16 +8,17 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
-for name in 50 100 150 200 250 300 350 400 450 500
-# for name in 150 200 250 300 350 400 450 500
+for name in 50 100 150 200 250 
+# for name in 150 200 250 300 350 
 do
     expect -c " 
     set timeout -1
 
     # spawn python3 py/bmp_to_png.py
-    # expect \"Case Name:\"
-    # send \"10-$name\n\"
-    # expect \"$\n\"
+    spawn python3.8 py/bmp_to_png.py
+    expect \"Case Name:\"
+    send \"10-$name\n\"
+    expect \"$\n\"
 
     spawn out/labeling_for_blue.out
     expect \"Case Name:\"
