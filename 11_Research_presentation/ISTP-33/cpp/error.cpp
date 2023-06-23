@@ -51,8 +51,8 @@ void gnuplot_1()
     const float x_max = 525;
 
     // range y
-    const float y_min = 2.0;
-    const float y_max = 7.0;
+    const float y_min = 0.0;
+    const float y_max = 10.0;
 
     // label
     const char *xxlabel = "Number of blue particles per an image : {/:Italic n} [-/sheet]";
