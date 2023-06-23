@@ -4,8 +4,8 @@ DATE    : 2022/11/11
 ******************************************************************************/
 /** ディレクトリ **/
 // const char dir_path[] = "/mnt/d/kitadai/03_numerical_simulation/"; // SSD ワークステーション
-// const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // 自宅PC
-const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // 研究室ノートPC
+const char dir_path[] = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // 自宅PC
+// const char dir_path[] = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // 研究室ノートPC
 
 /** 各種パラメータ **/
 const int data_num = 800;                 // 画像の枚数 [-]
