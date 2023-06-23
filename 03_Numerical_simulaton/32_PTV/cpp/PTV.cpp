@@ -43,6 +43,8 @@ int main()
     cin >> name_str;
     const char *name = name_str.c_str();
 
+    printf("\nn = %d\n", delta_n);
+
     /* ディレクトリの作成 */
     char dirname[3][100];
     sprintf(dirname[0], "%s/%s/PTV", dir_path, name);

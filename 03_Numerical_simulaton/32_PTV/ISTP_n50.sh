@@ -8,34 +8,43 @@ echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
 ## シミュレーション(1) ###
-for name in 6 8 12 14
+for num in 6 7 8 9 10 11 12 13 14 
 do
     expect -c " 
     set timeout -1
 
-    # spawn python3 py/bmp_to_png.py
-    # expect \"Case Name:\"
-    # send \"$name-50\n\"
-    # expect \"$\n\"
-
-    # spawn out/labeling_for_blue.out
-    # expect \"Case Name:\"
-    # send \"$name-50\n\"
-    # expect \"$\n\"
-
-    spawn out/PTV.out
+    spawn python3 py/bmp_to_png.py
     expect \"Case Name:\"
-    send \"$name-50\n\"
+    send \"$num-50\n\"
+    expect \"$\n\"
+
+    spawn out/labeling_for_blue.out
+    expect \"Case Name:\"
+    send \"$num-50\n\"
+    expect \"$\n\"
+
+    exit 0
+    "
+done
+
+## シミュレーション(1) ###
+for num in 6 7 8 9 10 11 12 13 14 
+do
+    expect -c " 
+    set timeout -1
+    spawn out/PTV_o$num.out
+    expect \"Case Name:\"
+    send \"$num-50\n\"
     expect \"$\n\"
 
     spawn out/velocity.out
     expect \"Case Name:\"
-    send \"$name-50\n\"
+    send \"$num-50\n\"
     expect \"$\n\"
 
     spawn out/vorticity.out
     expect \"Case Name:\"
-    send \"$name-50\n\"
+    send \"$num-50\n\"
     expect \"$\n\"
 
     exit 0
