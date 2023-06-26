@@ -152,15 +152,15 @@
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(272.94,438.30)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="middle">
-		<text><tspan font-family="Times New Roman" >Rotation speed : </tspan><tspan font-family="Symbol" >w</tspan><tspan font-family="Times New Roman" > [rad/s]</tspan></text>
+		<text><tspan font-family="Times New Roman" >Rotational speed : </tspan><tspan font-family="Symbol" >w</tspan><tspan font-family="Times New Roman" > × 180 / </tspan><tspan font-family="Symbol" >p</tspan><tspan font-family="Times New Roman" > [deg/s]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
-	<g id="gnuplot_plot_1" ><title>n =   50</title>
+	<g id="gnuplot_plot_1" ><title>np =   50</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(360.49,108.51)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="end">
-		<text xml:space="preserve"><tspan font-family="Times New Roman"  font-style="italic"  xml:space="preserve">n</tspan><tspan font-family="Times New Roman"  xml:space="preserve"> =   50</tspan></text>
+		<text xml:space="preserve"><tspan font-family="Times New Roman"  font-style="italic"  xml:space="preserve">n</tspan><tspan font-family="Times New Roman"  font-style="italic"  font-size="14.4" dy="5.40px" xml:space="preserve">p</tspan><tspan font-family="Times New Roman"  font-size="18.0" dy="-5.40px" xml:space="preserve"> =   50</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -168,7 +168,7 @@
 	<use xlink:href='#gpPt6' transform='translate(146.78,315.59) scale(3.38)' color='rgb(255,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(188.84,316.16) scale(3.38)' color='rgb(255,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(230.89,319.25) scale(3.38)' color='rgb(255,   0,   0)'/>
-	<use xlink:href='#gpPt6' transform='translate(272.95,300.23) scale(3.38)' color='rgb(255,   0,   0)'/>
+	<use xlink:href='#gpPt6' transform='translate(272.95,296.78) scale(3.38)' color='rgb(255,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(315.00,301.39) scale(3.38)' color='rgb(255,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(357.05,307.29) scale(3.38)' color='rgb(255,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(399.11,294.79) scale(3.38)' color='rgb(255,   0,   0)'/>
@@ -180,15 +180,15 @@
 <g fill="none" color="white" stroke="rgb(255,   0,   0)" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(255,   0,   0)'  d='M104.73,322.96 L146.78,315.59 L188.84,316.16 L230.89,319.25 L272.95,300.23 L315.00,301.39 L357.05,307.29 L399.11,294.79
+	<path stroke='rgb(255,   0,   0)'  d='M104.73,322.96 L146.78,315.59 L188.84,316.16 L230.89,319.25 L272.95,296.78 L315.00,301.39 L357.05,307.29 L399.11,294.79
 		L441.16,304.75  '/></g>
 	</g>
-	<g id="gnuplot_plot_3" ><title>n = 300</title>
+	<g id="gnuplot_plot_3" ><title>np = 300</title>
 <g fill="none" color="white" stroke="rgb(255,   0,   0)" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(360.49,135.51)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="end">
-		<text><tspan font-family="Times New Roman"  font-style="italic" >n</tspan><tspan font-family="Times New Roman" > = 300</tspan></text>
+		<text><tspan font-family="Times New Roman"  font-style="italic" >n</tspan><tspan font-family="Times New Roman"  font-style="italic"  font-size="14.4" dy="5.40px">p</tspan><tspan font-family="Times New Roman"  font-size="18.0" dy="-5.40px"> = 300</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

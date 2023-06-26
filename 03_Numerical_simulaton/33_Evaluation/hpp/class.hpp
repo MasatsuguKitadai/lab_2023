@@ -18,8 +18,8 @@ const float pi = 4 * atan(1.0); // 円周率
 
 /* 保存ディレクトリの設定 */
 // const string main_path = "/mnt/g/workspace_SSD/03_numerical_simulation/"; // SSD
-// const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
-const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
+const string main_path = "/mnt/e/workspace_SSD/03_numerical_simulation/"; // SSD
+// const string main_path = "/mnt/d/workspace_HDD/03_numerical_simulation/"; // HDD 家のPC
 
 /* 主要パラメータ */
 const float deg = 6;           // 壁面の回転速度 [deg/s]
