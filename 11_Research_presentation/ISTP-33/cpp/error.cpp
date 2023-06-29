@@ -60,7 +60,7 @@ void gnuplot_1()
 
     // label
     const char *xxlabel = "Number of blue particles in one image : {/:Italic n_p} [-/frame]";
-    const char *yylabel = "RMSE rate [%]";
+    const char *yylabel = "RMSE ratio : {/:Italic E} [%]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -132,7 +132,7 @@ void gnuplot_2()
 
     // label
     const char *xxlabel = "Rotational speed : {/Symbol w} × 180 / {/Symbol p} [deg/s]";
-    const char *yylabel = "RMSE rate [%]";
+    const char *yylabel = "RMSE ratio : {/:Italic E}  [%]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -204,7 +204,7 @@ void gnuplot_3()
 
     // label
     const char *xxlabel = "Rotational speed : {/Symbol w} × 180 / {/Symbol p} [deg/s]";
-    const char *yylabel = "RMSE rate [%]";
+    const char *yylabel = "RMSE ratio : {/:Italic E}  [%]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -272,7 +272,7 @@ void gnuplot_4()
 
     // label
     const char *xxlabel = "Rotational speed : {/Symbol w} × 180 / {/Symbol p} [deg/s]";
-    const char *yylabel = "RMSE rate [%]";
+    const char *yylabel = "RMSE ratio : {/:Italic E}  [%]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)

@@ -152,7 +152,7 @@
 	<path stroke='black'  d='M83.70,62.16 L83.70,364.95 L462.19,364.95 L462.19,62.16 L83.70,62.16 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(35.10,213.56) rotate(270)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="middle">
-		<text><tspan font-family="Times New Roman" >RMSE rate [%]</tspan></text>
+		<text xml:space="preserve"><tspan font-family="Times New Roman"  xml:space="preserve">RMSE ratio : </tspan><tspan font-family="Times New Roman"  font-style="italic"  xml:space="preserve">E</tspan><tspan font-family="Times New Roman"  xml:space="preserve">  [%]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

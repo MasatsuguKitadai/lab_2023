@@ -32,7 +32,7 @@ vector<vector<float>> r(n + 1);  // 相互相間係数 [-]
 vector<float> n_r;               // 最大相間係数をとる対応数 [-]
 
 /** プロトタイプ宣言 **/
-// int Count_data(const char *name, const char *data_set, int n);
+void Select_Rmax(const char *name, const char *data_set);
 void Load_data(const char *name, const char *data_set, int n2);
 void Plot_velocity(const char *name, const char *data_set);
 void Plot_number(const char *name, const char *data_set);
@@ -56,6 +56,21 @@ int main()
     sprintf(dirname, "%s/%s/44_Evaluation/%s/result", dir_path, name, data_set);
     mkdir(dirname, dirmode);
 
+    /* 最大相間係数の選択 */
+    Select_Rmax(name, data_set);
+
+    /* 速度場のプロット */
+    Plot_number(name, data_set);
+
+    return 0;
+}
+
+/******************************************************************************
+PROGRAM : Select_Rmax
+概要：
+******************************************************************************/
+void Select_Rmax(const char *name, const char *data_set)
+{
     /* データの読み込み */
     for (int i = n_min; i <= n_max; i++)
     {
@@ -93,12 +108,12 @@ int main()
     fp = fopen(filename, "w");
     for (int i = 0; i < r.at(0).size(); i++)
     {
-        // pm3d 用の改行
-        if (counter == 21)
-        {
-            fprintf(fp, "\n");
-            counter = 0;
-        }
+        // // pm3d 用の改行
+        // if (counter == 21)
+        // {
+        //     fprintf(fp, "\n");
+        //     counter = 0;
+        // }
 
         // データの記入
         const int tmp = n_r[i];
@@ -132,33 +147,7 @@ int main()
         counter += 1;
     }
     fclose(fp);
-    Plot_number(name, data_set);
-
-    return 0;
 }
-
-// /******************************************************************************
-// PROGRAM : Count_data
-// 概要：
-// ******************************************************************************/
-// int Count_data(const char *name, const char *data_set, int n)
-// {
-//     /* 行数のカウント */
-//     int counter = 0;
-
-//     /* ファイルの読み取り */
-//     float buf[10];      // 読み込み用のバッファ
-//     char readfile[100]; //
-//     sprintf(readfile, "%s/%s/43_PTV/%s_n=%d/PTV_velocity_dat/velocity.dat", dir_path, name, data_set, n);
-//     fp = fopen(readfile, "r");
-//     while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5])) != EOF)
-//     {
-//         counter += 1;
-//     }
-//     fclose(fp);
-
-//     return counter;
-// }
 
 /******************************************************************************
 PROGRAM : Load_data
@@ -219,6 +208,7 @@ void Plot_velocity(const char *name, const char *data_set)
     // label
     const char *xxlabel = "{/:Italic y} [mm]";
     const char *yylabel = "{/:Italic z} [mm] ";
+    const char *cblabel = "Velocity [mm/s]]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)
@@ -245,12 +235,9 @@ void Plot_velocity(const char *name, const char *data_set)
     fprintf(gp, "set cbrange['%.3f':'%.3f']\n", cb_min, cb_max);
 
     // 軸ラベル
-    fprintf(gp, "set xlabel '%s'\n", xxlabel);
-    fprintf(gp, "set ylabel '%s'\n", yylabel);
-
-    // 軸のラベル位置
-    fprintf(gp, "set xlabel offset 0.0, 0.5\n");
-    fprintf(gp, "set ylabel offset 1.0, 0.0\n");
+    fprintf(gp, "set xlabel '%s' offset 0.0, 0.5\n", xxlabel);
+    fprintf(gp, "set ylabel '%s' offset 1.0, 0.0\n", yylabel);
+    fprintf(gp, "set cblabel '%s' offset -0.5, 0.0\n", cblabel);
 
     // 軸の数値位置
     fprintf(gp, "set xtics 10 offset 0.0, 0.0\n");
@@ -345,7 +332,6 @@ void Plot_number(const char *name, const char *data_set)
 
     // グラフの出力
     fprintf(gp, "set pm3d map\n");
-    // fprintf(gp, "plot '%s' using 1:2:3:4:5 with vectors head filled lt 2 lc 'black' lw 1 notitle\n", filename);
     fprintf(gp, "splot '%s' using 1:2:3 with pm3d, '%s' using 1:2:(0):($3*2.0):($4*2.0):(0) with vectors head filled lt 2 lc 'black' lw 1 notitle\n", filename_1, filename_2);
 
     fflush(gp); // Clean up Data

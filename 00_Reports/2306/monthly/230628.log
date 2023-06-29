@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  27 JUN 2023 18:39
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  28 JUN 2023 11:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -600,63 +600,70 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 100.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 113.
+(Font)              scaled to size 9.24683pt on input line 119.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 113.
+(Font)              scaled to size 9.24683pt on input line 119.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 121.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 115.
+(Font)              scaled to size 7.39746pt on input line 121.
+File: ../images/Boundary-Layer_Theory_Fig.11.1.jpg Graphic file (type bmp)
+<../images/Boundary-Layer_Theory_Fig.11.1.jpg>
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 115.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 115.
+(Font)              scaled to size 6.47278pt on input line 129.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 129.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 129.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 115.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 129.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 125.
-LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 125.
-File: ../images/vector_grid.png Graphic file (type bmp)
-<../images/vector_grid.png>
-File: ../images/x=40,y=10.png Graphic file (type bmp)
-<../images/x=40,y=10.png>
-LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 146.
-LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 146.
-LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
-(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 146.
-LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 146.
-LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
-(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 146.
-LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 146.
-LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 5.5481pt on input line 146.
-File: ../images/x=50,y=20.png Graphic file (type bmp)
-<../images/x=50,y=20.png>
-File: ../images/velocity_and_vorticity.png Graphic file (type bmp)
-<../images/velocity_and_vorticity.png>
+File: ../images/FGH.png Graphic file (type bmp)
+<../images/FGH.png>
+File: ../images/Numerical_simulation_of_flow.png Graphic file (type bmp)
+<../images/Numerical_simulation_of_flow.png>
  [1
 
 
-] [2
-
-] (./230628.aux)
+]
+File: ../images/velocity_correct.png Graphic file (type bmp)
+<../images/velocity_correct.png>
+File: ../images/velocity_10-50.png Graphic file (type bmp)
+<../images/velocity_10-50.png>
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 185.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 185.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 185.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 185.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 185.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 185.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 5.5481pt on input line 185.
+File: ../images/velocity_10-500.png Graphic file (type bmp)
+<../images/velocity_10-500.png>
+File: ../images/error_1.png Graphic file (type bmp)
+<../images/error_1.png>
+File: ../images/error_2.png Graphic file (type bmp)
+<../images/error_2.png>
+ [2] (./230628.aux)
 Package rerunfilecheck Info: File `230628.out' has not changed.
-(rerunfilecheck)             Checksum: 39692559BBA97009F86352F7465568FA;381.
+(rerunfilecheck)             Checksum: C00F31EC93CCDE0002BA66CD4E025235;461.
  ) 
 Here is how much of TeX's memory you used:
- 15274 strings out of 478741
- 236178 string characters out of 5860983
- 539094 words of memory out of 5000000
- 33486 multiletter control sequences out of 15000+600000
+ 15297 strings out of 478741
+ 236895 string characters out of 5860983
+ 545167 words of memory out of 5000000
+ 33504 multiletter control sequences out of 15000+600000
  482658 words of font info for 96 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,5n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,9n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 230628.dvi (2 pages, 7548 bytes).
+Output written on 230628.dvi (2 pages, 10448 bytes).
