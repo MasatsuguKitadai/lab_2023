@@ -55,8 +55,8 @@ void gnuplot_1()
     const float x_max = 525;
 
     // range y
-    const float y_min = 0.0;
-    const float y_max = 10.0;
+    const float y_min = 1.0;
+    const float y_max = 7.0;
 
     // label
     const char *xxlabel = "Number of blue particles in one image : {/:Italic n_p} [-/frame]";
@@ -127,8 +127,8 @@ void gnuplot_2()
     const float x_max = 14.5;
 
     // range y
-    const float y_min = 0.0;
-    const float y_max = 10.0;
+    const float y_min = 1.0;
+    const float y_max = 7.0;
 
     // label
     const char *xxlabel = "Rotational speed : {/Symbol w} × 180 / {/Symbol p} [deg/s]";
@@ -149,7 +149,8 @@ void gnuplot_2()
 
     // 非表示
     fprintf(gp, "unset key\n");
-    fprintf(gp, "set key right top\n");
+    // fprintf(gp, "set key top outside font 'Times New Roman, 10'\n");
+    // fprintf(gp, "set key right top\n");
     // fprintf(gp, "set title '%s' offset 0.0, -0.5\n", graphtitle);
 
     // 軸の表記桁数の指定
