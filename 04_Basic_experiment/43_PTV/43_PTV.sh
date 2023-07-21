@@ -3,17 +3,36 @@ g++ cpp/PTV_n.cpp -o "out/PTV_n.out"
 # g++ cpp/velocity.cpp -o "out/velocity.out"
 
 # 名前の読み取り
+echo -n DATA_NAME:
+read name 
+
+echo -n DATA_SET:
+read set 
+
 echo "Start\t:" `date '+%y/%m/%d %H:%M:%S'`
 TIME_A=`date +%s`   
 
-for delta in 8 9 10 11 12 13 14 15 16 17
+for delta in 8 9 10 11 12
 do
+    echo "${set}_n=${delta}"
+    
     expect -c " 
     set timeout -1
     spawn ./out/PTV_n.out
+    expect \"Data Set:\"
+    send \"$set\n\"
     expect \"Delta:\"
     send \"$delta\n\"
     expect \"$\n\"
+
+    spawn ./out/velocity.out
+    expect \"Data Name:\"
+    send \"$name\n\"
+    expect \"Data Set:\"
+    send \"${set}_n=${delta}\n\"
+    expect \"$\n\"
+
+    exit 0
     "
 done
 

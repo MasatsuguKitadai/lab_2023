@@ -15,7 +15,7 @@ FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
 /** プロトタイプ宣言 **/
-void Split(const char *name, const char *dat_set);
+void Separation(const char *name, const char *dat_set);
 
 /*****************************************************************************/
 

@@ -53,7 +53,7 @@ int main()
     sprintf(dirname, "%s/%s/42_change_images/%s", dir_path, name, green);
     mkdir(dirname, dirmode);
 
-    Background(name, blue);
+    // Background(name, blue);
     Background(name, green);
     return 0;
 }
@@ -125,7 +125,7 @@ void Background(const char *name, const char *data_set)
 
     // 背景画像の読み込み
 
-    for (int i = 1; i <= 1000; i++)
+    for (int i = 1; i <= 4000; i++)
     {
         sprintf(filename[2], "%s/data/%s/%s/data_%04d.bmp", dir_path, name, data_set, i);
 
@@ -204,7 +204,7 @@ void Background_blue(const char *name, const char *data_set)
 
     /** 配列の合計値の算出 **/
 
-    for (int i = 1; i <= 1000; i++)
+    for (int i = 1; i <= 100; i++)
     {
         sprintf(filename[0], "%s/data/%s/%s/blue_%04d.bmp", dir_path, name, data_set, i);
 
@@ -223,7 +223,7 @@ void Background_blue(const char *name, const char *data_set)
 
     for (int i = 0; i < px_24_origin; i++)
     {
-        ave[i] = sum[i] / 1000;
+        ave[i] = sum[i] / 100;
     }
 
     /** BMPファイルの書き出し **/
@@ -244,7 +244,7 @@ void Background_blue(const char *name, const char *data_set)
 
     // 背景画像の読み込み
 
-    for (int i = 1; i <= 1000; i++)
+    for (int i = 1; i <= 800; i++)
     {
         sprintf(filename[2], "%s/data/%s/%s/blue_%04d.bmp", dir_path, name, data_set, i);
 
@@ -323,7 +323,7 @@ void Background_green(const char *name, const char *data_set)
 
     /** 配列の合計値の算出 **/
 
-    for (int i = 1; i <= 1000; i++)
+    for (int i = 1; i <= 100; i++)
     {
         sprintf(filename[0], "%s/data/%s/%s/green_%04d.bmp", dir_path, name, data_set, i);
 
@@ -342,7 +342,7 @@ void Background_green(const char *name, const char *data_set)
 
     for (int i = 0; i < px_24_origin; i++)
     {
-        ave[i] = sum[i] / 1000;
+        ave[i] = sum[i] / 100;
     }
 
     /** BMPファイルの書き出し **/
@@ -363,7 +363,7 @@ void Background_green(const char *name, const char *data_set)
 
     // 背景画像の読み込み
 
-    for (int i = 1; i <= 1000; i++)
+    for (int i = 1; i <= 800; i++)
     {
         sprintf(filename[2], "%s/data/%s/%s/green_%04d.bmp", dir_path, name, data_set, i);
 

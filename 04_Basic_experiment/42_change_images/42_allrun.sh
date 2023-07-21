@@ -25,16 +25,6 @@ expect \"Data Set:\"
 send \"$set\n\"
 expect \"$\n\"
 
-# spawn ./out/background_sub.out
-# expect \"Data Name:\"
-# send \"$name\n\"
-# expect \"$\n\"
-
-# spawn ./out/filter.out
-# expect \"Data Name:\"
-# send \"$name\n\"
-# expect \"$\n\"
-
 spawn ./out/separation.out
 expect \"Data Name:\"
 send \"$name\n\"

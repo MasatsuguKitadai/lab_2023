@@ -75,6 +75,7 @@ void Select_Rmax(const char *name, const char *data_set)
     for (int i = n_min; i <= n_max; i++)
     {
         Load_data(name, data_set, i);
+        printf("check = %d\n", i);
     }
 
     /* データの数 */
@@ -157,9 +158,11 @@ void Load_data(const char *name, const char *data_set, int n2)
 {
     /* ファイルの読み取り */
     float buf[10];      // 読み込み用のバッファ
-    char readfile[100]; //
+    char readfile[200]; //
     sprintf(readfile, "%s/%s/43_PTV/%s_n=%d/PTV_velocity_dat/velocity.dat", dir_path, name, data_set, n2);
     cout << "READ FILE ... : n = " << n2 << endl;
+    cout << readfile << endl;
+
     fp = fopen(readfile, "r");
     while ((fscanf(fp, "%f\t%f\t%f\t%f\t%f\t%f", &buf[0], &buf[1], &buf[2], &buf[3], &buf[4], &buf[5])) != EOF)
     {

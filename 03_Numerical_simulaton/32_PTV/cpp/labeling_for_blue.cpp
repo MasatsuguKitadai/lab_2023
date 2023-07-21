@@ -29,7 +29,7 @@ const char program_name[] = "LABELING FOR BLUE IMAGE";
 int progress_counter = 0; // 進捗表記用
 
 /* 変数指定 */
-const int num = 5000;
+const int num = 20000;
 int area[num];
 int maximum_x[num], maximum_y[num];
 int minimum_x[num], minimum_y[num];

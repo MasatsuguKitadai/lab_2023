@@ -20,8 +20,8 @@ expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-# spawn python3 py/bmp_to_png.py
-spawn python3.8 py/bmp_to_png.py
+spawn python3 py/bmp_to_png.py
+# spawn python3.8 py/bmp_to_png.py
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
@@ -41,8 +41,8 @@ expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"
 
-# spawn python3 py/curve_fit_3d.py
-spawn python3.8 py/curve_fit_3d.py
+spawn python3 py/curve_fit_3d.py
+# spawn python3.8 py/curve_fit_3d.py
 expect \"Data Name:\"
 send \"$name\n\"
 expect \"$\n\"

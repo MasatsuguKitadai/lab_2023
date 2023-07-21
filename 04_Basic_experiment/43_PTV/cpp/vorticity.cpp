@@ -8,11 +8,10 @@ DATE    : 2022/12/13
 #include <stdlib.h>
 #include <math.h>
 #include <sys/stat.h>
-
-using namespace std;
 #include <vector>
 #include <algorithm>
 #include <iostream>
+using namespace std;
 #include "../hpp/settings.hpp"
 
 /*****************************************************************************/
@@ -51,14 +50,19 @@ int main()
 {
     /* 保存ディレクトリの設定 */
     string name_str;
-    cout << "Case Name:";
+    cout << "Data Name:";
     cin >> name_str;
     const char *name = name_str.c_str();
 
+    string data_set_str;
+    cout << "Data Set:";
+    cin >> data_set_str;
+    const char *data_set = data_set_str.c_str();
+
     /* ディレクトリの作成 */
     char dirname[2][100];
-    sprintf(dirname[0], "%s/%s/PTV/PTV_vorticity_dat", dir_path, name);
-    sprintf(dirname[1], "%s/%s/PTV/PTV_vorticity_svg", dir_path, name);
+    sprintf(dirname[0], "%s/%s/43_PTV/%s/PTV_vorticity_dat", dir_path, name, data_set);
+    sprintf(dirname[1], "%s/%s/43_PTV/%s/PTV_vorticity_svg", dir_path, name, data_set);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
 
@@ -74,11 +78,11 @@ int main()
     // 配列の初期化
     int counter = 0;
 
-    for (int j = 1; j < data_num - delta_n; j++)
+    for (int j = 1; j < number - 20; j++)
     {
         // ファイルの読み取り
         char readfile[100];
-        sprintf(readfile, "%s/%s/PTV/PTV_vector_dat/%d.dat", dir_path, name, j);
+        sprintf(readfile, "%s/%s/43_PTV/%s/PTV_vector_dat/%04d.dat", dir_path, name, data_set, j);
 
         float buf[10]; // 読み込み用のバッファ
         fp = fopen(readfile, "r");
@@ -90,11 +94,11 @@ int main()
 
             for (int i = 0; i < mesh_y; i++)
             {
-                if (i * grid_size - 5 <= position_y && position_y < i * grid_size + 5)
+                if (i * grid_size - grid_size / 2 <= position_y && position_y < i * grid_size + grid_size / 2)
                 {
                     for (int k = 0; k < mesh_z; k++)
                     {
-                        if (k * grid_size - 5 <= position_z && position_z < k * grid_size + 5)
+                        if (k * grid_size - grid_size / 2 <= position_z && position_z < k * grid_size + grid_size / 2)
                         {
                             value_y[i][k] = value_y[i][k] + buf[2];
                             value_z[i][k] = value_z[i][k] + buf[3];
@@ -148,7 +152,7 @@ int main()
 
     /* 渦度プロファイルの書き出し */
     char writefile[100];
-    sprintf(writefile, "%s/%s/PTV/PTV_vorticity_dat/vorticity_profile.dat", dir_path, name);
+    sprintf(writefile, "%s/%s/43_PTV/%s/PTV_vorticity_dat/vorticity_profile.dat", dir_path, name, data_set);
     fp = fopen(writefile, "w");
     for (int i = 0; i < mesh_y; i++)
         for (int j = 0; j < mesh_z; j++)
@@ -165,7 +169,7 @@ int main()
     fclose(fp);
 
     /* 渦度の書き出し */
-    sprintf(writefile, "%s/%s/PTV/PTV_vorticity_dat/vorticity_%s.dat", dir_path, name, name);
+    sprintf(writefile, "%s/%s/43_PTV/%s/PTV_vorticity_dat/vorticity.dat", dir_path, name, data_set);
     fp = fopen(writefile, "w");
     for (int i = 0; i < mesh_y; i++)
     {
@@ -185,7 +189,7 @@ int main()
 
     /** Gnuplot **/
     char graphfile[100], graphtitle[100];
-    sprintf(graphfile, "%s/%s/PTV/PTV_vorticity_svg/vorticity_%s.svg", dir_path, name, name);
+    sprintf(graphfile, "%s/%s/43_PTV/%s/PTV_vorticity_svg/vorticity.svg", dir_path, name, data_set);
     sprintf(graphtitle, "Vorticity");
 
     // 軸の設定

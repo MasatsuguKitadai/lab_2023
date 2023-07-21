@@ -29,18 +29,22 @@ int px = width_px * height_px;
 int cal_area[w2][w2];
 
 int delta_n2;
+const char program_name[] = "PTV";
+int progress_counter = 0; // 進捗表記用
 
 /******************************************************************************/
 
 int main()
 {
     /* 保存ディレクトリの設定 */
-    const char *name = "20230517-3";
-    const char *data_set = "tyre_001";
+    const char *name = "20230711";
+    char data_set[20];
+
+    cout << "Data Set:";
+    cin >> data_set;
 
     cout << "Delta:";
     cin >> delta_n2;
-    cout << "n=" << delta_n2 << endl;
 
     /* ディレクトリの作成 */
     char dirname[3][100];
@@ -57,15 +61,10 @@ int main()
     for (i = 1; i < number - delta_n2; i++)
     {
         j = i + delta_n2;
-        // j = i + 1;
-        printf("PTV : %3d\t", i);
-
         PTV(i, name, data_set);
 
-        // if (i < 100 - delta_n2)
-        // {
-        //     plot_ptv(i, name, data_set);
-        // }
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, i - 1, number - delta_n2, progress_counter);
     }
 
     return 0;
@@ -91,14 +90,8 @@ void PTV(int num, const char *name, const char *data_set)
     int vector_num = 0;
 
     /** 粒子座標の読み込み **/
-    float x[500], y[500];
-
-    // 配列の初期化
-    for (i = 0; i < 500; i++)
-    {
-        x[i] = 0;
-        y[i] = 0;
-    }
+    float x[500] = {0};
+    float y[500] = {0};
 
     sprintf(filename[0], "%s/%s/43_PTV/%s/labeling_position_dat/%04d.dat", dir_path, name, data_set, num);
 
@@ -394,8 +387,6 @@ void PTV(int num, const char *name, const char *data_set)
     }
 
     fclose(fp);
-
-    printf("Number of vector = %d\n", vector_num);
 
     // return 0;
 }

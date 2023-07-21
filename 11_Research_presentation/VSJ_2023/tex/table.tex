@@ -1,0 +1,140 @@
+\documentclass[a4j]{jsarticle}
+\bibliographystyle{junsrt}
+
+\setlength{\topmargin}{-20.4cm}
+\setlength{\oddsidemargin}{-10.4mm}
+\setlength{\evensidemargin}{-10.4mm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{26cm}
+
+\usepackage[top=15truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage[dvipdfmx]{color}
+\usepackage{listings}
+\usepackage{listings,jvlisting}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{ascmac}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{scalefnt}
+\usepackage{overcite}
+\usepackage{otf}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table }
+
+\hypersetup{%
+    hidelinks %リンクの色消し
+}
+
+\lstset{
+basicstyle={\ttfamily},
+identifierstyle={\small},
+commentstyle={\smallitshape},
+keywordstyle={\small\bfseries},
+ndkeywordstyle={\small},
+stringstyle={\small\ttfamily},
+frame={tb},
+breaklines=true,
+columns=[l]{fullflexible},
+xrightmargin=0zw,
+xleftmargin=3zw,
+numberstyle={\scriptsize},
+stepnumber=1,
+numbersep=1zw,
+lineskip=-0.5ex
+}
+
+% キャプション後ろのダブルコロンを消す
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}%
+    \else\sbox\@tempboxa{#1 #2}%
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1 #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+
+
+\makeatletter
+\def\@maketitle
+{
+\begin{center}
+{\LARGE \@title \par}
+\end{center}
+\begin{flushright}
+{\large \@date}\\
+{\large M2 \@author}
+\end{flushright}
+\par\vskip 1.5em
+}
+\makeatother
+
+\author{来代 勝胤 / KITADAI Masatsugu}
+\title{令和5年度 5月度 月例報告書}
+\date{2023/05/30}
+
+\begin{document}
+\columnseprule=0.1mm
+\maketitle
+
+\begin{table}[h]
+  \label{table:data_type}
+  \centering
+  \caption{Experimental conditions}
+  \begin{tabular}{l r l}
+    \hline
+    Mainstream velocity                & 250              & mm/s  \\
+    Image size                         & 800 $\times$ 600 & pixel \\
+    Frame rate                         & 800              & fps   \\
+    Shutter Speed                      & 1/1000           & s     \\
+    Thickness of LLS(1)                & 1.0              & mm    \\
+    Thickness of LLS(2)                & 3.0              & mm    \\
+    Distance between LLS(1) and LLS(2) & 2.5              & mm    \\
+    Number of shots                    & 4000             &       \\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \label{table:data_type}
+  \centering
+  \begin{tabular}{l r l}
+    \hline
+    Solver & pimpleForm                &                 \\
+    Volume & $150 \times 50 \times 50$ & $\mathrm{mm}^3$ \\
+    Mesh   & $75 \times 25 \times 25$  &                 \\
+    Inlet  & 250                       & mm/s            \\
+    Outlet & Gauge pressure            &                 \\
+    Wall   & Slip                      &                 \\\hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \label{table:data_type}
+  \centering
+  \begin{tabular}{l r l}
+    \hline
+    Inspection volume   & $500 \times 400 \times 2000$ & $\mathrm{mm}^3$              \\
+    Kinematic viscosity & 0.893                        & $\mathrm{mm}^2 / \mathrm{s}$ \\
+    Mainstream velocity & 240 - 260                    & mm/s                         \\ \hline
+  \end{tabular}
+\end{table}
+
+\end{document}

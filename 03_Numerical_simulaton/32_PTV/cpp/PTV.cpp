@@ -94,14 +94,8 @@ void PTV(int num, const char *name)
     int h, w;
 
     /** 粒子座標の読み込み **/
-    float x[500], y[500];
-
-    // 配列の初期化
-    for (i = 0; i < 500; i++)
-    {
-        x[i] = 0;
-        y[i] = 0;
-    }
+    float x[2000] = {0};
+    float y[2000] = {0};
 
     sprintf(filename[0], "%s/%s/LLS_1/labeling_position_dat/%d.dat", dir_path, name, num);
 

@@ -28,8 +28,8 @@ void Load_Bmp_24bit(const char file_name[], unsigned char header[], unsigned cha
 // gnuplot
 char graphname[2][100];
 char graphtitle[100];
-char xxlabel[100] = "x [px]";
-char yylabel[100] = "y [px]";
+char xxlabel[100] = "x [pixel]";
+char yylabel[100] = "y [pixel]";
 char zzlabel[2][100];
 double x_max = width;
 double x_min = 0;
