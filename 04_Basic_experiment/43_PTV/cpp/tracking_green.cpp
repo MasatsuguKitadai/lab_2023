@@ -27,6 +27,7 @@ void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char
 #include "../hpp/settings.hpp"
 int px = width_px * height_px;
 int cal_area[w2][w2];
+const char *program_name = "Trackig Green";
 
 /******************************************************************************/
 
@@ -45,29 +46,25 @@ int main()
 
     /* ディレクトリの作成 */
     char dirname[3][100];
-    sprintf(dirname[0], "%s/%s/43_PTV/%s/PTV_vector_dat", dir_path, name, data_set);
-    sprintf(dirname[1], "%s/%s/43_PTV/%s/PTV_vector_svg", dir_path, name, data_set);
+    sprintf(dirname[0], "%s/%s/43_PTV/%s/tracking_green_dat", dir_path, name, data_set);
+    sprintf(dirname[1], "%s/%s/43_PTV/%s/tracking_green_svg", dir_path, name, data_set);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
 
     /** PIV loop **/
-    int i, j;
+    int progress_counter = 0;
 
-    for (i = 1; i < number - delta_n; i++)
-        for (i = 1; i < 100; i++)
+    for (int i = 1; i < number; i++)
+    {
+        PTV(i, name, data_set);
+        if (i < 100 - delta_n)
         {
-            j = i + delta_n;
-            // j = i + 1;
-            printf("PTV : %3d\t", i);
-
-            PTV(i, name, data_set);
             plot_ptv(i, name, data_set);
-
-            // if (i < 100 - delta_n)
-            // {
-            // plot_ptv(i, name, data_set);
-            // }
         }
+
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, i - 1, number, progress_counter);
+    }
 
     return 0;
 }
@@ -86,9 +83,9 @@ void PTV(int num, const char *name, const char *data_set)
     char filename_ptv_3[100];
     char filename[3][100];
 
-    sprintf(filename_ptv, "%s/%s/42_change_images/%s/blue/%04d.bmp", dir_path, name, data_set, num);
-    sprintf(filename_ptv_2, "%s/%s/42_change_images/%s/green/%04d.bmp", dir_path, name, data_set, num + delta_n);
-    sprintf(filename_ptv_3, "%s/%s/43_PTV/%s/PTV_vector_dat/%04d.dat", dir_path, name, data_set, num);
+    sprintf(filename_ptv, "%s/%s/42_change_images/%s/green/%04d.bmp", dir_path, name, data_set, num);
+    sprintf(filename_ptv_2, "%s/%s/42_change_images/%s/green/%04d.bmp", dir_path, name, data_set, num + 1);
+    sprintf(filename_ptv_3, "%s/%s/43_PTV/%s/tracking_green_dat/%04d.dat", dir_path, name, data_set, num);
 
     // 一般の変数
     int i, j, k, l, n, m;
@@ -96,20 +93,14 @@ void PTV(int num, const char *name, const char *data_set)
     int vector_num = 0;
 
     /** 粒子座標の読み込み **/
-    float x[500], y[500];
+    float x[500] = {0};
+    float y[500] = {0};
 
-    // 配列の初期化
-    for (i = 0; i < 500; i++)
-    {
-        x[i] = 0;
-        y[i] = 0;
-    }
-
-    sprintf(filename[0], "%s/%s/43_PTV/%s/labeling_position_dat/%04d.dat", dir_path, name, data_set, num);
+    sprintf(filename[0], "%s/%s/43_PTV/%s/labeling_position_dat_G/%04d.dat", dir_path, name, data_set, num);
 
     fp = fopen(filename[0], "r");
 
-    float buf[10];
+    float buf[10] = {0};
 
     i = 0;
     while ((fscanf(fp, "%f\t%f\t%f", &buf[0], &buf[1], &buf[2])) != EOF)
@@ -405,10 +396,6 @@ void PTV(int num, const char *name, const char *data_set)
     }
 
     fclose(fp);
-
-    printf("Number of vector = %d\n", vector_num);
-
-    // return 0;
 }
 
 void plot_ptv(int num, const char *name, const char *data_set)
@@ -417,16 +404,16 @@ void plot_ptv(int num, const char *name, const char *data_set)
 
     // ファイル名
     char filename_ptv[100];
-    char filename_b[100];
-    char filename_g[100];
+    char filename_g1[100];
+    char filename_g2[100];
     char graphname[100];
     char imagename[150];
     char graphtitle[100];
 
-    sprintf(filename_ptv, "%s/%s/43_PTV/%s/PTV_vector_dat/%04d.dat", dir_path, name, data_set, num);
-    sprintf(filename_b, "%s/%s/43_PTV/%s/labeling_position_dat/%04d.dat", dir_path, name, data_set, num);
-    sprintf(filename_g, "%s/%s/43_PTV/%s/labeling_position_dat_G/%04d.dat", dir_path, name, data_set, num + delta_n);
-    sprintf(graphname, "%s/%s/43_PTV/%s/PTV_vector_svg/%04d.svg", dir_path, name, data_set, num);
+    sprintf(filename_ptv, "%s/%s/43_PTV/%s/tracking_green_dat/%04d.dat", dir_path, name, data_set, num);
+    sprintf(filename_g1, "%s/%s/43_PTV/%s/labeling_position_dat_G/%04d.dat", dir_path, name, data_set, num);
+    sprintf(filename_g2, "%s/%s/43_PTV/%s/labeling_position_dat_G/%04d.dat", dir_path, name, data_set, num + 1);
+    sprintf(graphname, "%s/%s/43_PTV/%s/tracking_green_svg/%04d.svg", dir_path, name, data_set, num);
     sprintf(graphtitle, "PTV");
 
     // 軸の設定
@@ -487,7 +474,7 @@ void plot_ptv(int num, const char *name, const char *data_set)
     fprintf(gp, "set ytics offset 0.0, 0.0\n");
 
     // グラフの出力
-    fprintf(gp, "plot '%s' using 1:2 with points lc 'red' ps 0.5 pt 4, '%s' using 1:2 with points lc 'sea-green' ps 0.5 pt 4, '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", filename_b, filename_g, filename_ptv);
+    fprintf(gp, "plot '%s' using 1:2 with points lc 'cyan' ps 0.5 pt 4, '%s' using 1:2 with points lc 'magenta' ps 0.5 pt 4, '%s' using 1:2:3:4:5 with vectors lc palette lw 1 notitle\n", filename_g1, filename_g2, filename_ptv);
 
     fflush(gp); // Clean up Data
 

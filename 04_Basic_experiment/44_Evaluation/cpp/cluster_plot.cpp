@@ -52,8 +52,8 @@ int main()
     mkdir(dirname, dirmode);
 
     plot_cluster(name, data_set, model);
-    Create_file(name, data_set, model);
-    plot_cluster_2(name, data_set, model);
+    // Create_file(name, data_set, model);
+    // plot_cluster_2(name, data_set, model);
 
     return 0;
 }
@@ -121,7 +121,7 @@ void plot_cluster(const char *name, const char *data_set, const char *model)
 
     // range color
     const float cb_min = 0.0;
-    const float cb_max = 4500;
+    const float cb_max = 20; // DBSCAN
 
     const float z_min = 0;
     const float z_max = 80 / frame_rate;

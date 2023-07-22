@@ -44,7 +44,7 @@ int main()
     sprintf(dirname, "%s/%s/44_Evaluation/%s/timeline", dir_path, name, data_set);
     mkdir(dirname, dirmode);
 
-    // Timeline(name, data_set);
+    Timeline(name, data_set);
     plot(name, data_set);
 
     return 0;

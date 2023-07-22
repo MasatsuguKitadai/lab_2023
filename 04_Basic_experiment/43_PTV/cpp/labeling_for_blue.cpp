@@ -20,6 +20,7 @@ FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
 #include "../hpp/settings.hpp"
+const char *program_name = "Lableing Blue";
 
 /** プロトタイプ宣言 **/
 void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
@@ -60,6 +61,7 @@ int main()
     int count = 0;
     int min;
     int tmp = 0;
+    int progress_counter = 0;
 
     int maximum_x[1000], maximum_y[1000];
     int minimum_x[1000], minimum_y[1000];
@@ -356,7 +358,8 @@ int main()
 
         fclose(fp);
 
-        printf("Labeling : %d\tnum = %d\n", m, n);
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, m - 1, number, progress_counter);
     }
 
     return 0;

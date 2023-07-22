@@ -1,5 +1,6 @@
 #!/bin/bash
 g++ cpp/labeling_for_green.cpp -o "out/labeling_for_green.out"
+g++ cpp/labeling_for_blue.cpp -o "out/labeling_for_blue.out"
 g++ cpp/PTV.cpp -o "out/PTV.out"
 g++ cpp/velocity.cpp -o "out/velocity.out"
 
@@ -14,6 +15,13 @@ for set in delta_center_+0 delta_center_+5 delta_center_+10 delta_right_+0 delta
 do
     expect -c " 
     set timeout -1
+
+    spawn ./out/labeling_for_blue.out
+    expect \"Data Name:\"
+    send \"$name\n\"
+    expect \"Data Set:\"
+    send \"$set\n\"
+    expect \"$\n\"
 
     spawn ./out/labeling_for_green.out
     expect \"Data Name:\"

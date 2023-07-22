@@ -20,6 +20,7 @@ FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
 #include "../hpp/settings.hpp"
+const char *program_name = "Lableing Green";
 
 /** プロトタイプ宣言 **/
 void Load_Bmp_8bit(const char file_name[], unsigned char header[], unsigned char binary[]);
@@ -43,7 +44,7 @@ int main()
     char dirname[3][100];
     sprintf(dirname[0], "%s/%s/43_PTV", dir_path, name);
     sprintf(dirname[1], "%s/%s/43_PTV/%s", dir_path, name, data_set);
-    sprintf(dirname[2], "%s/%s/43_PTV/%s/labeling_position_dat", dir_path, name, data_set);
+    sprintf(dirname[2], "%s/%s/43_PTV/%s/labeling_position_dat_G", dir_path, name, data_set);
     mkdir(dirname[0], dirmode);
     mkdir(dirname[1], dirmode);
     mkdir(dirname[2], dirmode);
@@ -60,6 +61,7 @@ int main()
     int count = 0;
     int min;
     int tmp = 0;
+    int progress_counter = 0;
 
     int maximum_x[1000], maximum_y[1000];
     int minimum_x[1000], minimum_y[1000];
@@ -342,7 +344,7 @@ int main()
 
         // 各座標ごとに書き出し
         char writefile[100];
-        sprintf(writefile, "%s/%s/43_PTV/%s/labeling_position_dat/%04d.dat", dir_path, name, data_set, m);
+        sprintf(writefile, "%s/%s/43_PTV/%s/labeling_position_dat_G/%04d.dat", dir_path, name, data_set, m);
         fp = fopen(writefile, "w");
 
         for (int i = 1; i <= n; i++)
@@ -356,7 +358,8 @@ int main()
 
         fclose(fp);
 
-        printf("Labeling : %d\tnum = %d\n", m, n);
+        /* 進捗表示 */
+        progress_counter = Progress_meter(program_name, m - 1, number, progress_counter);
     }
 
     return 0;
