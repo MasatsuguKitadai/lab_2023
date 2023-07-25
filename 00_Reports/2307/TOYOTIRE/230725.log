@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  22 JUL 2023 16:51
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  24 JUL 2023 12:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -599,21 +599,122 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
- [1
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 127.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 127.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 127.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 127.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (4.2044pt too wide) in paragraph at lines 127--137
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 140.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 140.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 147.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 147.
+File: ../images/right_+0.png Graphic file (type bmp)
+<../images/right_+0.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 149--150
+ [] 
+ []
+
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 150.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 150.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 150.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 150.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 150.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 150.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 5.5481pt on input line 150.
+File: ../images/right_+5.png Graphic file (type bmp)
+<../images/right_+5.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 151--152
+ [][] 
+ []
+
+File: ../images/right_+10.png Graphic file (type bmp)
+<../images/right_+10.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 153--154
+ [][] 
+ []
+
+[1
 
 
+]
+File: ../images/center_+0.png Graphic file (type bmp)
+<../images/center_+0.png>
 
-] (./230725.aux)
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 174--175
+ [] 
+ []
+
+File: ../images/center_+5.png Graphic file (type bmp)
+<../images/center_+5.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 176--177
+ [][] 
+ []
+
+File: ../images/center_+10.png Graphic file (type bmp)
+<../images/center_+10.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 178--179
+ [][] 
+ []
+
+File: ../images/tyre_+0.png Graphic file (type bmp)
+<../images/tyre_+0.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 197--198
+ [] 
+ []
+
+File: ../images/tyre_+5.png Graphic file (type bmp)
+<../images/tyre_+5.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 199--200
+ [][] 
+ []
+
+File: ../images/tyre_+10.png Graphic file (type bmp)
+<../images/tyre_+10.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 201--202
+ [][] 
+ []
+
+[2] (./230725.aux)
 Package rerunfilecheck Info: File `230725.out' has not changed.
-(rerunfilecheck)             Checksum: 24512EA47E06D3B9F35F4DBE56DD090F;259.
+(rerunfilecheck)             Checksum: 42F1093CDD9D141F5BFA18F10F6D4567;423.
  ) 
 Here is how much of TeX's memory you used:
- 15169 strings out of 478741
- 234363 string characters out of 5860983
- 533043 words of memory out of 5000000
- 33411 multiletter control sequences out of 15000+600000
- 476134 words of font info for 63 fonts, out of 8000000 for 9000
+ 15301 strings out of 478741
+ 236764 string characters out of 5860983
+ 541180 words of memory out of 5000000
+ 33508 multiletter control sequences out of 15000+600000
+ 482658 words of font info for 96 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,5n,64p,379b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,8n,64p,379b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 230725.dvi (1 page, 3552 bytes).
+Output written on 230725.dvi (2 pages, 10440 bytes).
