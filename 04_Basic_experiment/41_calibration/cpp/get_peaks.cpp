@@ -145,7 +145,6 @@ void Get_peaks(const char *name)
         }
 
         v.push_back({x, y});
-
         // printf("[%2d] :\t%3d\t%3d\t%f\n", i + 1, v[i].first, v[i].second, peak);
     }
 

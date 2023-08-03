@@ -11,9 +11,13 @@ DATE    : 2023/05/24
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 using namespace std;
 
 /** プロトタイプ宣言 **/
+void Change(string input, string output);
 void gnuplot_1();
 void gnuplot_12();
 void gnuplot_13();
@@ -30,6 +34,9 @@ mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_I
 
 int main()
 {
+    string input = "data/tyre_rolling_+5_n=9.dat";
+    string output = "data/tyre_rolling_+5_n=9_2.dat";
+    Change(input, output);
     gnuplot_1();
     gnuplot_2();
     gnuplot_12();
@@ -37,6 +44,34 @@ int main()
     gnuplot_22();
 
     return 0;
+}
+
+void Change(string input, string output)
+{
+    ifstream inputFile(input.c_str());
+    ofstream outputFile(output.c_str());
+
+    string line;
+    while (getline(inputFile, line))
+    {
+        istringstream iss(line);
+        double first;
+
+        // 1列目の値を読み取ります
+        iss >> first;
+
+        // 1列目が90以上の場合、スキップします
+        if (first > 90.0)
+        { // 変更: 90を浮動小数点数として比較します
+            continue;
+        }
+
+        // それ以外の場合は、出力ファイルに書き込みます
+        outputFile << line << endl;
+    }
+
+    inputFile.close();
+    outputFile.close();
 }
 
 void gnuplot_1()
@@ -198,7 +233,7 @@ void gnuplot_13()
     /** Gnuplot **/
 
     // ファイル名
-    char readfile[] = "data/tyre_rolling_+5_n=9.dat";
+    char readfile[] = "data/tyre_rolling_+5_n=9_2.dat";
     char graphfile[] = "results/velocity_tyre_rolling_2.svg";
     char graphtitle[] = "Time averaged velocity : Wake of delta wing model ({/Symbol D}{/:Italic n} = 10";
 
@@ -352,7 +387,7 @@ void gnuplot_22()
     /** Gnuplot **/
 
     // ファイル名
-    char readfile[] = "data/tyre_rolling_+5_n=9.dat";
+    char readfile[] = "data/tyre_rolling_+5_n=9_2.dat";
     char graphfile[] = "results/velocity_tyre_rolling.svg";
     char graphtitle[] = "Time averaged velocity : Wake of vehicle model ({/Symbol D}{/:Italic n} = 10)";
 
