@@ -1,0 +1,169 @@
+\documentclass[twocolumn,a4j]{jsarticle}
+\setlength{\topmargin}{-20.4cm}
+\setlength{\oddsidemargin}{-10.4mm}
+\setlength{\evensidemargin}{-10.4mm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{26cm}
+
+\usepackage[top=15truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage[dvipdfmx]{color}
+\usepackage{listings}
+\usepackage{listings,jvlisting}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{ascmac}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{scalefnt}
+\usepackage{overcite}
+\usepackage{otf}
+\usepackage{multicol}
+\usepackage[geometry]{ifsym}
+\usepackage{array}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table }
+
+\lstset{
+basicstyle={\ttfamily},
+identifierstyle={\small},
+commentstyle={\smallitshape},
+keywordstyle={\small\bfseries},
+ndkeywordstyle={\small},
+stringstyle={\small\ttfamily},
+frame={tb},
+breaklines=true,
+columns=[l]{fullflexible},
+xrightmargin=0zw,
+xleftmargin=3zw,
+numberstyle={\scriptsize},
+stepnumber=1,
+numbersep=1zw,
+lineskip=-0.5ex
+}
+
+% キャプション後ろのダブルコロンを消す
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}%
+    \else\sbox\@tempboxa{#1 #2}%
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1 #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+
+% タイトル
+\makeatletter
+\def\@maketitle
+{
+\begin{center}
+{\LARGE \@title \par}
+\end{center}
+\begin{flushright}
+{\large \@date 報告書 No.33}\\
+{\large M2 \@author}
+\end{flushright}
+\par\vskip 1.5em
+}
+\makeatother
+
+\author{来代 勝胤}
+\title{令和4年度 8月 第4週 報告書}
+\date{2022/8/22}
+
+\begin{document}
+\columnseprule=0.1mm
+\maketitle
+
+\section*{報告内容}
+\begin{enumerate}[1.]
+  \item 可視化情報シンポジウムについて
+  \item 解析アルゴリズムの再構成
+  \item 来週の予定
+\end{enumerate}
+
+\section{可視化情報シンポジウムについて}
+
+\begin{table}[hbtp]
+  \label{table:data_type}
+  \begin{tabular*}{8cm}{ c | c }
+    \hline
+    \textgt{題目} & \begin{tabular}{c} 多重カラーLLSを用いた供試体を過ぎる\\二次流れのPIV計測  \end{tabular}        \\ \hline
+    \textgt{内容} & \begin{tabular}{c} 三角翼後流及び車両モデル周りの流れ場\\の計測結果について  \end{tabular}        \\ \hline
+    \textgt{日時} & 2023/8/8 - 8/9                   \\ \hline
+    \textgt{会場} & 北海道 小樽市 グランドパーク小樽 \\ \hline
+  \end{tabular*}
+\end{table}
+
+\subsection{質問・コメント}
+\begin{itemize}
+  \item [Q.]2枚目のLLSの厚みを大きくしている意図は？
+  \item [A.] 1枚目のLLSを通過する粒子像を漏れなく撮影するため．\\
+  \item [Q.]二次流れの撮影は，厚みを持つLLSを用いればできるはず．
+        2枚のLLSを利用する必要があるのか？\\
+        また，この手法のメリットはなにか？
+  \item [A.] 同色のLLSの場合，主流方向の位置情報が欠落し画像の校正ができないため．
+  \item [A.] ステレオPIV 等の複雑な光学系配置・校正作業を必要とせずに
+        他の手法に比べて簡易に二次流れを計測することが可能な点．\\
+  \item [Q.] 3色のレーザーを用いてPIV計測を行ったことがあるが
+        混色の問題 等はなかったのか？
+  \item [A.] あらかじめ撮影した青と緑の粒子像から混色の割合を計算し
+        取得した粒子像から割合分の差を取ることで分光することが可能．
+\end{itemize}
+
+\newpage
+\section{解析アルゴリズムの再構成}
+これまで検討を行ってきた解析の一連の流れとアルゴリズムについて，
+性能向上と解析手順の明確化のため見直しを行っている．
+
+\begin{enumerate}[(1)]
+  \item [] \textgt{[ 全体の流れ ]}
+  \item 校正ブロックの校正点特定と補正関数の取得
+  \item 背景処理・粒子位置特定等の前処理
+  \item 粒子追跡
+  \item ベクトルの再配置・誤ベクトル除去等の後処理
+\end{enumerate}
+
+\subsection{校正プロックの校正点と補正関数の取得}
+\begin{itemize}
+  \item 24bitカラー画像から8bitグレイスケールへの変更を
+        BT.601-5 に示される割合に従って変換
+  \item 画素の周囲8要素を用いた中央値フィルタによってノイズを軽減
+  \item 校正板の２値化画像生成時のしきい値を
+        大津の２値化法に則って決定
+\end{itemize}
+
+\begin{enumerate}[(1)]
+  \item [] \textgt{[ 解析プロセス ]}
+  \item 校正ブロックの校正点特定と補正関数の取得
+  \item 背景処理・粒子位置特定等の前処理
+  \item 粒子追跡
+  \item ベクトルの再配置・誤ベクトル除去等の後処理
+\end{enumerate}
+
+
+\section{来週の予定}
+\begin{itemize}
+  \item 共同研究報告書の作成
+  \item 解析アルゴリズムの再構成 (続)
+  \item ISTP 原稿 再投稿
+\end{itemize}
+
+\end{document}
