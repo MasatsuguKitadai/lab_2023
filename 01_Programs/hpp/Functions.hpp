@@ -1,8 +1,20 @@
+/******************************************************************************
+PROGRAM : Functions.hpp
+AUTHER  : Masatsugu Kitadai
+DATE    : 2023/7/25
+******************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <sys/stat.h>
 #include <iostream>
 #include <vector>
 #include <cstdio>
 #include <cstdlib>
 using namespace std;
+
+FILE *fp, *gp;
+mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
 /******************************************************************************
 FUNCTION：Setting
@@ -75,6 +87,7 @@ OUT     : vector<vector<unsigned char>> &arr / バイナリを格納する二次
 ******************************************************************************/
 void Read_Bmp(const char *file_name, vector<vector<unsigned char>> &arr, int mode)
 {
+    // Determine the header size
     int HEADER_SIZE;
     if (mode == 8)
     {
