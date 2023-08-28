@@ -107,9 +107,8 @@ lineskip=-0.5ex
 \section*{進捗報告}
 今月は，8/8 - /10 まで可視化情報シンポジウムに参加し，
 研究発表を行った．
-また，ISTP-33 の原稿の再提出 等，次の研究発表に向けて準備を進めている．
-研究進捗として，現在は二次流れをより精度良く，定量的な評価を実現するため，
-解析手順の再構成として，アルゴリズムの見直しや処理の再検討を行っている．
+また，研究進捗として，二次流れ解析プログラムの性能向上を目的に
+アルゴリズムの見直しや処理の検討を行っている．
 
 \section{可視化情報シンポジウムについて}
 \begin{table}[hbtp]
@@ -155,7 +154,7 @@ lineskip=-0.5ex
 \subsection{投稿内容に対する返答}
 \begin{figure}[htbp]
   \footnotesize
-  \includegraphics[width=95mm]{../images/reviews.png}
+  \includegraphics[width=90mm]{../images/reviews.png}
 \end{figure}
 
 \begin{itemize}
@@ -177,7 +176,6 @@ lineskip=-0.5ex
 \end{enumerate}
 
 \subsection{(1) 校正プロックの校正点と補正関数の取得}
-改善点
 \begin{itemize}
   \item 24bitカラー画像から8bitグレイスケールへの変更を
         BT.601-5 に示される割合に従って変換
@@ -188,24 +186,85 @@ lineskip=-0.5ex
   \item 取得した校正点を用いて補正関数を計算
 \end{itemize}
 
+\newpage
+\subsection{改善した内容}
+\begin{itemize}
+  \item メジアンフィルタによるごま塩ノイズの軽減
+  \item しきい値の自動決定による二値化処理の統一
+  \item 相互相間によるサブピクセル精度での校正点の特定
+\end{itemize}
+
+\begin{figure}[htbp]
+  \begin{tabular}{cc}
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/original.bmp}
+      \subcaption{Original}
+    \end{minipage} &
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/grayscale.bmp}
+      \subcaption{Grayscale}
+    \end{minipage} \\
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/median.bmp}
+      \subcaption{Median filter}
+    \end{minipage}   &
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/binary.bmp}
+      \subcaption{Binarize}
+    \end{minipage}
+  \end{tabular}
+  \caption{Calibration images}
+  \includegraphics[keepaspectratio, width=82mm]{../images/cross_crr.png}
+  \caption{Cross correlation of calibration image}
+  \includegraphics[keepaspectratio, width=82mm]{../images/calibration_0.png}
+  \caption{Calibration points for left columns}
+\end{figure}
+
+\newpage
 \subsection{(2) 背景処理と粒子位置の特定}
 \begin{itemize}
   \item 撮影画像の平均値を用いた背景処理
-  \item 混色の割合の計算し，カラーフィルタを作成
-  \item 作成したカラーフィルタを用いて粒子像を青と緑に識別
   \item マスク画像を用いて粒子位置を特定
+  \item 混色の割合の計算し，カラーフィルタを作成
+  \item カラーフィルタを用いた粒子像の識別 (B or G)
+  \item 平均フィルタによる輝度分布の平滑化
   \item 粒子位置を補正関数を用いて座標変換
 \end{itemize}
 
+\begin{figure}[htbp]
+  \includegraphics[keepaspectratio, width=82mm]{../images/cross_crr_particle.png}
+  \caption{Cross correlation of particles image : Green}
+  \includegraphics[keepaspectratio, width=82mm]{../images/particle_positions_green.png}
+  \caption{Particles positions : Green}
+\end{figure}
 
+\subsection{改善した内容}
+\begin{itemize}
+  \item 相互相間によるサブピクセル精度の粒子位置特定
+  \item 特定できる粒子数の大幅な増加
+\end{itemize}
 
+\begin{table}[hbtp]
+  \centering
+  \caption{Particle detection for green image}
+  \begin{tabular}{l c}
+    \hline
+    Method of particle detection & Number of particles \\ \hline \hline
+    Binarization images          & 400                 \\ \hline
+    Cross correlation plane      & 100                 \\ \hline
+  \end{tabular}
+\end{table}
 
 
 
 \section{9月の予定}
 \begin{itemize}
   \item ISTP-33 (9/24 - 27)
-  \item 解析アルゴリズムの改善(対応枚数の判別)
+  \item 解析手順の再構成 (続き)
 \end{itemize}
 
 \end{document}
