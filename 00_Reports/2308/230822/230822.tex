@@ -102,7 +102,6 @@ lineskip=-0.5ex
 \section{可視化情報シンポジウムについて}
 
 \begin{table}[hbtp]
-  \label{table:data_type}
   \begin{tabular*}{8cm}{ c | c }
     \hline
     \textgt{題目} & \begin{tabular}{c} 多重カラーLLSを用いた供試体を過ぎる\\二次流れのPIV計測  \end{tabular}        \\ \hline
@@ -128,36 +127,64 @@ lineskip=-0.5ex
         取得した粒子像から割合分の差を取ることで分光することが可能．
 \end{itemize}
 
-\newpage
 \section{解析アルゴリズムの再構成}
 これまで検討を行ってきた解析の一連の流れとアルゴリズムについて，
 性能向上と解析手順の明確化のため見直しを行っている．
 
+\newpage
+\subsection{全体の流れ}
 \begin{enumerate}[(1)]
-  \item [] \textgt{[ 全体の流れ ]}
   \item 校正ブロックの校正点特定と補正関数の取得
   \item 背景処理・粒子位置特定等の前処理
   \item 粒子追跡
   \item ベクトルの再配置・誤ベクトル除去等の後処理
 \end{enumerate}
 
-\subsection{校正プロックの校正点と補正関数の取得}
-\begin{itemize}
+\subsection{改善例：校正画像の二値化プロセス}
+\begin{enumerate}[(1)]
   \item 24bitカラー画像から8bitグレイスケールへの変更を
-        BT.601-5 に示される割合に従って変換
-  \item 画素の周囲8要素を用いた中央値フィルタによってノイズを軽減
+        BT.601-5 に示される割合に従って変換\\
+        (Fig.1 (a) → (b))
+  \item 画素の周囲8要素を用いた中央値フィルタによってノイズを軽減 (Fig.1 (b) → (c))
   \item 校正板の２値化画像生成時のしきい値を
-        大津の２値化法に則って決定
-\end{itemize}
-
-\begin{enumerate}[(1)]
-  \item [] \textgt{[ 解析プロセス ]}
-  \item 校正ブロックの校正点特定と補正関数の取得
-  \item 背景処理・粒子位置特定等の前処理
-  \item 粒子追跡
-  \item ベクトルの再配置・誤ベクトル除去等の後処理
+        大津の２値化法に則って決定 (Fig.1 (c) → (d))
 \end{enumerate}
 
+\begin{figure}[htbp]
+  \begin{tabular}{cc}
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/original.bmp}
+      \subcaption{Original}
+    \end{minipage} &
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/grayscale.bmp}
+      \subcaption{Grayscale}
+    \end{minipage} \\
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/median.bmp}
+      \subcaption{Median filter}
+    \end{minipage}   &
+    \begin{minipage}[t]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, width=40mm]{../images/binary.bmp}
+      \subcaption{Binarize}
+    \end{minipage}
+  \end{tabular}
+  \caption{Calibration images}
+\end{figure}
+
+\subsection{粒子位置特定プログラムの改善}
+\begin{figure}[htbp]
+  \footnotesize
+  \begin{center}
+    \includegraphics[width=70mm]{../images/binarizatoin_method.png}
+    \caption{Two binarization methods}
+    PTVにおける粒子抽出の新アルゴリズム (2000)
+  \end{center}
+\end{figure}
 
 \section{来週の予定}
 \begin{itemize}
