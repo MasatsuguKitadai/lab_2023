@@ -79,7 +79,7 @@ void gnuplot_1(const char data_name[])
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 18'\n");
+    fprintf(gp, "set terminal svg enhanced size 500, 500 font 'Times New Roman, 22'\n");
     fprintf(gp, "set size ratio -1\n");
 
     // 出力ファイル
