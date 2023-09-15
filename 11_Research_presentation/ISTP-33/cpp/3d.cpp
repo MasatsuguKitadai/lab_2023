@@ -14,7 +14,7 @@ DATE    : 2023/05/24
 using namespace std;
 
 /** プロトタイプ宣言 **/
-void gnuplot_1();
+void gnuplot_1(char readfile[], char graphfile[]);
 void gnuplot_2();
 
 /*****************************************************************************/
@@ -22,25 +22,34 @@ void gnuplot_2();
 FILE *fp, *gp;
 mode_t dirmode = S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH | S_IXOTH;
 
+// ファイル名
+const char lls_1[] = "data/lls_1.dat";
+const char lls_2[] = "data/lls_2.dat";
+const char graphtitle[] = "Positions of tracer particle";
+
 /******************************************************************************/
 
 int main()
 {
-    gnuplot_1();
+    char graphfile[] = "results/particle_position.svg";
+    char readfile[] = "data/particle_position.dat";
+    gnuplot_1(readfile, graphfile);
+
+    for (int i = 1; i < 100; i++)
+    {
+        char readfile_plot[100];
+        char graphfile_plot[100];
+        sprintf(readfile_plot, "data/data_3d/%d.dat", i);
+        sprintf(graphfile_plot, "data/data_3d/%d.svg", i + 100);
+        gnuplot_1(readfile_plot, graphfile_plot);
+    }
 
     return 0;
 }
 
-void gnuplot_1()
+void gnuplot_1(char readfile[], char graphfile[])
 {
     /** Gnuplot **/
-
-    // ファイル名
-    const char readfile[] = "data/particle_position.dat";
-    const char lls_1[] = "data/lls_1.dat";
-    const char lls_2[] = "data/lls_2.dat";
-    const char graphfile[] = "results/particle_position.svg";
-    const char graphtitle[] = "Positions of tracer particle";
 
     printf("READ FILE   : %s\n", readfile);
     printf("GRAPH FILE  : %s\n", graphfile);
@@ -72,7 +81,8 @@ void gnuplot_1()
         exit(0); // gnuplotが無い場合、異常ある場合は終了
     }
 
-    fprintf(gp, "set terminal svg size 500, 500 font 'Times New Roman, 18'\n");
+    fprintf(gp, "set terminal svg size 520, 520 font 'Times New Roman, 20'\n");
+    // fprintf(gp, "set terminal png size 500, 500 font 'Times New Roman, 18'\n");
 
     // 出力ファイル
     fprintf(gp, "set output '%s'\n", graphfile);
@@ -101,6 +111,12 @@ void gnuplot_1()
     fprintf(gp, "set xlabel '%s'\n", xxlabel);
     fprintf(gp, "set ylabel '%s'\n", yylabel);
     fprintf(gp, "set zlabel '%s' rotate by 90\n", zzlabel);
+
+    // Set margin
+    fprintf(gp, "set lmargin screen 0.25\n"); // <steps in scan>,<steps between scans>
+    fprintf(gp, "set rmargin screen 0.80\n"); // <steps in scan>,<steps between scans>
+    fprintf(gp, "set tmargin screen 0.80\n"); // <steps in scan>,<steps between scans>
+    fprintf(gp, "set bmargin screen 0.25\n"); // <steps in scan>,<steps between scans>
 
     // 軸のラベル位置
     fprintf(gp, "set xlabel offset 4.0, 0.5\n");

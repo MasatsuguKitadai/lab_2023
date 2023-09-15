@@ -10,7 +10,7 @@ import subprocess
 
 def extract_number(filename):
     match = re.search(r"(\d+)", filename)
-    return int(match.group()) if match else 0
+    return int(match.group()) if match else float("inf")
 
 
 def convert_svg_to_png(svg_path, output_path):
