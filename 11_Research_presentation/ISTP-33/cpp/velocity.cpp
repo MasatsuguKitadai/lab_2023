@@ -29,10 +29,16 @@ int main()
     const char data_2[] = "velocity_10-50";
     const char data_3[] = "velocity_10-500";
     const char data_4[] = "velocity_10-1000";
+    const char data_5[] = "velocity_7-300";
+    const char data_6[] = "velocity_13-300";
+    const char data_7[] = "velocity_10-300";
     gnuplot_1(data_1);
     gnuplot_1(data_2);
     gnuplot_1(data_3);
     gnuplot_1(data_4);
+    gnuplot_1(data_5);
+    gnuplot_1(data_6);
+    gnuplot_1(data_7);
 
     return 0;
 }

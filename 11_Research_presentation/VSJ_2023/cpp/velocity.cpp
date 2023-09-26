@@ -256,8 +256,8 @@ void gnuplot_13()
     float cb_max = 50;
 
     // label
-    const char *xxlabel = "{/:Italic y} [mm]";
-    const char *yylabel = "{/:Italic z} [mm]";
+    const char *xxlabel = "{/:Italic z} [mm]";
+    const char *yylabel = "{/:Italic y} [mm]";
 
     // Gnuplot 呼び出し
     if ((gp = popen("gnuplot", "w")) == NULL)

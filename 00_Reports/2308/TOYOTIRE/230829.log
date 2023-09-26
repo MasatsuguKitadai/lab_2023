@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2023.6.20)  28 AUG 2023 22:28
+=======
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  19 SEP 2023 18:52
+>>>>>>> 56a3ce523c30d069fc2568d6d773114ca71752f3
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -617,7 +621,12 @@ Underfull \hbox (badness 10000) in alignment at lines 116--122
  []
 
 
-Overfull \hbox (26.71649pt too wide) in alignment at lines 145--151
+Underfull \hbox (badness 10000) in alignment at lines 145--151
+[][] 
+ []
+
+
+Overfull \hbox (23.47324pt too wide) in paragraph at lines 145--152
 [][] 
  []
 
@@ -804,4 +813,8 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  41i,14n,42p,387b,985s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+<<<<<<< HEAD
 Output written on 230829.dvi (2 pages, 14112 bytes).
+=======
+Output written on 230829.dvi (2 pages, 14168 bytes).
+>>>>>>> 56a3ce523c30d069fc2568d6d773114ca71752f3
