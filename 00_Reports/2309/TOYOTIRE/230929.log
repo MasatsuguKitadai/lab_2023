@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2023.6.20)  28 SEP 2023 21:03
 entering extended mode
  restricted \write18 enabled.
@@ -9,6 +10,19 @@ L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/platex/jscl
 Document Class: jsarticle 2020/02/02 jsclasses (okumura, texjporg)
 \jsc@mpt=\dimen150
 \jsc@mmm=\dimen151
+=======
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  29 SEP 2023 14:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/home/kitadai/workspace/lab_2023/00_Reports/2309/TOYOTIRE/230929
+(/home/kitadai/workspace/lab_2023/00_Reports/2309/TOYOTIRE/230929.tex
+pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
+L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
+\jsc@mpt=\dimen154
+\jsc@mmm=\dimen155
+>>>>>>> 7eb02b9168a934095ffe35554bff6e98df141206
 \jsc@smallskipamount=\skip47
 LaTeX Info: Redefining \textmc on input line 496.
 LaTeX Info: Redefining \textgt on input line 498.
@@ -612,29 +626,36 @@ Overfull \hbox (2.38309pt too wide) in alignment at lines 115--121
 [][] 
  []
 
-File: ../images/challenge.png Graphic file (type bmp)
-<../images/challenge.png>
+File: ../images/challenge_1.png Graphic file (type bmp)
+<../images/challenge_1.png>
+File: ../images/challenge_2.png Graphic file (type bmp)
+<../images/challenge_2.png>
 File: ../images/time-line_blue.png Graphic file (type bmp)
 <../images/time-line_blue.png>
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 161.
+(Font)              scaled to size 8.32214pt on input line 165.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 161.
+(Font)              scaled to size 8.32214pt on input line 165.
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 161.
+(Font)              scaled to size 7.39746pt on input line 165.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 7.39746pt on input line 161.
 
 LaTeX Font Warning: Font shape `JY1/hmc/b/n' undefined
 (Font)              using `JY1/hmc/bx/n' instead on input line 161.
 
+=======
+(Font)              scaled to size 7.39746pt on input line 165.
+>>>>>>> 7eb02b9168a934095ffe35554bff6e98df141206
 LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
-(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 161.
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 165.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 161.
+(Font)              scaled to size 7.39746pt on input line 165.
 LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
-(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 161.
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 165.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 7.39746pt on input line 161.
 
 LaTeX Font Warning: Font shape `JY1/hmc/b/n' undefined
@@ -668,36 +689,46 @@ LaTeX Font Warning: Font shape `JY1/hmc/b/n' undefined
 
 
 Overfull \hbox (0.73843pt too wide) in paragraph at lines 157--169
+=======
+(Font)              scaled to size 7.39746pt on input line 165.
+File: ../images/time-line_green.png Graphic file (type bmp)
+<../images/time-line_green.png>
+
+Overfull \hbox (0.73843pt too wide) in paragraph at lines 161--173
+>>>>>>> 7eb02b9168a934095ffe35554bff6e98df141206
 [][] 
  []
 
 File: ../images/cluster_for_b.png Graphic file (type bmp)
 <../images/cluster_for_b.png>
 
-Underfull \vbox (badness 2753) has occurred while \output is active []
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 180--181
+[][] 
+ []
 
- [1
+[1
 
 
 ]
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 189.
+(Font)              scaled to size 6.47278pt on input line 193.
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 189.
+(Font)              scaled to size 4.62341pt on input line 193.
 File: ../images/cluster_matching.png Graphic file (type bmp)
 <../images/cluster_matching.png>
 
-Overfull \hbox (9.24686pt too wide) in paragraph at lines 213--214
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 217--218
 [][] 
  []
 
 File: ../images/time-averaged_velocity.png Graphic file (type bmp)
 <../images/time-averaged_velocity.png>
 
-Overfull \hbox (9.24686pt too wide) in paragraph at lines 224--225
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 228--229
 [][] 
  []
 
+<<<<<<< HEAD
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 238.
 [2]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
@@ -718,3 +749,19 @@ Here is how much of TeX's memory you used:
  41i,14n,42p,387b,985s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on 230929.dvi (2 pages, 12608 bytes).
+=======
+[2] [3] (./230929.aux)
+Package rerunfilecheck Info: File `230929.out' has not changed.
+(rerunfilecheck)             Checksum: E4D2A1EEC803270FC957EC3A76C36D41;329.
+ ) 
+Here is how much of TeX's memory you used:
+ 15275 strings out of 478741
+ 236571 string characters out of 5860983
+ 543188 words of memory out of 5000000
+ 33490 multiletter control sequences out of 15000+600000
+ 479958 words of font info for 86 fonts, out of 8000000 for 9000
+ 934 hyphenation exceptions out of 8191
+ 60i,14n,64p,379b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on 230929.dvi (3 pages, 13892 bytes).
+>>>>>>> 7eb02b9168a934095ffe35554bff6e98df141206
