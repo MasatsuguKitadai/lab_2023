@@ -1,9 +1,9 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  3 OCT 2023 14:55
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  10 OCT 2023 14:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/kitadai/workspace/lab_2023/00_Reports/2310/231003
-(/home/kitadai/workspace/lab_2023/00_Reports/2310/231003.tex
+**/home/kitadai/workspace/lab_2023/00_Reports/2310/231010/231010
+(/home/kitadai/workspace/lab_2023/00_Reports/2310/231010/231010.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
@@ -493,9 +493,9 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \c@ifsymcnt=\count322
 )
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 91.
+(Font)              scaled to size 9.24683pt on input line 90.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 91.
+(Font)              scaled to size 9.24683pt on input line 90.
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \l__pdf_internal_box=\box129
@@ -505,31 +505,31 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \g__pdf_backend_annotation_int=\count324
 \g__pdf_backend_link_int=\count325
 \g__pdf_backend_link_sf_int=\count326
-) (./231003.aux)
-\openout1 = `231003.aux'.
+) (./231010.aux)
+\openout1 = `231010.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -570,7 +570,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count327
-Package hyperref Info: Link coloring OFF on input line 91.
+Package hyperref Info: Link coloring OFF on input line 90.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -580,86 +580,80 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count328
 )
-LaTeX Info: Redefining \ref on input line 91.
-LaTeX Info: Redefining \pageref on input line 91.
-LaTeX Info: Redefining \nameref on input line 91.
- (./231003.out) (./231003.out)
+LaTeX Info: Redefining \ref on input line 90.
+LaTeX Info: Redefining \pageref on input line 90.
+LaTeX Info: Redefining \nameref on input line 90.
+ (./231010.out) (./231010.out)
 \@outlinefile=\write3
-\openout3 = `231003.out'.
+\openout3 = `231010.out'.
 
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 15.9785pt on input line 94.
+(Font)              scaled to size 15.9785pt on input line 93.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 15.9785pt on input line 94.
+(Font)              scaled to size 15.9785pt on input line 93.
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 94.
+(Font)              scaled to size 11.09619pt on input line 93.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 94.
+(Font)              scaled to size 11.09619pt on input line 93.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 95.
+(Font)              scaled to size 11.09619pt on input line 94.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 95.
+(Font)              scaled to size 11.09619pt on input line 94.
+File: ../images/uniform_velocity.png Graphic file (type bmp)
+<../images/uniform_velocity.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 104--105
+ [][] 
+ []
+
+File: ../images/uniform_vorticity.png Graphic file (type bmp)
+<../images/uniform_vorticity.png>
+
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 106--107
+ [][] 
+ []
+
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 103.
+(Font)              scaled to size 9.24683pt on input line 111.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 103.
-File: images/cluster_data.png Graphic file (type bmp)
-<images/cluster_data.png>
+(Font)              scaled to size 9.24683pt on input line 111.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 110.
+(Font)              scaled to size 6.47278pt on input line 116.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 110.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 110.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+(Font)              scaled to size 4.62341pt on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 116.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 110.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 116.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 115.
-LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 115.
-LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 115.
-LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 115.
-File: images/vorticity.png Graphic file (type bmp)
-<images/vorticity.png>
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 117.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 117.
+ [1
 
-Overfull \hbox (23.47324pt too wide) in paragraph at lines 132--133
- [][] 
+
+]
+Overfull \hbox (10.96109pt too wide) in alignment at lines 171--174
+ [][][] []
  []
 
-File: images/velocity.png Graphic file (type bmp)
-<images/velocity.png>
+[2
 
-Overfull \hbox (23.47324pt too wide) in paragraph at lines 134--135
- [][] 
- []
-
-File: images/vorticity_miss.png Graphic file (type bmp)
-<images/vorticity_miss.png>
-
-Overfull \hbox (23.47324pt too wide) in paragraph at lines 147--148
- [][] 
- []
-
-[1
-
-
-] (./231003.aux)
-Package rerunfilecheck Info: File `231003.out' has not changed.
-(rerunfilecheck)             Checksum: BE4DCFD010532E31B6086A1DA048E914;418.
+] (./231010.aux)
+Package rerunfilecheck Info: File `231010.out' has not changed.
+(rerunfilecheck)             Checksum: 419FC47FDB627B35F3F93C58E301D499;368.
  ) 
 Here is how much of TeX's memory you used:
- 15241 strings out of 478741
- 235647 string characters out of 5860983
- 546081 words of memory out of 5000000
- 33461 multiletter control sequences out of 15000+600000
- 478946 words of font info for 80 fonts, out of 8000000 for 9000
+ 15229 strings out of 478741
+ 235476 string characters out of 5860983
+ 561065 words of memory out of 5000000
+ 33451 multiletter control sequences out of 15000+600000
+ 478744 words of font info for 78 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,8n,64p,370b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,9n,64p,377b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231003.dvi (1 page, 5892 bytes).
+Output written on 231010.dvi (2 pages, 9744 bytes).
