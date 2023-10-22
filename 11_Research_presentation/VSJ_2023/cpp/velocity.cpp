@@ -55,16 +55,16 @@ void Change(string input, string output)
     while (getline(inputFile, line))
     {
         istringstream iss(line);
-        double first;
+        double first, second;
 
         // 1列目の値を読み取ります
-        iss >> first;
+        iss >> first >> second;
 
         // 1列目が90以上の場合、スキップします
-        if (first > 90.0)
-        { // 変更: 90を浮動小数点数として比較します
+        if (first > 96.0)
             continue;
-        }
+        if (second > 35.0)
+            continue;
 
         // それ以外の場合は、出力ファイルに書き込みます
         outputFile << line << endl;
