@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2023.6.20)  22 OCT 2023 18:25
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2023.6.20)  23 OCT 2023 09:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -591,56 +591,70 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 122.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 122.
 File: ../images/method.png Graphic file (type bmp)
 <../images/method.png>
-
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 119--120
- [][] 
- []
-
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 132.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 132.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 132.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 132.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 File: ../images/experiment.png Graphic file (type bmp)
 <../images/experiment.png>
+ [1
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 125--126
- [][] 
- []
 
+]
+File: ../images/PTV_mthod_with_cluster_matching.png Graphic file (type bmp)
+<../images/PTV_mthod_with_cluster_matching.png>
 File: ../images/closs-correlation_for_particle.png Graphic file (type bmp)
 <../images/closs-correlation_for_particle.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 133--134
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 193--194
  [][] 
  []
 
 File: ../images/particle_position.png Graphic file (type bmp)
 <../images/particle_position.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 135--136
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 199--200
  [][] 
  []
 
 File: ../images/how_to_get_cluster.png Graphic file (type bmp)
 <../images/how_to_get_cluster.png>
+[2]
 File: ../images/clustering_for_blue_image.png Graphic file (type bmp)
 <../images/clustering_for_blue_image.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 149--150
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 223--224
  [][] 
  []
 
-LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 157.
-LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 157.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 238.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 238.
+File: ../images/cluster_matching_1.png Graphic file (type bmp)
+<../images/cluster_matching_1.png>
+File: ../images/cluster_matching_2.png Graphic file (type bmp)
+<../images/cluster_matching_2.png>
 File: ../images/delta_wing_model.png Graphic file (type bmp)
 <../images/delta_wing_model.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 File: ../images/delta_wing.png Graphic file (type bmp)
 <../images/delta_wing.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 168--169
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 278--279
  [][] 
  []
 
@@ -649,39 +663,40 @@ File: ../images/vehicle_model.png Graphic file (type bmp)
 File: ../images/vehicle_stop.png Graphic file (type bmp)
 <../images/vehicle_stop.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 183--184
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 293--294
  [][] 
  []
 
 File: ../images/vehicle_rolling.png Graphic file (type bmp)
 <../images/vehicle_rolling.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 191--192
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 301--302
  [][] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 204.
-[1
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [2] [3
+ [3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
+ [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 204.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
  (./231024.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 204.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 204.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 313.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
 Package rerunfilecheck Info: File `231024.out' has not changed.
-(rerunfilecheck)             Checksum: A638481C46025AAFC6C5900E97063DDA;690.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 204.
+(rerunfilecheck)             Checksum: F2558C5D5C70A73A3B9BAF43534504CE;903.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
  ) 
 Here is how much of TeX's memory you used:
- 11692 strings out of 481768
- 169534 string characters out of 5933620
- 452872 words of memory out of 5000000
- 26918 multiletter control sequences out of 15000+600000
- 539720 words of font info for 62 fonts, out of 8000000 for 9000
+ 11739 strings out of 481768
+ 170528 string characters out of 5933620
+ 454873 words of memory out of 5000000
+ 26949 multiletter control sequences out of 15000+600000
+ 541823 words of font info for 74 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 41i,5n,42p,387b,985s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,42p,387b,985s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231024.dvi (3 pages, 9568 bytes).
+Output written on 231024.dvi (4 pages, 19972 bytes).
