@@ -150,6 +150,7 @@ FIg.2 に実際に使用している実験装置の概略図を示す．
 	\caption{Experiment setup}
 \end{figure}
 
+\newpage
 \subsection{粒子追跡手法}
 次に，粒子追跡法を応用した流れ場の解析手法について説明する．
 今回の解析では，Table 1 の条件で行っていることを前提とする．
@@ -165,7 +166,6 @@ FIg.2 に実際に使用している実験装置の概略図を示す．
 	\end{tabular}
 \end{table}
 
-\newpage
 ここで，レーザーシートに一定の厚みがあることから，
 同一の粒子は複数枚の画像に映り込む．
 また，撮影が斜め後方からの撮影により，
@@ -188,19 +188,15 @@ FIg.2 に実際に使用している実験装置の概略図を示す．
 Fig.4に粒子マスクとの相関係数を示した結果，Fig.5に特定した粒子位置の結果について示す．
 粒子マスク相関法を用いることで，輝度値の低い粒子でも検出することができる．
 
+\newpage
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[keepaspectratio, width=82mm]{../images/closs-correlation_for_particle.png}
+	\includegraphics[keepaspectratio, width=80mm]{../images/closs-correlation_for_particle.png}
 	\caption{Cross-correlation for particle image}
-\end{figure}
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[keepaspectratio, width=82mm]{../images/particle_position.png}
+	\includegraphics[keepaspectratio, width=80mm]{../images/particle_position.png}
 	\caption{Particle position for green image}
 \end{figure}
 
-\newpage
 \section{粒子のクラスタリング}
 次に，粒子のクラスタリングについて説明する．
 クラスタリングは，同一の粒子が複数枚の撮影画像に映り込む特徴から
@@ -220,7 +216,7 @@ Fig.4に粒子マスクとの相関係数を示した結果，Fig.5に特定し�
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[keepaspectratio, width=82mm]{../images/clustering_for_blue_image.png}
+	\includegraphics[keepaspectratio, width=75mm]{../images/clustering_for_blue_image.png}
 	\caption{Clustering for blue image}
 \end{figure}
 
@@ -247,62 +243,58 @@ Fig.4に粒子マスクとの相関係数を示した結果，Fig.5に特定し�
 	f &:& \text{フレームレート}\\
 \end{eqnarray*}
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[keepaspectratio, width=80mm]{../images/cluster_matching_1.png}
-	\caption{Cluster matching : 3D view}
-	\includegraphics[keepaspectratio, width=80mm]{../images/cluster_matching_2.png}
-	\caption{Cluster matching : $y-z$ view}
-\end{figure}
-
+\newpage
 実際に，粒子クラスタどうしをマッチングさせた結果を Fig.8, 9 に示す．
 この画像から，青の粒子クラスタの延長線上に
 緑の粒子クラスターが存在することがわかり，正しく追跡が行われていると考えられる．
 
-\section{二次流れの解析結果}
-次に，これまでの粒子追跡方を用いて得られた二次流れの解析結果を示す．
-ここでは，三角翼モデルと車両モデルを用いた計測結果について示す．
-
-
-\subsection{三角翼モデル}
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[keepaspectratio, width=80mm]{../images/delta_wing_model.png}
-	\caption{Delta wing model}
+	\includegraphics[keepaspectratio, width=65mm]{../images/cluster_matching_1.png}
+	\caption{Cluster matching : 3D view}
+	\includegraphics[keepaspectratio, width=65mm]{../images/cluster_matching_2.png}
+	\caption{Cluster matching : $y-z$ view}
 \end{figure}
 
+\section{二次流れの解析結果}
+次に，これまでの粒子追跡方を用いて得られた二次流れの解析結果を示す．
+ここでは，Fig.10に示す三角翼モデルとFig.11に示す車両モデルを用いた計測結果について示す．\\
 
+\subsection{計測用モデル}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[keepaspectratio, width=60mm]{../images/delta_wing_model.png}
+	\caption{Delta wing model}
+	\includegraphics[keepaspectratio, width=60mm]{../images/vehicle_model.png}
+	\caption{Vehicle model}
+\end{figure}
+
+\newpage
 \subsection{三角翼：右翼後流}
+三角翼後流の計測について，Fig.12に解析結果を示す．
+これまでの結果と同様に翼端に反時計回りの渦構造を確認することができる．
+このことから，粒子クラスタマッチングが正しく機能していることを確認することができる．
+
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[keepaspectratio, width=82mm]{../images/delta_wing.png}
 	\caption{PTV ：Wake of delta wing}
 \end{figure}
 
-\subsection{車両モデル}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[keepaspectratio, width=80mm]{../images/vehicle_model.png}
-	\caption{Vehicle model}
-\end{figure}
+\subsection{車両モデルの測定}
+車両モデルについては，タイヤの回転の有無を比較するために，計測を行った．
+Fig.13にタイヤ回転無しの計測結果，およびFig.14にタイヤ回転有りの計測結果を示す．
+解析結果から，これまで確認できていなかった
+地面板とタイヤモデルの接地部に発生する渦構造を確認することができた．
 
-
-\subsection{タイヤ回転：無}
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[keepaspectratio, width=82mm]{../images/vehicle_stop.png}
 	\caption{PTV : Vehicle model without tire rotation}
-\end{figure}
-
-
-\subsection{タイヤ回転：有}
-\begin{figure}[htbp]
-	\centering
+	\baselineskip 4mm
 	\includegraphics[keepaspectratio, width=82mm]{../images/vehicle_rolling.png}
 	\caption{PTV Measurement ：Vehicle model with tire rotation}
 \end{figure}
-
-
 
 \section{11月の予定}
 \begin{itemize}
