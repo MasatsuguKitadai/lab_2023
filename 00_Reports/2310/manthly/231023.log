@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  23 OCT 2023 11:03
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  23 OCT 2023 14:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -668,19 +668,17 @@ Overfull \hbox (0.71103pt too wide) in paragraph at lines 296--297
  [][] 
  []
 
-[4
-
-] (./231023.aux)
+[4] (./231023.aux)
 Package rerunfilecheck Info: File `231023.out' has not changed.
 (rerunfilecheck)             Checksum: 65C92AA498621B215E068549C5D16F53;770.
  ) 
 Here is how much of TeX's memory you used:
  15292 strings out of 478741
  237575 string characters out of 5860983
- 538528 words of memory out of 5000000
+ 539531 words of memory out of 5000000
  33502 multiletter control sequences out of 15000+600000
  478744 words of font info for 78 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  60i,9n,64p,378b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231023.dvi (4 pages, 20408 bytes).
+Output written on 231023.dvi (4 pages, 20640 bytes).

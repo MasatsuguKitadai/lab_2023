@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  23 OCT 2023 11:02
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.6.1)  24 OCT 2023 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -635,9 +635,9 @@ File: ../images/clustering_for_blue_image.png Graphic file (type bmp)
 <../images/clustering_for_blue_image.png>
  [2]
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 234.
+(Font)              scaled to size 6.47278pt on input line 235.
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 234.
+(Font)              scaled to size 4.62341pt on input line 235.
 File: ../images/cluster_matching_1.png Graphic file (type bmp)
 <../images/cluster_matching_1.png>
 File: ../images/cluster_matching_2.png Graphic file (type bmp)
@@ -650,27 +650,15 @@ File: ../images/vehicle_model.png Graphic file (type bmp)
 File: ../images/delta_wing.png Graphic file (type bmp)
 <../images/delta_wing.png>
 
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 280--281
+Overfull \hbox (0.71103pt too wide) in paragraph at lines 281--282
  [][] 
  []
 
 File: ../images/vehicle_stop.png Graphic file (type bmp)
 <../images/vehicle_stop.png>
-
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 292--293
- [][] 
- []
-
 File: ../images/vehicle_rolling.png Graphic file (type bmp)
 <../images/vehicle_rolling.png>
-
-Overfull \hbox (0.71103pt too wide) in paragraph at lines 295--296
- [][] 
- []
-
-[4
-
-] (./231024.aux)
+[4] (./231024.aux)
 Package rerunfilecheck Info: File `231024.out' has not changed.
 (rerunfilecheck)             Checksum: 65C92AA498621B215E068549C5D16F53;770.
  ) 
@@ -683,4 +671,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  60i,9n,64p,379b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231024.dvi (4 pages, 20420 bytes).
+Output written on 231024.dvi (4 pages, 20620 bytes).
