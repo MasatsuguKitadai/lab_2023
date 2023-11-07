@@ -1,0 +1,7 @@
+PWD /home/kitadai/workspace/lab_2023/00_Reports/2304/230418
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/kitadai/workspace/lab_2023/00_Reports/2304/230418/230418.tex
+OUTPUT 230418.log
