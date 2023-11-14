@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  13 NOV 2023 14:37
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  14 NOV 2023 15:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -600,21 +600,164 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 94.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 94.
- [1
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 6.47278pt on input line 111.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 4.62341pt on input line 111.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 111.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 111.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+File: ../images/Simulation/Calibration/simulation.bmp Graphic file (type bmp)
+<../images/Simulation/Calibration/simulation.bmp>
+
+Overfull \hbox (9.14104pt too wide) in paragraph at lines 114--115
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 115.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 115.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 115.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 115.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 115.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 115.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 115.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 115.
+File: ../images/Simulation/Calibration/experiment.bmp Graphic file (type bmp)
+<../images/Simulation/Calibration/experiment.bmp>
+
+Overfull \hbox (9.14104pt too wide) in paragraph at lines 119--120
+ [][] 
+ []
 
 
+Overfull \hbox (0.73843pt too wide) in paragraph at lines 111--123
+ [][] 
+ []
 
-] (./231114.aux)
+File: ../images/Simulation/Particles/simulation.bmp Graphic file (type bmp)
+<../images/Simulation/Particles/simulation.bmp>
+
+Overfull \hbox (9.14104pt too wide) in paragraph at lines 133--134
+ [][] 
+ []
+
+File: ../images/Simulation/Particles/experiment.bmp Graphic file (type bmp)
+<../images/Simulation/Particles/experiment.bmp>
+
+Overfull \hbox (9.14104pt too wide) in paragraph at lines 138--139
+ [][] 
+ []
+
+
+Overfull \hbox (0.73843pt too wide) in paragraph at lines 130--142
+ [][] 
+ []
+
+File: ../images/measurement_plane_for_Delta_wingpng.png Graphic file (type bmp)
+<../images/measurement_plane_for_Delta_wingpng.png>
+File: ../images/Simulation/Compare/experiment_x=0.png Graphic file (type bmp)
+<../images/Simulation/Compare/experiment_x=0.png>
+File: ../images/Simulation/Compare/simulation_x=0.png Graphic file (type bmp)
+<../images/Simulation/Compare/simulation_x=0.png>
+[1
+
+
+]
+File: ../images/Simulation/Compare/experiment_x=20.png Graphic file (type bmp)
+<../images/Simulation/Compare/experiment_x=20.png>
+File: ../images/Simulation/Compare/simulation_x=20.png Graphic file (type bmp)
+<../images/Simulation/Compare/simulation_x=20.png>
+File: ../images/Simulation/Compare/experiment_x=40.png Graphic file (type bmp)
+<../images/Simulation/Compare/experiment_x=40.png>
+File: ../images/Simulation/Compare/simulation_x=40.png Graphic file (type bmp)
+<../images/Simulation/Compare/simulation_x=40.png>
+File: ../images/measurement_plane_for_Vehicle_model.png Graphic file (type bmp)
+<../images/measurement_plane_for_Vehicle_model.png>
+File: ../images/stop_x=0.png Graphic file (type bmp)
+<../images/stop_x=0.png>
+
+Overfull \hbox (20.52214pt too wide) in paragraph at lines 218--219
+ [][] 
+ []
+
+File: ../images/rolling_x=0.png Graphic file (type bmp)
+<../images/rolling_x=0.png>
+
+Overfull \hbox (20.52214pt too wide) in paragraph at lines 223--224
+ [][] 
+ []
+
+
+Overfull \hbox (0.73843pt too wide) in paragraph at lines 215--227
+ [][] 
+ []
+
+File: ../images/stop_x=20.png Graphic file (type bmp)
+<../images/stop_x=20.png>
+
+Overfull \hbox (20.52214pt too wide) in paragraph at lines 231--232
+ [][] 
+ []
+
+File: ../images/rolling_x=20.png Graphic file (type bmp)
+<../images/rolling_x=20.png>
+
+Overfull \hbox (20.52214pt too wide) in paragraph at lines 236--237
+ [][] 
+ []
+
+
+Overfull \hbox (0.73843pt too wide) in paragraph at lines 228--240
+ [][] 
+ []
+
+File: ../images/stop_x=40.png Graphic file (type bmp)
+<../images/stop_x=40.png>
+
+Overfull \hbox (20.52214pt too wide) in paragraph at lines 248--249
+ [][] 
+ []
+
+File: ../images/rolling_x=40.png Graphic file (type bmp)
+<../images/rolling_x=40.png>
+
+Overfull \hbox (20.52214pt too wide) in paragraph at lines 253--254
+ [][] 
+ []
+
+
+Overfull \hbox (0.73843pt too wide) in paragraph at lines 245--257
+ [][] 
+ []
+
+[2] [3] (./231114.aux)
 Package rerunfilecheck Info: File `231114.out' has not changed.
-(rerunfilecheck)             Checksum: 8D2ED44E2EC8B3122F4F806FC854E6E1;192.
+(rerunfilecheck)             Checksum: BDB2520AB0649F27CC74D7D13BD7424E;441.
  ) 
 Here is how much of TeX's memory you used:
- 15169 strings out of 478741
- 234357 string characters out of 5860982
- 532014 words of memory out of 5000000
- 33411 multiletter control sequences out of 15000+600000
- 476134 words of font info for 63 fonts, out of 8000000 for 9000
+ 15334 strings out of 478741
+ 239330 string characters out of 5860982
+ 543129 words of memory out of 5000000
+ 33533 multiletter control sequences out of 15000+600000
+ 479756 words of font info for 84 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,5n,64p,381b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,14n,64p,381b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231114.dvi (1 page, 2828 bytes).
+Output written on 231114.dvi (3 pages, 12912 bytes).

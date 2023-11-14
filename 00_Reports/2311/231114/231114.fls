@@ -821,8 +821,109 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-v.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-h.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ../images/Simulation/Calibration/simulation.bmp
+INPUT ../images/Simulation/Calibration/simulation.bmp
+INPUT ../images/Simulation/Calibration/simulation.bmp
+INPUT extractbb -B cropbox -O ../images/Simulation/Calibration/simulation.bmp
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT ../images/Simulation/Calibration/experiment.bmp
+INPUT ../images/Simulation/Calibration/experiment.bmp
+INPUT ../images/Simulation/Calibration/experiment.bmp
+INPUT extractbb -B cropbox -O ../images/Simulation/Calibration/experiment.bmp
+INPUT ../images/Simulation/Particles/simulation.bmp
+INPUT ../images/Simulation/Particles/simulation.bmp
+INPUT ../images/Simulation/Particles/simulation.bmp
+INPUT extractbb -B cropbox -O ../images/Simulation/Particles/simulation.bmp
+INPUT ../images/Simulation/Particles/experiment.bmp
+INPUT ../images/Simulation/Particles/experiment.bmp
+INPUT ../images/Simulation/Particles/experiment.bmp
+INPUT extractbb -B cropbox -O ../images/Simulation/Particles/experiment.bmp
+INPUT ../images/measurement_plane_for_Delta_wingpng.png
+INPUT ../images/measurement_plane_for_Delta_wingpng.png
+INPUT ../images/measurement_plane_for_Delta_wingpng.png
+INPUT extractbb -B cropbox -O ../images/measurement_plane_for_Delta_wingpng.png
+INPUT ../images/Simulation/Compare/experiment_x=0.png
+INPUT ../images/Simulation/Compare/experiment_x=0.png
+INPUT ../images/Simulation/Compare/experiment_x=0.png
+INPUT extractbb -B cropbox -O ../images/Simulation/Compare/experiment_x=0.png
+INPUT ../images/Simulation/Compare/simulation_x=0.png
+INPUT ../images/Simulation/Compare/simulation_x=0.png
+INPUT ../images/Simulation/Compare/simulation_x=0.png
+INPUT extractbb -B cropbox -O ../images/Simulation/Compare/simulation_x=0.png
 OUTPUT 231114.dvi
+INPUT ../images/Simulation/Compare/experiment_x=20.png
+INPUT ../images/Simulation/Compare/experiment_x=20.png
+INPUT ../images/Simulation/Compare/experiment_x=20.png
+INPUT extractbb -B cropbox -O ../images/Simulation/Compare/experiment_x=20.png
+INPUT ../images/Simulation/Compare/simulation_x=20.png
+INPUT ../images/Simulation/Compare/simulation_x=20.png
+INPUT ../images/Simulation/Compare/simulation_x=20.png
+INPUT extractbb -B cropbox -O ../images/Simulation/Compare/simulation_x=20.png
+INPUT ../images/Simulation/Compare/experiment_x=40.png
+INPUT ../images/Simulation/Compare/experiment_x=40.png
+INPUT ../images/Simulation/Compare/experiment_x=40.png
+INPUT extractbb -B cropbox -O ../images/Simulation/Compare/experiment_x=40.png
+INPUT ../images/Simulation/Compare/simulation_x=40.png
+INPUT ../images/Simulation/Compare/simulation_x=40.png
+INPUT ../images/Simulation/Compare/simulation_x=40.png
+INPUT extractbb -B cropbox -O ../images/Simulation/Compare/simulation_x=40.png
+INPUT ../images/measurement_plane_for_Vehicle_model.png
+INPUT ../images/measurement_plane_for_Vehicle_model.png
+INPUT ../images/measurement_plane_for_Vehicle_model.png
+INPUT extractbb -B cropbox -O ../images/measurement_plane_for_Vehicle_model.png
+INPUT ../images/stop_x=0.png
+INPUT ../images/stop_x=0.png
+INPUT ../images/stop_x=0.png
+INPUT extractbb -B cropbox -O ../images/stop_x=0.png
+INPUT ../images/rolling_x=0.png
+INPUT ../images/rolling_x=0.png
+INPUT ../images/rolling_x=0.png
+INPUT extractbb -B cropbox -O ../images/rolling_x=0.png
+INPUT ../images/stop_x=20.png
+INPUT ../images/stop_x=20.png
+INPUT ../images/stop_x=20.png
+INPUT extractbb -B cropbox -O ../images/stop_x=20.png
+INPUT ../images/rolling_x=20.png
+INPUT ../images/rolling_x=20.png
+INPUT ../images/rolling_x=20.png
+INPUT extractbb -B cropbox -O ../images/rolling_x=20.png
+INPUT ../images/stop_x=40.png
+INPUT ../images/stop_x=40.png
+INPUT ../images/stop_x=40.png
+INPUT extractbb -B cropbox -O ../images/stop_x=40.png
+INPUT ../images/rolling_x=40.png
+INPUT ../images/rolling_x=40.png
+INPUT ../images/rolling_x=40.png
+INPUT extractbb -B cropbox -O ../images/rolling_x=40.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT 231114.aux
 INPUT ./231114.out
 INPUT ./231114.out
