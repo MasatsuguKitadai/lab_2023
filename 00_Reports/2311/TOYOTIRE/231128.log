@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  27 NOV 2023 15:07
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  27 NOV 2023 15:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -694,7 +694,7 @@ LaTeX Warning: Float too large for page by 18.9928pt on input line 256.
 
 [2] [3] (./231128.aux)
 Package rerunfilecheck Info: File `231128.out' has not changed.
-(rerunfilecheck)             Checksum: 277F7C578E2DE558BA052E40AF2F2491;349.
+(rerunfilecheck)             Checksum: 5D6185DC58DC2BC3D9DC8547E08A2073;357.
  ) 
 Here is how much of TeX's memory you used:
  15364 strings out of 478741
@@ -705,4 +705,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  60i,9n,64p,383b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231128.dvi (3 pages, 15892 bytes).
+Output written on 231128.dvi (3 pages, 15908 bytes).
