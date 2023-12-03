@@ -1,10 +1,10 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  3 DEC 2023 14:20
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  3 DEC 2023 17:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/desktop_kitadai/workspace/lab_2023/00_Reports/2311/monthly/231205.tex
-(/home/desktop_kitadai/workspace/lab_2023/00_Reports/2311/monthly/231205.tex
+**/home/kitadai/workspace/lab_2023/00_Reports/2311/monthly/231205.tex
+(/home/kitadai/workspace/lab_2023/00_Reports/2311/monthly/231205.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
@@ -632,11 +632,11 @@ Package rerunfilecheck Info: File `231205.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  15232 strings out of 478741
- 235269 string characters out of 5860982
- 543231 words of memory out of 5000000
+ 235245 string characters out of 5860982
+ 543228 words of memory out of 5000000
  33454 multiletter control sequences out of 15000+600000
  482487 words of font info for 93 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,14n,64p,390b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,14n,64p,382b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231205.dvi (1 page, 5296 bytes).
+Output written on 231205.dvi (1 page, 5272 bytes).
