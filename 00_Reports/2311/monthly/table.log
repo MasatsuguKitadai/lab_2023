@@ -1,10 +1,10 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  4 DEC 2023 20:36
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  4 DEC 2023 20:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/kitadai/workspace/lab_2023/00_Reports/2311/monthly/231205.tex
-(/home/kitadai/workspace/lab_2023/00_Reports/2311/monthly/231205.tex
+**/home/kitadai/workspace/lab_2023/00_Reports/2311/monthly/table.tex
+(/home/kitadai/workspace/lab_2023/00_Reports/2311/monthly/table.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
@@ -407,10 +407,6 @@ Package: ajmacros 2019/04/01 21:00 iNOUE Koich! <inoue@ma.ns.musashi-tech.ac.jp>
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \c@tracingmulticols=\count309
-
-
-Package multicol Warning: May not work with the twocolumn option on input line 142.
-
 \mult@box=\box84
 \multicol@leftmargin=\dimen268
 \c@unbalance=\count310
@@ -506,8 +502,8 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \g__pdf_backend_annotation_int=\count324
 \g__pdf_backend_link_int=\count325
 \g__pdf_backend_link_sf_int=\count326
-) (./231205.aux)
-\openout1 = `231205.aux'.
+) (./table.aux)
+\openout1 = `table.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
 LaTeX Font Info:    ... okay on input line 95.
@@ -553,14 +549,14 @@ LaTeX Font Info:    ... okay on input line 95.
 * \headsep=15.69719pt
 * \topskip=12.76073pt
 * \footskip=28.45792pt
-* \marginparwidth=27.74062pt
+* \marginparwidth=18.49374pt
 * \marginparsep=18.49374pt
 * \columnsep=18.49374pt
 * \skip\footins=16.0pt plus 5.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
-* \@twocolumntrue
+* \@twocolumnfalse
 * \@twosidefalse
 * \@mparswitchfalse
 * \@reversemarginfalse
@@ -584,9 +580,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 95.
 LaTeX Info: Redefining \pageref on input line 95.
 LaTeX Info: Redefining \nameref on input line 95.
- (./231205.out) (./231205.out)
+ (./table.out) (./table.out)
 \@outlinefile=\write3
-\openout3 = `231205.out'.
+\openout3 = `table.out'.
 
 LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
 (Font)              scaled to size 15.9785pt on input line 98.
@@ -596,47 +592,30 @@ LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 98.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 98.
-LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 99.
-LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 99.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 113.
+(Font)              scaled to size 6.47278pt on input line 101.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 5.5481pt on input line 113.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 113.
+(Font)              scaled to size 4.62341pt on input line 101.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 101.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 113.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 101.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 115.
-LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 115.
-LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 128.
-LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 128.
+) [1
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1
-
-
-] (./231205.aux)
-Package rerunfilecheck Info: File `231205.out' has not changed.
-(rerunfilecheck)             Checksum: 3598B19E1C3A4A9C13791C8770894F64;378.
+] (./table.aux)
+Package rerunfilecheck Info: File `table.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 15232 strings out of 478741
- 235245 string characters out of 5860982
- 543228 words of memory out of 5000000
- 33454 multiletter control sequences out of 15000+600000
- 482487 words of font info for 93 fonts, out of 8000000 for 9000
+ 15192 strings out of 478741
+ 234791 string characters out of 5860982
+ 530049 words of memory out of 5000000
+ 33425 multiletter control sequences out of 15000+600000
+ 477191 words of font info for 69 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 60i,14n,64p,382b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,10n,64p,381b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231205.dvi (1 page, 5272 bytes).
+Output written on table.dvi (1 page, 1820 bytes).
