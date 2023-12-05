@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  4 DEC 2023 20:36
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2023.11.1)  5 DEC 2023 13:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -601,42 +601,81 @@ LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
 (Font)              scaled to size 11.09619pt on input line 99.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 113.
+(Font)              scaled to size 7.39746pt on input line 111.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 5.5481pt on input line 113.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 113.
+(Font)              scaled to size 5.5481pt on input line 111.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 111.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 113.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 111.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 115.
+(Font)              scaled to size 6.47278pt on input line 113.
 LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 115.
+(Font)              scaled to size 4.62341pt on input line 113.
 LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 128.
+(Font)              scaled to size 9.24683pt on input line 126.
 LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 128.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(Font)              scaled to size 9.24683pt on input line 126.
+File: ../images/PIVMethodforSecondaryFlow.png Graphic file (type bmp)
+<../images/PIVMethodforSecondaryFlow.png>
  [1
 
 
+]
+File: ../images/ExperimentalLayout.png Graphic file (type bmp)
+<../images/ExperimentalLayout.png>
+File: ../images/ImageofDeltaWing.png Graphic file (type bmp)
+<../images/ImageofDeltaWing.png>
+File: ../images/WakeofDeltaWing_Vorticity_x=50.png Graphic file (type bmp)
+<../images/WakeofDeltaWing_Vorticity_x=50.png>
+
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 211--212
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 212.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 8.32214pt on input line 212.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 212.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 212.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 212.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 212.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 212.
+File: ../images/WakeofDeltaWing_Velocity_x=50.png Graphic file (type bmp)
+<../images/WakeofDeltaWing_Velocity_x=50.png>
+
+Overfull \hbox (9.24686pt too wide) in paragraph at lines 213--214
+ [][] 
+ []
+
+File: ../images/ImageofVehicleModel.png Graphic file (type bmp)
+<../images/ImageofVehicleModel.png>
+[2]
+File: ../images/VehicleModel_Vorticity_x=0.png Graphic file (type bmp)
+<../images/VehicleModel_Vorticity_x=0.png>
+ [3
+
 ] (./231205.aux)
 Package rerunfilecheck Info: File `231205.out' has not changed.
-(rerunfilecheck)             Checksum: 3598B19E1C3A4A9C13791C8770894F64;378.
+(rerunfilecheck)             Checksum: B420248E31EDB8BD8E0F552F40755A74;627.
  ) 
 Here is how much of TeX's memory you used:
- 15232 strings out of 478741
- 235245 string characters out of 5860982
- 543228 words of memory out of 5000000
- 33454 multiletter control sequences out of 15000+600000
- 482487 words of font info for 93 fonts, out of 8000000 for 9000
+ 15297 strings out of 478741
+ 237099 string characters out of 5860982
+ 547439 words of memory out of 5000000
+ 33505 multiletter control sequences out of 15000+600000
+ 483905 words of font info for 101 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  60i,14n,64p,382b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 231205.dvi (1 page, 5272 bytes).
+Output written on 231205.dvi (3 pages, 16892 bytes).

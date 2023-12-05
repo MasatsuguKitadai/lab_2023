@@ -859,8 +859,44 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-v.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-h.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
+INPUT ../images/PIVMethodforSecondaryFlow.png
+INPUT ../images/PIVMethodforSecondaryFlow.png
+INPUT ../images/PIVMethodforSecondaryFlow.png
+INPUT extractbb -B cropbox -O ../images/PIVMethodforSecondaryFlow.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 OUTPUT 231205.dvi
+INPUT ../images/ExperimentalLayout.png
+INPUT ../images/ExperimentalLayout.png
+INPUT ../images/ExperimentalLayout.png
+INPUT extractbb -B cropbox -O ../images/ExperimentalLayout.png
+INPUT ../images/ImageofDeltaWing.png
+INPUT ../images/ImageofDeltaWing.png
+INPUT ../images/ImageofDeltaWing.png
+INPUT extractbb -B cropbox -O ../images/ImageofDeltaWing.png
+INPUT ../images/WakeofDeltaWing_Vorticity_x=50.png
+INPUT ../images/WakeofDeltaWing_Vorticity_x=50.png
+INPUT ../images/WakeofDeltaWing_Vorticity_x=50.png
+INPUT extractbb -B cropbox -O ../images/WakeofDeltaWing_Vorticity_x=50.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlminr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-v.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/japanese-otf/nmlgothr-h.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT ../images/WakeofDeltaWing_Velocity_x=50.png
+INPUT ../images/WakeofDeltaWing_Velocity_x=50.png
+INPUT ../images/WakeofDeltaWing_Velocity_x=50.png
+INPUT extractbb -B cropbox -O ../images/WakeofDeltaWing_Velocity_x=50.png
+INPUT ../images/ImageofVehicleModel.png
+INPUT ../images/ImageofVehicleModel.png
+INPUT ../images/ImageofVehicleModel.png
+INPUT extractbb -B cropbox -O ../images/ImageofVehicleModel.png
+INPUT ../images/VehicleModel_Vorticity_x=0.png
+INPUT ../images/VehicleModel_Vorticity_x=0.png
+INPUT ../images/VehicleModel_Vorticity_x=0.png
+INPUT extractbb -B cropbox -O ../images/VehicleModel_Vorticity_x=0.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT 231205.aux
 INPUT ./231205.out
 INPUT ./231205.out
