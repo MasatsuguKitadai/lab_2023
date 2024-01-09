@@ -1,0 +1,156 @@
+% !TeX program = platex_custom
+\documentclass[twocolumn,a4j]{jsarticle}
+\usepackage[top=15truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage[dvipdfmx]{color}
+\usepackage{listings}
+\usepackage{listings,jvlisting}
+\usepackage{framed}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{ascmac}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{scalefnt}
+\usepackage{overcite}
+\usepackage{otf}
+\usepackage{multicol}
+\usepackage[geometry]{ifsym}
+\usepackage{array}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table }
+
+\lstset{
+basicstyle={\ttfamily},
+identifierstyle={\small},
+commentstyle={\smallitshape},
+keywordstyle={\small\bfseries},
+ndkeywordstyle={\small},
+stringstyle={\small\ttfamily},
+frame={tb},
+breaklines=true,
+columns=[l]{fullflexible},
+xrightmargin=0zw,
+xleftmargin=3zw,
+numberstyle={\scriptsize},
+stepnumber=1,
+numbersep=1zw,
+lineskip=-0.5ex
+}
+
+% キャプション後ろのダブルコロンを消す
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}%
+    \else\sbox\@tempboxa{#1 #2}%
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1 #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+
+% タイトル
+\makeatletter
+\def\@maketitle
+{
+\begin{center}
+{\LARGE \@title \par}
+\end{center}
+\begin{flushright}
+{\large \@date 報告書 No.41}\\
+{\large M2 \@author}
+\end{flushright}
+\par\vskip 1.5em
+}
+\makeatother
+
+\author{来代 勝胤}
+\title{令和5年度 1月 第2週 報告書}
+\date{2024/1/9}
+
+\begin{document}
+\columnseprule=0.1mm
+\maketitle
+
+\section*{修士論文 目次}
+\section{緒言}
+\subsection{研究背景}
+\subsection{研究目的}
+
+\section{計測法}
+\subsection{PIV計測手法}
+\vskip 0.5 \baselineskip
+\subsection{粒子クラスタ追跡法}
+\subsubsection{PIVによる二次流れ計測}
+\subsubsection{粒子像のクラスタリング}
+\subsubsection{クラスタマッチング}
+\subsubsection{粒子クラスタ中心}
+\subsubsection{移動量解析}
+\subsubsection{速度推定}
+
+\vskip \baselineskip
+\section{数値シミュレーション}
+\subsection{撮影シミュレーションモデル}
+\subsubsection{水槽座標系}
+\subsubsection{カメラ座標系}
+\subsubsection{画像座標系}
+\subsubsection{画像生成}
+
+\vskip 0.5 \baselineskip
+\subsection{空間校正}
+\subsubsection{校正画像の作成}
+\subsubsection{校正性能評価}
+
+\vskip 0.5 \baselineskip
+\subsection{一様流}
+\subsubsection{粒子像の生成}
+\subsubsection{粒子像の識別}
+\subsubsection{粒子位置検出}
+\subsubsection{解析結果}
+\subsubsection{性能評価}
+
+\vskip 0.5 \baselineskip
+\subsection{三角翼まわりの流れ}
+\subsubsection{数値解析による流れ場の取得}
+\subsubsection{解析モデル}
+\subsubsection{粒子像の生成}
+\subsubsection{解析結果}
+\subsubsection{性能評価}
+
+\newpage
+\section{基本実験}
+\vskip 0.5 \baselineskip
+\subsection{実験装置}
+\subsubsection{回流水槽}
+\subsubsection{校正ブロック}
+
+\vskip 0.5 \baselineskip
+\subsection{一様流の撮影}
+\subsubsection{撮影結果}
+
+\subsection{三角翼後流の撮影}
+\subsubsection{三角翼モデル}
+\subsubsection{撮影結果}
+
+\vskip \baselineskip
+\section{応用測定実験}
+\subsection{実験装置}
+\subsubsection{車両モデル}
+\subsubsection{撮影結果}
+
+\vskip \baselineskip
+\section{結言}
+
+\end{document}
